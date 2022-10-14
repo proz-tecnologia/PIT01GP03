@@ -1,5 +1,3 @@
-// comentário teste
-
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
