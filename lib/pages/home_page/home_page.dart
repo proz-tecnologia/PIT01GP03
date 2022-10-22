@@ -4,7 +4,6 @@ import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
 import 'package:projeto_flutter/pages/recover_password_page/recover_password_page.dart';
 import 'package:projeto_flutter/pages/singUp_page/signUp_page.dart';
 import 'package:projeto_flutter/pages/splash_page/splash_page.dart';
-import 'package:projeto_flutter/pages/splash_page/splash_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
