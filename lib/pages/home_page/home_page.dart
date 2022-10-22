@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/pages/login_page/login_page.dart';
+import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
 import 'package:projeto_flutter/pages/recover_password_page/recover_password_page.dart';
 import 'package:projeto_flutter/pages/singUp_page/signUp_page.dart';
 
@@ -35,7 +36,11 @@ class HomePage extends StatelessWidget {
                   Navigator.of(context).pushNamed(RecoverPasswordPage.recover);
                 },
                 child: const Text('recover_password_page')),
-            
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(MyHomePage.myHome);
+                },
+                child: const Text('myHome')),
           ],
         ),
       ),
