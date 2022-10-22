@@ -7,7 +7,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Entrar'),
@@ -24,25 +23,21 @@ class LoginPage extends StatelessWidget {
                   TextFormField(
                       decoration: const InputDecoration(hintText: 'Nome'),
                       keyboardType: TextInputType.name,
-                      validator: null
-                      ),
+                      validator: null),
                   const SizedBox(
                     height: 16,
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Senha',
-                    ),
-                    obscureText: true,
-                    autocorrect: false,
-                    validator: null
-                  ),
+                      decoration: const InputDecoration(
+                        hintText: 'Senha',
+                      ),
+                      obscureText: true,
+                      autocorrect: false,
+                      validator: null),
                   const SizedBox(
                     height: 16,
                   ),
-                  const ElevatedButton(
-                      onPressed: null,
-                      child: Text('Entrar')),
+                  const ElevatedButton(onPressed: null, child: Text('Entrar')),
                   const SizedBox(
                     height: 16,
                   ),

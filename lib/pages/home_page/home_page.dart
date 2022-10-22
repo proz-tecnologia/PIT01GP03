@@ -3,7 +3,8 @@ import 'package:projeto_flutter/pages/login_page/login_page.dart';
 import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
 import 'package:projeto_flutter/pages/recover_password_page/recover_password_page.dart';
 import 'package:projeto_flutter/pages/singUp_page/signUp_page.dart';
-
+import 'package:projeto_flutter/pages/splash_page/splash_page.dart';
+import 'package:projeto_flutter/pages/splash_page/splash_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,7 +21,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-                
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(LoginPage.login);
@@ -41,10 +41,14 @@ class HomePage extends StatelessWidget {
                   Navigator.of(context).pushNamed(MyHomePage.myHome);
                 },
                 child: const Text('myHome')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(SplashPage.splash);
+                },
+                child: const Text('splash'))
           ],
         ),
       ),
     );
   }
 }
-
