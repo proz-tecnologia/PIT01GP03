@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_flutter/models/transaction.dart';
+import 'package:projeto_flutter/themes/app_images.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -23,7 +24,7 @@ class TransactionList extends StatelessWidget {
                 SizedBox(
                   height: constraints.maxHeight * 0.6,
                   child: Image.asset(
-                    'assets/images/waiting.png',
+                    AppImages.logoHome,
                     fit: BoxFit.cover,
                   ),
                 ),

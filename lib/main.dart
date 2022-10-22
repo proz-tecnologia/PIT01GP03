@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
 
       title: 'Porkin I.O.',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
       routes: {
         HomePage.home: (_) => const HomePage(),
         MyHomePage.myHome: (_) => const MyHomePage(),
