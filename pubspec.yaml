@@ -75,15 +75,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: DIN
-      fonts:
-        - asset: fonts/din_alternate/DINAlternate-Bold.ttf
-        - asset: fonts/din_condensed/DINCondensed-Bold.ttf
-    - family: KG Second Chances
-      fonts:
-        - asset: fonts/kg_second_chances/KGSecondChancesSolid.ttf
-        - asset: fonts/kg_second_chances/KGSecondChancesSketch.ttf
+  # fonts:
+  #   - family: DIN
+  #     fonts:
+  #       - asset: fonts/din_alternate/DINAlternate-Bold.ttf
+  #       - asset: fonts/din_condensed/DINCondensed-Bold.ttf
 
   #
   # For details regarding fonts from package dependencies,
