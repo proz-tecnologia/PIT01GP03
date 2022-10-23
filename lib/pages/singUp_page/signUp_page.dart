@@ -12,13 +12,12 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade800,
       body: SingleChildScrollView(
         child: Column(
           children: [
             const LogoAppBar(),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.035,
             ),
             Card(
               color: AppColors.lightgreen,
@@ -50,74 +49,87 @@ class SignUpPage extends StatelessWidget {
                         maxLines: null,
                         decoration: InputDecoration(
                             hintText: 'Nome completo',
+                            hintStyle: const TextStyle(color: AppColors.linear),
+                            enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2, color: AppColors.linear)),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(70),
                             )),
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       TextFormField(
                         controller: null,
                         maxLines: null,
                         decoration: InputDecoration(
                             hintText: 'E-mail',
+                            hintStyle: const TextStyle(color: AppColors.linear),
+                            enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2, color: AppColors.linear)),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
+                                borderRadius: BorderRadius.circular(70))),
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       TextFormField(
                         controller: null,
                         maxLines: null,
                         decoration: InputDecoration(
                             hintText: 'Senha',
+                            hintStyle: const TextStyle(color: AppColors.linear),
+                            enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2, color: AppColors.linear)),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
+                                borderRadius: BorderRadius.circular(70))),
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       TextFormField(
                         controller: null,
                         maxLines: null,
                         decoration: InputDecoration(
                             hintText: 'Confirme a senha',
+                            hintStyle: const TextStyle(color: AppColors.linear),
+                            enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2, color: AppColors.linear)),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
+                                borderRadius: BorderRadius.circular(70))),
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
                       ),
+                      const Center(
+                          child: Text(
+                        'Ao criar uma conta você confirma que concorda com \nos nossos Termos de Serviço e Política de Privacidade.',
+                        style: TextStyle(fontSize: 13, color: AppColors.linear),
+                      )),
                     ]),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.022,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(AppColors.green),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.075,
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16))),
+                  backgroundColor:
+                      const MaterialStatePropertyAll(AppColors.green),
                 ),
-              ),
-              child: const Padding(
-                padding:
-                    EdgeInsets.only(right: 100, left: 100, bottom: 15, top: 15),
-                child: Text(
-                  'ENTRAR',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+                child: const Text(
+                  ' ENTRAR',
+                  style: TextStyle(fontSize: 25, color: AppColors.linear),
                 ),
               ),
             ),

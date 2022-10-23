@@ -13,9 +13,9 @@ class LogoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.34,
+      height: MediaQuery.of(context).size.height * 0.36,
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.only(top: 45),
+      padding: const EdgeInsets.only(top: 42),
       decoration: const BoxDecoration(
         color: AppColors.green,
         borderRadius: BorderRadius.only(
