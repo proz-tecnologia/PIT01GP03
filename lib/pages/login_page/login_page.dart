@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/pages/components/logo_appBar.dart';
+import 'package:projeto_flutter/themes/app_colors.dart';
+import 'package:projeto_flutter/themes/app_images.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -8,47 +11,132 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Entrar'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Card(
-          margin: const EdgeInsets.symmetric(horizontal: 16),
-          child: Form(
-            child: ListView(
-                padding: const EdgeInsets.all(16),
-                shrinkWrap: true,
-                children: <Widget>[
-                  TextFormField(
-                      decoration: const InputDecoration(hintText: 'Nome'),
-                      keyboardType: TextInputType.name,
-                      validator: null),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Senha',
+      body: Column(children: [
+        const LogoAppBar(),
+        SizedBox(height: (MediaQuery.of(context).size.height) * 0.03),
+        Form(
+          child: ListView(
+              padding: const EdgeInsets.all(30),
+              shrinkWrap: true,
+              children: <Widget>[
+                TextFormField(
+                  controller: null,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                      hintText: 'E-MAIL',
+                      hintStyle: const TextStyle(color: AppColors.green),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: AppColors.green)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(70),
+                      )),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                SizedBox(height: (MediaQuery.of(context).size.height) * 0.03),
+                TextFormField(
+                  controller: null,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.visibility_off,
+                            color: AppColors.green),
                       ),
-                      obscureText: true,
-                      autocorrect: false,
-                      validator: null),
-                  const SizedBox(
-                    height: 16,
+                      hintText: 'SENHA',
+                      hintStyle: const TextStyle(color: AppColors.green),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: AppColors.green)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(70),
+                      )),
+                  keyboardType: TextInputType.visiblePassword,
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.075,
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                      backgroundColor:
+                          const MaterialStatePropertyAll(AppColors.green),
+                    ),
+                    child: const Text(
+                      ' ENTRAR',
+                      style: TextStyle(fontSize: 25, color: AppColors.linear),
+                    ),
                   ),
-                  const ElevatedButton(onPressed: null, child: Text('Entrar')),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  GestureDetector(
-                    onTap: null,
-                    child: const Center(child: Text('Esqueci minha senha')),
-                  )
-                ]),
-          ),
+                ),
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 0.025),
+                ),
+                GestureDetector(
+                  onTap: null,
+                  child: const Center(
+                      child: Text(
+                    'Esqueci minha senha',
+                    style: TextStyle(fontSize: 15),
+                  )),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.075,
+                    child: OutlinedButton(
+                      style: ButtonStyle(
+                          side: MaterialStateProperty.all(
+                              const BorderSide(color: AppColors.orange)),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)))),
+                      onPressed: () {},
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              AppImages.google,
+                              color: AppColors.orange,
+                              height: 24,
+                              alignment: AlignmentDirectional.centerStart,
+                            ),
+                            const Padding(
+                                padding: EdgeInsets.only(left: 50),
+                                child: Text(
+                                  "ENTRAR COM GOOGLE",
+                                  style: TextStyle(
+                                      fontSize: 18, color: AppColors.orange),
+                                  textAlign: TextAlign.center,
+                                )),
+                          ]),
+                    )),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.075,
+                    child: OutlinedButton(
+                      style: ButtonStyle(
+                          side: MaterialStateProperty.all(
+                              const BorderSide(color: AppColors.orange)),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)))),
+                      onPressed: () {},
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "CADASTRAR NOVA CONTA",
+                              style: TextStyle(
+                                  fontSize: 18, color: AppColors.orange),
+                              textAlign: TextAlign.center,
+                            ),
+                          ]),
+                    )),
+              ]),
         ),
-      ),
+      ]),
     );
   }
 }

@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
           SizedBox(
             height: 200,
             width: 200,
-            child: Image.asset(AppImages.piggy),
+            child: Image.asset(AppImages.porkin),
           ),
           const Text(
             "Porkin.io",
@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
             ),
           ),
           const Text(
-            "Bem-vindo, sempre! :)",
+            "Bem-vindo",
             style:
                 TextStyle(fontSize: 18, color: Color.fromARGB(255, 68, 67, 67)),
           ),
