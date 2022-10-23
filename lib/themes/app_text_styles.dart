@@ -8,10 +8,10 @@ class MyTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.orange,
   );
-  static final titleRegular = GoogleFonts.lexendDeca(
+  static final subTitle = GoogleFonts.signikaNegative(
     fontSize: 20,
-    fontWeight: FontWeight.w400,
-    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+    color: AppColors.orange,
   );
   static final titleBoldHeading = GoogleFonts.lexendDeca(
     fontSize: 20,

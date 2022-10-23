@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/pages/components/logo_appBar.dart';
+import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
 import 'package:projeto_flutter/themes/app_colors.dart';
 import 'package:projeto_flutter/themes/app_images.dart';
 
@@ -58,7 +59,10 @@ class LoginPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.075,
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(MyHomePage.myHome);
+                    },
                     style: ButtonStyle(
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16))),
