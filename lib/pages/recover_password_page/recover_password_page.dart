@@ -10,10 +10,11 @@ class RecoverPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        body: SingleChildScrollView(
+      child: Column(
         children: [
           const LogoAppBar(),
-          SizedBox(
+         SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           SizedBox(
@@ -82,6 +83,6 @@ class RecoverPasswordPage extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

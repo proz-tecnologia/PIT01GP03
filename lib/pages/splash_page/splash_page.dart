@@ -21,27 +21,26 @@ class _SplashPageState extends State<SplashPage> {
   // });
   //}
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.green,
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          SizedBox(
-            height: 200,
-            width: 200,
-            child: Image.asset(AppImages.porkin),
+        backgroundColor: AppColors.green,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(AppImages.porkin, height: 300),
+                  Text(
+                    "Porkin.io",
+                    style: MyTextStyles.title,
+                  ),
+                  Text(
+                    "Bem-vindo",
+                    style: MyTextStyles.subTitle,
+                  ),
+                ]),
           ),
-          Text(
-            "Porkin.io",
-            style: MyTextStyles.titleHome,
-          ),
-          Text(
-            "Bem-vindo",
-            style: MyTextStyles.subTitle,
-          ),
-        ]),
-      ),
-    );
+        ));
   }
 }

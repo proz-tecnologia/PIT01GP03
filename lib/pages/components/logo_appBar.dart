@@ -13,9 +13,8 @@ class LogoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.36,
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.only(top: 42),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       decoration: const BoxDecoration(
         color: AppColors.green,
         borderRadius: BorderRadius.only(
@@ -23,17 +22,22 @@ class LogoAppBar extends StatelessWidget {
           bottomRight: Radius.circular(10),
         ),
       ),
-      child: Column(children: [
-        Image.asset(
-          AppImages.porkin,
-          height: 200,
-          width: 200,
-        ),
-        Text(
-          "Porkin.io",
-          style: MyTextStyles.titleHome,
-        ),
-      ]),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize
+              .min, //faz com que tamanho da column fique tamanho dos filhos
+          children: [
+            Image.asset(
+              AppImages.porkin,
+              height: 200,
+              width: 200,
+            ),
+            Text(
+              "Porkin.io",
+              style: MyTextStyles.titleHome,
+            ),
+          ]),
     );
   }
 }
