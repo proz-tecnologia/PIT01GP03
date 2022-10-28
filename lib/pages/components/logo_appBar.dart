@@ -22,22 +22,25 @@ class LogoAppBar extends StatelessWidget {
           bottomRight: Radius.circular(10),
         ),
       ),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize
-              .min, //faz com que tamanho da column fique tamanho dos filhos
-          children: [
-            Image.asset(
-              AppImages.porkin,
-              height: 200,
-              width: 200,
-            ),
-            Text(
-              "Porkin.io",
-              style: MyTextStyles.titleHome,
-            ),
-          ]),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize
+                .min, //faz com que tamanho da column fique tamanho dos filhos
+            children: [
+              Image.asset(
+                AppImages.porkin,
+                height: 175,
+                width: 175,
+              ),
+              Text(
+                "Porkin.io",
+                style: MyTextStyles.titleHome,
+              ),
+            ]),
+      ),
     );
   }
 }
