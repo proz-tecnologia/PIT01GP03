@@ -14,7 +14,7 @@ class RecoverPasswordPage extends StatelessWidget {
       child: Column(
         children: [
           const LogoAppBar(),
-         SizedBox(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           SizedBox(
@@ -48,14 +48,17 @@ class RecoverPasswordPage extends StatelessWidget {
                         controller: null,
                         maxLines: null,
                         decoration: InputDecoration(
-                            hintText: 'E-mail',
-                            hintStyle: const TextStyle(color: AppColors.linear),
-                            enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 2, color: AppColors.linear)),
-                            border: OutlineInputBorder(
+                          hintText: 'E-mail',
+                          hintStyle: const TextStyle(color: AppColors.linear),
+                          focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(70),
-                            )),
+                              borderSide: const BorderSide(
+                                  color: AppColors.linear, width: 3)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(70),
+                              borderSide: const BorderSide(
+                                  color: AppColors.linear, width: 2)),
+                        ),
                       ),
                     ]),
               ),

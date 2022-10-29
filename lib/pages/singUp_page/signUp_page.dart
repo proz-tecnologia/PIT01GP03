@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/pages/components/logo_appBar.dart';
 import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
+import 'package:projeto_flutter/pages/singUp_page/formField_register.dart';
 import 'package:projeto_flutter/themes/app_colors.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -45,64 +46,19 @@ class SignUpPage extends StatelessWidget {
                       const SizedBox(
                         height: 25,
                       ),
-                      TextFormField(
-                        controller: null,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                            hintText: 'Nome completo',
-                            hintStyle: const TextStyle(color: AppColors.linear),
-                            enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 2, color: AppColors.linear)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(70),
-                            )),
-                      ),
+                      const FormRegister(textRegister: 'Nome completo'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      TextFormField(
-                        controller: null,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                            hintText: 'E-mail',
-                            hintStyle: const TextStyle(color: AppColors.linear),
-                            enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 2, color: AppColors.linear)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(70))),
-                      ),
+                      const FormRegister(textRegister: 'E-mail'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      TextFormField(
-                        controller: null,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                            hintText: 'Senha',
-                            hintStyle: const TextStyle(color: AppColors.linear),
-                            enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 2, color: AppColors.linear)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(70))),
-                      ),
+                      const FormRegister(textRegister: 'Senha'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      TextFormField(
-                        controller: null,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                            hintText: 'Confirme a senha',
-                            hintStyle: const TextStyle(color: AppColors.linear),
-                            enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 2, color: AppColors.linear)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(70))),
-                      ),
+                      const FormRegister(textRegister: 'Confirme sua senha'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),

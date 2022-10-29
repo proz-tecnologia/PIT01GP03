@@ -57,7 +57,7 @@ As estatisticas geradas a partir do formulário corroboraram as pretensões inic
 
 Como tela adicional ao protótipo elaborado, inclui-se a tela Recovery password.
 
-![screens_flutter](https://user-images.githubusercontent.com/108772866/198699643-08290d34-3c9f-43ad-adc3-bfbf49b6af7c.jpeg)
+screens_flutter.png
 
 (//incluir tela home)
 

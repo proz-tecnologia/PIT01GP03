@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/pages/login_page/buttons.dart';
 import 'package:projeto_flutter/pages/components/logo_appBar.dart';
 import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
 import 'package:projeto_flutter/themes/app_colors.dart';
@@ -26,14 +27,18 @@ class LoginPage extends StatelessWidget {
                       controller: null,
                       maxLines: null,
                       decoration: InputDecoration(
-                          hintText: 'E-MAIL',
-                          hintStyle: const TextStyle(color: AppColors.green),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(width: 2, color: AppColors.green)),
-                          border: OutlineInputBorder(
+                        focusColor: AppColors.green,
+                        hintText: 'E-MAIL',
+                        hintStyle: const TextStyle(color: AppColors.green),
+                        focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(70),
-                          )),
+                            borderSide: const BorderSide(
+                                color: AppColors.lightgreen, width: 3)),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(70),
+                            borderSide: const BorderSide(
+                                color: AppColors.green, width: 2)),
+                      ),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     SizedBox(
@@ -42,22 +47,26 @@ class LoginPage extends StatelessWidget {
                       controller: null,
                       maxLines: null,
                       decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.visibility_off,
-                                color: AppColors.green),
-                          ),
-                          hintText: 'SENHA',
-                          hintStyle: const TextStyle(color: AppColors.green),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(width: 2, color: AppColors.green)),
-                          border: OutlineInputBorder(
+                        suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.visibility_off,
+                              color: AppColors.green),
+                        ),
+                        hintText: 'SENHA',
+                        hintStyle: const TextStyle(color: AppColors.green),
+                        focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(70),
-                          )),
+                            borderSide: const BorderSide(
+                                color: AppColors.lightgreen, width: 3)),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(70),
+                            borderSide: const BorderSide(
+                                color: AppColors.green, width: 2)),
+                      ),
                       keyboardType: TextInputType.visiblePassword,
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.045),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.075,
                       width: MediaQuery.of(context).size.width * 0.6,
@@ -81,7 +90,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: (MediaQuery.of(context).size.height * 0.025),
+                      height: (MediaQuery.of(context).size.height * 0.02),
                     ),
                     GestureDetector(
                       onTap: null,
@@ -92,37 +101,16 @@ class LoginPage extends StatelessWidget {
                       )),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    const SocialButton(
+                        image: AppImages.google,
+                        text: "ENTRAR COM GOOGLE        "),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.075,
-                        child: OutlinedButton(
-                          style: ButtonStyle(
-                              side: MaterialStateProperty.all(
-                                  const BorderSide(color: AppColors.orange)),
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16)))),
-                          onPressed: () {},
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  AppImages.google,
-                                  color: AppColors.orange,
-                                  height: 24,
-                                  alignment: AlignmentDirectional.centerStart,
-                                ),
-                                const Padding(
-                                    padding: EdgeInsets.only(left: 50),
-                                    child: Text(
-                                      "ENTRAR COM GOOGLE",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: AppColors.orange),
-                                      textAlign: TextAlign.center,
-                                    )),
-                              ]),
-                        )),
+                        height: MediaQuery.of(context).size.height * 0.025),
+                    const Padding(
+                        padding: EdgeInsets.only(left: 20, right: 40)),
+                    const SocialButton(
+                        image: AppImages.microsoft,
+                        text: 'ENTRAR COM MICROSOFT'),
                     SizedBox(
                         height: MediaQuery.of(context).size.height * 0.025),
                     SizedBox(
