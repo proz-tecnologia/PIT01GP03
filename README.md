@@ -30,8 +30,8 @@ Recursos utilizados:
 
 Autores do projeto:
 - Beatriz Pereira de Sousa Lima
-- Charleston
-- Diego
+- Charleston Ribeiro
+- Diego Gomes
 - Paulo Amorim
 
 ## Sobre o Porkin.io app
@@ -57,7 +57,8 @@ As estatisticas geradas a partir do formulário corroboraram as pretensões inic
 
 Como tela adicional ao protótipo elaborado, inclui-se a tela Recovery password.
 
-screens_flutter.png
+![screens_flutter](https://user-images.githubusercontent.com/108772866/198755644-fc47a5e5-ae01-42bf-965a-d39e418b9acf.png)
+
 
 (//incluir tela home)
 
