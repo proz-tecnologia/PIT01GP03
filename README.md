@@ -1,4 +1,4 @@
-# Porkin.io app
+# **Porkin.io app**
 
 O Porkin.io virtual do planejamento financeiro.
 
@@ -8,11 +8,11 @@ O desenvolvimento do aplicativo em questão faz parte do Projeto Integrador do c
 O projeto deve ser organizado em Cinco Sprints e o tema a ser trabalhado deve estar associado à Finanças.
 
 Etapas concluídas:
-[x] Sprint I;
-[ ] Sprint II;
-[ ] Sprint III;
-[ ] Sprint IV;
-[ ] Sprint V.
+- [x] Sprint I
+- [ ] Sprint II
+- [ ] Sprint III
+- [ ] Sprint IV
+- [ ] Sprint V
 
 Objetivos Sprint I:
 
