@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../themes/app_colors.dart';
 import '../../themes/app_images.dart';
 import '../../themes/app_text_styles.dart';
@@ -23,7 +22,7 @@ class card_graph_performance extends StatelessWidget {
           height: 320,
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -80,8 +79,8 @@ class card_graph_performance extends StatelessWidget {
                   height: 240,
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Image.asset(AppImages.logoHome),
+                    padding: const EdgeInsets.all(16),
+                    child: Image.asset(AppImages.waiting),
                   ),
                 ),
               ],

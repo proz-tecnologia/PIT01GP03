@@ -5,35 +5,37 @@ import 'package:projeto_flutter/themes/app_colors.dart';
 class AppTextStylesDark {
   static final headline1 = GoogleFonts.concertOne(
     fontSize: 96,
-    color: AppColors.textDarkGray,
+    color: AppColors.secondary,
   );
   static final headline2 = GoogleFonts.concertOne(
     fontSize: 60,
-    color: AppColors.textDarkGray,
+    color: AppColors.secondary,
   );
   static final headline3 = GoogleFonts.concertOne(
     fontSize: 48,
-    color: AppColors.textDarkGray,
+    color: AppColors.secondary,
   );
   static final headline4 = GoogleFonts.concertOne(
     fontSize: 34,
-    color: AppColors.textDarkGray,
+    color: AppColors.secondary,
   );
   static final headline5 = GoogleFonts.concertOne(
     fontSize: 24,
-    color: AppColors.textDarkGray,
+    color: AppColors.secondary,
   );
   static final headline6 = GoogleFonts.concertOne(
     fontSize: 20,
-    color: AppColors.textDarkGray,
+    color: AppColors.secondary,
   );
   static final subtitle1 = GoogleFonts.roboto(
     fontSize: 16,
-    color: AppColors.textDarkGray,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textLight,
   );
   static final subtitle2 = GoogleFonts.robotoCondensed(
     fontSize: 14,
-    color: AppColors.textDarkGray,
+    color: AppColors.secondary,
+    fontWeight: FontWeight.bold,
   );
   static final body1 = GoogleFonts.roboto(
     fontSize: 16,
@@ -43,11 +45,12 @@ class AppTextStylesDark {
     fontSize: 14,
     color: AppColors.textDarkGray,
   );
-  static final button = GoogleFonts.concertOne(
+  static final button = GoogleFonts.roboto(
     fontSize: 14,
     color: AppColors.textDarkGray,
+    fontWeight: FontWeight.bold,
   );
-  static final caption = GoogleFonts.roboto(
+  static final caption = GoogleFonts.concertOne(
     fontSize: 12,
     color: AppColors.textDarkGray,
   );
@@ -56,6 +59,7 @@ class AppTextStylesDark {
     color: AppColors.textDarkGray,
   );
 }
+
 class AppTextStylesLight {
   static final headline1 = GoogleFonts.concertOne(
     fontSize: 96,
@@ -84,10 +88,12 @@ class AppTextStylesLight {
   static final subtitle1 = GoogleFonts.roboto(
     fontSize: 16,
     color: AppColors.textLight,
+    fontWeight: FontWeight.bold,
   );
   static final subtitle2 = GoogleFonts.robotoCondensed(
     fontSize: 14,
     color: AppColors.textLight,
+    fontWeight: FontWeight.bold,
   );
   static final body1 = GoogleFonts.roboto(
     fontSize: 16,
@@ -104,6 +110,7 @@ class AppTextStylesLight {
   static final caption = GoogleFonts.roboto(
     fontSize: 12,
     color: AppColors.textLight,
+    fontWeight: FontWeight.bold,
   );
   static final overline = GoogleFonts.robotoCondensed(
     fontSize: 10,
