@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/login_page/login_page.dart';
-import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
-import 'package:projeto_flutter/pages/recover_password_page/recover_password_page.dart';
-import 'package:projeto_flutter/pages/singUp_page/signUp_page.dart';
-import 'package:projeto_flutter/pages/splash_page/splash_page.dart';
+import '../../themes/app_colors.dart';
+import 'card_account_balance.dart';
+import 'card_goals_small_primary.dart';
+import 'card_goals_small_secondary.dart';
+import 'card_graph_performance.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   static const home = '/';
 
@@ -14,40 +14,69 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home para desenvolvimento'),
+        title: const Text('Olá, Usuário!'),
+        backgroundColor: AppColors.primaryDark,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {},
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.monetization_on_rounded),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.wallet_rounded),
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(LoginPage.login);
-                },
-                child: const Text('login_page')),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(SignUpPage.signUp);
-                },
-                child: const Text('signUp_page')),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RecoverPasswordPage.recover);
-                },
-                child: const Text('recover_password_page')),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(MyHomePage.myHome);
-                },
-                child: const Text('myHome')),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(SplashPage.splash);
-                },
-                child: const Text('splash'))
-          ],
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(36.0),
+        child: Container(
+          child: Column(
+            children: [
+              card_account_balance(),
+              SizedBox(
+                height: 36,
+              ),
+              card_graph_performance(),
+              SizedBox(
+                height: 36,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                clipBehavior: Clip.antiAlias,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    card_goals_small_primary(),
+                    SizedBox(width: 16),
+                    card_goals_small_secondary(),
+                    SizedBox(width: 16),
+                    card_goals_small_primary(),
+                    SizedBox(width: 16),
+                    card_goals_small_secondary(),
+                    SizedBox(width: 16),
+                    card_goals_small_primary(),
+                    SizedBox(width: 16),
+                    card_goals_small_secondary(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+
+
+
+
+
+
+// ignore: camel_case_types
+

@@ -6,6 +6,7 @@ import 'package:projeto_flutter/models/transaction.dart';
 import 'package:projeto_flutter/pages/my_home_page/components/chart.dart';
 import 'package:projeto_flutter/pages/my_home_page/components/transaction_form.dart';
 import 'package:projeto_flutter/pages/my_home_page/components/transaction_list.dart';
+import '../../themes/app_colors.dart';
 
 class MyHomePage extends StatefulWidget {
   static const myHome = '/myHome';
@@ -13,7 +14,6 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -90,8 +90,78 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
     final PreferredSizeWidget appBar = AppBar(
-      title: const Text('Despesas Pessoais'),
-      actions: actions,
+      title: const Text('Nome do Usuário'),
+      backgroundColor: AppColors.primaryDark,
+      leading: IconButton(
+        icon: const Icon(Icons.menu),
+        onPressed: () {},
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.monetization_on_rounded),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.wallet_rounded),
+        ),
+      ],
+      bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(40),
+          child: Container(
+            height: 40,
+            color: AppColors.primaryDark,
+          )),
+    );
+
+    final Widget wallet = Container(
+      height: 160,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text('Conta Corrente'),
+              Icon(Icons.more_horiz),
+            ],
+          ),
+          Row(
+            children: [
+              const Text('R\$ 100,00'),
+              const Icon(Icons.visibility_outlined),
+            ],
+          ),
+          Row(
+            children: [
+              Flexible(
+                child: Row(
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 36,
+                            width: 36,
+                            decoration: BoxDecoration(
+                              color: AppColors.backgroundLight,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Text('Entradas'),
+                        Text('R\$ 150,00'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
 
     final availableHeight = mediaQuery.size.height -
@@ -103,7 +173,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-       
             if (_showChart || !isLandscape)
               SizedBox(
                 height: availableHeight * (isLandscape ? 0.8 : 0.3),

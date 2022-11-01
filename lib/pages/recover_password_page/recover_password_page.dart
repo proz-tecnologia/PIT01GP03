@@ -10,7 +10,8 @@ class RecoverPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        body: SingleChildScrollView(
+      child: Column(
         children: [
           const LogoAppBar(),
           SizedBox(
@@ -47,14 +48,17 @@ class RecoverPasswordPage extends StatelessWidget {
                         controller: null,
                         maxLines: null,
                         decoration: InputDecoration(
-                            hintText: 'E-mail',
-                            hintStyle: const TextStyle(color: AppColors.linear),
-                            enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 2, color: AppColors.linear)),
-                            border: OutlineInputBorder(
+                          hintText: 'E-mail',
+                          hintStyle: const TextStyle(color: AppColors.linear),
+                          focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(70),
-                            )),
+                              borderSide: const BorderSide(
+                                  color: AppColors.linear, width: 3)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(70),
+                              borderSide: const BorderSide(
+                                  color: AppColors.linear, width: 2)),
+                        ),
                       ),
                     ]),
               ),
@@ -82,6 +86,6 @@ class RecoverPasswordPage extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }
