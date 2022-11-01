@@ -1,10 +1,10 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/components/logo_appBar.dart';
-import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
-import 'package:projeto_flutter/pages/signup_page/formfield_register.dart';
-import 'package:projeto_flutter/themes/app_colors.dart';
+
+import '../themes/app_colors.dart';
+import 'components/formfield_register.dart';
+import 'components/logo_appbar.dart';
+import 'home_page.dart';
+
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -78,7 +78,7 @@ class SignUpPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.6,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(MyHomePage.myHome);
+                  Navigator.of(context).pushReplacementNamed(HomePage.home);
                 },
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(

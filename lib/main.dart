@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/home_page/home_page.dart';
-import 'package:projeto_flutter/pages/login_page/login_page.dart';
-import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
-import 'package:projeto_flutter/pages/recover_password_page/recover_password_page.dart';
-import 'package:projeto_flutter/pages/signup_page/signup_page.dart';
-import 'package:projeto_flutter/pages/splash_page/splash_page.dart';
+import 'package:projeto_flutter/pages/navigation_page.dart';
+import 'pages/home_page.dart';
+import 'pages/login_page.dart';
+import 'pages/signup_page.dart';
+import 'pages/splash_page.dart';
+import 'pages/recover_password_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
 
 void main() {
   runApp(
@@ -34,10 +35,11 @@ class MyApp extends StatelessWidget {
         ],
       ),
       debugShowCheckedModeBanner: false,
+      initialRoute: NavigationPage.navigation,
       routes: {
+        NavigationPage.navigation: (_) => const NavigationPage(),
         SplashPage.splash: (_) => const SplashPage(),
-        HomePage.home: (_) => HomePage(),
-        MyHomePage.myHome: (_) => const MyHomePage(),
+        HomePage.home: (_) => const HomePage(),
         LoginPage.login: (_) => const LoginPage(),
         RecoverPasswordPage.recover: (_) => const RecoverPasswordPage(),
         SignUpPage.signUp: (_) => const SignUpPage(),

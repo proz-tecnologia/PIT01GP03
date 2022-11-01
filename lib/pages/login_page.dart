@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/login_page/buttons.dart';
-import 'package:projeto_flutter/pages/components/logo_appBar.dart';
-import 'package:projeto_flutter/pages/my_home_page/my_home_page.dart';
-import 'package:projeto_flutter/themes/app_colors.dart';
-import 'package:projeto_flutter/themes/app_images.dart';
+
+import '../themes/app_colors.dart';
+import '../themes/app_images.dart';
+import 'components/buttons.dart';
+import 'components/logo_appbar.dart';
+import 'home_page.dart';
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -73,7 +75,7 @@ class LoginPage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context)
-                              .pushReplacementNamed(MyHomePage.myHome);
+                              .pushReplacementNamed(HomePage.home);
                         },
                         style: ButtonStyle(
                           shape: MaterialStatePropertyAll(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class ChartBar extends StatelessWidget {
   final String? label;
   final double? value;

@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/themes/app_colors.dart';
 import 'package:projeto_flutter/themes/app_images.dart';

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../../themes/app_colors.dart';
 import '../../themes/app_text_styles.dart';
 
-class card_goals_small_primary extends StatelessWidget {
-  const card_goals_small_primary({
+class card_goals_small_secondary extends StatelessWidget {
+  const card_goals_small_secondary({
     Key? key,
   }) : super(key: key);
 
@@ -12,21 +11,21 @@ class card_goals_small_primary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: AppColors.secondary,
         borderRadius: BorderRadius.circular(20),
       ),
       height: 100,
       width: MediaQuery.of(context).size.width * 0.2,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: AppColors.backgroundLight,
               child: Icon(
                 Icons.numbers_rounded,
-                color: AppColors.secondary,
+                color: AppColors.primary,
               ),
             ),
             Text(
@@ -55,7 +54,7 @@ class card_goals_small_primary extends StatelessWidget {
                       padding: const EdgeInsets.all(2),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: AppColors.secondary,
+                          color: AppColors.primary,
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
