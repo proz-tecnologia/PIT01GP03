@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/pages/home_page.dart';
 import 'package:projeto_flutter/pages/navigation_page.dart';
-import 'pages/home_page.dart';
 import 'pages/login_page.dart';
 import 'pages/signup_page.dart';
 import 'pages/splash_page.dart';
@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
       initialRoute: NavigationPage.navigation,
       routes: {
         NavigationPage.navigation: (_) => const NavigationPage(),
-        SplashPage.splash: (_) => const SplashPage(),
         HomePage.home: (_) => const HomePage(),
+        SplashPage.splash: (_) => const SplashPage(),
         LoginPage.login: (_) => const LoginPage(),
         RecoverPasswordPage.recover: (_) => const RecoverPasswordPage(),
         SignUpPage.signUp: (_) => const SignUpPage(),

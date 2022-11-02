@@ -5,13 +5,12 @@ import 'components/card_account_balance.dart';
 import 'components/card_goals_small_primary.dart';
 import 'components/card_goals_small_secondary.dart';
 import 'components/card_graph_performance.dart';
-import 'navigation_page.dart';
-import 'splash_page.dart';
+import 'components/drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static const home = '/';
+  static const home = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +18,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -38,11 +33,11 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(36.0),
         child: Column(
           children: [
-            const card_account_balance(),
+            const CardAccountBalance(),
             const SizedBox(
               height: 36,
             ),
-            const card_graph_performance(),
+            const CardGraphPerformance(),
             const SizedBox(
               height: 36,
             ),
@@ -52,23 +47,24 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
-                  card_goals_small_primary(),
+                  CardGoalsSmallPrimary(),
                   SizedBox(width: 16),
-                  card_goals_small_secondary(),
+                  CardGoalsSmallSecondary(),
                   SizedBox(width: 16),
-                  card_goals_small_primary(),
+                  CardGoalsSmallPrimary(),
                   SizedBox(width: 16),
-                  card_goals_small_secondary(),
+                  CardGoalsSmallSecondary(),
                   SizedBox(width: 16),
-                  card_goals_small_primary(),
+                  CardGoalsSmallPrimary(),
                   SizedBox(width: 16),
-                  card_goals_small_secondary(),
+                  CardGoalsSmallSecondary(),
                 ],
               ),
             ),
           ],
         ),
       ),
+      drawer: const DrawerCustom(),
     );
   }
 }

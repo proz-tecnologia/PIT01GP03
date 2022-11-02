@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/themes/app_colors.dart';
-
 import 'home_page.dart';
 import 'login_page.dart';
 import 'recover_password_page.dart';
