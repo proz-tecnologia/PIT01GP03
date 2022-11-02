@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../themes/app_colors.dart';
 import '../../themes/app_text_styles.dart';
 
-class card_account_balance extends StatelessWidget {
-  const card_account_balance({
+class Card_account_balance extends StatelessWidget {
+  const Card_account_balance({
     Key? key,
   }) : super(key: key);
 

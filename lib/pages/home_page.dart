@@ -5,13 +5,11 @@ import 'components/card_account_balance.dart';
 import 'components/card_goals_small_primary.dart';
 import 'components/card_goals_small_secondary.dart';
 import 'components/card_graph_performance.dart';
-import 'navigation_page.dart';
-import 'splash_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static const home = '/';
+  static const home = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +36,11 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(36.0),
         child: Column(
           children: [
-            const card_account_balance(),
+            const Card_account_balance(),
             const SizedBox(
               height: 36,
             ),
-            const card_graph_performance(),
+            const Card_graph_performance(),
             const SizedBox(
               height: 36,
             ),

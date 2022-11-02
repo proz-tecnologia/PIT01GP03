@@ -3,8 +3,8 @@ import '../../themes/app_colors.dart';
 import '../../themes/app_images.dart';
 import '../../themes/app_text_styles.dart';
 
-class card_graph_performance extends StatelessWidget {
-  const card_graph_performance({
+class Card_graph_performance extends StatelessWidget {
+  const Card_graph_performance({
     Key? key,
   }) : super(key: key);
 
@@ -30,7 +30,7 @@ class card_graph_performance extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Chip(
-                      label: Container(
+                      label: SizedBox(
                         width: 56,
                         child: Text(
                           'Diário',
@@ -40,7 +40,7 @@ class card_graph_performance extends StatelessWidget {
                       ),
                     ),
                     Chip(
-                      label: Container(
+                      label: SizedBox(
                         width: 56,
                         child: Text(
                           'Semanal',
@@ -50,7 +50,7 @@ class card_graph_performance extends StatelessWidget {
                       ),
                     ),
                     Chip(
-                      label: Container(
+                      label: SizedBox(
                         width: 56,
                         child: Text(
                           'Mensal',
@@ -60,7 +60,7 @@ class card_graph_performance extends StatelessWidget {
                       ),
                     ),
                     Chip(
-                      label: Container(
+                      label: SizedBox(
                         width: 56,
                         child: Text(
                           'Anual',
