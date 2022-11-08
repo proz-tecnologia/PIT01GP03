@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../themes/app_colors.dart';
-import '../../themes/app_text_styles.dart';
+import '../themes/app_colors.dart';
+import '../themes/app_text_styles.dart';
 
 class CardGoalsSmallPrimary extends StatelessWidget {
   const CardGoalsSmallPrimary({

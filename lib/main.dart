@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/home_page.dart';
-import 'package:projeto_flutter/pages/navigation_page.dart';
-import 'pages/login_page.dart';
-import 'pages/signup_page.dart';
-import 'pages/splash_page.dart';
-import 'pages/recover_password_page.dart';
+import 'package:projeto_flutter/view/pages/home_page.dart';
+import 'view/pages/login_page.dart';
+import 'view/pages/signup_page.dart';
+import 'view/pages/splash_page.dart';
+import 'view/pages/recover_password_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 
@@ -35,9 +34,8 @@ class MyApp extends StatelessWidget {
         ],
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: NavigationPage.navigation,
+      initialRoute: HomePage.home,
       routes: {
-        NavigationPage.navigation: (_) => const NavigationPage(),
         HomePage.home: (_) => const HomePage(),
         SplashPage.splash: (_) => const SplashPage(),
         LoginPage.login: (_) => const LoginPage(),

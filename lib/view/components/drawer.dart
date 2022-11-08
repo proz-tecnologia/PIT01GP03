@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/pages/login_page.dart';
-import 'package:projeto_flutter/pages/recover_password_page.dart';
-import 'package:projeto_flutter/pages/signup_page.dart';
-import 'package:projeto_flutter/pages/splash_page.dart';
-import 'package:projeto_flutter/themes/app_colors.dart';
-import 'package:projeto_flutter/themes/app_text_styles.dart';
+import 'package:projeto_flutter/view/pages/login_page.dart';
+import 'package:projeto_flutter/view/pages/recover_password_page.dart';
+import 'package:projeto_flutter/view/pages/signup_page.dart';
+import 'package:projeto_flutter/view/pages/splash_page.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
+import 'package:projeto_flutter/view/themes/app_text_styles.dart';
 
 class DrawerCustom extends StatelessWidget {
   const DrawerCustom({super.key});

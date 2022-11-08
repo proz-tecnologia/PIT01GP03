@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../themes/app_colors.dart';
-import 'components/card_account_balance.dart';
-import 'components/card_goals_small_primary.dart';
-import 'components/card_goals_small_secondary.dart';
-import 'components/card_graph_performance.dart';
-import 'components/drawer.dart';
+import '../components/card_account_balance.dart';
+import '../components/card_goals_small_primary.dart';
+import '../components/card_goals_small_secondary.dart';
+import '../components/card_graph_performance.dart';
+import '../components/drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static const home = '/home';
+  static const home = '/';
 
   @override
   Widget build(BuildContext context) {
