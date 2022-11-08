@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 
 import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
-import 'components/buttons.dart';
-import 'components/logo_appbar.dart';
+import '../components/buttons.dart';
 import 'home_page.dart';
-
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

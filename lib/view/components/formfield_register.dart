@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/themes/app_colors.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 
 class FormRegister extends StatelessWidget {
   final String textRegister;
