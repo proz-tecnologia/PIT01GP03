@@ -28,7 +28,7 @@ class _FormRegisterPasswordState extends State<FormRegisterPassword> {
               _isHidden = !_isHidden;
             });
           },
-          child: Icon( _isHidden ? Icons.visibility : Icons.visibility_off )),
+          child: Icon( _isHidden ? Icons.visibility_off  : Icons.visibility)),
     );
   }
 }
