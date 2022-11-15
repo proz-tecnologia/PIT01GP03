@@ -22,7 +22,7 @@ class _FormRegisterPasswordState extends State<FormRegisterPassword> {
       textRegister: widget.textRegister,
       obscureText: _isHidden,
       suffixIcon: InkWell(
-          borderRadius: BorderRadius.circular(23.0),
+          borderRadius: BorderRadius.circular(20.0),
           onTap: () {
             setState(() {
               _isHidden = !_isHidden;

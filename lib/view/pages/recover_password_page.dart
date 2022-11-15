@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 
+import '../components/formfield_register.dart';
 import '../themes/app_colors.dart';
 
 class RecoverPasswordPage extends StatelessWidget {
@@ -27,12 +28,12 @@ class RecoverPasswordPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Form(
-                child: ListView(
-                    padding: const EdgeInsets.all(16),
-                    shrinkWrap: true,
-                    children: <Widget>[
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.035,
+                        height: MediaQuery.of(context).size.height * 0.04,
                       ),
                       const Center(
                           child: Text(
@@ -45,31 +46,20 @@ class RecoverPasswordPage extends StatelessWidget {
                       const SizedBox(
                         height: 25,
                       ),
-                      TextFormField(
-                        controller: null,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                          hintText: 'E-mail',
-                          hintStyle: const TextStyle(color: AppColors.linear),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(70),
-                              borderSide: const BorderSide(
-                                  color: AppColors.linear, width: 3)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(70),
-                              borderSide: const BorderSide(
-                                  color: AppColors.linear, width: 2)),
-                        ),
-                      ),
-                    ]),
+                      const FormRegister(
+                        textRegister: "E-mail",
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.055,
+            height: MediaQuery.of(context).size.height * 0.06,
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.075,
+            height: MediaQuery.of(context).size.height * 0.06,
             width: MediaQuery.of(context).size.width * 0.6,
             child: ElevatedButton(
               onPressed: () {},
@@ -84,6 +74,9 @@ class RecoverPasswordPage extends StatelessWidget {
                 style: TextStyle(fontSize: 25, color: AppColors.linear),
               ),
             ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
           ),
         ],
       ),
