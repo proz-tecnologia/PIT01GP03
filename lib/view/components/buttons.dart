@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/themes/app_colors.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 
 class SocialButton extends StatelessWidget {
   final String image;
@@ -10,7 +10,7 @@ class SocialButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: MediaQuery.of(context).size.height * 0.075,
+        height: MediaQuery.of(context).size.height * 0.06,
         child: OutlinedButton(
           style: ButtonStyle(
               side: MaterialStateProperty.all(

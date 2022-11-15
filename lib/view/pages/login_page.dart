@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/components/formfield_register.dart';
+import 'package:projeto_flutter/view/components/formfield_register_password.dart';
+import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 
 import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
-import 'components/buttons.dart';
-import 'components/logo_appbar.dart';
+import '../components/buttons.dart';
 import 'home_page.dart';
-
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -18,59 +19,21 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           const LogoAppBar(),
-          SizedBox(height: (MediaQuery.of(context).size.height) * 0.03),
+          SizedBox(height: (MediaQuery.of(context).size.height) * 0.04),
           Form(
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                   // shrinkWrap: true,   // verifica se listview tem tamanho min
                   children: <Widget>[
-                    TextFormField(
-                      controller: null,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                        focusColor: AppColors.green,
-                        hintText: 'E-MAIL',
-                        hintStyle: const TextStyle(color: AppColors.green),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(70),
-                            borderSide: const BorderSide(
-                                color: AppColors.lightgreen, width: 3)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(70),
-                            borderSide: const BorderSide(
-                                color: AppColors.green, width: 2)),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
+                    const FormRegister(textRegister: "NOME"),
                     SizedBox(
-                        height: (MediaQuery.of(context).size.height) * 0.03),
-                    TextFormField(
-                      controller: null,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.visibility_off,
-                              color: AppColors.green),
-                        ),
-                        hintText: 'SENHA',
-                        hintStyle: const TextStyle(color: AppColors.green),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(70),
-                            borderSide: const BorderSide(
-                                color: AppColors.lightgreen, width: 3)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(70),
-                            borderSide: const BorderSide(
-                                color: AppColors.green, width: 2)),
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
+                        height: (MediaQuery.of(context).size.height) * 0.04),
+                    const FormRegisterPassword(textRegister: 'SENHA'),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.045),
+                        height: MediaQuery.of(context).size.height * 0.04),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.075,
+                      height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: ElevatedButton(
                         onPressed: () {
@@ -102,21 +65,21 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(fontSize: 15),
                       )),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     const SocialButton(
                         image: AppImages.google,
                         text: "ENTRAR COM GOOGLE        "),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.025),
+                        height: MediaQuery.of(context).size.height * 0.02),
                     const Padding(
                         padding: EdgeInsets.only(left: 20, right: 40)),
                     const SocialButton(
                         image: AppImages.microsoft,
                         text: 'ENTRAR COM MICROSOFT'),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.025),
+                        height: MediaQuery.of(context).size.height * 0.02),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.075,
+                        height: MediaQuery.of(context).size.height * 0.06,
                         child: OutlinedButton(
                           style: ButtonStyle(
                               side: MaterialStateProperty.all(
@@ -137,6 +100,7 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ]),
                         )),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                   ]),
             ),
           ),
