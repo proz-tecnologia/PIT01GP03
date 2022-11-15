@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 
 import '../themes/app_colors.dart';
-import 'components/logo_appbar.dart';
 
 class RecoverPasswordPage extends StatelessWidget {
   const RecoverPasswordPage({super.key});

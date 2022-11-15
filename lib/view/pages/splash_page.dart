@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
 import '../themes/app_text_styles.dart';
-import 'login_page.dart';
+
 
 
 class SplashPage extends StatefulWidget {
@@ -39,6 +39,7 @@ class _SplashPageState extends State<SplashPage> {
                     "Porkin.io",
                     style: AppTextStylesDark.headline3,
                   ),
+                  const SizedBox(),
                   Text(
                     "Bem-vindo",
                     style: AppTextStylesDark.subtitle1,

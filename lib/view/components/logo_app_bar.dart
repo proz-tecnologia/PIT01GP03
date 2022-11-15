@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/themes/app_colors.dart';
-import 'package:projeto_flutter/themes/app_images.dart';
-import 'package:projeto_flutter/themes/app_text_styles.dart';
+import '../themes/app_colors.dart';
+import '../themes/app_images.dart';
+import '../themes/app_text_styles.dart';
+
 
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({super.key});
-
-  static const login = '/login';
-
   @override
   Widget build(BuildContext context) {
     return Container(

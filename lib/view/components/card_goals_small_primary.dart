@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../themes/app_colors.dart';
-import '../../themes/app_text_styles.dart';
+import '../themes/app_colors.dart';
+import '../themes/app_text_styles.dart';
 
-class card_goals_small_primary extends StatelessWidget {
-  const card_goals_small_primary({
+class CardGoalsSmallPrimary extends StatelessWidget {
+  const CardGoalsSmallPrimary({
     Key? key,
   }) : super(key: key);
 
