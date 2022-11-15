@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/components/formfield_register_password.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 import '../themes/app_colors.dart';
 import '../components/formfield_register.dart';
@@ -52,11 +53,11 @@ class SignUpPage extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      const FormRegister(textRegister: 'Senha'),
+                      const FormRegisterPassword(textRegister: 'Senha'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      const FormRegister(textRegister: 'Confirme sua senha'),
+                      const FormRegisterPassword(textRegister: 'Confirme sua senha'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
@@ -89,6 +90,9 @@ class SignUpPage extends StatelessWidget {
                   style: TextStyle(fontSize: 25, color: AppColors.linear),
                 ),
               ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.044,
             ),
           ],
         ),
