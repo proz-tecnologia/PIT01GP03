@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           const LogoAppBar(),
-          SizedBox(height: (MediaQuery.of(context).size.height) * 0.03),
+          SizedBox(height: (MediaQuery.of(context).size.height) * 0.04),
           Form(
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
                     ),
                     SizedBox(
-                        height: (MediaQuery.of(context).size.height) * 0.03),
+                        height: (MediaQuery.of(context).size.height) * 0.04),
                     TextFormField(
                       controller: null,
                       maxLines: null,
@@ -67,9 +67,9 @@ class LoginPage extends StatelessWidget {
                       keyboardType: TextInputType.visiblePassword,
                     ),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.045),
+                        height: MediaQuery.of(context).size.height * 0.04),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.075,
+                      height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: ElevatedButton(
                         onPressed: () {
@@ -101,21 +101,21 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(fontSize: 15),
                       )),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     const SocialButton(
                         image: AppImages.google,
                         text: "ENTRAR COM GOOGLE        "),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.025),
+                        height: MediaQuery.of(context).size.height * 0.02),
                     const Padding(
                         padding: EdgeInsets.only(left: 20, right: 40)),
                     const SocialButton(
                         image: AppImages.microsoft,
                         text: 'ENTRAR COM MICROSOFT'),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.025),
+                        height: MediaQuery.of(context).size.height * 0.02),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.075,
+                        height: MediaQuery.of(context).size.height * 0.06,
                         child: OutlinedButton(
                           style: ButtonStyle(
                               side: MaterialStateProperty.all(
@@ -136,6 +136,7 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ]),
                         )),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                   ]),
             ),
           ),

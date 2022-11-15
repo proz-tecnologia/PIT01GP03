@@ -19,21 +19,21 @@ class FormRegister extends StatelessWidget {
       maxLines: 1,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
-          hintText: textRegister,
-          suffixIcon: suffixIcon,
-          hintStyle: const TextStyle(color: AppColors.linear),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(70),
-              borderSide: const BorderSide(color: AppColors.orange, width: 3)),
-
-          // ignore: todo
-          //TODO: checar se o errorBorder funcinou
-          errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.pink),
-          ),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(70),
-              borderSide: const BorderSide(color: AppColors.linear, width: 2))),
+        hintText: textRegister,
+        suffixIcon: suffixIcon,
+        hintStyle: const TextStyle(color: AppColors.linear),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50),
+          borderSide: const BorderSide(color: AppColors.orange, width: 3),
+        ),
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.pink),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50),
+          borderSide: const BorderSide(color: AppColors.linear, width: 2),
+        ),
+      ),
     );
   }
 }
