@@ -3,7 +3,6 @@ import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
 import '../themes/app_text_styles.dart';
 
-
 class LogoAppBar extends StatelessWidget {
   const LogoAppBar({super.key});
   @override
@@ -37,6 +36,9 @@ class LogoAppBar extends StatelessWidget {
               Text(
                 "Porkin.io",
                 style: AppTextStylesDark.headline3,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
             ]),
       ),

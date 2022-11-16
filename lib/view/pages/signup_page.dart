@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/components/formfield_register_password.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 import '../themes/app_colors.dart';
 import '../components/formfield_register.dart';
@@ -17,7 +18,7 @@ class SignUpPage extends StatelessWidget {
           children: [
             const LogoAppBar(),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.035,
+              height: MediaQuery.of(context).size.height * 0.04,
             ),
             Card(
               color: AppColors.lightgreen,
@@ -26,53 +27,54 @@ class SignUpPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Form(
-                child: ListView(
-                    padding: const EdgeInsets.all(16),
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const Center(
-                          child: Text(
-                        'Criar uma nova conta',
-                        style: TextStyle(
-                          fontSize: 28,
-                          color: AppColors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 25,
                         ),
-                      )),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const FormRegister(textRegister: 'Nome completo'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      const FormRegister(textRegister: 'E-mail'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      const FormRegister(textRegister: 'Senha'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      const FormRegister(textRegister: 'Confirme sua senha'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      const Center(
-                          child: Text(
-                        'Ao criar uma conta você confirma que concorda com \nos nossos Termos de Serviço e Política de Privacidade.',
-                        style: TextStyle(fontSize: 13, color: AppColors.linear),
-                      )),
-                    ]),
+                        const Center(
+                            child: Text(
+                          'Criar uma nova conta',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: AppColors.white,
+                          ),
+                        )),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        const FormRegister(textRegister: 'Nome completo'),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        const FormRegister(textRegister: 'E-mail'),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        const FormRegisterPassword(textRegister: 'Senha'),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        const FormRegisterPassword(textRegister: 'Confirme sua senha'),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        const Center(
+                            child: Text(
+                          'Ao criar uma conta você confirma que concorda com \nos nossos Termos de Serviço e Política de Privacidade.',
+                          style: TextStyle(fontSize: 13, color: AppColors.linear),
+                        )),
+                      ]),
+                ),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.022,
+              height: MediaQuery.of(context).size.height * 0.04,
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.075,
+              height: MediaQuery.of(context).size.height * 0.06,
               width: MediaQuery.of(context).size.width * 0.6,
               child: ElevatedButton(
                 onPressed: () {
@@ -89,6 +91,9 @@ class SignUpPage extends StatelessWidget {
                   style: TextStyle(fontSize: 25, color: AppColors.linear),
                 ),
               ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.04,
             ),
           ],
         ),
