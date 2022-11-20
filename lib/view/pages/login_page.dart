@@ -24,7 +24,6 @@ class LoginPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
-                  // shrinkWrap: true,   // verifica se listview tem tamanho min
                   children: <Widget>[
                     const FormRegister(textRegister: "NOME"),
                     SizedBox(
@@ -73,9 +72,11 @@ class LoginPage extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.02),
                     const Padding(
                         padding: EdgeInsets.only(left: 20, right: 40)),
+
                     const SocialButton(
                         image: AppImages.microsoft,
                         text: 'ENTRAR COM MICROSOFT'),
+                        
                     SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02),
                     SizedBox(

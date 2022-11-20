@@ -6,6 +6,7 @@ class FormRegister extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? obscureText;
 
+
   const FormRegister(
       {super.key,
       required this.textRegister,
@@ -15,6 +16,7 @@ class FormRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+    
       controller: null,
       maxLines: 1,
       obscureText: obscureText ?? false,

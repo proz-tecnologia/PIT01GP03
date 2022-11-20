@@ -32,3 +32,6 @@ class _FormRegisterPasswordState extends State<FormRegisterPassword> {
     );
   }
 }
+
+
+
