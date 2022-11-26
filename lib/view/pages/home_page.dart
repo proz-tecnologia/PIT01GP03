@@ -1,20 +1,25 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/transaction_controller.dart';
-import 'package:projeto_flutter/view/components/card_account_balance.dart';
-import 'package:projeto_flutter/view/components/list_tile_transaction.dart';
-import 'package:projeto_flutter/view/pages/form_transaction.dart';
 import 'package:provider/provider.dart';
-import '../themes/app_colors.dart';
+
+import '../../controllers/transaction_controller.dart';
+import '../../models/transaction_model.dart';
+import '../components/card_account_balance.dart';
 import '../components/drawer.dart';
+import '../components/transaction_list_tile.dart';
+import '../components/transaction_form.dart';
+import '../themes/app_colors.dart';
+import 'form_transaction.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static const home = '/';
+  static const routeHomePage = '/';
 
   @override
   Widget build(BuildContext context) {
-    final TransactionController transactionController = Provider.of(context);
+    final TransactionController transactions = Provider.of(context);
   
 
     return Scaffold(
@@ -24,10 +29,17 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.of(context)
-                    .pushNamed(
-                      FormTransaction.formTransaction,
-                      );
+                Navigator.of(context).pushNamed(
+                TransactionForm.routeTransactionForm,
+                arguments: TransactionModel(
+                  id: '',
+                  title: '',
+                  description: '',
+                  ammount: 0,
+                  date: DateTime.now(),
+                  // TODO: implementar validação do formulário com os campos de ammount e date em branco
+                ),
+              );
 /*
                 showDialog(
                   context: context,
@@ -45,15 +57,15 @@ class HomePage extends StatelessWidget {
       drawer: const DrawerCustom(),
       body: Column(
         children: [
-          const CardAccountBalance(),
           SizedBox(
             height: (MediaQuery.of(context).size.height * 0.02),
           ),
+          const CardAccountBalance(),
           Expanded(
             child: ListView.builder(
-              itemCount: transactionController.count,
-              itemBuilder: ((cxt, i) =>
-              ListTileTransaction(transactionModel: transactionController.byIndex(i))),
+              itemCount: transactions.count,
+              itemBuilder: (ctx, i) =>
+                  TransactionListTile(transactions.byIndex(i)),
             ),
           ),
         ],

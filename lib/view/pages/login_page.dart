@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context)
-                              .pushReplacementNamed(HomePage.home);
+                              .pushReplacementNamed(HomePage.routeHomePage);
                         },
                         style: ButtonStyle(
                           shape: MaterialStatePropertyAll(
