@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
 
+
 class AccountBalanceCard extends StatefulWidget {
   const AccountBalanceCard({
     Key? key,
@@ -20,8 +21,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
   @override
   Widget build(BuildContext context) {
     final TransactionController transactions = Provider.of(context);
-
-    bool visibilityOn = true;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -47,22 +46,27 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                 ],
               ),
               Row(
-                // TODO: Implmentar mudança de visibilidade do saldo de conta
+
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  visibilityOn ?
-                  Text(
-                    'R\$ ${transactions.total().toStringAsFixed(2)}',
-                    style: AppTextStylesLight.headline4,
-                  )
-                  : Text('-----'),
+                  Container(
+                    child: transactions.visibilityOn
+                        ? Text(
+                            'R\$ ${transactions.total().toStringAsFixed(2)}',
+                            style: AppTextStylesLight.headline4,
+                          )
+                        : Text(
+                            '------',
+                            style: AppTextStylesLight.headline4,
+                          ),
+                  ),
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        visibilityOn = !visibilityOn;
+                        transactions.visibilityOn = !transactions.visibilityOn;
                       });
                     },
-                    child: Icon(visibilityOn
+                    child: Icon(transactions.visibilityOn
                         ? Icons.visibility
                         : Icons.visibility_off),
                   ),
@@ -116,9 +120,16 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                   'Entradas',
                                   style: AppTextStylesLight.body1,
                                 ),
-                                Text(
-                                  'R\$ ${transactions.sum().toStringAsFixed(2)}',
-                                  style: AppTextStylesLight.body1,
+                                Container(
+                                  child: transactions.visibilityOn
+                                      ? Text(
+                                          'R\$ ${transactions.sum().toStringAsFixed(2)}',
+                                          style: AppTextStylesLight.body1,
+                                        )
+                                      : Text(
+                                          '---',
+                                          style: AppTextStylesLight.headline4,
+                                        ),
                                 ),
                               ],
                             ),
@@ -165,9 +176,16 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                   'Saídas',
                                   style: AppTextStylesLight.body1,
                                 ),
-                                Text(
-                                  'R\$ ${transactions.subtraction().toStringAsFixed(2)}',
-                                  style: AppTextStylesLight.body1,
+                                Container(
+                                  child: transactions.visibilityOn
+                                      ? Text(
+                                          'R\$ ${transactions.subtraction().toStringAsFixed(2)}',
+                                          style: AppTextStylesLight.body1,
+                                        )
+                                      : Text(
+                                          '---',
+                                          style: AppTextStylesLight.headline4,
+                                        ),
                                 ),
                               ],
                             ),

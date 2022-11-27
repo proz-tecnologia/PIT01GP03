@@ -55,6 +55,8 @@ class TransactionController with ChangeNotifier {
     return total;
   }
 
+  bool visibilityOn = true;
+
   //static get dummyTransactions => null; //TODO: ver com Paulo o que é isso
 
   // Gera o elemento da lista de transações a partir do índice em que foi adicionado
