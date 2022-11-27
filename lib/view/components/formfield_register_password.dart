@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/view/components/formfield_register.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 
 class FormRegisterPassword extends StatefulWidget {
   final String textRegister;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const FormRegisterPassword({
     Key? key,
     required this.textRegister,
+    this.controller,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -18,20 +22,27 @@ class _FormRegisterPasswordState extends State<FormRegisterPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return FormRegister(
-      textRegister: widget.textRegister,
-      obscureText: _isHidden,
-      suffixIcon: InkWell(
-          borderRadius: BorderRadius.circular(20.0),
-          onTap: () {
-            setState(() {
-              _isHidden = !_isHidden;
-            });
-          },
-          child: Icon( _isHidden ? Icons.visibility_off  : Icons.visibility)),
-    );
+    return TextFormField(
+        validator: widget.validator,
+        controller: widget.controller,
+        obscureText: _isHidden,
+        decoration: InputDecoration(
+          errorStyle: const TextStyle(color: AppColors.orange, fontWeight: FontWeight.bold),
+          errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.orange),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50),
+          borderSide: const BorderSide(color: AppColors.linear, width: 2),
+        ),
+          suffixIcon: InkWell(
+              borderRadius: BorderRadius.circular(20.0),
+              onTap: () {
+                setState(() {
+                  _isHidden = !_isHidden;
+                });
+              },
+              child: Icon(_isHidden ? Icons.visibility_off : Icons.visibility)),
+        ));
   }
 }
-
-
-

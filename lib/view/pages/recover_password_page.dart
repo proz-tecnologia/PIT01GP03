@@ -4,11 +4,16 @@ import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 import '../components/formfield_register.dart';
 import '../themes/app_colors.dart';
 
-class RecoverPasswordPage extends StatelessWidget {
+class RecoverPasswordPage extends StatefulWidget {
   const RecoverPasswordPage({super.key});
 
   static const recover = '/recover';
 
+  @override
+  State<RecoverPasswordPage> createState() => _RecoverPasswordPageState();
+}
+
+class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
