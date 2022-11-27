@@ -60,6 +60,7 @@ class DrawerCustom extends StatelessWidget {
               Navigator.of(context).pushNamed(SplashPage.splash);
             },
           ),
+    
         ],
       ),
     );

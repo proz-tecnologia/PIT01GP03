@@ -1,70 +1,75 @@
-import 'package:flutter/material.dart';
 
-import '../themes/app_colors.dart';
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../controllers/transaction_controller.dart';
+import '../../models/transaction_model.dart';
 import '../components/card_account_balance.dart';
-import '../components/card_goals_small_primary.dart';
-import '../components/card_goals_small_secondary.dart';
-import '../components/card_graph_performance.dart';
 import '../components/drawer.dart';
+import '../components/transaction_list_tile.dart';
+import '../components/transaction_form.dart';
+import '../themes/app_colors.dart';
+import 'form_transaction.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static const home = '/';
+  static const routeHomePage = '/';
 
   @override
   Widget build(BuildContext context) {
+    final TransactionController transactions = Provider.of(context);
+  
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.monetization_on_rounded),
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                TransactionForm.routeTransactionForm,
+                arguments: TransactionModel(
+                  id: '',
+                  title: '',
+                  description: '',
+                  ammount: 0,
+                  date: DateTime.now(),
+                  // TODO: implementar validação do formulário com os campos de ammount e date em branco
+                ),
+              );
+/*
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const AlertDialog(
+                      content: FormTransaction(),
+                    );
+                  },
+                );
+                */
+              },
+              icon: const Icon(Icons.add))
+        ],
+      ),
+      drawer: const DrawerCustom(),
+      body: Column(
+        children: [
+          SizedBox(
+            height: (MediaQuery.of(context).size.height * 0.02),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.wallet_rounded),
+          const CardAccountBalance(),
+          Expanded(
+            child: ListView.builder(
+              itemCount: transactions.count,
+              itemBuilder: (ctx, i) =>
+                  TransactionListTile(transactions.byIndex(i)),
+            ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(36.0),
-        child: Column(
-          children: [
-            const CardAccountBalance(),
-            const SizedBox(
-              height: 36,
-            ),
-            const CardGraphPerformance(),
-            const SizedBox(
-              height: 36,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.antiAlias,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  CardGoalsSmallPrimary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallSecondary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallPrimary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallSecondary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallPrimary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallSecondary(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      drawer: const DrawerCustom(),
     );
   }
 }
