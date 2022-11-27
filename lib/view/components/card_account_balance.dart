@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/transaction_controller.dart';
+import 'package:projeto_flutter/models/transaction_model.dart';
+import 'package:projeto_flutter/view/components/transaction_form.dart';
 import 'package:projeto_flutter/view/themes/app_text_styles.dart';
+import 'package:provider/provider.dart';
 import '../themes/app_colors.dart';
 
 class CardAccountBalance extends StatelessWidget {
@@ -9,6 +13,8 @@ class CardAccountBalance extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TransactionController transactions = Provider.of(context);
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -40,12 +46,14 @@ class CardAccountBalance extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'R\$ 100,00',
+                    'R\$ ${transactions.total().toStringAsFixed(2)}',
                     style: AppTextStylesLight.headline4,
                   ),
-                  const Icon(
-                    Icons.visibility_outlined,
-                    color: AppColors.textLight,
+                  GestureDetector(
+                    child: const Icon(
+                      Icons.visibility_outlined,
+                      color: AppColors.textLight,
+                    ),
                   ),
                 ],
               ),
@@ -65,11 +73,29 @@ class CardAccountBalance extends StatelessWidget {
                                 color: AppColors.backgroundLight,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Icon(
-                                Icons.transform_rounded,
-                                color: Colors.green,
-                                size: 22,
+
+                              child: GestureDetector(
+                                 onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  TransactionForm.routeTransactionForm,
+                                  arguments: TransactionModel(
+                                    id: '',
+                                    title: '',
+                                    description: '',
+                                    ammount: 0,
+                                    date: DateTime.parse("2012-02-27"),
+                                    tipo: true
+                                  ),
+                                );
+                              },
+                                child: const Icon(
+                                  Icons.transform_rounded,
+                                  color: Colors.green,
+                                  size: 22,
+                                ),
                               ),
+
+                              
                             ),
                             const SizedBox(width: 8),
                             Column(
@@ -80,7 +106,7 @@ class CardAccountBalance extends StatelessWidget {
                                   style: AppTextStylesLight.body2,
                                 ),
                                 Text(
-                                  'R\$ 150,00',
+                                  'R\$ -${transactions.sum().toStringAsFixed(2)}',
                                   style: AppTextStylesLight.body1,
                                 ),
                               ],
@@ -96,11 +122,31 @@ class CardAccountBalance extends StatelessWidget {
                                 color: AppColors.backgroundLight,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Icon(
-                                Icons.transform_rounded,
-                                color: Colors.red,
-                                size: 22,
+
+
+                              child: GestureDetector(
+                                    onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  TransactionForm.routeTransactionForm,
+                                  arguments: TransactionModel(
+                                    id: '',
+                                    title: '',
+                                    description: '',
+                                    ammount: 0,
+                                    date: DateTime.parse("2012-02-27"),
+                                    tipo: false
+                                  ),
+                                );
+                              },
+                                child: const Icon(
+                                  Icons.transform_rounded,
+                                  color: Colors.red,
+                                  size: 22,
+                                ),
                               ),
+
+
+
                             ),
                             const SizedBox(width: 8),
                             Column(
@@ -111,7 +157,7 @@ class CardAccountBalance extends StatelessWidget {
                                   style: AppTextStylesLight.body2,
                                 ),
                                 Text(
-                                  'R\$ -50,00',
+                                  'R\$ -${transactions.subtraction().toStringAsFixed(2)}',
                                   style: AppTextStylesLight.body1,
                                 ),
                               ],

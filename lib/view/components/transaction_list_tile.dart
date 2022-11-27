@@ -29,7 +29,7 @@ class TransactionListTile extends StatelessWidget {
           Text(DateFormat('d MMM y').format(transaction.date)),
         ],
       ),
-      trailing: Container(
+      trailing: SizedBox(
         width: 100,
         child: Row(children: <Widget>[
           IconButton(

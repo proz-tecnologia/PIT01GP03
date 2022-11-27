@@ -11,6 +11,10 @@ class TransactionController with ChangeNotifier {
   // Inicializa um mapa de lista de transações vazia
   final Map<String, TransactionModel> _items = {};
 
+  final Map<String, TransactionModel> _itemsSum = {};
+
+  final Map<String, TransactionModel> _itemsSubtraction = {};
+
   // Variável que retorna uma lista a partir do modelo com todos os itens
   List<TransactionModel> get all {
     return [..._items.values];
@@ -21,7 +25,37 @@ class TransactionController with ChangeNotifier {
     return _items.length;
   }
 
-  static get dummyTransactions => null;
+  double total() {
+    double total = 0;
+
+    _itemsSum.forEach((key, value) {
+      total += value.ammount;
+    });
+
+    _itemsSubtraction.forEach((key, value) {
+      total -= value.ammount;
+    });
+
+    return total;
+  }
+
+  double sum() {
+    double total = 0;
+    _itemsSum.forEach((key, value) {
+      total += value.ammount;
+    });
+    return total;
+  }
+
+  double subtraction() {
+    double total = 0;
+    _itemsSubtraction.forEach((key, value) {
+      total += value.ammount;
+    });
+    return total;
+  }
+
+  //static get dummyTransactions => null; //TODO: ver com Paulo o que é isso
 
   // Gera o elemento da lista de transações a partir do índice em que foi adicionado
   TransactionModel byIndex(int i) {
@@ -34,16 +68,41 @@ class TransactionController with ChangeNotifier {
         transaction.id!.trim().isNotEmpty &&
         _items.containsKey(transaction.id)) {
       // Método que atualiza a transação a partir de sua ID com os valores do campo
+
       _items.update(
         transaction.id!,
         (_) => TransactionModel(
-          id: transaction.id,
-          title: transaction.title,
-          description: transaction.description,
-          ammount: transaction.ammount,
-          date: transaction.date,
-        ),
+            id: transaction.id,
+            title: transaction.title,
+            description: transaction.description,
+            ammount: transaction.ammount,
+            date: transaction.date,
+            tipo: transaction.tipo),
       );
+
+      if (transaction.tipo == true) {
+        _itemsSum.update(
+          transaction.id!,
+          (_) => TransactionModel(
+              id: transaction.id,
+              title: transaction.title,
+              description: transaction.description,
+              ammount: transaction.ammount,
+              date: transaction.date,
+              tipo: transaction.tipo),
+        );
+      } else if (transaction.tipo == false) {
+        _itemsSubtraction.update(
+          transaction.id!,
+          (_) => TransactionModel(
+            id: transaction.id,
+            title: transaction.title,
+            description: transaction.description,
+            ammount: transaction.ammount,
+            date: transaction.date,
+          ),
+        );
+      }
     } else {
       // Se estiver nulo ou vazio, gerar uma ID a partir do método Random
       final id = Random().nextDouble().toString();
@@ -51,13 +110,37 @@ class TransactionController with ChangeNotifier {
       _items.putIfAbsent(
         id,
         () => TransactionModel(
-          id: id,
-          title: transaction.title,
-          description: transaction.description,
-          ammount: transaction.ammount,
-          date: transaction.date,
-        ),
+            id: id,
+            title: transaction.title,
+            description: transaction.description,
+            ammount: transaction.ammount,
+            date: transaction.date,
+            tipo: transaction.tipo),
       );
+
+      if (transaction.tipo == true) {
+        _itemsSum.putIfAbsent(
+          id,
+          () => TransactionModel(
+              id: id,
+              title: transaction.title,
+              description: transaction.description,
+              ammount: transaction.ammount,
+              date: transaction.date,
+              tipo: transaction.tipo),
+        );
+      } else if (transaction.tipo == false) {
+        _itemsSubtraction.putIfAbsent(
+          id,
+          () => TransactionModel(
+              id: id,
+              title: transaction.title,
+              description: transaction.description,
+              ammount: transaction.ammount,
+              date: transaction.date,
+              tipo: transaction.tipo),
+        );
+      }
     }
     // Avisa ao provider que houveram modificações na lista de transações
     notifyListeners();
@@ -68,6 +151,8 @@ class TransactionController with ChangeNotifier {
     if (transaction.id != null) {
       // Remove a transação da lista a partir do ID identificado
       _items.remove(transaction.id);
+      _itemsSubtraction.remove(transaction.id);
+      _itemsSum.remove(transaction.id);
       notifyListeners();
     }
   }

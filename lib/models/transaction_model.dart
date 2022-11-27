@@ -11,9 +11,10 @@ class TransactionModel {
   final String? description;
   final double ammount;
   final DateTime date;
+  final bool? tipo;
   final String tag =
       'https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807__340.png';
-      // TODO: PRECISA IMPLEMENTAR, SERÁ O NOSSO ICONE CORRESPONDENTE
+  // TODO: PRECISA IMPLEMENTAR, SERÁ O NOSSO ICONE CORRESPONDENTE
 
   const TransactionModel({
     this.id,
@@ -21,5 +22,6 @@ class TransactionModel {
     this.description,
     required this.ammount,
     required this.date,
+    this.tipo
   });
 }
