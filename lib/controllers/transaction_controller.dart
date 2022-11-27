@@ -50,7 +50,7 @@ class TransactionController with ChangeNotifier {
   double subtraction() {
     double total = 0;
     _itemsSubtraction.forEach((key, value) {
-      total += value.ammount;
+      total -= value.ammount;
     });
     return total;
   }

@@ -33,13 +33,13 @@ class CardAccountBalance extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Conta Corrente',
-                    style: AppTextStylesLight.headline6,
+                   "Porkin.io",
+                    style: AppTextStylesDark.headline3Geen,
                   ),
-                  const Icon(
-                    Icons.more_horiz,
-                    color: AppColors.textLight,
-                  ),
+              //    const Icon(
+             //       Icons.more_horiz,
+             //       color: AppColors.textLight,
+              //    ),
                 ],
               ),
               Row(
@@ -67,8 +67,8 @@ class CardAccountBalance extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height: 36,
-                              width: 36,
+                              height: (MediaQuery.of(context).size.height) * 0.10,                              
+                              width: (MediaQuery.of(context).size.width) * 0.10,                              
                               decoration: const BoxDecoration(
                                 color: AppColors.backgroundLight,
                                 shape: BoxShape.circle,
@@ -83,7 +83,7 @@ class CardAccountBalance extends StatelessWidget {
                                     title: '',
                                     description: '',
                                     ammount: 0,
-                                    date: DateTime.parse("2012-02-27"),
+                                    date: DateTime.now(),
                                     tipo: true
                                   ),
                                 );
@@ -103,10 +103,10 @@ class CardAccountBalance extends StatelessWidget {
                               children: [
                                 Text(
                                   'Entradas',
-                                  style: AppTextStylesLight.body2,
+                                  style: AppTextStylesLight.body1,
                                 ),
                                 Text(
-                                  'R\$ -${transactions.sum().toStringAsFixed(2)}',
+                                  'R\$ ${transactions.sum().toStringAsFixed(2)}',
                                   style: AppTextStylesLight.body1,
                                 ),
                               ],
@@ -116,8 +116,8 @@ class CardAccountBalance extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height: 36,
-                              width: 36,
+                              height: (MediaQuery.of(context).size.height) * 0.10,                              
+                              width: (MediaQuery.of(context).size.width) * 0.10, 
                               decoration: const BoxDecoration(
                                 color: AppColors.backgroundLight,
                                 shape: BoxShape.circle,
@@ -154,10 +154,10 @@ class CardAccountBalance extends StatelessWidget {
                               children: [
                                 Text(
                                   'Saídas',
-                                  style: AppTextStylesLight.body2,
+                                  style: AppTextStylesLight.body1,
                                 ),
                                 Text(
-                                  'R\$ -${transactions.subtraction().toStringAsFixed(2)}',
+                                  'R\$ ${transactions.subtraction().toStringAsFixed(2)}',
                                   style: AppTextStylesLight.body1,
                                 ),
                               ],
