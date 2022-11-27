@@ -5,15 +5,23 @@ import 'package:projeto_flutter/view/components/transaction_form.dart';
 import 'package:projeto_flutter/view/themes/app_text_styles.dart';
 import 'package:provider/provider.dart';
 import '../themes/app_colors.dart';
+import '../themes/app_images.dart';
 
-class CardAccountBalance extends StatelessWidget {
-  const CardAccountBalance({
+class AccountBalanceCard extends StatefulWidget {
+  const AccountBalanceCard({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<AccountBalanceCard> createState() => _AccountBalanceCardState();
+}
+
+class _AccountBalanceCardState extends State<AccountBalanceCard> {
+  @override
   Widget build(BuildContext context) {
     final TransactionController transactions = Provider.of(context);
+
+    bool visibilityOn = true;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -33,27 +41,30 @@ class CardAccountBalance extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                   "Porkin.io",
+                    "Porkin.io",
                     style: AppTextStylesDark.headline3Geen,
                   ),
-              //    const Icon(
-             //       Icons.more_horiz,
-             //       color: AppColors.textLight,
-              //    ),
                 ],
               ),
               Row(
+                // TODO: Implmentar mudança de visibilidade do saldo de conta
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  visibilityOn ?
                   Text(
                     'R\$ ${transactions.total().toStringAsFixed(2)}',
                     style: AppTextStylesLight.headline4,
-                  ),
+                  )
+                  : Text('-----'),
                   GestureDetector(
-                    child: const Icon(
-                      Icons.visibility_outlined,
-                      color: AppColors.textLight,
-                    ),
+                    onTap: () {
+                      setState(() {
+                        visibilityOn = !visibilityOn;
+                      });
+                    },
+                    child: Icon(visibilityOn
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                   ),
                 ],
               ),
@@ -67,35 +78,35 @@ class CardAccountBalance extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height: (MediaQuery.of(context).size.height) * 0.10,                              
-                              width: (MediaQuery.of(context).size.width) * 0.10,                              
+                              height:
+                                  (MediaQuery.of(context).size.height) * 0.10,
+                              width: (MediaQuery.of(context).size.width) * 0.10,
                               decoration: const BoxDecoration(
                                 color: AppColors.backgroundLight,
                                 shape: BoxShape.circle,
                               ),
-
                               child: GestureDetector(
-                                 onTap: () {
-                                Navigator.of(context).pushNamed(
-                                  TransactionForm.routeTransactionForm,
-                                  arguments: TransactionModel(
-                                    id: '',
-                                    title: '',
-                                    description: '',
-                                    ammount: 0,
-                                    date: DateTime.now(),
-                                    tipo: true
-                                  ),
-                                );
-                              },
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    TransactionForm.routeTransactionForm,
+                                    arguments: TransactionModel(
+                                      id: '',
+                                      title: '',
+                                      description: '',
+                                      ammount: 0,
+                                      date: DateTime.now(),
+                                      tipo: true,
+                                      tag: AppImages.google,
+                                      // TODO: trocar pela tag correspondente
+                                    ),
+                                  );
+                                },
                                 child: const Icon(
-                                  Icons.transform_rounded,
-                                  color: Colors.green,
+                                  Icons.keyboard_arrow_up,
+                                  color: AppColors.primary,
                                   size: 22,
                                 ),
                               ),
-
-                              
                             ),
                             const SizedBox(width: 8),
                             Column(
@@ -116,37 +127,35 @@ class CardAccountBalance extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height: (MediaQuery.of(context).size.height) * 0.10,                              
-                              width: (MediaQuery.of(context).size.width) * 0.10, 
+                              height:
+                                  (MediaQuery.of(context).size.height) * 0.10,
+                              width: (MediaQuery.of(context).size.width) * 0.10,
                               decoration: const BoxDecoration(
                                 color: AppColors.backgroundLight,
                                 shape: BoxShape.circle,
                               ),
-
-
                               child: GestureDetector(
-                                    onTap: () {
-                                Navigator.of(context).pushNamed(
-                                  TransactionForm.routeTransactionForm,
-                                  arguments: TransactionModel(
-                                    id: '',
-                                    title: '',
-                                    description: '',
-                                    ammount: 0,
-                                    date: DateTime.parse("2012-02-27"),
-                                    tipo: false
-                                  ),
-                                );
-                              },
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    TransactionForm.routeTransactionForm,
+                                    arguments: TransactionModel(
+                                      id: '',
+                                      title: '',
+                                      description: '',
+                                      ammount: 0,
+                                      date: DateTime.parse("2012-02-27"),
+                                      tipo: false,
+                                      tag: AppImages.microsoft,
+                                      // TODO: trocar pela tag correspondente
+                                    ),
+                                  );
+                                },
                                 child: const Icon(
-                                  Icons.transform_rounded,
-                                  color: Colors.red,
+                                  Icons.keyboard_arrow_down,
+                                  color: AppColors.errorColor,
                                   size: 22,
                                 ),
                               ),
-
-
-
                             ),
                             const SizedBox(width: 8),
                             Column(

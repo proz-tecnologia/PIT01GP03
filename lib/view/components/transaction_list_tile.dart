@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_flutter/view/components/transaction_form.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/transaction_controller.dart';
@@ -16,11 +17,10 @@ class TransactionListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     // Variável avatar que recebe o padrão do TransactionModel
     // Condição ternária: se for nula ou vazia, utilizar o ícone Icons.person
-    final avatar = transaction.tag.isEmpty
-        ? const CircleAvatar(child: Icon(Icons.person))
-        : CircleAvatar(backgroundImage: NetworkImage(transaction.tag));
+
     return ListTile(
-      leading: avatar,
+      leading: const Icon(Icons.question_mark),
+      // TODO: Implementar ícones funcionais das categorias
       title: Text(transaction.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,7 +34,7 @@ class TransactionListTile extends StatelessWidget {
         child: Row(children: <Widget>[
           IconButton(
             icon: const Icon(Icons.edit),
-            color: Colors.green,
+            color: AppColors.primary,
             onPressed: () {
               Navigator.of(context).pushNamed(
                 TransactionForm.routeTransactionForm,
@@ -44,7 +44,7 @@ class TransactionListTile extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.delete),
-            color: Colors.red,
+            color: AppColors.errorColor,
             onPressed: () {
               showDialog(
                 context: context,

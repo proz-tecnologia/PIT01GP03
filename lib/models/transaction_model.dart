@@ -5,6 +5,8 @@
 // Recebe um "ammount" quantia/montante em forma de double, requerido
 // Recebe um "tag" imagem de categoria em forma de String, requerido
 
+import 'package:flutter/material.dart';
+
 class TransactionModel {
   final String? id;
   final String title;
@@ -12,9 +14,9 @@ class TransactionModel {
   final double ammount;
   final DateTime date;
   final bool? tipo;
-  final String tag =
-      'https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807__340.png';
+  final String? tag;
   // TODO: PRECISA IMPLEMENTAR, SERÁ O NOSSO ICONE CORRESPONDENTE
+  // TODO: renomear "tipo
 
   const TransactionModel({
     this.id,
@@ -22,6 +24,7 @@ class TransactionModel {
     this.description,
     required this.ammount,
     required this.date,
-    this.tipo
+    this.tipo,
+    this.tag,
   });
 }

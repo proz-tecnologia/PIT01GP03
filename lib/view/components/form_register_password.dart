@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/view/components/formfield_register.dart';
+import 'package:projeto_flutter/view/components/custom_form_field.dart';
 
 class FormRegisterPassword extends StatefulWidget {
   final String textRegister;
@@ -18,8 +18,8 @@ class _FormRegisterPasswordState extends State<FormRegisterPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return FormRegister(
-      textRegister: widget.textRegister,
+    return CustomFormField(
+      customFormField: widget.textRegister,
       obscureText: _isHidden,
       suffixIcon: InkWell(
           borderRadius: BorderRadius.circular(20.0),
