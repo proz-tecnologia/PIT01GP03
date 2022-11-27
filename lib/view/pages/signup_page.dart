@@ -17,8 +17,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formkey = GlobalKey();
-
-  
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 25,
                     ),
                     const FormRegister(
-                        textRegister: 'Nome completo', validator: Validator.validateName),
+                        textRegister: 'Nome completo',
+                        validator: Validator.validateName),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
@@ -67,14 +67,16 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                    const FormRegisterPassword(
-                        textRegister: 'Senha', validator: Validator.validatePassword),
+                     FormRegisterPassword(
+                      controller: _passwordController,
+                        textRegister: 'Senha',
+                        validator: Validator.validatePassword),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                    const FormRegisterPassword(
+                     FormRegisterPassword(
                         textRegister: 'Confirme sua senha',
-                        validator: Validator.validateData),
+                        validator: (value) => Validator.confirmValidatePassword(_passwordController.text, value)),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
@@ -98,7 +100,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   final valid = _formkey.currentState != null &&
                       _formkey.currentState!.validate();
                   if (valid) {
-                    Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
+                    Navigator.of(context)
+                        .pushReplacementNamed(HomePage.routeHomePage);
                   } else {}
                 },
                 style: ButtonStyle(

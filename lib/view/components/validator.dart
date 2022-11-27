@@ -1,19 +1,12 @@
 class Validator {
   Validator._();
 
-  static String? validateData(String? value) {
-    if (value != null && value.isEmpty) {
-      return "Campo obrigatório";
-    }
-    return null;
-  }
-
   static String? validateName(String? value) {
     final nameValidate = RegExp(r'^[a-zA-Z]{2,}(?: [a-zA-Z]+){0,2}$');
     if (value != null && value.isEmpty) {
       return "Campo obrigatório";
     }
-    if (value != nameValidate.hasMatch(value!)) {
+    if (value != null && !nameValidate.hasMatch(value)) {
       return "Nome inválido. Digite um nome válido";
     }
     return null;
@@ -24,19 +17,29 @@ class Validator {
     if (value != null && value.isEmpty) {
       return "Campo obrigatório";
     }
-    if (value != emailValidate.hasMatch(value!)) {
+    if (value != null && !emailValidate.hasMatch(value)) {
       return "E-mail inválido. Digite um E-mail válido";
     }
     return null;
   }
 
   static String? validatePassword(String? value) {
-    final passwordValidate = RegExp(r'.{8,20}');
+    final passwordValidate = RegExp(r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
     if (value != null && value.isEmpty) {
       return "Campo obrigatório";
     }
-    if (value != passwordValidate.hasMatch(value!)) {
+    if (value != null && !passwordValidate.hasMatch(value)) {
       return "Senha inválida. Digite uma senha válida";
+    }
+    return null;
+  }
+
+  static String? confirmValidatePassword(String? first, String? second) {
+    if (second != null && second.isEmpty) {
+      return "Campo obrigatório";
+    }
+    if (first != second) {
+      return "As senhas digitadas são diferentes";
     }
     return null;
   }
