@@ -78,7 +78,7 @@ class SignUpPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.6,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(HomePage.home);
+                  Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
                 },
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
