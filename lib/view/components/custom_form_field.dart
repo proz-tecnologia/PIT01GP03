@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/view/themes/app_colors.dart';
 
-class FormRegister extends StatelessWidget {
-  final String textRegister;
+class CustomFormField extends StatelessWidget {
+  final String customFormField;
   final Widget? suffixIcon;
   final bool? obscureText;
 
+// TODO: Verificar se os nomes suffixIcon e obscureText podem dar conflito por serem reservados do flutter
 
-  const FormRegister(
+  const CustomFormField(
       {super.key,
-      required this.textRegister,
+      required this.customFormField,
       this.suffixIcon,
       this.obscureText});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-    
       controller: null,
       maxLines: 1,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
-        hintText: textRegister,
+        hintText: customFormField,
         suffixIcon: suffixIcon,
         hintStyle: const TextStyle(color: AppColors.linear),
         focusedBorder: OutlineInputBorder(

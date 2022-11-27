@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projeto_flutter/view/themes/app_colors.dart';
 
+// TODO: separar as classes em arquivos diferentes e padronizar
 class AppTextStylesDark {
   static final headline1 = GoogleFonts.concertOne(
     fontSize: 96,

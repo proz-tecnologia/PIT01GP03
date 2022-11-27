@@ -23,8 +23,6 @@ class _TransactionFormState extends State<TransactionForm> {
   final _formKey = GlobalKey<FormState>();
   final _formattedDate = TextEditingController();
 
-  
-
   // Variável _formData é gerada como mapa de dados de registro de transação
   final Map<String, dynamic> _formData = {};
 
@@ -36,7 +34,7 @@ class _TransactionFormState extends State<TransactionForm> {
     _formData['description'] = transactionModel.description;
     _formData['date'] = transactionModel.date;
     _formData['tipo'] = transactionModel.tipo;
-
+    _formData['tag'] = transactionModel.tag;
   }
 
   @override
@@ -139,15 +137,14 @@ class _TransactionFormState extends State<TransactionForm> {
 
             Provider.of<TransactionController>(context, listen: false).put(
               TransactionModel(
-                id: _formData['id'],
-                title: _formData['title'],
-                ammount: _formData['ammount'],
-                description: _formData['description'],
-                date: _formData['date'],
-                tipo: _formData['tipo']
-              ),
+                  id: _formData['id'],
+                  title: _formData['title'],
+                  ammount: _formData['ammount'],
+                  description: _formData['description'],
+                  date: _formData['date'],
+                  tipo: _formData['tipo'],
+                  tag: _formData['tag']),
             );
-
 
             Navigator.of(context).pop();
           }
