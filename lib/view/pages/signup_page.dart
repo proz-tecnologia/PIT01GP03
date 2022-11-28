@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/signUp_controller.dart';
 import 'package:projeto_flutter/view/components/formfield_register_password.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 import 'package:projeto_flutter/view/components/validator.dart';
+import 'package:projeto_flutter/view/pages/signUp_state.dart';
 import '../themes/app_colors.dart';
 import '../components/formfield_register.dart';
 import 'home_page.dart';
@@ -18,6 +20,35 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formkey = GlobalKey();
   final _passwordController = TextEditingController();
+  final _controller = SignUpController();
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.state is SignUpLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) =>
+                const Center(child: CircularProgressIndicator()));
+      }
+      if (_controller.state is SignUpSucessState) {
+        Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
+      }
+      if (_controller.state is SignUpLoadingState) {
+        showDialog(
+            context: context,
+            builder: (context) => const Center(
+                child: Text('Erro ao cadastrar. Tente novamente', style: TextStyle(color: AppColors.orange, fontSize: 14 ))));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,16 +98,17 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                     FormRegisterPassword(
-                      controller: _passwordController,
+                    FormRegisterPassword(
+                        controller: _passwordController,
                         textRegister: 'Senha',
                         validator: Validator.validatePassword),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                     FormRegisterPassword(
+                    FormRegisterPassword(
                         textRegister: 'Confirme sua senha',
-                        validator: (value) => Validator.confirmValidatePassword(_passwordController.text, value)),
+                        validator: (value) => Validator.confirmValidatePassword(
+                            _passwordController.text, value)),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
@@ -100,8 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   final valid = _formkey.currentState != null &&
                       _formkey.currentState!.validate();
                   if (valid) {
-                    Navigator.of(context)
-                        .pushReplacementNamed(HomePage.routeHomePage);
+                    _controller.doSignUp();
                   } else {}
                 },
                 style: ButtonStyle(
