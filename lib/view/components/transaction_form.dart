@@ -34,7 +34,6 @@ class _TransactionFormState extends State<TransactionForm> {
     _formData['description'] = transactionModel.description;
     _formData['date'] = transactionModel.date;
     _formData['tipo'] = transactionModel.tipo;
-    _formData['tag'] = transactionModel.tag;
   }
 
   @override
@@ -143,7 +142,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   description: _formData['description'],
                   date: _formData['date'],
                   tipo: _formData['tipo'],
-                  tag: _formData['tag']),
+                  ),
             );
 
             Navigator.of(context).pop();

@@ -33,7 +33,7 @@ class HeaderLogo extends StatelessWidget {
             Image.asset(
               AppImages.porkin,
               height: 180,
-              width: 180,
+              width: 180,  //TODO : tira valores fixos, colocar valores relativos
             ),
             Text(
               "Porkin.io",

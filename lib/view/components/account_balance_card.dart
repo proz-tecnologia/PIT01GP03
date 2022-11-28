@@ -100,7 +100,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                       ammount: 0,
                                       date: DateTime.now(),
                                       tipo: true,
-                                      tag: AppImages.google,
                                       // TODO: trocar pela tag correspondente
                                     ),
                                   );
@@ -156,7 +155,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                       ammount: 0,
                                       date: DateTime.parse("2012-02-27"),
                                       tipo: false,
-                                      tag: AppImages.microsoft,
                                       // TODO: trocar pela tag correspondente
                                     ),
                                   );

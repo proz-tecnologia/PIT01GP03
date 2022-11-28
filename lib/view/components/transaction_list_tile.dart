@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_flutter/view/components/transaction_form.dart';
 import 'package:projeto_flutter/view/themes/app_colors.dart';
+import 'package:projeto_flutter/view/themes/app_images.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/transaction_controller.dart';
@@ -19,8 +20,9 @@ class TransactionListTile extends StatelessWidget {
     // Condição ternária: se for nula ou vazia, utilizar o ícone Icons.person
 
     return ListTile(
-      leading: const Icon(Icons.question_mark),
-      // TODO: Implementar ícones funcionais das categorias
+      // TODO explicação: pelo transaction.tipo já sei se é entrada ou saida, faço o if ternario para escolher a imagem que ja pego direto da nossa pasta de imagens 
+      leading: transaction.tipo! ?  Image.asset(AppImages.google) : Image.asset( AppImages.microsoft),
+      // TODO: Colacar as imagens corretas, 
       title: Text(transaction.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

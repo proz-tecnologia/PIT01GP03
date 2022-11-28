@@ -6,6 +6,7 @@
 // Recebe um "tag" imagem de categoria em forma de String, requerido
 
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/themes/app_images.dart';
 
 class TransactionModel {
   final String? id;
@@ -14,7 +15,6 @@ class TransactionModel {
   final double ammount;
   final DateTime date;
   final bool? tipo;
-  final String? tag;
   // TODO: PRECISA IMPLEMENTAR, SERÁ O NOSSO ICONE CORRESPONDENTE
   // TODO: renomear "tipo
 
@@ -24,7 +24,6 @@ class TransactionModel {
     this.description,
     required this.ammount,
     required this.date,
-    this.tipo,
-    this.tag,
+    this.tipo,    
   });
 }
