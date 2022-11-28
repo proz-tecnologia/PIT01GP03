@@ -15,7 +15,7 @@ class LoginController extends ChangeNotifier {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      //throw Exception('Erro ao logar');
+      throw Exception('Erro ao logar');
       updateState(LoginSucessState());
       return true;
     } catch (e) {

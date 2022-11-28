@@ -41,10 +41,39 @@ class _LoginPageState extends State<LoginPage> {
       }
       if (_controller.state is LoginErrorState) {
         showDialog(
+          
             context: context,
-            builder: (context) => const Center(
-                child: Text('Erro ao logar. Tente novamente',
-                    style: TextStyle(color: AppColors.orange, fontSize: 14))));
+            builder: (context) => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    
+                    children: [
+                      const Text('Erro ao logar', style:
+                              TextStyle(color: AppColors.orange, fontSize: 14, decoration: TextDecoration.none )),
+                      const SizedBox(height: 12),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.04,
+                          width:  MediaQuery.of(context).size.height * 0.2,
+                          child: TextButton(
+                         //   style:  ButtonStyle(
+                              //backgroundColor: const MaterialStatePropertyAll(AppColors.linear),  
+                          //shape: MaterialStatePropertyAll(
+                             // RoundedRectangleBorder(
+                                 // borderRadius: BorderRadius.circular(16)))),                         
+                            onPressed: () => Navigator.of(context)
+                                .pushReplacementNamed(LoginPage.login),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text(
+                                    "Tente Novamente",
+                                    style: TextStyle(
+                                        fontSize: 14, color: AppColors.orange, decoration: TextDecoration.underline),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ]),
+                          )),
+                    ]));
       }
     });
   }
