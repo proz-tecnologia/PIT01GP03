@@ -14,7 +14,7 @@ class SignUpController extends ChangeNotifier {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      throw Exception('Erro ao cadastrar');
+     // throw Exception('Erro ao cadastrar');
       updateState(SignUpSucessState());
       return true;
     } catch (e) {
