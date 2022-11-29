@@ -3,11 +3,15 @@ import 'package:projeto_flutter/view/components/custom_form_field.dart';
 
 class PasswordFormField extends StatefulWidget {
   final String passwordFormField;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
-  const PasswordFormField({
-    Key? key,
-    required this.passwordFormField,
-  }) : super(key: key);
+  const PasswordFormField(
+      {Key? key,
+      required this.passwordFormField,
+      this.controller,
+      this.validator})
+      : super(key: key);
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();

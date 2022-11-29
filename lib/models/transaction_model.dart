@@ -5,9 +5,6 @@
 // Recebe um "ammount" quantia/montante em forma de double, requerido
 // Recebe um "tag" imagem de categoria em forma de String, requerido
 
-import 'package:flutter/material.dart';
-import 'package:projeto_flutter/view/themes/app_images.dart';
-
 class TransactionModel {
   final String? id;
   final String title;

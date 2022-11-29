@@ -5,7 +5,6 @@ import 'package:projeto_flutter/view/components/transaction_form.dart';
 import 'package:projeto_flutter/view/themes/app_text_styles.dart';
 import 'package:provider/provider.dart';
 import '../themes/app_colors.dart';
-import '../themes/app_images.dart';
 
 
 class AccountBalanceCard extends StatefulWidget {

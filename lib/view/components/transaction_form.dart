@@ -84,14 +84,15 @@ class _TransactionFormState extends State<TransactionForm> {
                   onSaved: (value) => _formData['description'] = value,
                 ),
                 TextFormField(
-                  initialValue: _formData['ammount'].toString(),
+                  initialValue: '',
                   decoration: const InputDecoration(labelText: 'Valor (R\$)'),
                   keyboardType: TextInputType.number,
                   onSaved: (value) =>
                       _formData['ammount'] = double.tryParse(value!),
                 ),
+                // TODO: validar campo para não aceitar nulo
                 TextFormField(
-                  initialValue: _formData['date'].toString(),
+                  initialValue: '',
                   decoration: const InputDecoration(
                     labelText: 'Escolha a data da transação',
                     suffixIcon: Icon(Icons.calendar_today),
@@ -102,6 +103,8 @@ class _TransactionFormState extends State<TransactionForm> {
                     }
                     return null;
                   },
+                  // TODO: validar campo para não aceitar data nula
+                  // TODO: controlar mudança do campo com set state
                   readOnly: true,
                   onTap: () async {
                     DateTime? pickedDate = await showDatePicker(

@@ -20,7 +20,7 @@ class AccountRecoveryPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.1,
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.3,
               child: Card(
                 color: AppColors.lightgreen,
                 margin: const EdgeInsets.symmetric(horizontal: 22),
@@ -63,7 +63,8 @@ class AccountRecoveryPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.06,
               width: MediaQuery.of(context).size.width * 0.6,
               child: ElevatedButton(
-                onPressed: () {}, // TODO: Implementar
+                onPressed: () {},
+                // TODO: Implementar
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16))),
