@@ -64,7 +64,8 @@ class AccountRecoveryPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.6,
               child: ElevatedButton(
                 onPressed: () {},
-                // TODO: Implementar
+                // TODO: PAULO: IMPLENTAR COMPORTAMENTO, POR EXEMPLO, UM SHOW DIALOG COM UMA MENSAGEM DE "FOI ENVIADO E-MAIL DE RECUPERAÇÃO DE SENHA, VERIFIQUE SUA CAIXA DE ENTRADA"
+                // TODO: PAULO: COMPONENTIZAR BOTÃO E AJUSTAR LAYOUT
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16))),

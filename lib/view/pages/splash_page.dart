@@ -15,7 +15,7 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
-  // TODO: implementar que a página de splash será exibida ao início da aplicação com um efeito de carregamento
+  // TODO: SPRINT 3: IMPLEMENTAR INICIO DA NAVEGAÇÃO DO APP NA SPLASH-SCREEN
   // void initState() {
   //   super.initState();
   //   Future.delayed(const Duration(seconds: 4)).then((value) {

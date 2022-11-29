@@ -57,8 +57,6 @@ class TransactionController with ChangeNotifier {
 
   bool visibilityOn = true;
 
-  //static get dummyTransactions => null; //TODO: ver com Paulo o que é isso
-
   // Gera o elemento da lista de transações a partir do índice em que foi adicionado
   TransactionModel byIndex(int i) {
     return _items.values.elementAt(i);
@@ -79,10 +77,10 @@ class TransactionController with ChangeNotifier {
             description: transaction.description,
             ammount: transaction.ammount,
             date: transaction.date,
-            tipo: transaction.tipo),
+            category: transaction.category),
       );
 
-      if (transaction.tipo == true) {
+      if (transaction.category == true) {
         _itemsSum.update(
           transaction.id!,
           (_) => TransactionModel(
@@ -91,9 +89,9 @@ class TransactionController with ChangeNotifier {
               description: transaction.description,
               ammount: transaction.ammount,
               date: transaction.date,
-              tipo: transaction.tipo),
+              category: transaction.category),
         );
-      } else if (transaction.tipo == false) {
+      } else if (transaction.category == false) {
         _itemsSubtraction.update(
           transaction.id!,
           (_) => TransactionModel(
@@ -117,10 +115,10 @@ class TransactionController with ChangeNotifier {
             description: transaction.description,
             ammount: transaction.ammount,
             date: transaction.date,
-            tipo: transaction.tipo),
+            category: transaction.category),
       );
 
-      if (transaction.tipo == true) {
+      if (transaction.category == true) {
         _itemsSum.putIfAbsent(
           id,
           () => TransactionModel(
@@ -129,9 +127,9 @@ class TransactionController with ChangeNotifier {
               description: transaction.description,
               ammount: transaction.ammount,
               date: transaction.date,
-              tipo: transaction.tipo),
+              category: transaction.category),
         );
-      } else if (transaction.tipo == false) {
+      } else if (transaction.category == false) {
         _itemsSubtraction.putIfAbsent(
           id,
           () => TransactionModel(
@@ -140,7 +138,7 @@ class TransactionController with ChangeNotifier {
               description: transaction.description,
               ammount: transaction.ammount,
               date: transaction.date,
-              tipo: transaction.tipo),
+              category: transaction.category),
         );
       }
     }

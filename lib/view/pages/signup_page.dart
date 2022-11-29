@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/signUp_state.dart';
+import 'package:projeto_flutter/controllers/signup_state.dart';
 import 'package:projeto_flutter/view/components/password_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
-import 'package:projeto_flutter/view/components/validator.dart';
-import '../../controllers/signUp_controller.dart';
+import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
+import '../../controllers/signup_controller.dart';
 import '../themes/app_colors.dart';
 import '../components/custom_form_field.dart';
 import 'home_page.dart';
@@ -18,8 +18,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final GlobalKey<FormState> _formkey = GlobalKey();
-  // TODO: upperCammelCase
+  final GlobalKey<FormState> _formKey = GlobalKey();
   final _passwordController = TextEditingController();
   final _controller = SignUpController();
 
@@ -46,7 +45,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
         if (_controller.state is SignUpErrorState) {
-          // TODO: trabalhar na tela de erro
+          // TODO: BEATRIZ & DIEGO: TRABALHAR NA TELA DE ERRO
           showDialog(
             context: context,
             builder: (context) => const Center(
@@ -81,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Form(
-                key: _formkey, // para acessar prop e metodo internos
+                key: _formKey, // para acessar prop e metodo internos
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -102,29 +101,33 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 25,
                       ),
                       const CustomFormField(
-                          validator: Validator.validateName,
+                          customValidator:
+                              CustomFormFieldValidator.validateName,
                           customFormField: 'Nome completo'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       const CustomFormField(
-                          validator: Validator.validateEmail,
+                          customValidator:
+                              CustomFormFieldValidator.validateEmail,
                           customFormField: 'E-mail'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       PasswordFormField(
                         passwordFormField: 'Senha',
-                        validator: Validator.validatePassword,
-                        controller: _passwordController,
+                        customValidator:
+                            CustomFormFieldValidator.validatePassword,
+                        customController: _passwordController,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       PasswordFormField(
                         passwordFormField: 'Confirme sua senha',
-                        validator: (value) => Validator.confirmValidatePassword(
-                            _passwordController.text, value),
+                        customValidator: (value) =>
+                            CustomFormFieldValidator.confirmValidatePassword(
+                                _passwordController.text, value),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
@@ -149,8 +152,8 @@ class _SignUpPageState extends State<SignUpPage> {
               width: MediaQuery.of(context).size.width * 0.6,
               child: ElevatedButton(
                 onPressed: () {
-                  final valid = _formkey.currentState != null &&
-                      _formkey.currentState!.validate();
+                  final valid = _formKey.currentState != null &&
+                      _formKey.currentState!.validate();
                   if (valid) {
                     _controller.doSignUp();
                   } else {}

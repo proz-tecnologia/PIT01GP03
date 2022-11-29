@@ -5,8 +5,6 @@ class CustomOutlinedButton extends StatelessWidget {
   final String customImage;
   final String customText;
 
-  // TODO: rever nomenclatura dos parametros da classe e separação da estrutura de controlador
-
   const CustomOutlinedButton(
       {required this.customImage, required this.customText, super.key});
 
@@ -24,13 +22,15 @@ class CustomOutlinedButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {}, // TODO: Implementar
+        onPressed: () {}, 
+        // TODO: SPRINT 3: IMPLEMENTAR NAVEGAÇÃO
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               customImage,
               height: 24,
+              // TODO: PAULO: VERIFICAR NO LAYOUT DE TODAS AS PÁGINAS OS VALORES FIXOS DE DIMENSÕES EM PIXELS
               color: AppColors.orange,
               alignment: Alignment.center,
             ),

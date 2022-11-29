@@ -31,6 +31,7 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: transactions.count == 0
                 ? const Text('Transações vazias')
+                // TODO: PAULO: AJUSTAR A MENSAGEM DE LISTA DE TRANSAÇÕES VAZIAS
                 : ListView.builder(
                     itemCount: transactions.count,
                     itemBuilder: (ctx, i) =>

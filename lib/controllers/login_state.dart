@@ -1,6 +1,11 @@
-abstract class LoginState{}
+abstract class LoginState {}
 
-class LoginInitialState extends LoginState{}
+// TODO: PAULO: VERIFICAR BOAS PRÁTICAS DE ARQUIVO DE CONTROLE DE ESTADOS;
+
+class LoginInitialState extends LoginState {}
+
 class LoginLoadingState extends LoginState {}
-class LoginSucessState extends LoginState {}
+
+class LoginSuccessState extends LoginState {}
+
 class LoginErrorState extends LoginState {}

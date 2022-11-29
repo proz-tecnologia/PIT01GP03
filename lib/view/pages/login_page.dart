@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/view/components/custom_form_field.dart';
 import 'package:projeto_flutter/view/components/password_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
+import 'package:projeto_flutter/view/pages/account_recovery_page.dart';
+import 'package:projeto_flutter/view/pages/signup_page.dart';
 
 import '../../controllers/login_controller.dart';
 import '../../controllers/login_state.dart';
-import '../components/validator.dart';
+import '../../controllers/custom_form_field_validator.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
 import '../components/custom_outlined_button.dart';
 import 'home_page.dart';
 
-// TODO: Implementar botão google
-// TODO: Implementar botão microsoft
-// TODO: Implementar navegação do botão CADASTRAR NOVA CONTA para página de cadastro
+// TODO: SPRINT 3: IMPLEMENTAR LOGIN COM GOOGLE
+// TODO: SPRINT 3: IMPLEMENTAR LOGIN COM MICROSOFT
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,7 +26,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> _formkey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   final _controller = LoginController();
 
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     _controller.addListener(
       () {
-        if (_controller.state is LoginLoadingState) {
+        if (_controller.loginState is LoginLoadingState) {
           showDialog(
             context: context,
             builder: (context) => const Center(
@@ -42,13 +43,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
           );
         }
-        // TODO: corrigir nome LoginSucessState para LoginSuccessState
-        if (_controller.state is LoginSucessState) {
+        if (_controller.loginState is LoginSuccessState) {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
-        if (_controller.state is LoginErrorState) {
+        if (_controller.loginState is LoginErrorState) {
           showDialog(
-            // TODO: trabalhar na tela de erro.
+            // TODO: BEATRIZ: TRABALHAR NA TELA DE ERRO
             context: context,
             builder: (context) => Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +91,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // TODO: atualizar rotas com o padrão definido na home_page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,36 +101,35 @@ class _LoginPageState extends State<LoginPage> {
             const HeaderLogo(),
             SizedBox(height: (MediaQuery.of(context).size.height) * 0.04),
             Form(
-              key: _formkey,
-              //TODO: upperCammelCase
+              key: _formKey,
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Column(
                   children: <Widget>[
                     const CustomFormField(
                         customFormField: "E-MAIL",
-                        validator: Validator.validateEmail),
+                        customValidator:
+                            CustomFormFieldValidator.validateEmail),
                     SizedBox(
                         height: (MediaQuery.of(context).size.height) * 0.04),
                     const PasswordFormField(
                       passwordFormField: 'SENHA',
-                      validator: Validator.validatePassword,
+                      customValidator:
+                          CustomFormFieldValidator.validatePassword,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width * 0.6,
+                      // TODO: PAULO: COMPONENTIZAR ESSE BOTÃO
                       child: ElevatedButton(
                         onPressed: () {
-                          // Navigator.of(context)
-                          //     .pushReplacementNamed(HomePage.routeHomePage);
-                          final valid = _formkey.currentState != null &&
-                              _formkey.currentState!.validate();
-                          // TODO: evitar exclamação no null safety
+                          final valid = _formKey.currentState != null &&
+                              _formKey.currentState!.validate();
                           if (valid) {
-                            _controller.doLogin();
+                            _controller.attemptLogin();
                           } else {}
-                          // TODO: else vazio
+                          // TODO: BEATRIZ & DIEGO: IMPLMENTAR COMPORTAMENTO DO ELSE ACIMA (OU DELETAR SE NÃO FOR SER USADO)
                         },
                         style: ButtonStyle(
                           shape: MaterialStatePropertyAll(
@@ -153,7 +151,10 @@ class _LoginPageState extends State<LoginPage> {
                       height: (MediaQuery.of(context).size.height * 0.02),
                     ),
                     GestureDetector(
-                      onTap: null, // TODO: Implementar navegação para página de recuperação de conta
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                            AccountRecoveryPage.routeAccountRecoveryPage);
+                      },
                       child: const Center(
                           child: Text(
                         'Esqueci minha senha',
@@ -184,7 +185,10 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        onPressed: () {}, // TODO: Implementar
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(SignUpPage.routeSignUpPage);
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [

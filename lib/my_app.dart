@@ -3,13 +3,12 @@ import 'package:projeto_flutter/controllers/transaction_controller.dart';
 import 'package:projeto_flutter/view/components/transaction_form.dart';
 import 'package:projeto_flutter/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
-
 import 'view/pages/login_page.dart';
 import 'view/pages/account_recovery_page.dart';
 import 'view/pages/signup_page.dart';
 import 'view/pages/splash_page.dart';
 
-// TODO: verificar qual a melhor prática de nomear um arquivo de inicialização e gestão de rotas
+// TODO: PAULO: VERIFICAR MELHOR PRÁTICA DE GESTÃO DE ROTAS
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

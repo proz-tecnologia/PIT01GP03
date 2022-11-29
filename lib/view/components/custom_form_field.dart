@@ -3,21 +3,18 @@ import 'package:projeto_flutter/view/themes/app_colors.dart';
 
 class CustomFormField extends StatefulWidget {
   final String customFormField;
-  final Widget? suffixIcon;
-  final bool? obscureText;
+  final Widget? customSuffixIcon;
+  final bool? customObscureText;
   final TextEditingController? controller;
-  final String? Function(String?)? validator;
-
-// TODO: Verificar se os nomes suffixIcon e obscureText podem dar conflito por serem reservados do flutter
-// TODO: rever nome "validator", pode ser nome reservado do flutter
+  final String? Function(String?)? customValidator;
 
   const CustomFormField(
       {super.key,
       required this.customFormField,
-      this.suffixIcon,
-      this.obscureText,
+      this.customSuffixIcon,
+      this.customObscureText,
       this.controller,
-      this.validator});
+      this.customValidator});
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();
@@ -28,12 +25,12 @@ class _CustomFormFieldState extends State<CustomFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      validator: widget.validator,
+      validator: widget.customValidator,
       maxLines: 1,
-      obscureText: widget.obscureText ?? false,
+      obscureText: widget.customObscureText ?? false,
       decoration: InputDecoration(
         hintText: widget.customFormField,
-        suffixIcon: widget.suffixIcon,
+        suffixIcon: widget.customSuffixIcon,
         errorStyle: const TextStyle(
             color: AppColors.orange, fontWeight: FontWeight.bold),
         hintStyle: const TextStyle(color: AppColors.linear),

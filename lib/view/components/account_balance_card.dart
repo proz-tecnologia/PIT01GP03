@@ -6,7 +6,6 @@ import 'package:projeto_flutter/view/themes/app_text_styles.dart';
 import 'package:provider/provider.dart';
 import '../themes/app_colors.dart';
 
-
 class AccountBalanceCard extends StatefulWidget {
   const AccountBalanceCard({
     Key? key,
@@ -45,7 +44,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                 ],
               ),
               Row(
-
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -98,8 +96,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                       description: '',
                                       ammount: 0,
                                       date: DateTime.now(),
-                                      tipo: true,
-                                      // TODO: trocar pela tag correspondente
+                                      category: true,
                                     ),
                                   );
                                 },
@@ -153,8 +150,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                       description: '',
                                       ammount: 0,
                                       date: DateTime.parse("2012-02-27"),
-                                      tipo: false,
-                                      // TODO: trocar pela tag correspondente
+                                      category: false,
                                     ),
                                   );
                                 },

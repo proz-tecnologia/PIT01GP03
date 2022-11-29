@@ -20,9 +20,11 @@ class TransactionListTile extends StatelessWidget {
     // Condição ternária: se for nula ou vazia, utilizar o ícone Icons.person
 
     return ListTile(
-      // TODO explicação: pelo transaction.tipo já sei se é entrada ou saida, faço o if ternario para escolher a imagem que ja pego direto da nossa pasta de imagens 
-      leading: transaction.tipo! ?  Image.asset(AppImages.google) : Image.asset( AppImages.microsoft),
-      // TODO: Colacar as imagens corretas, 
+      // explicação: pelo transaction.category já sei se é entrada ou saida, faço o if ternario para escolher a imagem que ja pego direto da nossa pasta de imagens
+      leading: transaction.category!
+          ? Image.asset(AppImages.google)
+          : Image.asset(AppImages.microsoft),
+      // TODO: PAULO: COLOCAR IMAGENS CORRETAS DE ENTRADA E SAÍDA DE DINHEIRO
       title: Text(transaction.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

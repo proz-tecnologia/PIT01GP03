@@ -3,8 +3,6 @@ import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
 import '../themes/app_text_styles.dart';
 
-// TODO: trocar tamanhos para responsivos
-
 class HeaderLogo extends StatelessWidget {
   const HeaderLogo({super.key});
   @override
@@ -33,7 +31,7 @@ class HeaderLogo extends StatelessWidget {
             Image.asset(
               AppImages.porkin,
               height: 180,
-              width: 180,  //TODO : tira valores fixos, colocar valores relativos
+              width: 180,
             ),
             Text(
               "Porkin.io",

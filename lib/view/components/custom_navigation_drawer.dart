@@ -9,7 +9,7 @@ import 'package:projeto_flutter/view/themes/app_text_styles.dart';
 class CustomNavigationDrawer extends StatelessWidget {
   const CustomNavigationDrawer({super.key});
 
-  // TODO: Ajustar padding
+  // TODO: PAULO: AJUSTAR LAYOUT
 
   @override
   Widget build(BuildContext context) {
