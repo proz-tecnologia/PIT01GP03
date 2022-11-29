@@ -32,6 +32,7 @@ class _FormRegisterState extends State<FormRegister> {
         errorStyle: const TextStyle(
             color: AppColors.orange, fontWeight: FontWeight.bold),
         hintText: widget.textRegister,
+        
         suffixIcon: widget.suffixIcon,
         hintStyle: const TextStyle(color: AppColors.linear),
         focusedBorder: OutlineInputBorder(

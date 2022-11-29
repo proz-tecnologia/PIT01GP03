@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:projeto_flutter/view/pages/login_state.dart';
+import 'package:projeto_flutter/controllers/login_state.dart';
 
 
-class LoginController extends ChangeNotifier {
+class LoginController extends ChangeNotifier {  //TODO: alterar para Provider
   LoginState state = LoginInitialState();
 
   void updateState(LoginState newState) {
@@ -15,7 +15,7 @@ class LoginController extends ChangeNotifier {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      throw Exception('Erro ao logar');
+    //  throw Exception('Erro ao logar');
       updateState(LoginSucessState());
       return true;
     } catch (e) {

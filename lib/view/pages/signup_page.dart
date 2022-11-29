@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/controllers/signUp_controller.dart';
+import 'package:projeto_flutter/controllers/signUp_state.dart';
 import 'package:projeto_flutter/view/components/formfield_register_password.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 import 'package:projeto_flutter/view/components/validator.dart';
-import 'package:projeto_flutter/view/pages/signUp_state.dart';
 import '../themes/app_colors.dart';
 import '../components/formfield_register.dart';
 import 'home_page.dart';
@@ -41,7 +41,8 @@ class _SignUpPageState extends State<SignUpPage> {
       if (_controller.state is SignUpSucessState) {
         Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
       }
-      if (_controller.state is SignUpLoadingState) {
+      if (_controller.state is SignUpErrorState) {
+        //TODO: trabalhar na tela de erro
         showDialog(
             context: context,
             builder: (context) => const Center(

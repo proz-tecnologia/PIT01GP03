@@ -4,7 +4,7 @@ import 'package:projeto_flutter/view/components/formfield_register.dart';
 import 'package:projeto_flutter/view/components/formfield_register_password.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 import 'package:projeto_flutter/view/components/validator.dart';
-import 'package:projeto_flutter/view/pages/login_state.dart';
+import 'package:projeto_flutter/controllers/login_state.dart';
 
 import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
@@ -41,25 +41,22 @@ class _LoginPageState extends State<LoginPage> {
       }
       if (_controller.state is LoginErrorState) {
         showDialog(
-          
+            //TODO: trabalhar na tela de erro.
             context: context,
             builder: (context) => Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    
                     children: [
-                      const Text('Erro ao logar', style:
-                              TextStyle(color: AppColors.orange, fontSize: 14, decoration: TextDecoration.none )),
+                      const Text('Erro ao logar',
+                          style: TextStyle(
+                              color: AppColors.orange,
+                              fontSize: 14,
+                              decoration: TextDecoration.none)),
                       const SizedBox(height: 12),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.04,
-                          width:  MediaQuery.of(context).size.height * 0.2,
+                          width: MediaQuery.of(context).size.height * 0.2,
                           child: TextButton(
-                         //   style:  ButtonStyle(
-                              //backgroundColor: const MaterialStatePropertyAll(AppColors.linear),  
-                          //shape: MaterialStatePropertyAll(
-                             // RoundedRectangleBorder(
-                                 // borderRadius: BorderRadius.circular(16)))),                         
                             onPressed: () => Navigator.of(context)
                                 .pushReplacementNamed(LoginPage.login),
                             child: Row(
@@ -68,7 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                                   Text(
                                     "Tente Novamente",
                                     style: TextStyle(
-                                        fontSize: 14, color: AppColors.orange, decoration: TextDecoration.underline),
+                                        fontSize: 14,
+                                        color: AppColors.orange,
+                                        decoration: TextDecoration.underline),
                                     textAlign: TextAlign.center,
                                   ),
                                 ]),

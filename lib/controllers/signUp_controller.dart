@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:projeto_flutter/view/pages/signUp_state.dart';
+import 'package:projeto_flutter/controllers/signUp_state.dart';
 
-class SignUpController extends ChangeNotifier {
+class SignUpController extends ChangeNotifier {  //TODO: alterar para Provider
   SignUpState state = SignUpInitialState();
 
   void updateState(SignUpState newState) {

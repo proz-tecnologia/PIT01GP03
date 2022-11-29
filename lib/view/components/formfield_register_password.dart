@@ -26,6 +26,8 @@ class _FormRegisterPasswordState extends State<FormRegisterPassword> {
         validator: widget.validator,
         controller: widget.controller,
         obscureText: _isHidden,
+        //TODO: adicionar nome do campo
+        //TODO: arredondar campo de escrita ao clicar
         decoration: InputDecoration(
           errorStyle: const TextStyle(color: AppColors.orange, fontWeight: FontWeight.bold),
           errorBorder: const OutlineInputBorder(
