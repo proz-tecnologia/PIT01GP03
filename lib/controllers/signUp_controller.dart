@@ -1,26 +1,21 @@
-import 'package:flutter/cupertino.dart';
-import 'package:projeto_flutter/controllers/signup_state.dart';
+import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/signup_state_controller.dart';
 
-class SignUpController extends ChangeNotifier {  
-  // TODO: CHARLESTON: TRANSFORMAR EM PROVIDER
-  SignUpState state = SignUpInitialState();
+class SignUpController {
+  
+  final state = ValueNotifier<SignUpStateController>(SignUpInitialState());
 
-  void updateState(SignUpState newState) {
-    state = newState;
-    notifyListeners();
-  }
-
-  Future<bool> doSignUp() async {
-    updateState(SignUpLoadingState());
+   Future<void> doSignUp() async {
+    state.value = SignUpLoadingState();
     try {
       await Future.delayed(const Duration(seconds: 2));
-
      // throw Exception('Erro ao cadastrar');
-      updateState(SignUpSucessState());
-      return true;
+      state.value = SignUpSucessState();
     } catch (e) {
-      updateState(SignUpErrorState());
-      return false;
+       state.value = SignUpErrorState();
     }
   }
+
 }
+
+

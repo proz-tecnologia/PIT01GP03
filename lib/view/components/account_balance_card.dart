@@ -149,7 +149,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                       title: '',
                                       description: '',
                                       ammount: 0,
-                                      date: DateTime.parse("2012-02-27"),
+                                      date: DateTime.now(),
                                       category: false,
                                     ),
                                   );

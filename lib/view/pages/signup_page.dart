@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/signup_state.dart';
+import 'package:projeto_flutter/controllers/signup_state_controller.dart';
+import 'package:projeto_flutter/controllers/signup_controller.dart';
 import 'package:projeto_flutter/view/components/password_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
 import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
-import '../../controllers/signup_controller.dart';
 import '../themes/app_colors.dart';
 import '../components/custom_form_field.dart';
 import 'home_page.dart';
@@ -20,6 +20,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _passwordController = TextEditingController();
+  
   final _controller = SignUpController();
 
   @override
@@ -31,8 +32,9 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(
+    _controller.state.addListener(
       () {
+        /*
         if (_controller.state is SignUpLoadingState) {
           showDialog(
             context: context,
@@ -40,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: CircularProgressIndicator(),
             ),
           );
-        }
+        }*/
         if (_controller.state is SignUpSucessState) {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
@@ -150,24 +152,29 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.06,
               width: MediaQuery.of(context).size.width * 0.6,
-              child: ElevatedButton(
-                onPressed: () {
-                  final valid = _formKey.currentState != null &&
-                      _formKey.currentState!.validate();
-                  if (valid) {
-                    _controller.doSignUp();
-                  } else {}
-                },
-                style: ButtonStyle(
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16))),
-                  backgroundColor:
-                      const MaterialStatePropertyAll(AppColors.green),
-                ),
-                child: const Text(
-                  ' ENTRAR',
-                  style: TextStyle(fontSize: 25, color: AppColors.linear),
-                ),
+              child: ValueListenableBuilder<SignUpStateController>(
+                valueListenable: _controller.state,
+                builder: (context, state, _) {
+                  return ElevatedButton(
+                    onPressed: (state is SignUpLoadingState) ? null : ()  {
+                      final valid = _formKey.currentState != null &&
+                          _formKey.currentState!.validate();
+                      if (valid) {
+                        _controller.doSignUp();
+                      } //else {}
+                    },
+                    style: ButtonStyle(
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                      backgroundColor:
+                          const MaterialStatePropertyAll(AppColors.green),
+                    ),
+                    child: const Text(
+                      ' ENTRAR',
+                      style: TextStyle(fontSize: 25, color: AppColors.linear),
+                    ),
+                  );
+                }
               ),
             ),
             SizedBox(

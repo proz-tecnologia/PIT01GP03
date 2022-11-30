@@ -14,7 +14,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TransactionController transactions = Provider.of(context);
+
+    final transactions = Provider.of<TransactionController>(context);
 
     return Scaffold(
       appBar: AppBar(

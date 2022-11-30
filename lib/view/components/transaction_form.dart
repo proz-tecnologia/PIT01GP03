@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/transaction_controller.dart';
@@ -65,17 +66,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 TextFormField(
                   initialValue: _formData['title'],
                   decoration: const InputDecoration(labelText: 'Título'),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Título inválido';
-                    }
-
-                    if (value.trim().length < 3) {
-                      return 'Favor identificar o título com pelo menos 3 caracteres.';
-                    }
-
-                    return null;
-                  },
+                  validator: CustomFormFieldValidator.validateNull,
                   onSaved: (value) => _formData['title'] = value,
                 ),
                 TextFormField(
@@ -87,23 +78,18 @@ class _TransactionFormState extends State<TransactionForm> {
                   initialValue: '',
                   decoration: const InputDecoration(labelText: 'Valor (R\$)'),
                   keyboardType: TextInputType.number,
+                  validator: CustomFormFieldValidator.validateNull,
                   onSaved: (value) =>
                       _formData['ammount'] = double.tryParse(value!),
                 ),
-                // TODO: CHARLESTON: VALIDAR CAMPO PARA NÃO ACEITAR VALOR NULO
                 TextFormField(
-                  initialValue: '',
+                  initialValue: _formData['date'].toString(),
                   decoration: const InputDecoration(
                     labelText: 'Escolha a data da transação',
                     suffixIcon: Icon(Icons.calendar_today),
                   ),
-                  validator: (value) {
-                    if (value == null) {
-                      return 'Campo obrigatório';
-                    }
-                    return null;
-                  },
-                  // TODO: CHARLESTON: VALIDAR CAMPO PARA NÃO ACEITAR DATA NULA
+                  validator: CustomFormFieldValidator.validateNull,
+
                   // TODO: CHARLESTON: CONTROLAR MUDANÇA COM SET STATE
                   readOnly: true,
                   onTap: () async {

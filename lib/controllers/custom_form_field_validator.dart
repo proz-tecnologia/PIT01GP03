@@ -1,7 +1,6 @@
 class CustomFormFieldValidator {
   CustomFormFieldValidator._();
 
-  //TODO: CHARLESTON: TRAZER OUTRAS VALIDAÇÕES PARA ESSE ARQUIVO
 
   // VALIDAÇÃO DO CAMPO DE NOME
   static String? validateName(String? value) {
@@ -50,4 +49,27 @@ class CustomFormFieldValidator {
     }
     return null;
   }
+
+
+  // VALIDAÇÃO DO CAMPO NULL
+  static String? validateNull(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Campo obrigatório.";
+    }
+    return null;
+  }
 }
+
+
+/*
+   if (value == null || value.trim().isEmpty) {
+                      return 'Título inválido';
+                    }
+
+                    if (value.trim().length < 3) {
+                      return 'Favor identificar o título com pelo menos 3 caracteres.';
+                    }
+
+                    return null;
+                  },
+*/
