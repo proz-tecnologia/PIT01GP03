@@ -34,6 +34,7 @@ class _TransactionFormState extends State<TransactionForm> {
     _formData['ammount'] = transactionModel.ammount;
     _formData['description'] = transactionModel.description;
     _formData['date'] = transactionModel.date;
+    _formData['date'] = transactionModel.date;
     _formData['category'] = transactionModel.category;
   }
 
@@ -66,7 +67,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 TextFormField(
                   initialValue: _formData['title'],
                   decoration: const InputDecoration(labelText: 'Título'),
-                  validator: CustomFormFieldValidator.validateNull,
+                  validator: CustomFormFieldValidator.validateTitle,
                   onSaved: (value) => _formData['title'] = value,
                 ),
                 TextFormField(

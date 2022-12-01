@@ -20,7 +20,6 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _passwordController = TextEditingController();
-  
   final _controller = SignUpController();
 
   @override
@@ -32,9 +31,8 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     super.initState();
-    _controller.state.addListener(
+    _controller.addListener(
       () {
-        /*
         if (_controller.state is SignUpLoadingState) {
           showDialog(
             context: context,
@@ -42,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: CircularProgressIndicator(),
             ),
           );
-        }*/
+        }
         if (_controller.state is SignUpSucessState) {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
@@ -152,29 +150,24 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.06,
               width: MediaQuery.of(context).size.width * 0.6,
-              child: ValueListenableBuilder<SignUpStateController>(
-                valueListenable: _controller.state,
-                builder: (context, state, _) {
-                  return ElevatedButton(
-                    onPressed: (state is SignUpLoadingState) ? null : ()  {
-                      final valid = _formKey.currentState != null &&
-                          _formKey.currentState!.validate();
-                      if (valid) {
-                        _controller.doSignUp();
-                      } //else {}
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16))),
-                      backgroundColor:
-                          const MaterialStatePropertyAll(AppColors.green),
-                    ),
-                    child: const Text(
-                      ' ENTRAR',
-                      style: TextStyle(fontSize: 25, color: AppColors.linear),
-                    ),
-                  );
-                }
+              child: ElevatedButton(
+                onPressed: () {
+                  final valid = _formKey.currentState != null &&
+                      _formKey.currentState!.validate();
+                  if (valid) {
+                    _controller.doSignUp();
+                  } else {}
+                },
+                style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16))),
+                  backgroundColor:
+                      const MaterialStatePropertyAll(AppColors.green),
+                ),
+                child: const Text(
+                  ' ENTRAR',
+                  style: TextStyle(fontSize: 25, color: AppColors.linear),
+                ),
               ),
             ),
             SizedBox(

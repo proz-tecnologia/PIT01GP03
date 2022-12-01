@@ -1,7 +1,6 @@
 class CustomFormFieldValidator {
   CustomFormFieldValidator._();
 
-
   // VALIDAÇÃO DO CAMPO DE NOME
   static String? validateName(String? value) {
     final nameValidate = RegExp(r'^[a-zA-Z]{2,}(?: [a-zA-Z]+){0,2}$');
@@ -50,7 +49,6 @@ class CustomFormFieldValidator {
     return null;
   }
 
-
   // VALIDAÇÃO DO CAMPO NULL
   static String? validateNull(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -58,18 +56,15 @@ class CustomFormFieldValidator {
     }
     return null;
   }
+
+  static String? validateTitle(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return "Campo obrigatório.";
+    }
+    if (value.trim().length < 3) {
+      return 'Favor identificar o título com pelo menos 3 caracteres.';
+    }
+    return null;
+  }
 }
 
-
-/*
-   if (value == null || value.trim().isEmpty) {
-                      return 'Título inválido';
-                    }
-
-                    if (value.trim().length < 3) {
-                      return 'Favor identificar o título com pelo menos 3 caracteres.';
-                    }
-
-                    return null;
-                  },
-*/
