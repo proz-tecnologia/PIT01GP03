@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/themes/app_images.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/transaction_controller.dart';
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
           const AccountBalanceCard(),
           Expanded(
             child: transactions.count == 0
-                ? const Text('Transações vazias')
+                ? Image.asset(AppImages.porkin)
                 // TODO: PAULO: AJUSTAR A MENSAGEM DE LISTA DE TRANSAÇÕES VAZIAS
                 : ListView.builder(
                     itemCount: transactions.count,

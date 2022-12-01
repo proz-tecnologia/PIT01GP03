@@ -4,7 +4,7 @@ import 'package:projeto_flutter/view/pages/account_recovery_page.dart';
 import 'package:projeto_flutter/view/pages/sign_up_page.dart';
 import 'package:projeto_flutter/view/pages/splash_page.dart';
 import 'package:projeto_flutter/view/themes/app_colors.dart';
-import 'package:projeto_flutter/view/themes/app_text_styles.dart';
+import 'package:projeto_flutter/view/themes/text_styles/app_text_styles_dark.dart';
 
 class CustomNavigationDrawer extends StatelessWidget {
   const CustomNavigationDrawer({super.key});

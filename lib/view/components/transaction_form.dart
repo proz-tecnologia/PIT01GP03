@@ -1,7 +1,6 @@
 // WIDGET do formulário de registro de transação
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +21,6 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   // Variável _formKey é gerada como chave de estado
   final _formKey = GlobalKey<FormState>();
-  final _formattedDate = TextEditingController();
 
   // Variável _formData é gerada como mapa de dados de registro de transação
   final Map<String, dynamic> _formData = {};
@@ -33,7 +31,6 @@ class _TransactionFormState extends State<TransactionForm> {
     _formData['title'] = transactionModel.title;
     _formData['ammount'] = transactionModel.ammount;
     _formData['description'] = transactionModel.description;
-    _formData['date'] = transactionModel.date;
     _formData['date'] = transactionModel.date;
     _formData['category'] = transactionModel.category;
   }
@@ -70,47 +67,18 @@ class _TransactionFormState extends State<TransactionForm> {
                   validator: CustomFormFieldValidator.validateTitle,
                   onSaved: (value) => _formData['title'] = value,
                 ),
+
                 TextFormField(
-                  initialValue: _formData['description'],
-                  decoration: const InputDecoration(labelText: 'Descrição'),
-                  onSaved: (value) => _formData['description'] = value,
-                ),
-                TextFormField(
-                  initialValue: '',
+                  initialValue: _formData['ammount'] == 0
+                      ? ''
+                      : _formData['ammount'].toString(),
                   decoration: const InputDecoration(labelText: 'Valor (R\$)'),
                   keyboardType: TextInputType.number,
                   validator: CustomFormFieldValidator.validateNull,
                   onSaved: (value) =>
                       _formData['ammount'] = double.tryParse(value!),
                 ),
-                TextFormField(
-                  initialValue: _formData['date'].toString(),
-                  decoration: const InputDecoration(
-                    labelText: 'Escolha a data da transação',
-                    suffixIcon: Icon(Icons.calendar_today),
-                  ),
-                  validator: CustomFormFieldValidator.validateNull,
 
-                  // TODO: CHARLESTON: CONTROLAR MUDANÇA COM SET STATE
-                  readOnly: true,
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(2100),
-                    );
-                    if (pickedDate != null) {
-                      String formattedDate =
-                          DateFormat('d MMM y').format(pickedDate);
-                      setState(() {
-                        _formattedDate.text = formattedDate;
-                      });
-                    }
-                  },
-                  onSaved: (value) =>
-                      _formData['date'] = DateTime.tryParse(value!),
-                ),
               ],
             ),
           ),
@@ -129,7 +97,8 @@ class _TransactionFormState extends State<TransactionForm> {
                 title: _formData['title'],
                 ammount: _formData['ammount'],
                 description: _formData['description'],
-                date: _formData['date'],
+                //date: _formData['date'],
+                date:DateTime.now(),
                 category: _formData['category'],
               ),
             );

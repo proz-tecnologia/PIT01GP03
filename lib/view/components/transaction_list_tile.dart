@@ -21,10 +21,13 @@ class TransactionListTile extends StatelessWidget {
 
     return ListTile(
       // explicação: pelo transaction.category já sei se é entrada ou saida, faço o if ternario para escolher a imagem que ja pego direto da nossa pasta de imagens
+           
       leading: transaction.category!
+        //  ? Image.asset(AppImages.wallet)
           ? Image.asset(AppImages.google)
           : Image.asset(AppImages.microsoft),
-      // TODO: PAULO: COLOCAR IMAGENS CORRETAS DE ENTRADA E SAÍDA DE DINHEIRO
+        //  : Image.asset(AppImages.withdraw),
+          
       title: Text(transaction.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,7 +79,7 @@ class TransactionListTile extends StatelessWidget {
               );
             },
           ),
-        ]),
+        ],),
       ),
     );
   }

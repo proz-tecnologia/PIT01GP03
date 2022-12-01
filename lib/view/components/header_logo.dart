@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_images.dart';
-import '../themes/app_text_styles.dart';
+import '../themes/text_styles/app_text_styles_dark.dart';
 
 class HeaderLogo extends StatelessWidget {
   const HeaderLogo({super.key});
