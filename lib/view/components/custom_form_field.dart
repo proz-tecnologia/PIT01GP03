@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/view/themes/app_colors.dart';
 
 class CustomFormField extends StatefulWidget {
-  final String customFormField;
-  final Widget? customSuffixIcon;
-  final bool? customObscureText;
-  final TextEditingController? controller;
-  final String? Function(String?)? customValidator;
+  final String formFieldText;
+  final Widget? formFieldSuffixIcon;
+  final bool? formFieldObscureText;
+  final TextEditingController? formFieldController;
+  final String? Function(String?)? formFieldValidator;
 
   const CustomFormField(
       {super.key,
-      required this.customFormField,
-      this.customSuffixIcon,
-      this.customObscureText,
-      this.controller,
-      this.customValidator});
+      required this.formFieldText,
+      this.formFieldSuffixIcon,
+      this.formFieldObscureText,
+      this.formFieldController,
+      this.formFieldValidator});
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();
@@ -24,13 +24,13 @@ class _CustomFormFieldState extends State<CustomFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: widget.controller,
-      validator: widget.customValidator,
+      controller: widget.formFieldController,
+      validator: widget.formFieldValidator,
       maxLines: 1,
-      obscureText: widget.customObscureText ?? false,
+      obscureText: widget.formFieldObscureText ?? false,
       decoration: InputDecoration(
-        hintText: widget.customFormField,
-        suffixIcon: widget.customSuffixIcon,
+        hintText: widget.formFieldText,
+        suffixIcon: widget.formFieldSuffixIcon,
         errorStyle: const TextStyle(
             color: AppColors.orange, fontWeight: FontWeight.bold),
         hintStyle: const TextStyle(color: AppColors.linear),

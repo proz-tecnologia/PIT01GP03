@@ -3,7 +3,7 @@ import 'package:projeto_flutter/view/components/custom_form_field.dart';
 import 'package:projeto_flutter/view/components/password_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
 import 'package:projeto_flutter/view/pages/account_recovery_page.dart';
-import 'package:projeto_flutter/view/pages/signup_page.dart';
+import 'package:projeto_flutter/view/pages/sign_up_page.dart';
 
 import '../../controllers/login_controller.dart';
 import '../../controllers/login_state.dart';
@@ -107,14 +107,14 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: <Widget>[
                     const CustomFormField(
-                        customFormField: "E-MAIL",
-                        customValidator:
+                        formFieldText: "E-MAIL",
+                        formFieldValidator:
                             CustomFormFieldValidator.validateEmail),
                     SizedBox(
                         height: (MediaQuery.of(context).size.height) * 0.04),
                     const PasswordFormField(
                       passwordFormField: 'SENHA',
-                      customValidator:
+                      passwordValidator:
                           CustomFormFieldValidator.validatePassword,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),

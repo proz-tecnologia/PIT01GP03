@@ -5,7 +5,7 @@ import 'package:projeto_flutter/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
 import 'view/pages/login_page.dart';
 import 'view/pages/account_recovery_page.dart';
-import 'view/pages/signup_page.dart';
+import 'view/pages/sign_up_page.dart';
 import 'view/pages/splash_page.dart';
 
 // TODO: PAULO: VERIFICAR MELHOR PRÁTICA DE GESTÃO DE ROTAS

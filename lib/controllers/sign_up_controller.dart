@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:projeto_flutter/controllers/signup_state.dart';
+import 'package:projeto_flutter/controllers/sign_up_state.dart';
 
 class SignUpController extends ChangeNotifier {  
   // TODO: CHARLESTON: TRANSFORMAR EM PROVIDER

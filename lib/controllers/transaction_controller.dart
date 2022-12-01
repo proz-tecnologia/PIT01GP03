@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import '../models/transaction_model.dart';
 
 class TransactionController with ChangeNotifier {

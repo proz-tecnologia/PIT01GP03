@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/signup_state.dart';
+import 'package:projeto_flutter/controllers/sign_up_state.dart';
 import 'package:projeto_flutter/view/components/password_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
 import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
-import '../../controllers/signup_controller.dart';
+import '../../controllers/sign_up_controller.dart';
 import '../themes/app_colors.dart';
 import '../components/custom_form_field.dart';
 import 'home_page.dart';
@@ -101,31 +101,31 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 25,
                       ),
                       const CustomFormField(
-                          customValidator:
+                          formFieldValidator:
                               CustomFormFieldValidator.validateName,
-                          customFormField: 'Nome completo'),
+                          formFieldText: 'Nome completo'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       const CustomFormField(
-                          customValidator:
+                          formFieldValidator:
                               CustomFormFieldValidator.validateEmail,
-                          customFormField: 'E-mail'),
+                          formFieldText: 'E-mail'),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       PasswordFormField(
                         passwordFormField: 'Senha',
-                        customValidator:
+                        passwordValidator:
                             CustomFormFieldValidator.validatePassword,
-                        customController: _passwordController,
+                        passwordController: _passwordController,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       PasswordFormField(
                         passwordFormField: 'Confirme sua senha',
-                        customValidator: (value) =>
+                        passwordValidator: (value) =>
                             CustomFormFieldValidator.confirmValidatePassword(
                                 _passwordController.text, value),
                       ),
