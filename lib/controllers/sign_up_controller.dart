@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/signup_state_controller.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:projeto_flutter/controllers/sign_up_state.dart';
 
 class SignUpController {
   

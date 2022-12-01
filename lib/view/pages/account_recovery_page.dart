@@ -48,7 +48,7 @@ class AccountRecoveryPage extends StatelessWidget {
                           height: 25,
                         ),
                         const CustomFormField(
-                          customFormField: "E-mail",
+                          formFieldText: "E-mail",
                         )
                       ],
                     ),

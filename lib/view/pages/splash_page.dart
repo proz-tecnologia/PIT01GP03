@@ -26,27 +26,29 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.green,
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(AppImages.porkin, height: 320),
-                  Text(
-                    "Porkin.io",
-                    style: AppTextStylesDark.headline3,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.04,
-                  ),
-                  Text(
-                    "Bem-vindo",
-                    style: AppTextStylesDark.subtitle1,
-                  ),
-                ]),
+      backgroundColor: AppColors.green,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(AppImages.porkin, height: 320),
+              Text(
+                "Porkin.io",
+                style: AppTextStylesDark.headline3,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ),
+              Text(
+                "Bem-vindo",
+                style: AppTextStylesDark.subtitle1,
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
