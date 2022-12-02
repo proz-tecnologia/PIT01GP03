@@ -23,14 +23,12 @@ class CustomOutlinedButton extends StatelessWidget {
           ),
         ),
         onPressed: () {}, 
-        // TODO: SPRINT 3: IMPLEMENTAR NAVEGAÇÃO
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               customImage,
               height: 24,
-              // TODO: PAULO: VERIFICAR NO LAYOUT DE TODAS AS PÁGINAS OS VALORES FIXOS DE DIMENSÕES EM PIXELS
               color: AppColors.orange,
               alignment: Alignment.center,
             ),

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/transaction_controller.dart';
+import 'package:projeto_flutter/view/components/account_balance_card.dart';
+import 'package:projeto_flutter/view/components/custom_navigation_drawer.dart';
+import 'package:projeto_flutter/view/components/transaction_list_tile.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 import 'package:projeto_flutter/view/themes/app_images.dart';
 import 'package:provider/provider.dart';
-
-import '../../controllers/transaction_controller.dart';
-import '../components/account_balance_card.dart';
-import '../components/custom_navigation_drawer.dart';
-import '../components/transaction_list_tile.dart';
-import '../themes/app_colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,7 +25,6 @@ class HomePage extends StatelessWidget {
       body: AnimatedBuilder(
           animation: transactions,
           builder: (context, _) {
-            print('aqui');
             return Column(
               children: [
                 SizedBox(
@@ -36,7 +34,6 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   child: transactions.count == 0
                       ? Image.asset(AppImages.porkin)
-                      // TODO: PAULO: AJUSTAR A MENSAGEM DE LISTA DE TRANSAÇÕES VAZIAS
                       : ListView.builder(
                           itemCount: transactions.count,
                           itemBuilder: (ctx, i) =>

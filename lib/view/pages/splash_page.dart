@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../themes/app_colors.dart';
-import '../themes/app_images.dart';
-import '../themes/text_styles/app_text_styles_dark.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
+import 'package:projeto_flutter/view/themes/app_images.dart';
+import 'package:projeto_flutter/view/themes/text_styles/app_text_styles_dark.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

@@ -30,7 +30,6 @@ class _TransactionFormState extends State<TransactionForm> {
     _formData['id'] = transactionModel.id;
     _formData['title'] = transactionModel.title;
     _formData['ammount'] = transactionModel.ammount;
-    _formData['description'] = transactionModel.description;
     _formData['date'] = transactionModel.date;
     _formData['category'] = transactionModel.category;
   }
@@ -95,9 +94,7 @@ class _TransactionFormState extends State<TransactionForm> {
               TransactionModel(
                 id: _formData['id'],
                 title: _formData['title'],
-                ammount: _formData['ammount'],
-                description: _formData['description'],
-                //date: _formData['date'],
+                ammount: _formData['ammount'], 
                 date:DateTime.now(),
                 category: _formData['category'],
               ),

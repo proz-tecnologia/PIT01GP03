@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/view/components/custom_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
-
-import '../components/custom_form_field.dart';
-import '../themes/app_colors.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 
 class AccountRecoveryPage extends StatelessWidget {
   const AccountRecoveryPage({super.key});

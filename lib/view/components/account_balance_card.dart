@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/controllers/transaction_controller.dart';
 import 'package:projeto_flutter/models/transaction_model.dart';
 import 'package:projeto_flutter/view/components/transaction_form.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 import 'package:projeto_flutter/view/themes/text_styles/app_text_styles_dark.dart';
 import 'package:projeto_flutter/view/themes/text_styles/app_text_styles_light.dart';
 import 'package:provider/provider.dart';
-import '../themes/app_colors.dart';
 
 class AccountBalanceCard extends StatefulWidget {
   const AccountBalanceCard({
@@ -93,7 +93,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                             arguments: TransactionModel(
                                               id: '',
                                               title: '',
-                                              description: '',
                                               ammount: 0,
                                               date: DateTime.now(),
                                               category: true,
@@ -139,7 +138,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                             arguments: TransactionModel(
                                               id: '',
                                               title: '',
-                                              description: '',
                                               ammount: 0,
                                               date: DateTime.now(),
                                               category: false,

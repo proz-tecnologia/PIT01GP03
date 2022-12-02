@@ -21,65 +21,69 @@ class TransactionListTile extends StatelessWidget {
 
     return ListTile(
       // explicação: pelo transaction.category já sei se é entrada ou saida, faço o if ternario para escolher a imagem que ja pego direto da nossa pasta de imagens
-           
+
       leading: transaction.category!
-        //  ? Image.asset(AppImages.wallet)
-          ? Image.asset(AppImages.google)
-          : Image.asset(AppImages.microsoft),
-        //  : Image.asset(AppImages.withdraw),
-          
+          ? Image.asset(
+              AppImages.wallet,
+            )
+          : Image.asset(AppImages.withdraw),
+
       title: Text(transaction.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('R\$ ${transaction.ammount.toStringAsFixed(2)}'),
-          Text(DateFormat('d MMM y').format(transaction.date)),
+          transaction.category!
+              ? Text('+ R\$ ${transaction.ammount.toStringAsFixed(2)}')
+              : Text('− R\$ ${transaction.ammount.toStringAsFixed(2)}'),
+          Text(DateFormat('dd/MM/yyy').format(transaction.date)),
         ],
       ),
       trailing: SizedBox(
-        width: 100,
-        child: Row(children: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.edit),
-            color: AppColors.primary,
-            onPressed: () {
-              Navigator.of(context).pushNamed(
-                TransactionForm.routeTransactionForm,
-                arguments: transaction,
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            color: AppColors.errorColor,
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (ctx) => AlertDialog(
-                  title: const Text('Você deseja excluir essa transação'),
-                  content: const Text('Tem certeza?'),
-                  actions: <Widget>[
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Não'),
-                    ),
-                    ElevatedButton(
-                      child: const Text('Sim'),
-                      onPressed: () {
-                        Provider.of<TransactionController>(context,
-                                listen: false)
-                            .remove(transaction);
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ],),
+        width: MediaQuery.of(context).size.width * 0.2,
+        child: Row(
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.edit),
+              color: AppColors.primary,
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  TransactionForm.routeTransactionForm,
+                  arguments: transaction,
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete),
+              color: AppColors.errorColor,
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: const Text('Você deseja excluir essa transação'),
+                    content: const Text('Tem certeza?'),
+                    actions: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Não'),
+                      ),
+                      ElevatedButton(
+                        child: const Text('Sim'),
+                        onPressed: () {
+                          Provider.of<TransactionController>(context,
+                                  listen: false)
+                              .remove(transaction);
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

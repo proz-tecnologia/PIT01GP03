@@ -90,8 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                               _formKey.currentState!.validate();
                           if (valid) {
                             _controller.attemptLogin();
-                          } else {}
-                          // TODO: BEATRIZ & DIEGO: IMPLMENTAR COMPORTAMENTO DO ELSE ACIMA (OU DELETAR SE NÃO FOR SER USADO)
+                          } 
                         },
                         style: ButtonStyle(
                           shape: MaterialStatePropertyAll(
