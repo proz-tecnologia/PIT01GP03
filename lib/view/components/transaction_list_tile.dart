@@ -47,6 +47,7 @@ class TransactionListTile extends StatelessWidget {
                   arguments: {
                     'category': transaction.category,
                     'controller': transactionController,
+                    'transactionModel': transaction,
                   },
                 );
               },

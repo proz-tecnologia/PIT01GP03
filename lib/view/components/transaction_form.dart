@@ -15,23 +15,26 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final _formKey = GlobalKey<FormState>();
 
-  final Map<String, dynamic> _formData = {};
+  //final Map<String, dynamic> _formData = {};
 
-  late final bool category;
-  late final TransactionController transactionController;
+  bool? category;
+  TransactionController? transactionController;
+  TransactionModel? transactionModel;
+
+  double valor = 0;
+  String titulo = '';
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        final args =
+  void didChangeDependencies() {
+    final args =
             ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
         category = args['category'] as bool;
         transactionController = args['controller'] as TransactionController;
-      },
-    );
+        transactionModel = args['transactionModel'];
+    super.didChangeDependencies();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +50,29 @@ class _TransactionFormState extends State<TransactionForm> {
                   height: (MediaQuery.of(context).size.height * 0.08),
                 ),
                 TextFormField(
-                  initialValue: '',
+                  initialValue: transactionModel == null
+                      ? titulo
+                      : transactionModel?.title,
                   decoration: const InputDecoration(labelText: 'Título'),
                   validator: CustomFormFieldValidator.validateTitle,
-                  onSaved: (value) => _formData['title'] = value,
+                  onChanged: (value) {
+                    titulo = value;
+                  },
+                  //    onSaved: (value) => transactionModel =
+                  //        transactionModel?.copyWith(title: value),
                 ),
                 TextFormField(
-                  initialValue: _formData['ammount'] == null
+                  initialValue: transactionModel == null
                       ? ''
-                      : _formData['ammount'].toString(),
+                      : transactionModel?.ammount.toString(),
                   decoration: const InputDecoration(labelText: 'Valor (R\$)'),
                   keyboardType: TextInputType.number,
                   validator: CustomFormFieldValidator.validateNull,
-                  onSaved: (value) =>
-                      _formData['ammount'] = double.tryParse(value!),
+                  onChanged: (value) {
+                    valor = double.tryParse(value) ?? valor;
+                  },
+                  //     onSaved: (value) => transactionModel = transactionModel
+                  //          ?.copyWith(ammount: double.tryParse(value!)),
                 ),
               ],
             ),
@@ -72,10 +84,10 @@ class _TransactionFormState extends State<TransactionForm> {
           final isValid = _formKey.currentState!.validate();
           if (isValid) {
             _formKey.currentState!.save();
-            transactionController.put(
+            transactionController?.put(
               TransactionModel(
-                title: _formData['title'],
-                ammount: _formData['ammount'],
+                title: titulo,
+                ammount: valor,
                 date: DateTime.now(),
                 category: category,
               ),
