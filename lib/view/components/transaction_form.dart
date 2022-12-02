@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/controllers/custom_form_field_validator.dart';
 import 'package:porkinio/controllers/transaction_controller.dart';
 import 'package:porkinio/models/transaction_model.dart';
-import 'package:provider/provider.dart';
 
 class TransactionForm extends StatefulWidget {
   const TransactionForm({Key? key}) : super(key: key);
@@ -16,27 +15,22 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final _formKey = GlobalKey<FormState>();
 
-  final _transactionController = TransactionController();
-
   final Map<String, dynamic> _formData = {};
 
-  void _loadFormData(TransactionModel transactionModel) {
-    _formData['id'] = transactionModel.id;
-    _formData['title'] = transactionModel.title;
-    _formData['ammount'] = transactionModel.ammount;
-    _formData['date'] = transactionModel.date;
-    _formData['category'] = transactionModel.category;
-  }
+  late final bool category;
+  late final TransactionController transactionController;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final transaction =
-        ModalRoute.of(context)?.settings.arguments as TransactionModel?;
-    if (transaction != null) {
-      _loadFormData(transaction);
-    }
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        final args =
+            ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+        category = args['category'] as bool;
+        transactionController = args['controller'] as TransactionController;
+      },
+    );
   }
 
   @override
@@ -53,13 +47,13 @@ class _TransactionFormState extends State<TransactionForm> {
                   height: (MediaQuery.of(context).size.height * 0.08),
                 ),
                 TextFormField(
-                  initialValue: _formData['title'],
+                  initialValue: '',
                   decoration: const InputDecoration(labelText: 'Título'),
                   validator: CustomFormFieldValidator.validateTitle,
                   onSaved: (value) => _formData['title'] = value,
                 ),
                 TextFormField(
-                  initialValue: _formData['ammount'] == 0
+                  initialValue: _formData['ammount'] == null
                       ? ''
                       : _formData['ammount'].toString(),
                   decoration: const InputDecoration(labelText: 'Valor (R\$)'),
@@ -78,13 +72,12 @@ class _TransactionFormState extends State<TransactionForm> {
           final isValid = _formKey.currentState!.validate();
           if (isValid) {
             _formKey.currentState!.save();
-            Provider.of<TransactionController>(context, listen: false).put(
+            transactionController.put(
               TransactionModel(
-                id: _formData['id'],
                 title: _formData['title'],
                 ammount: _formData['ammount'],
                 date: DateTime.now(),
-                category: _formData['category'],
+                category: category,
               ),
             );
             Navigator.of(context).pop();

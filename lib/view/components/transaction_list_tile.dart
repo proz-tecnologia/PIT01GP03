@@ -5,23 +5,25 @@ import 'package:porkinio/models/transaction_model.dart';
 import 'package:porkinio/view/components/transaction_form.dart';
 import 'package:porkinio/view/themes/app_colors.dart';
 import 'package:porkinio/view/themes/app_images.dart';
-import 'package:provider/provider.dart';
 
 class TransactionListTile extends StatelessWidget {
-  const TransactionListTile(this.transaction, {super.key});
-
   final TransactionModel transaction;
+  final TransactionController transactionController;
+
+  const TransactionListTile({
+    Key? key,
+    required this.transaction,
+    required this.transactionController,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return ListTile(
       leading: transaction.category!
           ? Image.asset(
               AppImages.wallet,
             )
           : Image.asset(AppImages.withdraw),
-
       title: Text(transaction.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +44,10 @@ class TransactionListTile extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed(
                   TransactionForm.routeTransactionForm,
-                  arguments: transaction,
+                  arguments: {
+                    'category': transaction.category,
+                    'controller': transactionController,
+                  },
                 );
               },
             ),
@@ -65,9 +70,7 @@ class TransactionListTile extends StatelessWidget {
                       ElevatedButton(
                         child: const Text('Sim'),
                         onPressed: () {
-                          Provider.of<TransactionController>(context,
-                                  listen: false)
-                              .remove(transaction);
+                          transactionController.remove(transaction);
                           Navigator.of(context).pop();
                         },
                       ),
