@@ -22,5 +22,5 @@ class AppColors {
   static const backgroundDark = Color(0xFF334546);
   static const accent = Color(0xFFFF62B2);
   static const accentLight = Color(0xFFFFC5C5);
-
+  static const errorColor = Color(0xFFFF5555);
 }

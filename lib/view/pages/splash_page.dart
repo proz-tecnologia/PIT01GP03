@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../themes/app_colors.dart';
-import '../themes/app_images.dart';
-import '../themes/app_text_styles.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
+import 'package:porkinio/view/themes/text_styles/app_text_styles_dark.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
-  static const splash = '/splash';
+  static const routSplashPage = '/splash-page';
 
   @override
   State<StatefulWidget> createState() => _SplashPageState();
@@ -15,6 +14,7 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
+  // TODO: SPRINT 3: IMPLEMENTAR INICIO DA NAVEGAÇÃO DO APP NA SPLASH-SCREEN
   // void initState() {
   //   super.initState();
   //   Future.delayed(const Duration(seconds: 4)).then((value) {
@@ -25,27 +25,29 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.green,
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(AppImages.porkin, height: 320),
-                  Text(
-                    "Porkin.io",
-                    style: AppTextStylesDark.headline3,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.04,
-                  ),
-                  Text(
-                    "Bem-vindo",
-                    style: AppTextStylesDark.subtitle1,
-                  ),
-                ]),
+      backgroundColor: AppColors.green,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(AppImages.porkin, height: 320),
+              Text(
+                "Porkin.io",
+                style: AppTextStylesDark.headline3,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ),
+              Text(
+                "Bem-vindo",
+                style: AppTextStylesDark.subtitle1,
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
