@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final transactions = Provider.of<TransactionController>(context);
 
     return Scaffold(
@@ -24,24 +23,29 @@ class HomePage extends StatelessWidget {
         backgroundColor: AppColors.primaryDark,
       ),
       drawer: const CustomNavigationDrawer(),
-      body: Column(
-        children: [
-          SizedBox(
-            height: (MediaQuery.of(context).size.height * 0.02),
-          ),
-          const AccountBalanceCard(),
-          Expanded(
-            child: transactions.count == 0
-                ? Image.asset(AppImages.porkin)
-                // TODO: PAULO: AJUSTAR A MENSAGEM DE LISTA DE TRANSAÇÕES VAZIAS
-                : ListView.builder(
-                    itemCount: transactions.count,
-                    itemBuilder: (ctx, i) =>
-                        TransactionListTile(transactions.byIndex(i)),
-                  ),
-          ),
-        ],
-      ),
+      body: AnimatedBuilder(
+          animation: transactions,
+          builder: (context, _) {
+            print('aqui');
+            return Column(
+              children: [
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 0.02),
+                ),
+                const AccountBalanceCard(),
+                Expanded(
+                  child: transactions.count == 0
+                      ? Image.asset(AppImages.porkin)
+                      // TODO: PAULO: AJUSTAR A MENSAGEM DE LISTA DE TRANSAÇÕES VAZIAS
+                      : ListView.builder(
+                          itemCount: transactions.count,
+                          itemBuilder: (ctx, i) =>
+                              TransactionListTile(transactions.byIndex(i)),
+                        ),
+                ),
+              ],
+            );
+          }),
     );
   }
 }
