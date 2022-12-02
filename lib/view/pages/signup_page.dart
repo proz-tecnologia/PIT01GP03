@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/controllers/signUp_controller.dart';
 import 'package:projeto_flutter/controllers/signUp_state.dart';
+import 'package:projeto_flutter/view/components/error_dialog.dart';
 import 'package:projeto_flutter/view/components/formfield_register_password.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
 import 'package:projeto_flutter/view/components/validator.dart';
@@ -42,11 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
         Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
       }
       if (_controller.state is SignUpErrorState) {
-        //TODO: trabalhar na tela de erro
-        showDialog(
-            context: context,
-            builder: (context) => const Center(
-                child: Text('Erro ao cadastrar. Tente novamente', style: TextStyle(color: AppColors.orange, fontSize: 14 ))));
+        errorDialog(context, "Erro ao cadastrar", HomePage.routeHomePage);
       }
     });
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/controllers/login_controller.dart';
+import 'package:projeto_flutter/view/components/error_dialog.dart';
 import 'package:projeto_flutter/view/components/formfield_register.dart';
 import 'package:projeto_flutter/view/components/formfield_register_password.dart';
 import 'package:projeto_flutter/view/components/logo_app_bar.dart';
@@ -40,39 +41,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
       }
       if (_controller.state is LoginErrorState) {
-        showDialog(
-            //TODO: trabalhar na tela de erro.
-            context: context,
-            builder: (context) => Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text('Erro ao logar',
-                          style: TextStyle(
-                              color: AppColors.orange,
-                              fontSize: 14,
-                              decoration: TextDecoration.none)),
-                      const SizedBox(height: 12),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.04,
-                          width: MediaQuery.of(context).size.height * 0.2,
-                          child: TextButton(
-                            onPressed: () => Navigator.of(context)
-                                .pushReplacementNamed(LoginPage.login),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Text(
-                                    "Tente Novamente",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: AppColors.orange,
-                                        decoration: TextDecoration.underline),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ]),
-                          )),
-                    ]));
+        errorDialog(context, "Erro ao logar", LoginPage.login);
       }
     });
   }
