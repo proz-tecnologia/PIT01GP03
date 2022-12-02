@@ -1,20 +1,15 @@
-// WIDGET do formulário de registro de transação
-
 import 'package:flutter/material.dart';
 import 'package:porkinio/controllers/custom_form_field_validator.dart';
+import 'package:porkinio/controllers/transaction_controller.dart';
+import 'package:porkinio/models/transaction_model.dart';
 import 'package:provider/provider.dart';
-
-import '../../controllers/transaction_controller.dart';
-import '../../models/transaction_model.dart';
 
 class TransactionForm extends StatefulWidget {
   const TransactionForm({Key? key}) : super(key: key);
 
-  // Rota para navegação do formulário de registro de transação
   static const routeTransactionForm = '/transaction-form';
 
   @override
-  // Cria estado o estado do instanciamento de registro de transação
   State<TransactionForm> createState() => _TransactionFormState();
 }
 
@@ -34,11 +29,9 @@ class _TransactionFormState extends State<TransactionForm> {
   }
 
   @override
-  // Método que observa a mudança de estado
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    // Variável transaction lê os dados de registro de transação na mudança de estado
     final transaction =
         ModalRoute.of(context)?.settings.arguments as TransactionModel?;
     if (transaction != null) {
@@ -83,12 +76,8 @@ class _TransactionFormState extends State<TransactionForm> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           final isValid = _formKey.currentState!.validate();
-
           if (isValid) {
             _formKey.currentState!.save();
-
-
-
             Provider.of<TransactionController>(context, listen: false).put(
               TransactionModel(
                 id: _formData['id'],
@@ -98,8 +87,6 @@ class _TransactionFormState extends State<TransactionForm> {
                 category: _formData['category'],
               ),
             );
-      
-
             Navigator.of(context).pop();
           }
         },

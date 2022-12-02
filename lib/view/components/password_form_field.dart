@@ -26,13 +26,16 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
       formFieldText: widget.passwordFormField,
       formFieldObscureText: _isHidden,
       formFieldSuffixIcon: InkWell(
-          borderRadius: BorderRadius.circular(20.0),
-          onTap: () {
-            setState(() {
+        borderRadius: BorderRadius.circular(20.0),
+        onTap: () {
+          setState(
+            () {
               _isHidden = !_isHidden;
-            });
-          },
-          child: Icon(_isHidden ? Icons.visibility_off : Icons.visibility)),
+            },
+          );
+        },
+        child: Icon(_isHidden ? Icons.visibility_off : Icons.visibility),
+      ),
     );
   }
 }

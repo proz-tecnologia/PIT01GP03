@@ -35,14 +35,15 @@ class _CustomFormFieldState extends State<CustomFormField> {
             color: AppColors.orange, fontWeight: FontWeight.bold),
         hintStyle: const TextStyle(color: AppColors.linear),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-          borderSide: const BorderSide(color: AppColors.orange, width: 3),
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: AppColors.orange, width: 2),
         ),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.orange),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: AppColors.errorColor, width: 2),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: AppColors.linear, width: 2),
         ),
       ),

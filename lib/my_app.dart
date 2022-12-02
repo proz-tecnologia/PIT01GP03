@@ -9,8 +9,6 @@ import 'package:porkinio/view/pages/sign_up_page.dart';
 import 'package:porkinio/view/pages/splash_page.dart';
 import 'package:provider/provider.dart';
 
-// TODO: PAULO: VERIFICAR MELHOR PRÁTICA DE GESTÃO DE ROTAS
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

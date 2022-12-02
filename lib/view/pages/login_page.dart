@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/controllers/custom_form_field_validator.dart';
 import 'package:porkinio/controllers/login_controller.dart';
 import 'package:porkinio/controllers/login_state.dart';
+import 'package:porkinio/view/components/custom_flat_button.dart';
 import 'package:porkinio/view/components/custom_form_field.dart';
 import 'package:porkinio/view/components/custom_outlined_button.dart';
 import 'package:porkinio/view/components/password_form_field.dart';
@@ -80,33 +81,15 @@ class _LoginPageState extends State<LoginPage> {
                           CustomFormFieldValidator.validatePassword,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      // TODO: PAULO: COMPONENTIZAR ESSE BOTÃO
-                      child: ElevatedButton(
-                        onPressed: () {
-                          final valid = _formKey.currentState != null &&
-                              _formKey.currentState!.validate();
-                          if (valid) {
-                            _controller.attemptLogin();
-                          }
-                        },
-                        style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          backgroundColor:
-                              const MaterialStatePropertyAll(AppColors.green),
-                        ),
-                        child: const Text(
-                          ' ENTRAR',
-                          style:
-                              TextStyle(fontSize: 25, color: AppColors.linear),
-                        ),
-                      ),
+                    CustomFlatButton(
+                      customButtonText: 'ENTRAR',
+                      customButtonOnPressed: () {
+                        final valid = _formKey.currentState != null &&
+                            _formKey.currentState!.validate();
+                        if (valid) {
+                          _controller.attemptLogin();
+                        }
+                      },
                     ),
                     SizedBox(
                       height: (MediaQuery.of(context).size.height * 0.02),

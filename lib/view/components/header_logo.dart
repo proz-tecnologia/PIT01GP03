@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../themes/app_colors.dart';
-import '../themes/app_images.dart';
-import '../themes/text_styles/app_text_styles_dark.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
+import 'package:porkinio/view/themes/text_styles/app_text_styles_dark.dart';
+
 
 class HeaderLogo extends StatelessWidget {
   const HeaderLogo({super.key});

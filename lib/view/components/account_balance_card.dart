@@ -19,7 +19,6 @@ class AccountBalanceCard extends StatefulWidget {
 class _AccountBalanceCardState extends State<AccountBalanceCard> {
   @override
   Widget build(BuildContext context) {
-
     return Consumer<TransactionController>(
       builder: (context, transactions, child) {
         return Padding(
@@ -62,7 +61,8 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            transactions.visibilityOn = !transactions.visibilityOn;
+                            transactions.visibilityOn =
+                                !transactions.visibilityOn;
                           });
                         },
                         child: Icon(transactions.visibilityOn
@@ -84,7 +84,8 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                   children: [
                                     const SizedBox(width: 8),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         ElevatedButton.icon(
                                             onPressed: () {
@@ -113,12 +114,13 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                           child: transactions.visibilityOn
                                               ? Text(
                                                   'Entradas: R\$ ${transactions.sum().toStringAsFixed(2)}',
-                                                  style: AppTextStylesLight.body1,
+                                                  style:
+                                                      AppTextStylesLight.body1,
                                                 )
                                               : Text(
                                                   '---',
-                                                  style:
-                                                      AppTextStylesLight.headline4,
+                                                  style: AppTextStylesLight
+                                                      .headline4,
                                                 ),
                                         ),
                                       ],
@@ -129,7 +131,8 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                   children: [
                                     const SizedBox(width: 8),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         ElevatedButton.icon(
                                             onPressed: () {
@@ -158,12 +161,13 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                           child: transactions.visibilityOn
                                               ? Text(
                                                   'Saídas: R\$ ${transactions.subtraction().toStringAsFixed(2)}',
-                                                  style: AppTextStylesLight.body1,
+                                                  style:
+                                                      AppTextStylesLight.body1,
                                                 )
                                               : Text(
                                                   '---',
-                                                  style:
-                                                      AppTextStylesLight.headline4,
+                                                  style: AppTextStylesLight
+                                                      .headline4,
                                                 ),
                                         ),
                                       ],
@@ -182,7 +186,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
             ),
           ),
         );
-      }
+      },
     );
   }
 }
