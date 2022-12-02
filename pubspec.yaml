@@ -1,5 +1,5 @@
-name: projeto_flutter
-description: A new Flutter project.
+name: porkinio
+description: Your Personal Finances App.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -35,12 +35,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   english_words: ^4.0.0
   intl: ^0.17.0
-  responsive_framework: ^0.2.0
   google_fonts: ^3.0.1
+  flutter_localizations:
+    sdk: flutter
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+ 
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

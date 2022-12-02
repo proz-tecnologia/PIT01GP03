@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:porkinio/controllers/transaction_controller.dart';
+import 'package:porkinio/view/components/account_balance_card.dart';
+import 'package:porkinio/view/components/custom_navigation_drawer.dart';
+import 'package:porkinio/view/components/transaction_list_tile.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
 
-import '../themes/app_colors.dart';
-import '../components/card_account_balance.dart';
-import '../components/card_goals_small_primary.dart';
-import '../components/card_goals_small_secondary.dart';
-import '../components/card_graph_performance.dart';
-import '../components/drawer.dart';
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  static const home = '/';
+  static const routeHomePage = '/';
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final transactions = TransactionController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,53 +24,34 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.monetization_on_rounded),
+      ),
+      drawer: const CustomNavigationDrawer(),
+      body: Column(
+        children: [
+          SizedBox(
+            height: (MediaQuery.of(context).size.height * 0.02),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.wallet_rounded),
+          AccountBalanceCard(
+            transactionController: transactions,
+          ),
+          Expanded(
+            child: transactions.count == 0
+                ? Image.asset(AppImages.porkin)
+                : AnimatedBuilder(
+                    animation: transactions,
+                    builder: (context, _) {
+                      return ListView.builder(
+                        itemCount: transactions.count,
+                        itemBuilder: (ctx, i) => TransactionListTile(
+                          transactionController: transactions,
+                          transaction: transactions.byIndex(i),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(36.0),
-        child: Column(
-          children: [
-            const CardAccountBalance(),
-            const SizedBox(
-              height: 36,
-            ),
-            const CardGraphPerformance(),
-            const SizedBox(
-              height: 36,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.antiAlias,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  CardGoalsSmallPrimary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallSecondary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallPrimary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallSecondary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallPrimary(),
-                  SizedBox(width: 16),
-                  CardGoalsSmallSecondary(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      drawer: const DrawerCustom(),
     );
   }
 }
