@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/controllers/transaction_controller.dart';
 import 'package:porkinio/view/components/account_balance_card.dart';
-import 'package:porkinio/view/components/custom_flat_button.dart';
 import 'package:porkinio/view/components/custom_navigation_drawer.dart';
 import 'package:porkinio/view/components/transaction_list_tile.dart';
 import 'package:porkinio/view/themes/app_colors.dart';

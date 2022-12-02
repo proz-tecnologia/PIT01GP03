@@ -15,7 +15,8 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final _formKey = GlobalKey<FormState>();
 
-  //final Map<String, dynamic> _formData = {};
+ 
+ //TODO mudar navegação e refatora tela, category deve ser escolhido no formulario
 
   bool? category;
   TransactionController? transactionController;
@@ -58,8 +59,6 @@ class _TransactionFormState extends State<TransactionForm> {
                   onChanged: (value) {
                     titulo = value;
                   },
-                  //    onSaved: (value) => transactionModel =
-                  //        transactionModel?.copyWith(title: value),
                 ),
                 TextFormField(
                   initialValue: transactionModel == null
@@ -71,8 +70,6 @@ class _TransactionFormState extends State<TransactionForm> {
                   onChanged: (value) {
                     valor = double.tryParse(value) ?? valor;
                   },
-                  //     onSaved: (value) => transactionModel = transactionModel
-                  //          ?.copyWith(ammount: double.tryParse(value!)),
                 ),
               ],
             ),

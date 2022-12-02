@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 class TransactionModel {
   final String? id;
   final String title;
@@ -14,19 +14,5 @@ class TransactionModel {
     this.category,
   });
 
-  TransactionModel copyWith({
-    String? id,
-    String? title,
-    double? ammount,
-    DateTime? date,
-    bool? category,
-  }) {
-    return TransactionModel(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      ammount: ammount ?? this.ammount,
-      date: date ?? this.date,
-      category: category ?? this.category,
-    );
-  }
+
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/controllers/transaction_controller.dart';
-import 'package:porkinio/models/transaction_model.dart';
 import 'package:porkinio/view/components/transaction_form.dart';
 import 'package:porkinio/view/themes/app_colors.dart';
 import 'package:porkinio/view/themes/text_styles/app_text_styles_dark.dart';

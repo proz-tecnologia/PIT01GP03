@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:porkinio/view/themes/app_colors.dart';
 
@@ -32,7 +31,7 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
           ),
           child: Text(
             widget.customButtonText,
-            style: TextStyle(fontSize: 25, color: AppColors.linear),
+            style: const TextStyle(fontSize: 25, color: AppColors.linear),
           ),
         ),
       ),
