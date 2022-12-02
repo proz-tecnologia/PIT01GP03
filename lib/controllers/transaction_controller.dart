@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:porkinio/models/transaction_model.dart';
 
-class TransactionController with ChangeNotifier {
+class TransactionController extends ChangeNotifier {
   final Map<String, TransactionModel> _items = {};
 
   final Map<String, TransactionModel> _itemsSum = {};
@@ -13,9 +13,8 @@ class TransactionController with ChangeNotifier {
     return [..._items.values];
   }
 
-  int get count {
-    return _items.length;
-  }
+  int get count => _items.length;
+
 
   double total() {
     double total = 0;

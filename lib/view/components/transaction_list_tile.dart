@@ -11,17 +11,12 @@ import '../../models/transaction_model.dart';
 class TransactionListTile extends StatelessWidget {
   const TransactionListTile(this.transaction, {super.key});
 
-  // Variável transaction que segue o padrão TransactionModel
   final TransactionModel transaction;
 
   @override
   Widget build(BuildContext context) {
-    // Variável avatar que recebe o padrão do TransactionModel
-    // Condição ternária: se for nula ou vazia, utilizar o ícone Icons.person
 
     return ListTile(
-      // explicação: pelo transaction.category já sei se é entrada ou saida, faço o if ternario para escolher a imagem que ja pego direto da nossa pasta de imagens
-
       leading: transaction.category!
           ? Image.asset(
               AppImages.wallet,

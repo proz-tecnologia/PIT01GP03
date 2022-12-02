@@ -19,13 +19,12 @@ class TransactionForm extends StatefulWidget {
 }
 
 class _TransactionFormState extends State<TransactionForm> {
-  // Variável _formKey é gerada como chave de estado
   final _formKey = GlobalKey<FormState>();
 
-  // Variável _formData é gerada como mapa de dados de registro de transação
+  final _transactionController = TransactionController();
+
   final Map<String, dynamic> _formData = {};
 
-  // Método que lê objetos do modo para gerar dados de registro de transação
   void _loadFormData(TransactionModel transactionModel) {
     _formData['id'] = transactionModel.id;
     _formData['title'] = transactionModel.title;
@@ -88,6 +87,8 @@ class _TransactionFormState extends State<TransactionForm> {
           if (isValid) {
             _formKey.currentState!.save();
 
+
+
             Provider.of<TransactionController>(context, listen: false).put(
               TransactionModel(
                 id: _formData['id'],
@@ -97,6 +98,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 category: _formData['category'],
               ),
             );
+      
 
             Navigator.of(context).pop();
           }

@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final transactions = Provider.of<TransactionController>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -22,9 +21,8 @@ class HomePage extends StatelessWidget {
         backgroundColor: AppColors.primaryDark,
       ),
       drawer: const CustomNavigationDrawer(),
-      body: AnimatedBuilder(
-          animation: transactions,
-          builder: (context, _) {
+      body: Consumer<TransactionController>(
+          builder: (context, transactions, chilp) {
             return Column(
               children: [
                 SizedBox(
