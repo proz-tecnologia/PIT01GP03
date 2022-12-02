@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/view/pages/login_page.dart';
-import 'package:projeto_flutter/view/pages/account_recovery_page.dart';
-import 'package:projeto_flutter/view/pages/sign_up_page.dart';
-import 'package:projeto_flutter/view/pages/splash_page.dart';
-import 'package:projeto_flutter/view/themes/app_colors.dart';
-import 'package:projeto_flutter/view/themes/text_styles/app_text_styles_dark.dart';
+import 'package:porkinio/view/pages/login_page.dart';
+import 'package:porkinio/view/pages/account_recovery_page.dart';
+import 'package:porkinio/view/pages/splash_page.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/text_styles/app_text_styles_dark.dart';
+
+import '../pages/sign_up_page.dart';
 
 class CustomNavigationDrawer extends StatelessWidget {
   const CustomNavigationDrawer({super.key});
@@ -41,7 +42,8 @@ class CustomNavigationDrawer extends StatelessWidget {
               style: AppTextStylesDark.headline6,
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(AccountRecoveryPage.routeAccountRecoveryPage);
+              Navigator.of(context)
+                  .pushNamed(AccountRecoveryPage.routeAccountRecoveryPage);
             },
           ),
           ListTile(

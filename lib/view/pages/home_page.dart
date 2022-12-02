@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/transaction_controller.dart';
-import 'package:projeto_flutter/view/components/account_balance_card.dart';
-import 'package:projeto_flutter/view/components/custom_navigation_drawer.dart';
-import 'package:projeto_flutter/view/components/transaction_list_tile.dart';
-import 'package:projeto_flutter/view/themes/app_colors.dart';
-import 'package:projeto_flutter/view/themes/app_images.dart';
+import 'package:porkinio/controllers/transaction_controller.dart';
+import 'package:porkinio/view/components/account_balance_card.dart';
+import 'package:porkinio/view/components/custom_navigation_drawer.dart';
+import 'package:porkinio/view/components/transaction_list_tile.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {

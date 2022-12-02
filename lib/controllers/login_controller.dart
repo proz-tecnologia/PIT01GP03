@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/login_state.dart';
+import 'package:porkinio/controllers/login_state.dart';
 
 class LoginController extends ChangeNotifier {
   LoginState loginState = LoginInitialState();

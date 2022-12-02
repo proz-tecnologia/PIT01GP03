@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/sign_up_controller.dart';
-import 'package:projeto_flutter/controllers/sign_up_state.dart';
-import 'package:projeto_flutter/view/components/custom_form_field.dart';
-import 'package:projeto_flutter/view/components/error_dialog.dart';
-import 'package:projeto_flutter/view/components/password_form_field.dart';
-import 'package:projeto_flutter/view/components/header_logo.dart';
-import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
-import 'package:projeto_flutter/view/pages/home_page.dart';
-import 'package:projeto_flutter/view/themes/app_colors.dart';
+import 'package:porkinio/controllers/custom_form_field_validator.dart';
+import 'package:porkinio/controllers/sign_up_controller.dart';
+import 'package:porkinio/controllers/sign_up_state.dart';
+import 'package:porkinio/view/components/custom_form_field.dart';
+import 'package:porkinio/view/components/error_dialog.dart';
+import 'package:porkinio/view/components/header_logo.dart';
+import 'package:porkinio/view/components/password_form_field.dart';
+import 'package:porkinio/view/pages/home_page.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

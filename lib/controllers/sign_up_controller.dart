@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/sign_up_state.dart';
+import 'package:porkinio/controllers/sign_up_state.dart';
 
 class SignUpController extends ChangeNotifier {
   SignUpState state = SignUpInitialState();

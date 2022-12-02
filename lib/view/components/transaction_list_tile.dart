@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:projeto_flutter/view/components/transaction_form.dart';
-import 'package:projeto_flutter/view/themes/app_colors.dart';
-import 'package:projeto_flutter/view/themes/app_images.dart';
+import 'package:porkinio/view/components/transaction_form.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/transaction_controller.dart';
@@ -39,7 +39,7 @@ class TransactionListTile extends StatelessWidget {
         ],
       ),
       trailing: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.2,
+        width: MediaQuery.of(context).size.width * 0.25,
         child: Row(
           children: <Widget>[
             IconButton(

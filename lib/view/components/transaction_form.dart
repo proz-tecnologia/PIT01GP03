@@ -1,7 +1,7 @@
 // WIDGET do formulário de registro de transação
 
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
+import 'package:porkinio/controllers/custom_form_field_validator.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/transaction_controller.dart';
@@ -66,7 +66,6 @@ class _TransactionFormState extends State<TransactionForm> {
                   validator: CustomFormFieldValidator.validateTitle,
                   onSaved: (value) => _formData['title'] = value,
                 ),
-
                 TextFormField(
                   initialValue: _formData['ammount'] == 0
                       ? ''
@@ -77,7 +76,6 @@ class _TransactionFormState extends State<TransactionForm> {
                   onSaved: (value) =>
                       _formData['ammount'] = double.tryParse(value!),
                 ),
-
               ],
             ),
           ),
@@ -94,8 +92,8 @@ class _TransactionFormState extends State<TransactionForm> {
               TransactionModel(
                 id: _formData['id'],
                 title: _formData['title'],
-                ammount: _formData['ammount'], 
-                date:DateTime.now(),
+                ammount: _formData['ammount'],
+                date: DateTime.now(),
                 category: _formData['category'],
               ),
             );

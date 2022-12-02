@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projeto_flutter/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
 
 class AppTextStylesDark {
   static final headline1 = GoogleFonts.concertOne(

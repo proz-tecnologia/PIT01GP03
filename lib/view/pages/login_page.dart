@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
-import 'package:projeto_flutter/controllers/login_controller.dart';
-import 'package:projeto_flutter/controllers/login_state.dart';
-import 'package:projeto_flutter/view/components/custom_form_field.dart';
-import 'package:projeto_flutter/view/components/custom_outlined_button.dart';
-import 'package:projeto_flutter/view/components/password_form_field.dart';
-import 'package:projeto_flutter/view/components/header_logo.dart';
-import 'package:projeto_flutter/view/pages/account_recovery_page.dart';
-import 'package:projeto_flutter/view/pages/home_page.dart';
-import 'package:projeto_flutter/view/pages/sign_up_page.dart';
-import 'package:projeto_flutter/view/components/error_dialog.dart';
-import 'package:projeto_flutter/view/themes/app_colors.dart';
-import 'package:projeto_flutter/view/themes/app_images.dart';
+import 'package:porkinio/controllers/custom_form_field_validator.dart';
+import 'package:porkinio/controllers/login_controller.dart';
+import 'package:porkinio/controllers/login_state.dart';
+import 'package:porkinio/view/components/custom_form_field.dart';
+import 'package:porkinio/view/components/custom_outlined_button.dart';
+import 'package:porkinio/view/components/password_form_field.dart';
+import 'package:porkinio/view/components/header_logo.dart';
+import 'package:porkinio/view/pages/account_recovery_page.dart';
+import 'package:porkinio/view/pages/home_page.dart';
+import 'package:porkinio/view/pages/sign_up_page.dart';
+import 'package:porkinio/view/components/error_dialog.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
 
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM GOOGLE
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM MICROSOFT
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                               _formKey.currentState!.validate();
                           if (valid) {
                             _controller.attemptLogin();
-                          } 
+                          }
                         },
                         style: ButtonStyle(
                           shape: MaterialStatePropertyAll(

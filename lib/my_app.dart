@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:projeto_flutter/controllers/transaction_controller.dart';
-import 'package:projeto_flutter/view/components/transaction_form.dart';
-import 'package:projeto_flutter/view/pages/account_recovery_page.dart';
-import 'package:projeto_flutter/view/pages/home_page.dart';
-import 'package:projeto_flutter/view/pages/login_page.dart';
-import 'package:projeto_flutter/view/pages/sign_up_page.dart';
-import 'package:projeto_flutter/view/pages/splash_page.dart';
+import 'package:porkinio/controllers/transaction_controller.dart';
+import 'package:porkinio/view/components/transaction_form.dart';
+import 'package:porkinio/view/pages/account_recovery_page.dart';
+import 'package:porkinio/view/pages/home_page.dart';
+import 'package:porkinio/view/pages/login_page.dart';
+import 'package:porkinio/view/pages/sign_up_page.dart';
+import 'package:porkinio/view/pages/splash_page.dart';
 import 'package:provider/provider.dart';
-
 
 // TODO: PAULO: VERIFICAR MELHOR PRÁTICA DE GESTÃO DE ROTAS
 
@@ -31,7 +30,8 @@ class MyApp extends StatelessWidget {
           HomePage.routeHomePage: (_) => const HomePage(),
           SplashPage.routSplashPage: (_) => const SplashPage(),
           LoginPage.routeLoginPage: (_) => const LoginPage(),
-          AccountRecoveryPage.routeAccountRecoveryPage: (_) => const AccountRecoveryPage(),
+          AccountRecoveryPage.routeAccountRecoveryPage: (_) =>
+              const AccountRecoveryPage(),
           SignUpPage.routeSignUpPage: (_) => const SignUpPage(),
           TransactionForm.routeTransactionForm: (_) => const TransactionForm(),
         },
@@ -39,9 +39,7 @@ class MyApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        supportedLocales: const [
-          Locale('pt', 'BR')
-        ],
+        supportedLocales: const [Locale('pt', 'BR')],
       ),
     );
   }

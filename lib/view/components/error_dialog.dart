@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
 
 Future<T> errorDialog<T>(
     BuildContext context, String errorMessage, String route) async {

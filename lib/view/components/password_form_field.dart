@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_flutter/view/components/custom_form_field.dart';
+import 'package:porkinio/view/components/custom_form_field.dart';
 
 class PasswordFormField extends StatefulWidget {
   final String passwordFormField;
@@ -10,7 +10,7 @@ class PasswordFormField extends StatefulWidget {
       {Key? key,
       required this.passwordFormField,
       this.passwordController,
-      this.passwordValidator}) 
+      this.passwordValidator})
       : super(key: key);
 
   @override
