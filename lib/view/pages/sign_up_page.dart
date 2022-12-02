@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/sign_up_controller.dart';
 import 'package:projeto_flutter/controllers/sign_up_state.dart';
+import 'package:projeto_flutter/view/components/custom_form_field.dart';
+import 'package:projeto_flutter/view/components/error_dialog.dart';
 import 'package:projeto_flutter/view/components/password_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
 import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
-import '../../controllers/sign_up_controller.dart';
-import '../themes/app_colors.dart';
-import '../components/custom_form_field.dart';
-import 'home_page.dart';
+import 'package:projeto_flutter/view/pages/home_page.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -45,19 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
         if (_controller.state is SignUpErrorState) {
-          // TODO: BEATRIZ & DIEGO: TRABALHAR NA TELA DE ERRO
-          showDialog(
-            context: context,
-            builder: (context) => const Center(
-              child: Text(
-                'Erro ao cadastrar. Verifique os dados inseridos e tente novamente.',
-                style: TextStyle(
-                  color: AppColors.orange,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          );
+          errorDialog(context, "Erro ao cadastrar", HomePage.routeHomePage);
         }
       },
     );

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/custom_form_field_validator.dart';
+import 'package:projeto_flutter/controllers/login_controller.dart';
+import 'package:projeto_flutter/controllers/login_state.dart';
 import 'package:projeto_flutter/view/components/custom_form_field.dart';
+import 'package:projeto_flutter/view/components/custom_outlined_button.dart';
 import 'package:projeto_flutter/view/components/password_form_field.dart';
 import 'package:projeto_flutter/view/components/header_logo.dart';
 import 'package:projeto_flutter/view/pages/account_recovery_page.dart';
+import 'package:projeto_flutter/view/pages/home_page.dart';
 import 'package:projeto_flutter/view/pages/sign_up_page.dart';
-
-import '../../controllers/login_controller.dart';
-import '../../controllers/login_state.dart';
-import '../../controllers/custom_form_field_validator.dart';
-import '../themes/app_colors.dart';
-import '../themes/app_images.dart';
-import '../components/custom_outlined_button.dart';
-import 'home_page.dart';
+import 'package:projeto_flutter/view/components/error_dialog.dart';
+import 'package:projeto_flutter/view/themes/app_colors.dart';
+import 'package:projeto_flutter/view/themes/app_images.dart';
 
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM GOOGLE
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM MICROSOFT
@@ -47,45 +47,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
         if (_controller.loginState is LoginErrorState) {
-          showDialog(
-            // TODO: BEATRIZ: TRABALHAR NA TELA DE ERRO
-            context: context,
-            builder: (context) => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  'Erro ao logar',
-                  style: TextStyle(
-                      color: AppColors.orange,
-                      fontSize: 14,
-                      decoration: TextDecoration.none),
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                  width: MediaQuery.of(context).size.height * 0.2,
-                  child: TextButton(
-                    onPressed: () => Navigator.of(context)
-                        .pushReplacementNamed(LoginPage.routeLoginPage),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          "Tente novamente",
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.orange,
-                              decoration: TextDecoration.underline),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
+          errorDialog(context, "Erro ao logar", LoginPage.routeLoginPage);
         }
       },
     );
