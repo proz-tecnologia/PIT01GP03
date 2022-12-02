@@ -1,104 +1,106 @@
-import 'package:flutter/material.dart';
-import 'package:projeto_flutter/controllers/login_controller.dart';
-import 'package:projeto_flutter/view/components/error_dialog.dart';
-import 'package:projeto_flutter/view/components/formfield_register.dart';
-import 'package:projeto_flutter/view/components/formfield_register_password.dart';
-import 'package:projeto_flutter/view/components/logo_app_bar.dart';
-import 'package:projeto_flutter/view/components/validator.dart';
-import 'package:projeto_flutter/controllers/login_state.dart';
+// TODO: SPRINT 3: IMPLEMENTAR LOGIN COM GOOGLE
+// TODO: SPRINT 3: IMPLEMENTAR LOGIN COM MICROSOFT
 
-import '../themes/app_colors.dart';
-import '../themes/app_images.dart';
-import '../components/buttons.dart';
-import 'home_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
+import 'package:porkinio/controllers/custom_form_field_validator.dart';
+import 'package:porkinio/controllers/login_controller.dart';
+import 'package:porkinio/controllers/login_state.dart';
+import 'package:porkinio/view/components/custom_flat_button.dart';
+import 'package:porkinio/view/components/custom_form_field.dart';
+import 'package:porkinio/view/components/custom_outlined_button.dart';
+import 'package:porkinio/view/components/error_dialog.dart';
+import 'package:porkinio/view/components/header_logo.dart';
+import 'package:porkinio/view/components/password_form_field.dart';
+import 'package:porkinio/view/pages/account_recovery_page.dart';
+import 'package:porkinio/view/pages/home_page.dart';
+import 'package:porkinio/view/pages/sign_up_page.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
-  static const login = '/login';
+  static const routeLoginPage = '/login-page';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> _formkey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   final _controller = LoginController();
 
   @override
-  @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
-      if (_controller.state is LoginLoadingState) {
-        showDialog(
+    _controller.addListener(
+      () {
+        if (_controller.loginState is LoginLoadingState) {
+          showDialog(
             context: context,
-            builder: (context) =>
-                const Center(child: CircularProgressIndicator()));
-      }
-      if (_controller.state is LoginSucessState) {
-        Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
-      }
-      if (_controller.state is LoginErrorState) {
-        errorDialog(context, "Erro ao logar", LoginPage.login);
-      }
-    });
+            builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        if (_controller.loginState is LoginSuccessState) {
+          Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
+        }
+        if (_controller.loginState is LoginErrorState) {
+          errorDialog(context, "Erro ao logar", LoginPage.routeLoginPage);
+        }
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const LogoAppBar(),
-          SizedBox(height: (MediaQuery.of(context).size.height) * 0.04),
-          Form(
-            key: _formkey,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Column(
-                  // shrinkWrap: true,   // verifica se listview tem tamanho min
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const HeaderLogo(),
+            SizedBox(height: (MediaQuery.of(context).size.height) * 0.04),
+            Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
                   children: <Widget>[
-                    const FormRegister(
-                        textRegister: "E-MAIL",
-                        validator: Validator.validateEmail),
+                    const CustomFormField(
+                        formFieldText: "E-MAIL",
+                        formFieldValidator:
+                            CustomFormFieldValidator.validateEmail),
                     SizedBox(
                         height: (MediaQuery.of(context).size.height) * 0.04),
-                    const FormRegisterPassword(
-                        textRegister: 'SENHA',
-                        validator: Validator.validatePassword),
+                    const PasswordFormField(
+                      passwordFormField: 'SENHA',
+                      passwordValidator:
+                          CustomFormFieldValidator.validatePassword,
+                    ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          final valid = _formkey.currentState != null &&
-                              _formkey.currentState!.validate();
-                          if (valid) {
-                            _controller.doLogin();
-                          } else {}
-                        },
-                        style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16))),
-                          backgroundColor:
-                              const MaterialStatePropertyAll(AppColors.green),
-                        ),
-                        child: const Text(
-                          ' ENTRAR',
-                          style:
-                              TextStyle(fontSize: 25, color: AppColors.linear),
-                        ),
-                      ),
+                    CustomFlatButton(
+                      customButtonText: 'ENTRAR',
+                      customButtonOnPressed: () {
+                        final valid = _formKey.currentState != null &&
+                            _formKey.currentState!.validate();
+                        if (valid) {
+                          _controller.attemptLogin();
+                        }
+                      },
                     ),
                     SizedBox(
                       height: (MediaQuery.of(context).size.height * 0.02),
                     ),
                     GestureDetector(
-                      onTap: null,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                            AccountRecoveryPage.routeAccountRecoveryPage);
+                      },
                       child: const Center(
                           child: Text(
                         'Esqueci minha senha',
@@ -106,43 +108,53 @@ class _LoginPageState extends State<LoginPage> {
                       )),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                    const SocialButton(
-                        image: AppImages.google,
-                        text: "ENTRAR COM GOOGLE        "),
+                    const CustomOutlinedButton(
+                        customImage: AppImages.google,
+                        customText: 'ENTRAR COM GOOGLE'),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     const Padding(
                         padding: EdgeInsets.only(left: 20, right: 40)),
-                    const SocialButton(
-                        image: AppImages.microsoft,
-                        text: 'ENTRAR COM MICROSOFT'),
+                    const CustomOutlinedButton(
+                        customImage: AppImages.microsoft,
+                        customText: 'ENTRAR COM MICROSOFT'),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                        child: OutlinedButton(
-                          style: ButtonStyle(
-                              side: MaterialStateProperty.all(
-                                  const BorderSide(color: AppColors.orange)),
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16)))),
-                          onPressed: () {},
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  "CADASTRAR NOVA CONTA",
-                                  style: TextStyle(
-                                      fontSize: 18, color: AppColors.orange),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ]),
-                        )),
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      child: OutlinedButton(
+                        style: ButtonStyle(
+                          side: MaterialStateProperty.all(
+                            const BorderSide(color: AppColors.orange),
+                          ),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(SignUpPage.routeSignUpPage);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "CADASTRAR NOVA CONTA",
+                              style: TextStyle(
+                                  fontSize: 18, color: AppColors.orange),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                  ]),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }

@@ -1,72 +1,54 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:porkinio/controllers/transaction_controller.dart';
+import 'package:porkinio/view/components/account_balance_card.dart';
+import 'package:porkinio/view/components/custom_navigation_drawer.dart';
+import 'package:porkinio/view/components/transaction_list_tile.dart';
+import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/view/themes/app_images.dart';
 
-import '../../controllers/transaction_controller.dart';
-import '../../models/transaction_model.dart';
-import '../components/card_account_balance.dart';
-import '../components/drawer.dart';
-import '../components/transaction_list_tile.dart';
-import '../components/transaction_form.dart';
-import '../themes/app_colors.dart';
-import 'form_transaction.dart';
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   static const routeHomePage = '/';
 
   @override
-  Widget build(BuildContext context) {
-    final TransactionController transactions = Provider.of(context);
-  
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  final transactions = TransactionController();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                TransactionForm.routeTransactionForm,
-                arguments: TransactionModel(
-                  id: '',
-                  title: '',
-                  description: '',
-                  ammount: 0,
-                  date: DateTime.now(),
-                  // TODO: implementar validação do formulário com os campos de ammount e date em branco
-                ),
-              );
-/*
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return const AlertDialog(
-                      content: FormTransaction(),
-                    );
-                  },
-                );
-                */
-              },
-              icon: const Icon(Icons.add))
-        ],
       ),
-      drawer: const DrawerCustom(),
+      drawer: const CustomNavigationDrawer(),
       body: Column(
         children: [
           SizedBox(
             height: (MediaQuery.of(context).size.height * 0.02),
           ),
-          const CardAccountBalance(),
+          AccountBalanceCard(
+            transactionController: transactions,
+          ),
           Expanded(
-            child: ListView.builder(
-              itemCount: transactions.count,
-              itemBuilder: (ctx, i) =>
-                  TransactionListTile(transactions.byIndex(i)),
-            ),
+            child: transactions.count == 0
+                ? Image.asset(AppImages.porkin)
+                : AnimatedBuilder(
+                    animation: transactions,
+                    builder: (context, _) {
+                      return ListView.builder(
+                        itemCount: transactions.count,
+                        itemBuilder: (ctx, i) => TransactionListTile(
+                          transactionController: transactions,
+                          transaction: transactions.byIndex(i),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),
