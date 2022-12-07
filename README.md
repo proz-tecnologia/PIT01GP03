@@ -103,6 +103,4 @@ Novas funcionalidades virão nas próximas Sprints!
 
 
 
-Novas funcionalidades virão nas próximas Sprints!
-
 
