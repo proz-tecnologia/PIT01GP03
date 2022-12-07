@@ -77,8 +77,10 @@ Como tela adicional ao protótipo elaborado, inclui-se a tela Recovery password.
 
 ### Desenvolvimento Sprint II
 
-O padrão de arquitetura implementado no app foi o Model View Controller (MVC) e por isso, a estruturação de arquivos e pastas foram organizadas considerando as Boas Práticas do sistema MVC. A divisão por Features também foi adotada para compor a estruturação do aplicativo Porkin.io.
-O projeto também implementou o gerenciador de estados #Change Notifier#. Dessa maneira, os campos de preenchimento presentes nas telas de Login, Cadastro e Recuperação de Senhas foram todos validados aplicando os recursos do Change Notifier.
+O padrão de arquitetura implementado no app foi o Model View Controller Repository (MVCR) e por isso, a estruturação de arquivos e pastas foram organizadas considerando as Boas Práticas do sistema MVCR. A divisão por Features também foi adotada para compor a estruturação do aplicativo Porkin.io.
+
+O projeto também implementou o gerenciador de estados Change Notifier. Dessa maneira, os campos de preenchimento presentes nas telas de Login, Cadastro e Recuperação de Senhas foram todos validados aplicando os recursos do Change Notifier.
+
 Em relação à Home Page, foi trabalhado durante a Sprint II a funcionalidade de Carteira Virtual que permite a realização do CRUD de cadastro de transações financeiras pelo Usuário. A Figura abaixo exemplifica o CRUD em funcionamento. 
 
 
