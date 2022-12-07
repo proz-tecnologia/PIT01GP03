@@ -27,7 +27,7 @@ As estatisticas geradas a partir do formulário corroboraram as pretensões inic
 
 Etapas concluídas:
 - [x] Sprint I
-- [ ] Sprint II
+- [X] Sprint II
 - [ ] Sprint III
 - [ ] Sprint IV
 - [ ] Sprint V
@@ -69,6 +69,39 @@ Como tela adicional ao protótipo elaborado, inclui-se a tela Recovery password.
 
 - Funcionalidades presentes:
   - Navegação da tela Splash -> Login -> Home
+  
+  ## SPRINT II
+ Objetivos Sprint II:
+
+- Adaptar o projeto para um padrão de arquitetura;
+- Implementar gerenciamento de estados;
+- O projeto deve ser estruturado de acordo com a arquitetura definida; 
+- O app deve apresentar comportamento de alteração de estados ao realizar navegações e ações no uso de funcionalidades.
+
+### Desenvolvimento Sprint II
+
+O padrão de arquitetura implementado no app foi o Model View Controller Repository (MVCR) e por isso, a estruturação de arquivos e pastas foram organizadas considerando as Boas Práticas do sistema MVCR. A divisão por Features também foi adotada para compor a estruturação do aplicativo Porkin.io.
+
+O projeto também implementou o gerenciador de estados Change Notifier. Dessa maneira, os campos de preenchimento presentes nas telas de Login, Cadastro e Recuperação de Senhas foram todos validados aplicando os recursos do Change Notifier.
+
+Em relação à Home Page, foi trabalhado durante a Sprint II a funcionalidade de Carteira Virtual que permite a realização do CRUD de cadastro de transações financeiras pelo Usuário. A Figura abaixo exemplifica o CRUD em funcionamento. 
+
+
+![HomePage](https://user-images.githubusercontent.com/108772866/206205216-56242830-2c72-42ed-9933-4f82757863bb.png)
+
+
+Em resumo, as funcionalidades disponíveis com a finalização da Sprint II são:
+- Validação de dados para as telas Login, Cadastro e recuperação de senha;
+- Navegação para a tela Home;
+- CRUD na carteira virtual da Home Page.
+
+![Fluxograma telas](https://user-images.githubusercontent.com/108772866/206206037-60110ad8-5982-4373-b76a-949440993bf8.png)
+
+
+Novas funcionalidades virão nas próximas Sprints!
+
+
+
 
 Novas funcionalidades virão nas próximas Sprints!
 
