@@ -14,7 +14,7 @@ class PasswordFormField extends StatefulWidget {
        this.passwordFormFieldController,
        this.passwordFormFieldValidator, 
        this.passwordFormFieldKeyboardType, 
-       this.passwordFormFieldHelperText,
+       this.passwordFormFieldHelperText, required String? Function(String? value) passwordValidator,
        })
       : super(key: key);
 

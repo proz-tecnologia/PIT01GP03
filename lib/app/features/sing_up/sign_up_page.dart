@@ -122,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         passwordFormFieldText: 'Senha',
                         passwordFormFieldValidator:
                             CustomFormFieldValidator.validatePassword,
-                        passwordFormFieldController: _passwordController,
+                        passwordFormFieldController: _passwordController, passwordValidator: (String? value) {  },
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
@@ -131,7 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         passwordFormFieldText: 'Confirme sua senha',
                         passwordFormFieldValidator: (value) =>
                             CustomFormFieldValidator.confirmValidatePassword(
-                                _passwordController.text, value),
+                                _passwordController.text, value), passwordValidator: (String? value) {  },
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
