@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/controllers/custom_form_field_validator.dart';
+import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/controllers/transaction_controller.dart';
-import 'package:porkinio/models/transaction_model.dart';
+import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionForm extends StatefulWidget {
   const TransactionForm({Key? key}) : super(key: key);
@@ -15,8 +15,8 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final _formKey = GlobalKey<FormState>();
 
- 
- //TODO mudar navegação e refatora tela, category deve ser escolhido no formulario
+
+//TODO CHARLESTON (DICA DO KAIO) MUDAR NAVEGAÇÃO E REFATORA TELA, CATEGORY DEVE SER ESCOLHIDO NO FORMULARIO  
 
   bool? category;
   TransactionController? transactionController;

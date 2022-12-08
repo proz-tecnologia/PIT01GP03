@@ -3,8 +3,8 @@ import 'package:porkinio/controllers/transaction_controller.dart';
 import 'package:porkinio/view/components/account_balance_card.dart';
 import 'package:porkinio/view/components/custom_navigation_drawer.dart';
 import 'package:porkinio/view/components/transaction_list_tile.dart';
-import 'package:porkinio/view/themes/app_colors.dart';
-import 'package:porkinio/view/themes/app_images.dart';
+import 'package:porkinio/app/common/constants/app_colors.dart';
+import 'package:porkinio/app/common/constants/app_images.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

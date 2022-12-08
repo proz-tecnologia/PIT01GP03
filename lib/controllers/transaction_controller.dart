@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:porkinio/models/transaction_model.dart';
+import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionController extends ChangeNotifier {
   final Map<String, TransactionModel> _items = {};

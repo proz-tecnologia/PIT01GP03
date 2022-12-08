@@ -1,33 +1,34 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:porkinio/controllers/custom_form_field_validator.dart';
-import 'package:porkinio/controllers/sign_up_controller.dart';
-import 'package:porkinio/controllers/sign_up_state.dart';
-import 'package:porkinio/view/components/custom_form_field.dart';
-import 'package:porkinio/view/components/error_dialog.dart';
-import 'package:porkinio/view/components/header_logo.dart';
-import 'package:porkinio/view/components/password_form_field.dart';
+import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
+import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
+import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
+import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
+import 'package:porkinio/app/common/widgets/custom_form_field.dart';
+import 'package:porkinio/app/common/widgets/error_dialog.dart';
+import 'package:porkinio/app/common/widgets/header_logo.dart';
+import 'package:porkinio/app/common/widgets/password_form_field.dart';
+import 'package:porkinio/app/services/mock_auth_service.dart';
 import 'package:porkinio/view/pages/home_page.dart';
-import 'package:porkinio/view/themes/app_colors.dart';
+import 'package:porkinio/app/common/constants/app_colors.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
   static const routeSignUpPage = '/sign-up-page';
-
+  
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = SignUpController();
+  final _controller = SignUpController(MockAuthService());
 
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   void initState() {
@@ -43,10 +44,20 @@ class _SignUpPageState extends State<SignUpPage> {
           );
         }
         if (_controller.state is SignUpSucessState) {
+          Navigator.of(context); 
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
         if (_controller.state is SignUpErrorState) {
-          errorDialog(context, "Erro ao cadastrar", HomePage.routeHomePage);
+           
+          final error = _controller.state as SignUpErrorState;
+
+          //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
+
+          Navigator.of(context);
+          errorDialog(context, error.message, SignUpPage.routeSignUpPage);
+
+         // Navigator.of(context);
+        //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }
       },
     );
@@ -89,32 +100,36 @@ class _SignUpPageState extends State<SignUpPage> {
                       const SizedBox(
                         height: 25,
                       ),
-                      const CustomFormField(
-                          formFieldValidator:
-                              CustomFormFieldValidator.validateName,
-                          formFieldText: 'Nome completo'),
+                      CustomFormField(
+                        formFieldValidator:
+                            CustomFormFieldValidator.validateName,
+                        formFieldText: 'Nome completo',
+                        formFieldController: _nameController,
+                      ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
-                      const CustomFormField(
-                          formFieldValidator:
-                              CustomFormFieldValidator.validateEmail,
-                          formFieldText: 'E-mail'),
+                      CustomFormField(
+                        formFieldValidator:
+                            CustomFormFieldValidator.validateEmail,
+                        formFieldText: 'E-mail',
+                        formFieldController: _emailController,
+                      ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       PasswordFormField(
-                        passwordFormField: 'Senha',
-                        passwordValidator:
+                        passwordFormFieldText: 'Senha',
+                        passwordFormFieldValidator:
                             CustomFormFieldValidator.validatePassword,
-                        passwordController: _passwordController,
+                        passwordFormFieldController: _passwordController,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       PasswordFormField(
-                        passwordFormField: 'Confirme sua senha',
-                        passwordValidator: (value) =>
+                        passwordFormFieldText: 'Confirme sua senha',
+                        passwordFormFieldValidator: (value) =>
                             CustomFormFieldValidator.confirmValidatePassword(
                                 _passwordController.text, value),
                       ),
@@ -139,24 +154,27 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.06,
               width: MediaQuery.of(context).size.width * 0.6,
-              child: ElevatedButton(
-                onPressed: () {
+              child: CustomFlatButton(
+                customButtonText: 'ENTRAR',
+                customColor: AppColors.primaryDark,
+                customWidth: 0.8,
+                customHeight: 0.06,
+                customFontSize: 25,
+                customColorText: AppColors.white,
+                customButtonOnPressed: () {
                   final valid = _formKey.currentState != null &&
                       _formKey.currentState!.validate();
+
                   if (valid) {
-                    _controller.doSignUp();
-                  } else {}
+                      _controller.doSignUp(
+                      name: _nameController.text,
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                  } else {
+                    log('ERROR ao logan');
+                  }
                 },
-                style: ButtonStyle(
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16))),
-                  backgroundColor:
-                      const MaterialStatePropertyAll(AppColors.green),
-                ),
-                child: const Text(
-                  ' ENTRAR',
-                  style: TextStyle(fontSize: 25, color: AppColors.linear),
-                ),
               ),
             ),
             SizedBox(

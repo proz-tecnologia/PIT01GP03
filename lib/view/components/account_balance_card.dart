@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/controllers/transaction_controller.dart';
 import 'package:porkinio/view/components/transaction_form.dart';
-import 'package:porkinio/view/themes/app_colors.dart';
-import 'package:porkinio/view/themes/text_styles/app_text_styles_dark.dart';
-import 'package:porkinio/view/themes/text_styles/app_text_styles_light.dart';
+import 'package:porkinio/app/common/constants/app_colors.dart';
+import 'package:porkinio/app/common/constants/text_styles/app_text_styles_dark.dart';
+import 'package:porkinio/app/common/constants/text_styles/app_text_styles_light.dart';
 
 class AccountBalanceCard extends StatefulWidget {
   final TransactionController transactionController;

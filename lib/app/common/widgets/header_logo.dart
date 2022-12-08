@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/view/themes/app_colors.dart';
-import 'package:porkinio/view/themes/app_images.dart';
-import 'package:porkinio/view/themes/text_styles/app_text_styles_dark.dart';
+import 'package:porkinio/app/common/constants/app_colors.dart';
+import 'package:porkinio/app/common/widgets/custom_logo.dart';
 
 
 class HeaderLogo extends StatelessWidget {
@@ -27,17 +26,9 @@ class HeaderLogo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize
-              .min, //faz com que tamanho da column fique tamanho dos filhos
+              .min, 
           children: [
-            Image.asset(
-              AppImages.porkin,
-              height: 180,
-              width: 180,
-            ),
-            Text(
-              "Porkin.io",
-              style: AppTextStylesDark.headline3,
-            ),
+            const CustomLogo(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
