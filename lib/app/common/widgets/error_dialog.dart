@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
-Future<T> errorDialog<T>(
+Future<void> errorDialog(
     BuildContext context, String customErrorMessage, String route) async {
-  return await showDialog(
+  return await showDialog<void>(
     context: context,
     builder: (context) => AlertDialog(
       title: Text(
@@ -20,7 +20,7 @@ Future<T> errorDialog<T>(
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
-                color: AppColors.backgroundDark,
+                color: AppColors.orange,
                 fontWeight: FontWeight.bold,
               ),
             ),

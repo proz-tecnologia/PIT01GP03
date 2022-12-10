@@ -25,8 +25,15 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
       ),
-      drawer: const CustomNavigationDrawer(),
-      body: Column(
+      
+      drawer: 
+      const CustomNavigationDrawer(),
+      body: 
+      
+        Column(
+          
+      
+        mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
             height: (MediaQuery.of(context).size.height * 0.02),
@@ -35,7 +42,9 @@ class _HomePageState extends State<HomePage> {
             transactionController: transactions,
           ),
           Expanded(
-            child: transactions.count == 0
+         
+            child: AnimatedBuilder(animation: transactions, builder: (context, child) => 
+            transactions.count == 0
                 ? Image.asset(AppImages.porkin)
                 : AnimatedBuilder(
                     animation: transactions,
@@ -50,8 +59,8 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
           ),
-        ],
+      )],
       ),
-    );
+      );
   }
 }

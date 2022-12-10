@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
+import 'package:porkinio/app/common/widgets/custom_show_modal_bottom_sheet.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
@@ -53,11 +54,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
-          Navigator.of(context);
-          errorDialog(context, error.message, SignUpPage.routeSignUpPage);
+         Navigator.of(context);
+       errorDialog(context,  error.message, SignUpPage.routeSignUpPage);
 
-         // Navigator.of(context);
-        //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
+//          Navigator.of(context);
+ //       customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }
       },
     );
@@ -172,7 +173,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       password: _passwordController.text,
                     );
                   } else {
-                    log('ERROR ao logan');
+                    log('ERROR ao logar');
                   }
                 },
               ),

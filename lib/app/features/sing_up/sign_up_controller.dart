@@ -23,6 +23,7 @@ class SignUpController extends ChangeNotifier {
       required String password
       }) async {
     _updateState(SignUpLoadingState());
+
     try {
       await _service.signUp(
         name: name,

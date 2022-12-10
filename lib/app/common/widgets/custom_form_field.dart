@@ -71,7 +71,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
           borderSide: const BorderSide(color: AppColors.errorColor, width: 2),
         ),
         enabledBorder: defaultBorder.copyWith(
-          borderSide: const BorderSide(color: AppColors.linear, width: 2),
+          borderSide: const BorderSide(color: AppColors.backgroundDark, width: 2),
         ),
       ),
     );
