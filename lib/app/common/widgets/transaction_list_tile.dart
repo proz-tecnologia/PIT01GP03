@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:porkinio/controllers/transaction_controller.dart';
+import 'package:porkinio/app/features/home/home_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
-import 'package:porkinio/view/components/transaction_form.dart';
+import 'package:porkinio/app/common/widgets/transaction_form.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
 

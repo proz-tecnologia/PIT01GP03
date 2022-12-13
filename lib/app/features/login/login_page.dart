@@ -12,7 +12,7 @@ import 'package:porkinio/app/common/widgets/error_dialog.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
-import 'package:porkinio/view/pages/home_page.dart';
+import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';

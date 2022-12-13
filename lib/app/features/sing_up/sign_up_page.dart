@@ -11,7 +11,7 @@ import 'package:porkinio/app/common/widgets/error_dialog.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/services/mock_auth_service.dart';
-import 'package:porkinio/view/pages/home_page.dart';
+import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
 class SignUpPage extends StatefulWidget {

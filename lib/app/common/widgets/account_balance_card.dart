@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/controllers/transaction_controller.dart';
-import 'package:porkinio/view/components/transaction_form.dart';
+import 'package:porkinio/app/features/home/home_controller.dart';
+import 'package:porkinio/app/common/widgets/transaction_form.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/text_styles/app_text_styles_dark.dart';
 import 'package:porkinio/app/common/constants/text_styles/app_text_styles_light.dart';
@@ -94,29 +94,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            ElevatedButton.icon(
-                                                onPressed: () {
-                                                  Navigator.of(context)
-                                                      .pushNamed(
-                                                    TransactionForm
-                                                        .routeTransactionForm,
-                                                    arguments: {
-                                                      'category': true,
-                                                      'controller': widget
-                                                          .transactionController
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  Icons.keyboard_arrow_up,
-                                                  color: AppColors.primary,
-                                                  size: 22,
-                                                ),
-                                                label: const Text('Adicionar'),
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      AppColors.green,
-                                                )),
                                             SizedBox(
                                                 height: MediaQuery.of(context)
                                                         .size
@@ -148,29 +125,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            ElevatedButton.icon(
-                                                onPressed: () {
-                                                  Navigator.of(context)
-                                                      .pushNamed(
-                                                    TransactionForm
-                                                        .routeTransactionForm,
-                                                    arguments: {
-                                                      'category': false,
-                                                      'controller': widget
-                                                          .transactionController,
-                                                    },
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  color: AppColors.primary,
-                                                  size: 22,
-                                                ),
-                                                label: const Text('Retirar'),
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      AppColors.green,
-                                                )),
+                                         
                                             SizedBox(
                                                 height: MediaQuery.of(context)
                                                         .size

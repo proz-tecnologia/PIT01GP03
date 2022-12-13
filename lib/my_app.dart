@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:porkinio/view/components/transaction_form.dart';
+import 'package:porkinio/app/common/widgets/transaction_form.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
-import 'package:porkinio/view/pages/home_page.dart';
+import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/login/login_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';

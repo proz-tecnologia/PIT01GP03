@@ -14,5 +14,4 @@ class TransactionModel {
     this.category,
   });
 
-
 }
