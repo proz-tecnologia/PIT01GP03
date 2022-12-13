@@ -1,8 +1,88 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
+import 'package:porkinio/app/services/mock_transaction.dart';
 
 class TransactionController extends ChangeNotifier {
+  final List<TransactionModel> _items = [...transactionsMock];
+
+  final List<TransactionModel> _itemsSum = [];
+
+  final List<TransactionModel> _itemsSubtraction = [];
+
+  int get count => _items.length;
+
+  List<TransactionModel> get all {
+    return [..._items];
+  }
+
+  double total() {
+    double total = 0;
+
+    for (var value in _itemsSum) {
+      total += value.ammount;
+    }
+
+    for (var value in _itemsSubtraction) {
+      total -= value.ammount;
+    }
+
+    return total;
+  }
+
+  double sum() {
+    double total = 0;
+    for (var value in _itemsSum) {
+      total += value.ammount;
+    }
+    return total;
+  }
+
+  double subtraction() {
+    double total = 0;
+    for (var value in _itemsSubtraction) {
+      total -= value.ammount;
+    }
+    return total;
+  }
+
+  bool visibilityOn = true;
+
+  TransactionModel byIndex(int i) {
+    return _items.elementAt(i);
+  }
+
+  void add(TransactionModel transaction) {
+    if (!_items.contains(transaction)) {
+      _items.add(transaction);
+      _itemsSubtraction.add(transaction);
+      _itemsSum.add(transaction);
+      notifyListeners();
+    }
+  }
+
+  void update(TransactionModel transaction) {
+    for (int i = 0; i <= _items.length; i++) {
+      if (_items[i] == transaction) {
+        _items[i] = transaction;
+        _itemsSubtraction[i] = transaction;
+        _itemsSum[i] == transaction;
+        notifyListeners();
+      }
+    }
+  }
+
+  void remove(TransactionModel transaction) {
+    _items.remove(transaction);
+    _itemsSubtraction.remove(transaction);
+    _itemsSum.remove(transaction);
+    notifyListeners();
+  }
+}
+
+
+/* 
+class TransactionController extends ChangeNotifier {
+
   final Map<String, TransactionModel> _items = {};
 
   final Map<String, TransactionModel> _itemsSum = {};
@@ -132,3 +212,4 @@ class TransactionController extends ChangeNotifier {
     }
   }
 }
+*/
