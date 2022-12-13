@@ -39,6 +39,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   firebase_core: ^2.4.0
+  firebase_auth: ^4.2.0
 
 
 
