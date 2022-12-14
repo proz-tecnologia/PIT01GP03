@@ -11,7 +11,6 @@ void main() async {
   );
 
   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-
   runApp(
     const MyApp(),
   );

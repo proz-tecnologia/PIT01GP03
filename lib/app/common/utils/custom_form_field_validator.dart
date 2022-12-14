@@ -52,13 +52,5 @@ class CustomFormFieldValidator {
     return null;
   }
 
-  static String? validateTitle(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return "Campo obrigatório.";
-    }
-    if (value.trim().length < 3) {
-      return 'Pelo menos 3 caracteres.';
-    }
-    return null;
-  }
+
 }
