@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/widgets/transaction_form.dart';
 import 'package:porkinio/app/features/home/home_controller.dart';
@@ -60,7 +58,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
 
-      //TODO: COMPONETIZAR floatingActionButton
       floatingActionButton: FloatingActionButton(
         onPressed: () {
             Navigator.of(context).pushNamed(TransactionForm.routeTransactionForm);

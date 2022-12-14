@@ -11,8 +11,6 @@ import 'package:porkinio/app/features/splash/splash_page.dart';
 class CustomNavigationDrawer extends StatelessWidget {
   const CustomNavigationDrawer({super.key});
 
-  // TODO: PAULO: AJUSTAR LAYOUT
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
