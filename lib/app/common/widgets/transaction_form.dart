@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/features/home/home_controller.dart';
@@ -16,16 +14,16 @@ class TransactionForm extends StatefulWidget {
   State<TransactionForm> createState() => _TransactionFormState();
 }
 
+const List<String> list = <String>['Entrada', 'Saída'];
+
 class _TransactionFormState extends State<TransactionForm> {
-//TODO CHARLESTON (DICA DO KAIO) MUDAR NAVEGAÇÃO E REFATORA TELA, CATEGORY DEVE SER ESCOLHIDO NO FORMULARIO
 
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _titleController = TextEditingController();
   final _ammountController = TextEditingController();
   final _dateController = TextEditingController();
-  bool _isSelected = true;
   final _transactionController = TransactionController();
-
+  String dropdownValue = list.first;
 
   @override
   Widget build(BuildContext context) {
@@ -37,36 +35,26 @@ class _TransactionFormState extends State<TransactionForm> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
-
                 CustomFormField(
                   formFieldLabelText: 'Titulo',
+                  formFieldBorder: false,
                   formFieldValidator: CustomFormFieldValidator.validateNull,
                   formFieldController: _titleController,
                 ),
-
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
-
                 CustomFormField(
                   formFieldLabelText: 'Valor',
                   formFieldValidator: CustomFormFieldValidator.validateNull,
+                  formFieldBorder: false,
                   formFieldController: _ammountController,
                   formFieldKeyboardType: TextInputType.number,
                 ),
-
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
-
                 TextFormField(
                   controller: _dateController,
                   validator: CustomFormFieldValidator.validateNull,
                   decoration: const InputDecoration(
-
-                  
-
-                  
-                     
-                     
                     labelText: "Data",
                     suffixIcon: Icon(Icons.calendar_today),
                   ),
@@ -86,22 +74,37 @@ class _TransactionFormState extends State<TransactionForm> {
                     }
                   },
                 ),
-                
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.05)),
-                
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      width: 2,
-                      color: AppColors.primary,
-                    )
+                  child: DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: const Icon(Icons.arrow_downward),
+                    //elevation: 16,
+                    style: const TextStyle(color: Colors.black54),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.black54,
+                    ),
+                    onChanged: (String? value) {
+                      // This is called when the user selects an item.
+                      setState(() {
+                        dropdownValue = value!;
+                      });
+                    },
+                    items: list.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Row(
+                            children: [Text(value)],
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
-                  child: const DropdownButtonExample()
-                  ,),
-
+                ),
               ],
             ),
           ),
@@ -111,68 +114,21 @@ class _TransactionFormState extends State<TransactionForm> {
         onPressed: () {
           if (_formKey.currentState != null &&
               _formKey.currentState!.validate()) {
-            
-          //  _transactionController.add(
-          //    TransactionModel(
-          //      title: _titleController.text, 
-          //      ammount: double.parse(_ammountController.text), 
-          //      date: DateTime.parse(_dateController.text),
-          //      category: true
-          //      ));
+
+              _transactionController.add(
+                TransactionModel(
+                  title: _titleController.text,
+                  ammount: double.parse(_ammountController.text),
+                  date: DateTime.parse(_dateController.text),
+                  category: dropdownValue == 'Entrada' ? true : false
+                  ));
+
             Navigator.pop(context);
+         
           }
         },
         child: const Icon(Icons.add),
       ),
-    );
-  }
-}
-
-//title;
-//ammount;
-//date;
-//category;
-
-const List<String> list = <String>['Entrada', 'Saída'];
-
-class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({super.key});
-
-  @override
-  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
-}
-
-class _DropdownButtonExampleState extends State<DropdownButtonExample> {
-  String dropdownValue = list.first;
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: list.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Container(
-            alignment: Alignment.center,
-            child: Row(
-              children: [Text(value)],
-            ),
-          ),
-        );
-      }).toList(),
     );
   }
 }

@@ -33,9 +33,12 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: (MediaQuery.of(context).size.height * 0.02),
           ),
+
           AccountBalanceCard(
             transactionController: transactions,
-          ),
+          ),      
+          
+      
           Expanded(
             child: AnimatedBuilder(
               animation: transactions,
