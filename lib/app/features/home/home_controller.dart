@@ -3,7 +3,8 @@ import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/mock_transaction.dart';
 
 class TransactionController extends ChangeNotifier {
-  final List<TransactionModel> _items = [...transactionsMock];
+  
+  final List<TransactionModel> _items = []; // [...transactionsMock];
 
   final List<TransactionModel> _itemsSum = [];
 

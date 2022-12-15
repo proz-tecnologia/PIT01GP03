@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
 class CustomFormField extends StatefulWidget {
-  final String formFieldText;
+  final String? formFieldText;
+  final String? formFieldLabelText;
   final Widget? formFieldSuffixIcon;
   final bool? formFieldObscureText;
   final TextEditingController? formFieldController;
@@ -13,7 +14,8 @@ class CustomFormField extends StatefulWidget {
 
   const CustomFormField(
       {super.key,
-      required this.formFieldText,
+      this.formFieldText,
+      this.formFieldLabelText,
       this.formFieldSuffixIcon,
       this.formFieldObscureText,
       this.formFieldController,
@@ -65,6 +67,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       decoration: widget.formFieldBorder == null 
       
       ? InputDecoration(
+        labelText: widget.formFieldLabelText,
         helperText: _customHelperText,
         helperMaxLines: 3,
         hintText: widget.formFieldText,
@@ -83,6 +86,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       )
       
     : InputDecoration(
+        labelText: widget.formFieldLabelText,
         helperText: _customHelperText,
         helperMaxLines: 3,
         hintText: widget.formFieldText,
