@@ -7,31 +7,31 @@ import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
 
 class TransactionListTile extends StatelessWidget {
-  final TransactionModel transaction;
+  final TransactionModel transactionModel;
   final TransactionController transactionController;
 
   const TransactionListTile({
     Key? key,
-    required this.transaction,
+    required this.transactionModel,
     required this.transactionController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: transaction.category!
+      leading: transactionModel.category
           ? Image.asset(
               AppImages.wallet,
             )
           : Image.asset(AppImages.withdraw),
-      title: Text(transaction.title),
+      title: Text(transactionModel.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          transaction.category!
-              ? Text('+ R\$ ${transaction.ammount.toStringAsFixed(2)}')
-              : Text('− R\$ ${transaction.ammount.toStringAsFixed(2)}'),
-          Text(DateFormat('dd/MM/yyy').format(transaction.date)),
+          transactionModel.category
+              ? Text('+ R\$ ${transactionModel.ammount.toStringAsFixed(2)}')
+              : Text('− R\$ ${transactionModel.ammount.toStringAsFixed(2)}'),
+          Text(DateFormat('dd/MM/yyy').format(transactionModel.date)),
         ],
       ),
       trailing: SizedBox(
@@ -44,11 +44,7 @@ class TransactionListTile extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed(
                   TransactionForm.routeTransactionForm,
-                  arguments: {
-                    'category': transaction.category,
-                    'controller': transactionController,
-                    'transactionModel': transaction,
-                  },
+                  
                 );
               },
             ),
@@ -71,7 +67,7 @@ class TransactionListTile extends StatelessWidget {
                       ElevatedButton(
                         child: const Text('Sim'),
                         onPressed: () {
-                          transactionController.remove(transaction);
+                          transactionController.remove(transactionModel);
                           Navigator.of(context).pop();
                         },
                       ),

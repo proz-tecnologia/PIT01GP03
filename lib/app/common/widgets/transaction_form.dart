@@ -17,16 +17,21 @@ class TransactionForm extends StatefulWidget {
 const List<String> list = <String>['Entrada', 'Saída'];
 
 class _TransactionFormState extends State<TransactionForm> {
-
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _titleController = TextEditingController();
   final _ammountController = TextEditingController();
   final _dateController = TextEditingController();
-  final _transactionController = TransactionController();
+  late TransactionController transactionController;
+
+
   String dropdownValue = list.first;
 
   @override
   Widget build(BuildContext context) {
+    transactionController =
+        ModalRoute.of(context)!.settings.arguments as TransactionController;
+
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -38,6 +43,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
                 CustomFormField(
                   formFieldLabelText: 'Titulo',
+                //  formFieldInitialValue: transactionModel?.title.toString() ?? '',
                   formFieldBorder: false,
                   formFieldValidator: CustomFormFieldValidator.validateNull,
                   formFieldController: _titleController,
@@ -114,17 +120,21 @@ class _TransactionFormState extends State<TransactionForm> {
         onPressed: () {
           if (_formKey.currentState != null &&
               _formKey.currentState!.validate()) {
+            final transactionModel = TransactionModel(
+              id: null,
+              title: _titleController.text,
+              ammount: double.parse(_ammountController.text),
+              date: DateTime.parse(_dateController.text),
+              category: dropdownValue == 'Entrada' ? true : false,
+            );
 
-              _transactionController.add(
-                TransactionModel(
-                  title: _titleController.text,
-                  ammount: double.parse(_ammountController.text),
-                  date: DateTime.parse(_dateController.text),
-                  category: dropdownValue == 'Entrada' ? true : false
-                  ));
+            if (transactionController.items.contains(transactionModel)) {
+              transactionController.update(transactionModel);
+            } else {
+              transactionController.add(transactionModel);
+            }
 
             Navigator.pop(context);
-         
           }
         },
         child: const Icon(Icons.add),
@@ -132,4 +142,3 @@ class _TransactionFormState extends State<TransactionForm> {
     );
   }
 }
-
