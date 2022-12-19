@@ -1,5 +1,7 @@
 import 'package:porkinio/app/models/transaction_model.dart';
 
+//TODO: QUANDO NÃO PRECISAMOS MAIS EXCLUIR MOCK
+
 final List<TransactionModel> transactionsMock = [
   TransactionModel(
     id: '1',

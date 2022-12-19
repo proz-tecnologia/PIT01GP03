@@ -31,7 +31,7 @@ class _TransactionFormState extends State<TransactionForm> {
   final _ammountController = TextEditingController();
   final _dateController = TextEditingController();
 
-  String dropdownValue = list.first;
+  String? dropdownValue;
   TransactionModel? newTransactionModel;
 
   @override
@@ -41,6 +41,7 @@ class _TransactionFormState extends State<TransactionForm> {
     _titleController.text = widget.transactionModel?.title ?? '';
     _ammountController.text = widget.transactionModel?.ammount.toString() ?? '';
     _dateController.text = widget.transactionModel?.date.toString() ?? '';
+    dropdownValue = newTransactionModel?.category == false ? list.last : list.first;
   }
 
   @override
@@ -105,7 +106,6 @@ class _TransactionFormState extends State<TransactionForm> {
                       color: Colors.black54,
                     ),
                     onChanged: (String? value) {
-                      // This is called when the user selects an item.
                       setState(() {
                         dropdownValue = value!;
                       });
