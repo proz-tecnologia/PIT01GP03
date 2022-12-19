@@ -6,6 +6,8 @@ import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
 import 'package:porkinio/app/common/widgets/transaction_list_tile.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
+import 'package:porkinio/app/models/transaction_model.dart';
+import 'package:porkinio/app/services/mock_transaction.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,6 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final transactionsController = TransactionController();
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +64,20 @@ class _HomePageState extends State<HomePage> {
       //TODO: COMPONETIZAR floatingActionButton
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed(TransactionForm.routeTransactionForm,
-              arguments: transactionsController);
+          showDialog(
+            context: context,
+            builder: (context) => Center(
+              child: TransactionForm(
+                transactionController: transactionsController,
+            
+                ),
+            ),
+          );
         },
+
+          //  Navigator.of(context).pushNamed(TransactionForm.routeTransactionForm,
+          //    arguments: {'TransactionsController': transactionsController});
+       
         child: const Icon(Icons.add),
       ),
     );

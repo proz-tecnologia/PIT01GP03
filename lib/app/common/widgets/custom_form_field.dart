@@ -11,7 +11,7 @@ class CustomFormField extends StatefulWidget {
   final TextInputType? formFieldKeyboardType;
   final String? formFieldHelperText;
   final bool? formFieldBorder;
-  final String? formFieldInitialValue;
+ 
 
   const CustomFormField(
       {super.key,
@@ -24,7 +24,7 @@ class CustomFormField extends StatefulWidget {
       this.formFieldKeyboardType,
       this.formFieldHelperText,
       this.formFieldBorder, 
-      this.formFieldInitialValue});
+      });
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();
@@ -65,7 +65,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       keyboardType: widget.formFieldKeyboardType,
       maxLines: 1,
       obscureText: widget.formFieldObscureText ?? false,
-      initialValue:  widget.formFieldInitialValue ,
+
       
       decoration: widget.formFieldBorder == null 
       

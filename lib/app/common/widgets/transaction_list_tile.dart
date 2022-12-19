@@ -42,9 +42,14 @@ class TransactionListTile extends StatelessWidget {
               icon: const Icon(Icons.edit),
               color: AppColors.primary,
               onPressed: () {
-                Navigator.of(context).pushNamed(
-                  TransactionForm.routeTransactionForm,
-                  
+                showDialog(
+                  context: context,
+                  builder: (context) => Center(
+                    child: TransactionForm(
+                      transactionController: transactionController,
+                      transactionModel: transactionModel,
+                    ),
+                  ),
                 );
               },
             ),

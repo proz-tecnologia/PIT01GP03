@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
-import 'package:porkinio/app/services/mock_transaction.dart';
 
 class TransactionController extends ChangeNotifier {
+  TransactionModel? transactionModel;
 
-  final List<TransactionModel> items = [...transactionsMock];
+  final List<TransactionModel> items = [];
 
   final List<TransactionModel> itemsSum = [];
 
@@ -43,27 +43,22 @@ class TransactionController extends ChangeNotifier {
   bool visibilityOn = true;
 
   void add(TransactionModel transaction) {
-    if (!items.contains(transaction)) {
-      items.add(transaction);
-      if (transaction.category == true) {
-        itemsSum.add(transaction);
-      } else {
-        itemsSubtraction.add(transaction);
-      }
 
-      notifyListeners();
-    }
+    final newTransaction = transaction.copyWith(id: transaction.hashCode.toString());
+
+    items.add(newTransaction);
+
+
+    notifyListeners();
   }
+
+  //TODO: CHARLESTON VERICAR NAS FUNCOES ADD E UPDATE O METODOS, TROCAR POR METODOS DE LISTA  
 
   void update(TransactionModel transaction) {
     for (int i = 0; i < items.length; i++) {
-      if (items[i] == transaction) {
+      if (items[i].id == transaction.id) {
         items[i] = transaction;
-        if (transaction.category == true) {
-          itemsSum[i] == transaction;
-        } else if (transaction.category == false) {
-          itemsSubtraction[i] = transaction;
-        }
+        
         notifyListeners();
       }
     }
@@ -72,12 +67,8 @@ class TransactionController extends ChangeNotifier {
   void remove(TransactionModel transaction) {
     items.remove(transaction);
 
-    if (itemsSubtraction.contains(transaction)) {
-      itemsSubtraction.remove(transaction);
-    } else if (itemsSum.contains(transaction)) {
-      itemsSum.remove(transaction);
-    }
 
     notifyListeners();
   }
 }
+

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         AccountRecoveryPage.routeAccountRecoveryPage: (_) =>
             const AccountRecoveryPage(),
         SignUpPage.routeSignUpPage: (_) => const SignUpPage(),
-        TransactionForm.routeTransactionForm: (_) => const TransactionForm(),
+       // TransactionForm.routeTransactionForm: (_) => const TransactionForm(),
       },
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

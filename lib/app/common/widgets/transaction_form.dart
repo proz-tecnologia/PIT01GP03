@@ -1,12 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/features/home/home_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionForm extends StatefulWidget {
-  const TransactionForm({Key? key}) : super(key: key);
+  final TransactionController transactionController;
+  final TransactionModel? transactionModel;
+
+  const TransactionForm({
+    Key? key,
+    required this.transactionController,
+    this.transactionModel,
+  }) : super(key: key);
 
   static const routeTransactionForm = '/transaction-form';
 
@@ -21,17 +30,21 @@ class _TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _ammountController = TextEditingController();
   final _dateController = TextEditingController();
-  late TransactionController transactionController;
-
 
   String dropdownValue = list.first;
+  TransactionModel? newTransactionModel;
+
+  @override
+  void initState() {
+    super.initState();
+    newTransactionModel = widget.transactionModel;
+    _titleController.text = widget.transactionModel?.title ?? '';
+    _ammountController.text = widget.transactionModel?.ammount.toString() ?? '';
+    _dateController.text = widget.transactionModel?.date.toString() ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
-    transactionController =
-        ModalRoute.of(context)!.settings.arguments as TransactionController;
-
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -43,7 +56,6 @@ class _TransactionFormState extends State<TransactionForm> {
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
                 CustomFormField(
                   formFieldLabelText: 'Titulo',
-                //  formFieldInitialValue: transactionModel?.title.toString() ?? '',
                   formFieldBorder: false,
                   formFieldValidator: CustomFormFieldValidator.validateNull,
                   formFieldController: _titleController,
@@ -120,18 +132,18 @@ class _TransactionFormState extends State<TransactionForm> {
         onPressed: () {
           if (_formKey.currentState != null &&
               _formKey.currentState!.validate()) {
-            final transactionModel = TransactionModel(
-              id: null,
+            newTransactionModel = TransactionModel(
+              id: widget.transactionModel?.id,
               title: _titleController.text,
               ammount: double.parse(_ammountController.text),
               date: DateTime.parse(_dateController.text),
               category: dropdownValue == 'Entrada' ? true : false,
             );
 
-            if (transactionController.items.contains(transactionModel)) {
-              transactionController.update(transactionModel);
+            if (widget.transactionModel != null) {
+              widget.transactionController.update(newTransactionModel!);
             } else {
-              transactionController.add(transactionModel);
+              widget.transactionController.add(newTransactionModel!);
             }
 
             Navigator.pop(context);
