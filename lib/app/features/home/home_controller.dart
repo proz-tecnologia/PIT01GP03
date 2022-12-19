@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionController extends ChangeNotifier {
-  TransactionModel? transactionModel;
-
   final List<TransactionModel> items = [];
 
   final List<TransactionModel> itemsSum = [];
@@ -43,32 +41,37 @@ class TransactionController extends ChangeNotifier {
   bool visibilityOn = true;
 
   void add(TransactionModel transaction) {
-
-    final newTransaction = transaction.copyWith(id: transaction.hashCode.toString());
-
+    final newTransaction =
+        transaction.copyWith(id: transaction.hashCode.toString());
     items.add(newTransaction);
-
+    
+    if (newTransaction.category == true) {
+      itemsSum.add(newTransaction);
+    } else if (newTransaction.category == false) {
+      itemsSubtraction.add(newTransaction);
+    }
 
     notifyListeners();
   }
-
-  //TODO: CHARLESTON VERICAR NAS FUNCOES ADD E UPDATE O METODOS, TROCAR POR METODOS DE LISTA  
 
   void update(TransactionModel transaction) {
     for (int i = 0; i < items.length; i++) {
       if (items[i].id == transaction.id) {
         items[i] = transaction;
-        
-        notifyListeners();
       }
+
+      if (itemsSum[i].id == transaction.id) {
+        itemsSum[i] = transaction;
+      } else if (itemsSubtraction[i].id == transaction.id) {
+        itemsSubtraction[i] = transaction;
+      }
+
     }
+    notifyListeners();
   }
 
   void remove(TransactionModel transaction) {
     items.remove(transaction);
-
-
     notifyListeners();
   }
 }
-
