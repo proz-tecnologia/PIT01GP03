@@ -4,10 +4,11 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/features/login/login_controller.dart';
+
 import 'package:porkinio/app/features/login/login_state.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/services/mock_auth_service.dart';
+import 'package:porkinio/app/services/firebase_auth_service.dart';
 import 'package:porkinio/app/common/widgets/error_dialog.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
@@ -22,7 +23,6 @@ class LoginPage extends StatefulWidget {
 
   static const routeLoginPage = '/login-page';
 
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -30,16 +30,16 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  final _controller = LoginController(MockAuthService());
+  final _controller = LoginController(FirebaseAuthService());
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
- //TODO REVER O LOGICA DO dispose(), QUANDO USAMOS ESTA DANDO ERRO NA TELA 
- //   _emailController.dispose();
- //  _passwordController.dispose();
+    //TODO REVER O LOGICA DO dispose(), QUANDO USAMOS ESTA DANDO ERRO NA TELA
+    //   _emailController.dispose();
+    //  _passwordController.dispose();
     _controller.addListener(
       () {
         if (_controller.state is LoginLoadingState) {
@@ -54,13 +54,13 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
         if (_controller.state is LoginErrorState) {
-           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
-           
+          //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
+
           errorDialog(context, "Erro ao logar", LoginPage.routeLoginPage);
-        
-         //Navigator.of(context);
-        //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
-        
+
+          //Navigator.of(context);
+          //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
+
         }
       },
     );
@@ -75,7 +75,6 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             const HeaderLogo(),
             SizedBox(height: (MediaQuery.of(context).size.height) * 0.04),
-            
             Form(
               key: _formKey,
               child: Padding(
@@ -89,17 +88,18 @@ class _LoginPageState extends State<LoginPage> {
                             CustomFormFieldValidator.validateEmail),
                     SizedBox(
                         height: (MediaQuery.of(context).size.height) * 0.04),
-                   PasswordFormField(
+                    PasswordFormField(
                       passwordFormFieldText: 'SENHA',
                       passwordFormFieldController: _passwordController,
                       passwordFormFieldValidator:
-                          CustomFormFieldValidator.validatePassword, passwordValidator: (String? value) {  },
+                          CustomFormFieldValidator.validatePassword,
+                      passwordValidator: (String? value) {},
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     CustomFlatButton(
                       customButtonText: 'ENTRAR',
-                      customColor:  AppColors.primaryDark,
-                      customWidth: 0.8, 
+                      customColor: AppColors.primaryDark,
+                      customWidth: 0.8,
                       customHeight: 0.06,
                       customFontSize: 25,
                       customColorText: AppColors.white,
@@ -109,19 +109,18 @@ class _LoginPageState extends State<LoginPage> {
                         if (valid) {
                           _controller.doLogin(
                             email: _emailController.text,
-                            password: _passwordController.text, 
-                                               
+                            password: _passwordController.text,
                           );
                         }
-                      }, 
+                      },
                     ),
                     SizedBox(
                       height: (MediaQuery.of(context).size.height * 0.02),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(AccountRecoveryPage.routeAccountRecoveryPage);
+                        Navigator.of(context).pushNamed(
+                            AccountRecoveryPage.routeAccountRecoveryPage);
                       },
                       child: const Center(
                           child: Text(
@@ -129,57 +128,48 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(fontSize: 15),
                       )),
                     ),
-                 
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    
                     CustomFlatButton(
-                      customButtonText: 'ENTRAR COM GOOGLE', 
-                      customButtonOnPressed: (){}, 
-                      customColor: AppColors.textMediumGray, 
+                      customButtonText: 'ENTRAR COM GOOGLE',
+                      customButtonOnPressed: () {},
+                      customColor: AppColors.textMediumGray,
                       customWidth: 0.9,
-                      customHeight: 0.06, 
+                      customHeight: 0.06,
                       customFontSize: 20,
-                      customImage: AppImages.google, 
+                      customImage: AppImages.google,
                       customColorText: AppColors.white,
                       customColorImage: AppColors.orange,
-                      ),
-                  
+                    ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                  
                     CustomFlatButton(
-                      customButtonText: 'ENTRAR COM MICROSOFT', 
-                      customButtonOnPressed: (){}, 
-                      customColor: AppColors.textMediumGray, 
+                      customButtonText: 'ENTRAR COM MICROSOFT',
+                      customButtonOnPressed: () {},
+                      customColor: AppColors.textMediumGray,
                       customWidth: 0.9,
-                      customHeight: 0.06, 
+                      customHeight: 0.06,
                       customFontSize: 20,
                       customColorText: AppColors.white,
                       customColorImage: AppColors.orange,
                       customImage: AppImages.microsoft,
-                      ),
-                     
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02), 
-
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
                       customButtonText: 'CADASTRAR NOVA CONTA',
-                      customColor:  AppColors.textMediumGray,
-                      customWidth: 0.9, 
+                      customColor: AppColors.textMediumGray,
+                      customWidth: 0.9,
                       customHeight: 0.06,
                       customFontSize: 20,
                       customColorText: AppColors.white,
                       customButtonOnPressed: () {
-                       Navigator.of(context)
-                              .pushNamed(SignUpPage.routeSignUpPage);
+                        Navigator.of(context)
+                            .pushNamed(SignUpPage.routeSignUpPage);
                       },
                     ),
-       
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                   ],
                 ),
               ),
-              
             ),
-           
           ],
         ),
       ),

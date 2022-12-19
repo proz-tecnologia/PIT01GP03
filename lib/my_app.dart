@@ -14,6 +14,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Porkin.io',
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''), // English, no country code
+        Locale('es', ''), // Spanish, no country code
+        Locale('pt', 'BR'),
+      ],
       debugShowCheckedModeBanner: false,
       initialRoute: HomePage.routeHomePage,
       routes: {
@@ -25,11 +35,6 @@ class MyApp extends StatelessWidget {
         SignUpPage.routeSignUpPage: (_) => const SignUpPage(),
         TransactionForm.routeTransactionForm: (_) => const TransactionForm(),
       },
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [Locale('pt', 'BR')],
     );
   }
 }
