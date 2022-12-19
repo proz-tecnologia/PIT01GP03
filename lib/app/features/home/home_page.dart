@@ -6,8 +6,6 @@ import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
 import 'package:porkinio/app/common/widgets/transaction_list_tile.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
-import 'package:porkinio/app/models/transaction_model.dart';
-import 'package:porkinio/app/services/mock_transaction.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -74,9 +72,6 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         },
-
-          //  Navigator.of(context).pushNamed(TransactionForm.routeTransactionForm,
-          //    arguments: {'TransactionsController': transactionsController});
        
         child: const Icon(Icons.add),
       ),

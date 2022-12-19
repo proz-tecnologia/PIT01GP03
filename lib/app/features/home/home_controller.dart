@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
+
+//TODO PAULO TROCAR NO NOME CLASSE
+
 class TransactionController extends ChangeNotifier {
+
   final List<TransactionModel> items = [];
 
   double total() {
