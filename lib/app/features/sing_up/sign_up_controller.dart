@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/services/auth_service.dart';
+import 'package:porkinio/app/services/secure_storage.dart';
+import 'package:porkinio/app/services/secure_storage.dart';
+import 'package:porkinio/app/services/secure_storage.dart';
 
 class SignUpController extends ChangeNotifier {
   final AuthService _service;
@@ -24,15 +26,21 @@ class SignUpController extends ChangeNotifier {
       {required String name,
       required String email,
       required String password}) async {
+    final secureStorage = const SecureStorage();
     _updateState(SignUpLoadingState());
 
-   
     try {
-      await _service.signUp(
+      final user = await _service.signUp(
         name: name,
         email: email,
         password: password,
       );
+      if (user.id != null) {
+        await secureStorage.write(key: "CURRENT USER", value: user.toJson());
+        _updateState(SignUpSucessState());
+      } else {
+        throw Exception();
+      }
 
       //    throw Exception('Erro ao cadastrar');
 

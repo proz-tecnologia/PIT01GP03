@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:porkinio/app/features/login/login_state.dart';
 import 'package:porkinio/app/models/user_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
+import 'package:porkinio/app/services/secure_storage.dart';
 
 class FirebaseAuthService implements AuthService {
   final _auth = FirebaseAuth.instance;
@@ -9,11 +11,12 @@ class FirebaseAuthService implements AuthService {
   Future<UserModel> signIn(
       {required String email, required String password}) async {
     try {
-      final result = await _auth.signInWithEmailAndPassword(
+      final result = await _auth.signInWithEmailAndPassword (
           email: email, password: password);
-      if (result.user != null) {
+          
+      if (result.user!= null  ) {
         return UserModel(
-            name: result.user!.displayName, email: result.user!.email!);
+            name: _auth.currentUser?.displayName, email: _auth.currentUser!.email!, id: _auth.currentUser!.uid);
       } else {
         throw Exception();
       }
@@ -33,7 +36,7 @@ class FirebaseAuthService implements AuthService {
       if (result.user != null) {
         await result.user!.updateDisplayName(name);
         return UserModel(
-            name: result.user!.displayName, email: result.user!.email!);
+            name: _auth.currentUser!.displayName, email: _auth.currentUser!.email!, id: _auth.currentUser!.uid);
       } else {
         throw Exception();
       }
