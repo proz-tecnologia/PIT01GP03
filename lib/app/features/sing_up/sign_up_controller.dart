@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
-import 'package:porkinio/app/services/secure_storage.dart';
-import 'package:porkinio/app/services/secure_storage.dart';
 
 class SignUpController extends ChangeNotifier {
   final AuthService _service;
@@ -26,7 +24,7 @@ class SignUpController extends ChangeNotifier {
       {required String name,
       required String email,
       required String password}) async {
-    final secureStorage = const SecureStorage();
+    const secureStorage = SecureStorage();
     _updateState(SignUpLoadingState());
 
     try {
