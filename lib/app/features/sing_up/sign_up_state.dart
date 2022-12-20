@@ -1,4 +1,6 @@
-abstract class SignUpState {}
+abstract class SignUpState {
+  void dispose() {}
+}
 
 class SignUpInitialState extends SignUpState {}
 

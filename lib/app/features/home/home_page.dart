@@ -59,7 +59,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
 
-      //TODO: COMPONETIZAR floatingActionButton
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
