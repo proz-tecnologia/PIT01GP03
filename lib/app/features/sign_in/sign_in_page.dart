@@ -32,7 +32,7 @@ class _SignInPageState extends State<SignInPage> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = locator.get<LoginController>();
+  final _controller = locator.get<SingInController>();
 
   @override
   void initState() {
