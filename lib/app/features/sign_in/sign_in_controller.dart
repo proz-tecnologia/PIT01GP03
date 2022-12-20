@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import 'package:porkinio/app/features/login/login_state.dart';
+import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
@@ -11,19 +11,19 @@ class LoginController extends ChangeNotifier {
 
   LoginController(this._authservice);
 
-  LoginState _loginState = LoginInitialState();
+  SignInState _signInState = SignInInitialState();
 
-  LoginState get state => _loginState;
+  SignInState get state => _signInState;
 
-  void _updateState(LoginState newState) {
-    _loginState = newState;
+  void _updateState(SignInState newState) {
+    _signInState = newState;
     notifyListeners();
   }
 
   Future<void> doLogin(
       {required String email, required String password}) async {
     const secureStorage = SecureStorage();
-    _updateState(LoginLoadingState());
+    _updateState(SignInLoadingState());
 
     try {
       final user = await _authservice.signIn(
@@ -32,12 +32,12 @@ class LoginController extends ChangeNotifier {
       );
       if (user.id != null) {
         secureStorage.write(key: 'CURRENT_USER', value: user.toJson());
-        _updateState(LoginSuccessState());
+        _updateState(SignInSuccessState());
       } else {
         throw Exception("Usuário não cadastrado");
       }
     } catch (e) {
-      _updateState(LoginErrorState(e.toString()));
+      _updateState(SignInErrorState(e.toString()));
     }
   }
 }

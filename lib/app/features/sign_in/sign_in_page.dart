@@ -3,8 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
-import 'package:porkinio/app/features/login/login_controller.dart';
-import 'package:porkinio/app/features/login/login_state.dart';
+import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
+import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/common/widgets/error_dialog.dart';
@@ -17,16 +17,16 @@ import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
 import 'package:porkinio/locator.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
-  static const routeLoginPage = '/login-page';
+  static const routeSignInPage = '/sign-in-page';
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
 
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     //  _passwordController.dispose();
     _controller.addListener(
       () {
-        if (_controller.state is LoginLoadingState) {
+        if (_controller.state is SignInLoadingState) {
           showDialog(
             context: context,
             builder: (context) => const Center(
@@ -50,13 +50,13 @@ class _LoginPageState extends State<LoginPage> {
             ),
           );
         }
-        if (_controller.state is LoginSuccessState) {
+        if (_controller.state is SignInSuccessState) {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
-        if (_controller.state is LoginErrorState) {
+        if (_controller.state is SignInErrorState) {
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
-          errorDialog(context, "Erro ao logar", LoginPage.routeLoginPage);
+          errorDialog(context, "Erro ao logar", SignInPage.routeSignInPage);
 
           //Navigator.of(context);
           //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);

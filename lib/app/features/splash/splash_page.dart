@@ -3,7 +3,7 @@ import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/text_styles/app_text_styles_dark.dart';
 import 'package:porkinio/app/common/widgets/custom_logo.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
-import 'package:porkinio/app/features/login/login_page.dart';
+import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/splash/splash_controller.dart';
 import 'package:porkinio/app/features/splash/splash_state.dart';
 import 'package:porkinio/locator.dart';
@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashPage> {
     } else {
       Future.delayed(const Duration(seconds: 2)).then((value) async {
         return await Navigator.of(context)
-            .pushReplacementNamed(LoginPage.routeLoginPage);
+            .pushReplacementNamed(SignInPage.routeSignInPage);
       });
     }
   }

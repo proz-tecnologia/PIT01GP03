@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:porkinio/app/common/widgets/transaction_form.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
-import 'package:porkinio/app/features/login/login_page.dart';
+import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeHomePage: (_) => const HomePage(),
         SplashPage.routSplashPage: (_) => const SplashPage(),
-        LoginPage.routeLoginPage: (_) => const LoginPage(),
+        SignInPage.routeSignInPage: (_) => const SignInPage(),
         AccountRecoveryPage.routeAccountRecoveryPage: (_) =>
             const AccountRecoveryPage(),
         SignUpPage.routeSignUpPage: (_) => const SignUpPage(),

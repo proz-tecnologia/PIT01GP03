@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/text_styles/app_text_styles_dark.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
-import 'package:porkinio/app/features/login/login_page.dart';
+import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 
@@ -32,7 +32,7 @@ class CustomNavigationDrawer extends StatelessWidget {
               style: AppTextStylesDark.headline6,
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(LoginPage.routeLoginPage);
+              Navigator.of(context).pushNamed(SignInPage.routeSignInPage);
             },
           ),
           ListTile(
