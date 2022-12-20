@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
           Navigator.of(context);
-          errorDialog(context, error.message, SignUpPage.routeSignUpPage);
+          errorDialog(context, "Erro ao cadastrar", SignUpPage.routeSignUpPage, "Tente novamente");
 
 //          Navigator.of(context);
           //       customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
 Future<void> errorDialog(
-    BuildContext context, String customErrorMessage, String route) async {
+    BuildContext context, String customErrorMessage, String route, String buttom) async {
   return await showDialog<void>(
     context: context,
     builder: (context) => AlertDialog(
@@ -15,10 +15,11 @@ Future<void> errorDialog(
         Center(
           child: TextButton(
             onPressed: () => Navigator.of(context).pushReplacementNamed(route),
-            child: const Text(
-              "Tente Novamente",
+            child: Text(buttom,
+              
               textAlign: TextAlign.center,
-              style: TextStyle(
+              
+              style: const TextStyle(
                 fontSize: 18,
                 color: AppColors.orange,
                 fontWeight: FontWeight.bold,

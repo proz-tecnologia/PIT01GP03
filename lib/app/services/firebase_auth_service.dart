@@ -11,19 +11,23 @@ class FirebaseAuthService implements AuthService {
   Future<UserModel> signIn(
       {required String email, required String password}) async {
     try {
-      final result = await _auth.signInWithEmailAndPassword (
+      final result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-          
-      if (result.user!= null  ) {
+
+      if (result.user != null) {
         return UserModel(
-            name: _auth.currentUser?.displayName, email: _auth.currentUser!.email!, id: _auth.currentUser!.uid);
+            name: _auth.currentUser?.displayName,
+            email: _auth.currentUser!.email!,
+            id: _auth.currentUser!.uid);
       } else {
         throw Exception();
       }
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? "null";
+      e.code == 'user-not-found';
+      throw "Usuário não cadastrado";
+      
     } catch (e) {
-      rethrow;
+      throw "Erro ao logar";
     }
   }
 
@@ -36,7 +40,9 @@ class FirebaseAuthService implements AuthService {
       if (result.user != null) {
         await result.user!.updateDisplayName(name);
         return UserModel(
-            name: _auth.currentUser!.displayName, email: _auth.currentUser!.email!, id: _auth.currentUser!.uid);
+            name: _auth.currentUser!.displayName,
+            email: _auth.currentUser!.email!,
+            id: _auth.currentUser!.uid);
       } else {
         throw Exception();
       }

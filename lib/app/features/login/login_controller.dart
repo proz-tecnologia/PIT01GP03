@@ -1,8 +1,13 @@
 import 'dart:developer';
+import 'dart:js';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:porkinio/app/common/widgets/error_dialog.dart';
+import 'package:porkinio/app/features/login/login_page.dart';
 
 import 'package:porkinio/app/features/login/login_state.dart';
+import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
@@ -33,11 +38,11 @@ class LoginController extends ChangeNotifier {
       if (user.id != null) {
         secureStorage.write(key: 'CURRENT_USER', value: user.toJson());
         _updateState(LoginSuccessState());
-      } else {
-        throw Exception("Usuário não cadastrado");
       }
+
+      throw Exception();
     } catch (e) {
-      _updateState(LoginErrorState(e.toString()));
+      _updateState(LoginErrorState(message: e.toString()));
     }
   }
 }

@@ -1,6 +1,8 @@
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM GOOGLE
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM MICROSOFT
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/features/login/login_controller.dart';
@@ -29,7 +31,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _controller = locator.get<LoginController>();
@@ -40,31 +41,32 @@ class _LoginPageState extends State<LoginPage> {
     //TODO REVER O LOGICA DO dispose(), QUANDO USAMOS ESTA DANDO ERRO NA TELA
     //   _emailController.dispose();
     //  _passwordController.dispose();
-    _controller.addListener(
-      () {
-        if (_controller.state is LoginLoadingState) {
-          showDialog(
-            context: context,
-            builder: (context) => const Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        if (_controller.state is LoginSuccessState) {
-          Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
-        }
-        if (_controller.state is LoginErrorState) {
-          //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
+    _controller.addListener(() {
+      if (_controller.state is LoginLoadingState) {
+        showDialog(
+          context: context,
+          builder: (context) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      }
+      if (_controller.state is LoginSuccessState) {
+        Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
+      }
+      if (_controller.state is LoginErrorState) {
+     final error = (_controller.state as LoginErrorState).message;
 
-          errorDialog(context, "Erro ao logar", LoginPage.routeLoginPage);
-
-          //Navigator.of(context);
-          //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
-
+  
+          errorDialog(context, error! , error == "Usuário não cadastrado" ? SignUpPage.routeSignUpPage:LoginPage.routeLoginPage,error == "Usuário não cadastrado" ? "Cadastrar": "Tente novamente");
         }
-      },
-    );
-  }
+
+        //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
+
+        //Navigator.of(context);
+        //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
+      });
+    }
+  
 
   @override
   Widget build(BuildContext context) {
