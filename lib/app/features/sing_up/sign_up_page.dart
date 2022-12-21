@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
         if (_controller.state is SignUpErrorState) {
-          final error = _controller.state as SignUpErrorState;
+          
 
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
