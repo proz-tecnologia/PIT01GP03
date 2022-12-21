@@ -24,7 +24,7 @@ class _SplashPageState extends State<SplashPage> {
   // TODO: COMPARAR ESSE METODO USANDO ABAIXO E O DO KAIO NA AULA 21
   void initState() {
     super.initState();
-    _splashController.isUserLogged();
+    _splashController.isUserLogged();  //TODO Revisar funcionalidade de islogged
     if (_splashController.state is SplashSucessState) {
       Future.delayed(const Duration(seconds: 2)).then((value) async {
         return await Navigator.of(context)

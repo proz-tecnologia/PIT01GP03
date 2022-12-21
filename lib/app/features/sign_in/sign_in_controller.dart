@@ -6,10 +6,10 @@ import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
-class LoginController extends ChangeNotifier {
+class SignInController extends ChangeNotifier {
   final AuthService _authservice;
 
-  LoginController(this._authservice);
+  SignInController(this._authservice);
 
   SignInState _signInState = SignInInitialState();
 

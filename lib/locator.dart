@@ -15,8 +15,8 @@ void setupDependencies() {
   locator.registerFactory<SplashController>(
       () => SplashController(const SecureStorage()));
 
-  locator.registerFactory<LoginController>(
-      () => LoginController(locator.get<AuthService>()));
+  locator.registerFactory<SignInController>(
+      () => SignInController(locator.get<AuthService>()));
 
   locator.registerFactory<SignUpController>(
       () => SignUpController(locator.get<AuthService>()));
