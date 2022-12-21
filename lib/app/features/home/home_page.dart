@@ -17,7 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final transactions = TransactionController();
+  final transactionsController = TransactionController();
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -33,36 +34,44 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: (MediaQuery.of(context).size.height * 0.02),
           ),
-          AccountBalanceCard(
-            transactionController: transactions,
-          ),
+          AnimatedBuilder(
+              animation: transactionsController,
+              builder: (context, child) {
+                return AccountBalanceCard(
+                  transactionController: transactionsController,
+                );
+              }),
           Expanded(
             child: AnimatedBuilder(
-              animation: transactions,
-              builder: (context, child) => transactions.count == 0
-                  ? Image.asset(AppImages.porkin)
-                  : AnimatedBuilder(
-                      animation: transactions,
-                      builder: (context, _) {
-                        return ListView.builder(
-                          itemCount: transactions.count,
+                animation: transactionsController,
+                builder: (context, child) {
+                  return transactionsController.items.isEmpty
+                      ? Image.asset(AppImages.porkin)
+                      : ListView.builder(
+                          itemCount: transactionsController.items.length,
                           itemBuilder: (ctx, i) => TransactionListTile(
-                            transactionController: transactions,
-                            transaction: transactions.byIndex(i),
+                            transactionController: transactionsController,
+                            transactionModel: transactionsController.items[i],
                           ),
                         );
-                      },
-                    ),
-            ),
+                }),
           )
         ],
       ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-            Navigator.of(context).pushNamed(TransactionForm.routeTransactionForm);
-             
+          showDialog(
+            context: context,
+            builder: (context) => Center(
+              child: TransactionForm(
+                transactionController: transactionsController,
+            
+                ),
+            ),
+          );
         },
+       
         child: const Icon(Icons.add),
       ),
     );

@@ -87,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Form(
-                key: _formKey, // para acessar prop e metodo internos
+                key: _formKey, 
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(

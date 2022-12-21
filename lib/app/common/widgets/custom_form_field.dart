@@ -1,33 +1,40 @@
-
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
 class CustomFormField extends StatefulWidget {
-  final String formFieldText;
+  final String? formFieldText;
+  final String? formFieldLabelText;
   final Widget? formFieldSuffixIcon;
   final bool? formFieldObscureText;
   final TextEditingController? formFieldController;
   final String? Function(String?)? formFieldValidator;
   final TextInputType? formFieldKeyboardType;
   final String? formFieldHelperText;
+  final bool? formFieldBorder;
+ 
 
-  const CustomFormField({
-    super.key,
-    required this.formFieldText,
-    this.formFieldSuffixIcon,
-    this.formFieldObscureText,
-    this.formFieldController,
-    this.formFieldValidator,
-    this.formFieldKeyboardType,
-    this.formFieldHelperText,
-  });
+  const CustomFormField(
+      {super.key,
+      this.formFieldText,
+      this.formFieldLabelText,
+      this.formFieldSuffixIcon,
+      this.formFieldObscureText,
+      this.formFieldController,
+      this.formFieldValidator,
+      this.formFieldKeyboardType,
+      this.formFieldHelperText,
+      this.formFieldBorder, 
+      });
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();
 }
 
 class _CustomFormFieldState extends State<CustomFormField> {
-  final defaultBorder = OutlineInputBorder(
+
+  
+  
+  final customDefaultBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(20),
       borderSide: const BorderSide(color: AppColors.white));
 
@@ -58,21 +65,37 @@ class _CustomFormFieldState extends State<CustomFormField> {
       keyboardType: widget.formFieldKeyboardType,
       maxLines: 1,
       obscureText: widget.formFieldObscureText ?? false,
-      decoration: InputDecoration(
+
+      
+      decoration: widget.formFieldBorder == null 
+      
+      ? InputDecoration(
+        labelText: widget.formFieldLabelText,
         helperText: _customHelperText,
         helperMaxLines: 3,
         hintText: widget.formFieldText,
         suffixIcon: widget.formFieldSuffixIcon,
         hintStyle: const TextStyle(color: AppColors.linear),
-        focusedBorder: defaultBorder.copyWith(
+        focusedBorder: customDefaultBorder.copyWith(
           borderSide: const BorderSide(color: AppColors.orange, width: 2),
         ),
-        errorBorder: defaultBorder.copyWith(
+        errorBorder: customDefaultBorder.copyWith(
           borderSide: const BorderSide(color: AppColors.errorColor, width: 2),
         ),
-        enabledBorder: defaultBorder.copyWith(
-          borderSide: const BorderSide(color: AppColors.backgroundDark, width: 2),
+        enabledBorder: customDefaultBorder.copyWith(
+          borderSide:
+              const BorderSide(color: AppColors.backgroundDark, width: 2),
         ),
+      )
+      
+    : InputDecoration(
+        labelText: widget.formFieldLabelText,
+        helperText: _customHelperText,
+        helperMaxLines: 3,
+        hintText: widget.formFieldText,
+        suffixIcon: widget.formFieldSuffixIcon,
+        hintStyle: const TextStyle(color: AppColors.linear),
+
       ),
     );
   }
