@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
         AccountRecoveryPage.routeAccountRecoveryPage: (_) =>
             const AccountRecoveryPage(),
         SignUpPage.routeSignUpPage: (_) => const SignUpPage(),
-       // TransactionForm.routeTransactionForm: (_) => const TransactionForm(),
       },
     );
   }

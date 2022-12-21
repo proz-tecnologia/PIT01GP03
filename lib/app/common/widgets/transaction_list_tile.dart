@@ -27,10 +27,13 @@ class TransactionListTile extends StatelessWidget {
       title: Text(transactionModel.title),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: [          
+          
           transactionModel.category
               ? Text('+ R\$ ${transactionModel.ammount.toStringAsFixed(2)}')
               : Text('− R\$ ${transactionModel.ammount.toStringAsFixed(2)}'),
+       
+
           Text(DateFormat('dd/MM/yyy').format(transactionModel.date)),
         ],
       ),

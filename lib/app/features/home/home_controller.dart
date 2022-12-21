@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
-
 //TODO PAULO TROCAR NO NOME CLASSE
 
 class TransactionController extends ChangeNotifier {
-
   final List<TransactionModel> items = [];
 
   double total() {
-    double total = 0;
+    double totalSum = 0;
+    double totalSubtraction = 0;
+    double totalValue = 0;
     for (var value in items) {
-      total += value.ammount;
+      if (value.category == true) {
+        totalSum += value.ammount;
+      } else if (value.category == false) {
+        totalSubtraction += value.ammount;
+      }     
     }
-    return total;
+    totalValue = totalSum - totalSubtraction;
+    return totalValue ;
   }
 
   double sum() {
@@ -21,7 +26,7 @@ class TransactionController extends ChangeNotifier {
     for (var value in items) {
       if (value.category == true) {
         total += value.ammount;
-      }      
+      }
     }
     return total;
   }
@@ -29,9 +34,9 @@ class TransactionController extends ChangeNotifier {
   double subtraction() {
     double total = 0;
     for (var value in items) {
-      if(value.category == false){
+      if (value.category == false) {
         total -= value.ammount;
-     }
+      }
     }
     return total;
   }
