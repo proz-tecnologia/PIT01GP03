@@ -6,6 +6,8 @@ import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
 import 'package:porkinio/app/common/widgets/transaction_list_tile.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
+import 'package:porkinio/app/features/splash/splash_page.dart';
+import 'package:porkinio/app/services/secure_storage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,7 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final transactionsController = TransactionController();
- 
+  final _secureStorage = const SecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,18 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.account_box,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              _secureStorage.deleteOne(key: "CURRENT_USER").then((_) => 
+              Navigator.popAndPushNamed(context, SplashPage.routSplashPage));
+            },
+          )
+        ],
       ),
       drawer: const CustomNavigationDrawer(),
       body: Column(
@@ -58,7 +72,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
@@ -66,12 +79,10 @@ class _HomePageState extends State<HomePage> {
             builder: (context) => Center(
               child: TransactionForm(
                 transactionController: transactionsController,
-            
-                ),
+              ),
             ),
           );
         },
-       
         child: const Icon(Icons.add),
       ),
     );
