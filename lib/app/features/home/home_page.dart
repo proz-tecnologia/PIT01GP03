@@ -34,6 +34,8 @@ class _HomePageState extends State<HomePage> {
               Icons.account_box,
               color: Colors.white,
             ),
+
+            //TODO DEFINIR ONDE ESSA FUNCAO DE MATAR SECAO DEVE FICAR NA TELA HOME 
             onPressed: () {
               _secureStorage.deleteOne(key: "CURRENT_USER").then((_) => 
               Navigator.popAndPushNamed(context, SplashPage.routSplashPage));

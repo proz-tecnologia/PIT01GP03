@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
+import 'package:porkinio/app/common/utils/firebase_get_error.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
@@ -50,15 +51,14 @@ class _SignUpPageState extends State<SignUpPage> {
           Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
         }
         if (_controller.state is SignUpErrorState) {
-          final error = _controller.state as SignUpErrorState;
+          final error = (_controller.state as SignUpErrorState).message;
 
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
-          Navigator.of(context);
-          errorDialog(context, error.message, SignUpPage.routeSignUpPage);
+          errorDialog(context, firebaseGetError(error), SignUpPage.routeSignUpPage);
 
-//          Navigator.of(context);
-          //       customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
+          // Navigator.of(context);
+          // customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }
       },
     );
