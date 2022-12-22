@@ -1,16 +1,16 @@
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM GOOGLE
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM MICROSOFT
 
-
-
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/utils/Firebase_get_error.dart';
+
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
+import 'package:porkinio/app/common/utils/firebase_get_error.dart';
+
+import 'package:porkinio/app/common/widgets/error_dialog.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/common/widgets/error_dialog.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
@@ -31,6 +31,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -64,17 +65,10 @@ class _SignInPageState extends State<SignInPage> {
           //Navigator.of(context);
           //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
 
-  
-          errorDialog(context, error , error == "Usuário não cadastrado" ? SignUpPage.routeSignUpPage:SignInPage.routeSignInPage,error == "Usuário não cadastrado" ? "Cadastrar": "Tente novamente");
         }
-
-        //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
-
-        //Navigator.of(context);
-        //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
-      });
-    }
-  
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
