@@ -57,7 +57,7 @@ class _SignInPageState extends State<SignInPage> {
      final error = (_controller.state as SignInErrorState).message;
 
   
-          errorDialog(context, error , error == "Usuário não cadastrado" ? SignUpPage.routeSignUpPage:SignInPage.routeSignInPage,error == "Usuário não cadastrado" ? "Cadastrar": "Tente novamente");
+          errorDialog(context, error , error == "Usuário não cadastrado" ? SignUpPage.routeSignUpPage:SignInPage.routeSignInPage,error == "Usuário não cadastrado" ? "Cadastrar": "Tente novamente" );
         }
 
         //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
