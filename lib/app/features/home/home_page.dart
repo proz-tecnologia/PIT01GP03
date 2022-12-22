@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(
-              Icons.account_box,
+              Icons.exit_to_app,
               color: Colors.white,
             ),
 

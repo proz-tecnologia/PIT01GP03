@@ -1,15 +1,15 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:porkinio/app/common/utils/custom_firebase_get_error.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
-import 'package:porkinio/app/common/utils/firebase_get_error.dart';
+import 'package:porkinio/app/common/widgets/custom_error_dialog.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
 
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/common/widgets/error_dialog.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 
@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
-          errorDialog(context, firebaseGetError(error), SignUpPage.routeSignUpPage);
+          customErrorDialog(context, customFirebaseGetError(error), SignUpPage.routeSignUpPage);
 
           // Navigator.of(context);
           // customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);

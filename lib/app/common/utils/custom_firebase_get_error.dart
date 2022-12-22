@@ -1,4 +1,4 @@
-String firebaseGetError(String code) {
+String customFirebaseGetError(String code) {
   switch (code) {
     case 'The email address is already in use by another account.':
       return 'Email já foi cadastrado';

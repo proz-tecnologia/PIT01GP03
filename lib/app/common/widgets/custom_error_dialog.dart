@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
-Future<void> errorDialog(
+Future<void> customErrorDialog(
     BuildContext context, String customErrorMessage, String route) async {
   return await showDialog<void>(
     context: context,
