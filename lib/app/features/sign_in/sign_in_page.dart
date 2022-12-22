@@ -56,7 +56,7 @@ class _SignInPageState extends State<SignInPage> {
         }
         if (_controller.state is SignInErrorState) {
           final error = (_controller.state as SignInErrorState).message;
-          //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
+          //TODO ESCOLHER QUAL USAR errorDialog OU showModalBottomSheet
 
           customErrorDialog(context, customFirebaseGetError(error), SignInPage.routeSignInPage);
 
@@ -95,7 +95,7 @@ class _SignInPageState extends State<SignInPage> {
                       passwordFormFieldController: _passwordController,
                       passwordFormFieldValidator:
                           CustomFormFieldValidator.validatePassword,
-                      passwordValidator: (String? value) {},
+                      
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     CustomFlatButton(

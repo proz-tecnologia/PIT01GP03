@@ -130,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         passwordFormFieldValidator:
                             CustomFormFieldValidator.validatePassword,
                         passwordFormFieldController: _passwordController,
-                        passwordValidator: (String? value) {},
+                  
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
@@ -140,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         passwordFormFieldValidator: (value) =>
                             CustomFormFieldValidator.confirmValidatePassword(
                                 _passwordController.text, value),
-                        passwordValidator: (String? value) {},
+              
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,

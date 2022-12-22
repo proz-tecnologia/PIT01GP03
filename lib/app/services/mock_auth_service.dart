@@ -54,7 +54,6 @@ class MockAuthService implements AuthService {
   
   @override
   Future<void> signOut() {
-    // TODO: implement signOut
     throw UnimplementedError();
   }
 }
