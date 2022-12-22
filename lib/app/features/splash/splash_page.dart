@@ -21,7 +21,6 @@ class _SplashPageState extends State<SplashPage> {
   final _splashController = locator.get<SplashController>();
   @override
   // TODO: SPRINT 3: IMPLEMENTAR INICIO DA NAVEGAÇÃO DO APP NA SPLASH-SCREEN
-  // TODO: COMPARAR ESSE METODO USANDO ABAIXO E O DO KAIO NA AULA 21
   void initState() {
     super.initState();
     _splashController.isUserLogged();  //TODO Revisar funcionalidade de islogged
