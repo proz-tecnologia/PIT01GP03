@@ -21,10 +21,12 @@ class FirebaseAuthService implements AuthService {
         throw Exception();
       }
     } on FirebaseAuthException catch (e) {
-      e.code == 'user-not-found';
-      throw "Usuário não cadastrado";
-      
-    } catch (e) {
+      if (e.code == 'user-not-found') {
+        throw "Usuário não cadastrado";
+      }
+      if (e.code == 'wrong-password') {
+        throw "E-mail ou senha incorretos";
+      }
       throw "Erro ao logar";
     }
   }
