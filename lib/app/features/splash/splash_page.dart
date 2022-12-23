@@ -23,7 +23,8 @@ class _SplashPageState extends State<SplashPage> {
   // TODO: SPRINT 3: IMPLEMENTAR INICIO DA NAVEGAÇÃO DO APP NA SPLASH-SCREEN
   void initState() {
     super.initState();
-    _splashController.isUserLogged();  //TODO Revisar funcionalidade de islogged
+    _splashController.isUserLogged();
+    _splashController.addListener(() {  //TODO Revisar funcionalidade de islogged
     if (_splashController.state is SplashSucessState) {
       Future.delayed(const Duration(seconds: 2)).then((value) async {
         return await Navigator.of(context)
@@ -35,6 +36,7 @@ class _SplashPageState extends State<SplashPage> {
             .pushReplacementNamed(SignInPage.routeSignInPage);
       });
     }
+  });
   }
 
   @override
