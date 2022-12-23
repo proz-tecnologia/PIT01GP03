@@ -2,10 +2,10 @@
 // TODO: SPRINT 3: IMPLEMENTAR LOGIN COM MICROSOFT
 
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/utils/custom_firebase_get_error.dart';
+
 
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
-import 'package:porkinio/app/common/widgets/custom_error_dialog.dart';
+import 'package:porkinio/app/common/widgets/customAuthDialog.dart';
 
 
 
@@ -62,7 +62,7 @@ class _SignInPageState extends State<SignInPage> {
           final error = (_controller.state as SignInErrorState).message;
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
-          customErrorDialog(context, customFirebaseGetError(error), SignInPage.routeSignInPage);
+          customAuthDialog(context, error, SignInPage.routeSignInPage);
 
           //Navigator.of(context);
           //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);

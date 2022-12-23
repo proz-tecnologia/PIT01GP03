@@ -37,7 +37,6 @@ class SingInController extends ChangeNotifier {
         throw Exception("Usuário não cadastrado");
       }
 
-      throw Exception();
     } catch (e) {
       _updateState(SignInErrorState(e.toString()));
     }
