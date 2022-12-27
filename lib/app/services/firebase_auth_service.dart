@@ -21,9 +21,25 @@ class FirebaseAuthService implements AuthService {
         throw Exception();
       }
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? "null";
+      switch (e.message) {
+    case 'The email address is already in use by another account.':
+      throw 'Email já foi cadastrado';
+
+    case 'The password is invalid or the user does not have a password.':
+      throw 'Sua senha está errada';
+
+    case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+      throw 'Usuario não foi criado';
+
+    case 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.':
+      throw 'Seu acesso está temporariamente indisponível devido às diversas tentativas de login. Resete a senha ou tente novamente mais tarde';
+
+    default:
+      throw 'Um erro indefinido ocorreu.';
+  }
+      
     } catch (e) {
-      rethrow;
+       rethrow;
     }
   }
 

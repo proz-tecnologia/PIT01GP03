@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
-Future<void> customErrorDialog(
+Future<void> customAuthDialog(
     BuildContext context, String customErrorMessage, String route) async {
   return await showDialog<void>(
     context: context,
@@ -15,10 +15,9 @@ Future<void> customErrorDialog(
         Center(
           child: TextButton(
             onPressed: () => Navigator.of(context).pushReplacementNamed(route),
-            child: const Text(
-              "Tente Novamente",
+            child: const Text("Login",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style:  TextStyle(
                 fontSize: 18,
                 color: AppColors.orange,
                 fontWeight: FontWeight.bold,
@@ -30,3 +29,4 @@ Future<void> customErrorDialog(
     ),
   );
 }
+

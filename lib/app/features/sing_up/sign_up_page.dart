@@ -1,19 +1,14 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/utils/custom_firebase_get_error.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
-import 'package:porkinio/app/common/widgets/custom_error_dialog.dart';
+import 'package:porkinio/app/common/widgets/customAuthDialog.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
-
+import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
-
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
-
-import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/locator.dart';
 
@@ -47,15 +42,17 @@ class _SignUpPageState extends State<SignUpPage> {
           );
         }
         if (_controller.state is SignUpSucessState) {
-          Navigator.of(context);
-          Navigator.of(context).pushReplacementNamed(HomePage.routeHomePage);
+           customAuthDialog(context, 'Usuário cadastrado com sucesso! Clique abaixo para logar',
+              SignInPage.routeSignInPage);
+       
         }
         if (_controller.state is SignUpErrorState) {
           final error = (_controller.state as SignUpErrorState).message;
+         
 
           //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
 
-          customErrorDialog(context, customFirebaseGetError(error), SignUpPage.routeSignUpPage);
+          customAuthDialog(context, error, SignUpPage.routeSignUpPage);
 
           // Navigator.of(context);
           // customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
@@ -87,7 +84,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Form(
-                key: _formKey, 
+                key: _formKey,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
