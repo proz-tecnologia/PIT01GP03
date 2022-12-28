@@ -8,6 +8,7 @@ import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
+import 'package:porkinio/locator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,8 +20,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final transactionsController = TransactionController();
+  final _transactioncontroller = locator.get<TransactionController>();
   final _secureStorage = const SecureStorage();
+
+  @override
+  void initState() {
+    super.initState();
+    _transactioncontroller.addListener(() {});
+    _transactioncontroller.getTransactions();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +43,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
 
-            //TODO DEFINIR ONDE ESSA FUNCAO DE MATAR SECAO DEVE FICAR NA TELA HOME 
+            //TODO DEFINIR ONDE ESSA FUNCAO DE MATAR SECAO DEVE FICAR NA TELA HOME
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT_USER").then((_) => 
-              Navigator.popAndPushNamed(context, SplashPage.routSplashPage));
+              _secureStorage.deleteOne(key: "CURRENT_USER").then((_) =>
+                  Navigator.popAndPushNamed(
+                      context, SplashPage.routSplashPage));
             },
           )
         ],
@@ -51,23 +60,23 @@ class _HomePageState extends State<HomePage> {
             height: (MediaQuery.of(context).size.height * 0.02),
           ),
           AnimatedBuilder(
-              animation: transactionsController,
+              animation: _transactioncontroller,
               builder: (context, child) {
                 return AccountBalanceCard(
-                  transactionController: transactionsController,
+                  transactionController: _transactioncontroller,
                 );
               }),
           Expanded(
             child: AnimatedBuilder(
-                animation: transactionsController,
+                animation: _transactioncontroller,
                 builder: (context, child) {
-                  return transactionsController.items.isEmpty
+                  return _transactioncontroller.items.isEmpty
                       ? Image.asset(AppImages.porkin)
                       : ListView.builder(
-                          itemCount: transactionsController.items.length,
+                          itemCount: _transactioncontroller.items.length,
                           itemBuilder: (ctx, i) => TransactionListTile(
-                            transactionController: transactionsController,
-                            transactionModel: transactionsController.items[i],
+                            transactionController: _transactioncontroller,
+                            transactionModel: _transactioncontroller.items[i],
                           ),
                         );
                 }),
@@ -80,7 +89,7 @@ class _HomePageState extends State<HomePage> {
             context: context,
             builder: (context) => Center(
               child: TransactionForm(
-                transactionController: transactionsController,
+                transactionController: _transactioncontroller,
               ),
             ),
           );

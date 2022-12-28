@@ -53,8 +53,16 @@ class MockAuthService implements AuthService {
   }
   
   @override
+  Future<void> getTransactions() {
+    // TODO: implement getTransactions
+    throw UnimplementedError();
+  }
+  
+  @override
   Future<void> signOut() {
     // TODO: implement signOut
     throw UnimplementedError();
   }
+  
+  
 }
