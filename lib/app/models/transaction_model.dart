@@ -1,5 +1,3 @@
-
-
 class TransactionModel {
   final String? id ;
   final String title;
@@ -14,7 +12,6 @@ class TransactionModel {
     required this.date,
     required this.category,
   });
-
 
   TransactionModel copyWith({
     String? id,

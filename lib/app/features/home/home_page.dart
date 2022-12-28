@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/widgets/transaction_form.dart';
-import 'package:porkinio/app/features/home/home_controller.dart';
 import 'package:porkinio/app/common/widgets/account_balance_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
 import 'package:porkinio/app/common/widgets/transaction_list_tile.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
+import 'package:porkinio/app/features/home/account_balance_card_controller.dart';
+import 'package:porkinio/app/features/home/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
@@ -19,7 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final transactionsController = TransactionController();
+  final transactionListController = TransactionListController();
+  final accountBalanceCardController = AccountBalanceCardController();
   final _secureStorage = const SecureStorage();
 
   @override
@@ -28,6 +30,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
+        elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -35,10 +38,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
 
-            //TODO DEFINIR ONDE ESSA FUNCAO DE MATAR SECAO DEVE FICAR NA TELA HOME 
+            //TODO DEFINIR ONDE ESSA FUNCAO DE MATAR SECAO DEVE FICAR NA TELA HOME
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT_USER").then((_) => 
-              Navigator.popAndPushNamed(context, SplashPage.routSplashPage));
+              _secureStorage.deleteOne(key: "CURRENT_USER").then((_) =>
+                  Navigator.popAndPushNamed(
+                      context, SplashPage.routSplashPage));
             },
           )
         ],
@@ -47,45 +51,49 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            height: (MediaQuery.of(context).size.height * 0.02),
-          ),
           AnimatedBuilder(
-              animation: transactionsController,
+              animation: transactionListController,
               builder: (context, child) {
                 return AccountBalanceCard(
-                  transactionController: transactionsController,
+                  accountBalanceCardController: accountBalanceCardController,
                 );
               }),
           Expanded(
             child: AnimatedBuilder(
-                animation: transactionsController,
-                builder: (context, child) {
-                  return transactionsController.items.isEmpty
-                      ? Image.asset(AppImages.porkin)
-                      : ListView.builder(
-                          itemCount: transactionsController.items.length,
-                          itemBuilder: (ctx, i) => TransactionListTile(
-                            transactionController: transactionsController,
-                            transactionModel: transactionsController.items[i],
-                          ),
-                        );
-                }),
-          )
+              animation: transactionListController,
+              builder: (context, child) {
+                return transactionListController.transactionList.isEmpty
+                    ? Image.asset(AppImages.porkin)
+                    : ListView.builder(
+                        itemCount:
+                            transactionListController.transactionList.length,
+                        itemBuilder: (ctx, i) => TransactionListTile(
+                          transactionListController: transactionListController,
+                          transactionModel:
+                              transactionListController.transactionList[i],
+                        ),
+                      );
+              },
+            ),
+          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           showDialog(
             context: context,
             builder: (context) => Center(
               child: TransactionForm(
-                transactionController: transactionsController,
+                transactionListController: transactionListController,
               ),
             ),
           );
         },
-        child: const Icon(Icons.add),
+        icon: Icon(Icons.receipt_long),
+        label: Text("Cadastrar Transação"),
+        elevation: 5,
+        backgroundColor: AppColors.primary,
       ),
     );
   }
