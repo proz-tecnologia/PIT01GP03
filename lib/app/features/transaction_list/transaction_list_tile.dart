@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:porkinio/app/features/home/transaction_list_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
-import 'package:porkinio/app/common/widgets/transaction_form.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
-import 'package:porkinio/app/common/constants/app_images.dart';
 
 class TransactionListTile extends StatelessWidget {
   final TransactionModel transactionModel;
@@ -28,12 +27,12 @@ class TransactionListTile extends StatelessWidget {
             color: AppColors.backgroundLight,
             child: ListTile(
               leading: transactionModel.category
-                  ? Icon(
+                  ? const Icon(
                       Icons.savings,
                       size: 40,
                       color: AppColors.primaryLight,
                     )
-                  : Icon(
+                  : const Icon(
                       Icons.paid,
                       size: 40,
                       color: AppColors.secondaryLight,

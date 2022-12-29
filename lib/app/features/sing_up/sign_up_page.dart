@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
-import 'package:porkinio/app/common/widgets/customAuthDialog.dart';
+import 'package:porkinio/app/common/widgets/custom_auth_dialog.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';

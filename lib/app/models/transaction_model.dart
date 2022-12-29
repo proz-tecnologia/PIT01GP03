@@ -5,7 +5,7 @@ class TransactionModel {
   final DateTime date;
   final bool category;
 
-  const TransactionModel({
+  TransactionModel({
     this.id,
     required this.title,
     required this.ammount,
@@ -27,5 +27,15 @@ class TransactionModel {
       date: date ?? this.date,
       category: category ?? this.category,
     );
+  }
+
+   Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'title': title,
+      'ammount': ammount,
+      'date': date,
+      'category': category,
+    };
   }
 }

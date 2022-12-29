@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/home/account_balance_card_controller.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
-import 'package:porkinio/app/common/constants/text_styles/app_text_styles_dark.dart';
 import 'package:porkinio/app/common/constants/text_styles/app_text_styles_light.dart';
 
 class AccountBalanceCard extends StatefulWidget {

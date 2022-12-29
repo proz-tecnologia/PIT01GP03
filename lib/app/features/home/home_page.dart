@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/widgets/transaction_form.dart';
-import 'package:porkinio/app/common/widgets/account_balance_card.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
-import 'package:porkinio/app/common/widgets/transaction_list_tile.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_tile.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 import 'package:porkinio/app/common/constants/app_images.dart';
-import 'package:porkinio/app/features/home/account_balance_card_controller.dart';
-import 'package:porkinio/app/features/home/transaction_list_controller.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
@@ -90,8 +90,8 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         },
-        icon: Icon(Icons.receipt_long),
-        label: Text("Cadastrar Transação"),
+        icon: const Icon(Icons.receipt_long),
+        label: const Text("Cadastrar Transação"),
         elevation: 5,
         backgroundColor: AppColors.primary,
       ),

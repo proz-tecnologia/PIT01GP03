@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
-import 'package:porkinio/app/common/widgets/customAuthDialog.dart';
+import 'package:porkinio/app/common/widgets/custom_auth_dialog.dart';
 
 
 
