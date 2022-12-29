@@ -15,10 +15,6 @@ class AppTextStylesDark {
     fontSize: 48,
     color: AppColors.secondary,
   );
-  static final headline3Geen = GoogleFonts.concertOne(
-    fontSize: 48,
-    color: AppColors.green,
-  );
   static final headline4 = GoogleFonts.concertOne(
     fontSize: 34,
     color: AppColors.secondary,
