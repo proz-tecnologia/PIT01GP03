@@ -3,7 +3,7 @@ import 'package:porkinio/app/features/transaction_list/build_transaction_list.da
 import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
@@ -13,7 +13,7 @@ import 'package:porkinio/app/services/secure_storage.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  static const routeHomePage = '/';
+  static const route = '/';
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -37,12 +37,9 @@ class _HomePageState extends State<HomePage> {
               Icons.exit_to_app,
               color: Colors.white,
             ),
-
-            //TODO DEFINIR ONDE ESSA FUNCAO DE MATAR SECAO DEVE FICAR NA TELA HOME
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT_USER").then((_) =>
-                  Navigator.popAndPushNamed(
-                      context, SplashPage.routSplashPage));
+              _secureStorage.deleteOne(key: "CURRENT_USER").then(
+                  (_) => Navigator.popAndPushNamed(context, SplashPage.route));
             },
           )
         ],
@@ -59,22 +56,34 @@ class _HomePageState extends State<HomePage> {
                 );
               }),
           Expanded(
-            child: StreamBuilder<List<TransactionModel >>(
-                stream: transactionListController.readTransactions(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Text('Encontramos um erro: "${snapshot.error}"');
-                  } else if (snapshot.hasData) {
-                    return ListView(                  
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(20),
+                color: AppColors.primary,
+                child: StreamBuilder<List<TransactionModel>>(
+                  stream: transactionListController.readAllTransactions(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Encontramos um erro: "${snapshot.error}"');
+                    } else if (snapshot.hasData) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: ListView(
                           children:
                               snapshot.data!.map(buildTransactionList).toList(),
-                        );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                   }
-                 }
+                        ),
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
                 ),
+              ),
+            ),
           ),
+          const SizedBox(height: 108),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

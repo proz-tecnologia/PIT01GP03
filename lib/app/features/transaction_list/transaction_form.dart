@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
@@ -145,7 +144,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   .updateTransaction(newTransactionModel!);
             } else {
               widget.transactionListController
-                  .addTransaction(newTransactionModel!);
+                  .createTransaction(newTransactionModel!);
             }
 
             Navigator.pop(context);

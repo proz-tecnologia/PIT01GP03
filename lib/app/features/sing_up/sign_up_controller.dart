@@ -38,8 +38,6 @@ class SignUpController extends ChangeNotifier {
         throw Exception();
       }
 
-      //    throw Exception('Erro ao cadastrar');
-
       log('usuario criado com sucesso');
       _updateState(SignUpSucessState());
     } catch (e) {

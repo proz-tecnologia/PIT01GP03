@@ -4,7 +4,6 @@ import 'package:porkinio/app/services/secure_storage.dart';
 
 class SplashController extends ChangeNotifier {
   final SecureStorage _service;
-
   SplashController(this._service);
   SplashState _state = SplashInitialState();
   SplashState get state => _state;

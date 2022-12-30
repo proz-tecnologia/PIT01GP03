@@ -3,7 +3,7 @@ import 'package:porkinio/app/models/transaction_model.dart';
 
 class AccountBalanceCardController {
   final transactionsListController = TransactionListController();
-  // TODO: PAULO: Restaurar lógica de atribuição de valores no AccountBalanceCard a partir da lista do TransactionListController
+  // TODO: Restaurar lógica de atribuição de valores no AccountBalanceCard
 
   double totalBalance() {
     double totalSum = 0;
@@ -18,7 +18,6 @@ class AccountBalanceCardController {
     }
     totalBalance = totalSum - totalSubtraction;
     return totalBalance;
-    
   }
 
   double sumBalance() {
@@ -43,6 +42,3 @@ class AccountBalanceCardController {
 
   bool visibilityOn = true;
 }
-
-
-// TODO: CHARLESTON: Incrementar FOR EACH e WHERE

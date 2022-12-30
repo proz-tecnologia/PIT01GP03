@@ -1,8 +1,6 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
-import 'package:porkinio/app/common/constants/text_styles/app_text_styles_dark.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
+import 'package:porkinio/app/common/themes/app_text_styles_dark.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
@@ -32,7 +30,7 @@ class CustomNavigationDrawer extends StatelessWidget {
               style: AppTextStylesDark.headline6,
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(SignInPage.routeSignInPage);
+              Navigator.of(context).pushNamed(SignInPage.route);
             },
           ),
           ListTile(
@@ -41,8 +39,7 @@ class CustomNavigationDrawer extends StatelessWidget {
               style: AppTextStylesDark.headline6,
             ),
             onTap: () {
-              Navigator.of(context)
-                  .pushNamed(AccountRecoveryPage.routeAccountRecoveryPage);
+              Navigator.of(context).pushNamed(AccountRecoveryPage.route);
             },
           ),
           ListTile(
@@ -51,7 +48,7 @@ class CustomNavigationDrawer extends StatelessWidget {
               style: AppTextStylesDark.headline6,
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(SignUpPage.routeSignUpPage);
+              Navigator.of(context).pushNamed(SignUpPage.route);
             },
           ),
           ListTile(
@@ -60,7 +57,7 @@ class CustomNavigationDrawer extends StatelessWidget {
               style: AppTextStylesDark.headline6,
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(SplashPage.routSplashPage);
+              Navigator.of(context).pushNamed(SplashPage.route);
             },
           ),
         ],

@@ -19,19 +19,18 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en', ''), // English, no country code
-        Locale('es', ''), // Spanish, no country code
+        Locale('en', ''),
+        Locale('es', ''),
         Locale('pt', 'BR'),
       ],
       debugShowCheckedModeBanner: false,
-      initialRoute: HomePage.routeHomePage,
+      initialRoute: HomePage.route,
       routes: {
-        HomePage.routeHomePage: (_) => const HomePage(),
-        SplashPage.routSplashPage: (_) => const SplashPage(),
-        SignInPage.routeSignInPage: (_) => const SignInPage(),
-        AccountRecoveryPage.routeAccountRecoveryPage: (_) =>
-            const AccountRecoveryPage(),
-        SignUpPage.routeSignUpPage: (_) => const SignUpPage(),
+        HomePage.route: (_) => const HomePage(),
+        SplashPage.route: (_) => const SplashPage(),
+        SignInPage.route: (_) => const SignInPage(),
+        AccountRecoveryPage.route: (_) => const AccountRecoveryPage(),
+        SignUpPage.route: (_) => const SignUpPage(),
       },
     );
   }

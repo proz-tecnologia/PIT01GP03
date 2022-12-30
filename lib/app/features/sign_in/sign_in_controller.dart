@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-
-
-
 import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
 class SingInController extends ChangeNotifier {
   final AuthService _authservice;
-
   SingInController(this._authservice);
-
   SignInState _signInState = SignInInitialState();
-
   SignInState get state => _signInState;
 
   void _updateState(SignInState newState) {
@@ -36,7 +30,6 @@ class SingInController extends ChangeNotifier {
       } else {
         throw Exception("Usuário não cadastrado");
       }
-
     } catch (e) {
       _updateState(SignInErrorState(e.toString()));
     }

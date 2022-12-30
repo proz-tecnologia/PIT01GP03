@@ -1,8 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
-import 'package:porkinio/app/common/constants/app_colors.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
@@ -20,9 +17,7 @@ class TransactionDeleteButton extends StatefulWidget {
 }
 
 class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
-
-
- final transactionListController = TransactionListController();
+  final transactionListController = TransactionListController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +41,7 @@ class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
                 child: const Text('Sim'),
                 onPressed: () {
                   transactionListController
-                      .removeTransaction(widget.transactionModel);
+                      .deleteTransaction(widget.transactionModel);
                   Navigator.of(context).pop();
                 },
               ),

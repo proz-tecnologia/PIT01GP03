@@ -7,17 +7,15 @@ class PasswordFormField extends StatefulWidget {
   final String? Function(String?)? passwordFormFieldValidator;
   final TextInputType? passwordFormFieldKeyboardType;
   final String? passwordFormFieldHelperText;
-  
-  const PasswordFormField(
-      {Key? key,
-       required this.passwordFormFieldText,
-       this.passwordFormFieldController,
-       this.passwordFormFieldValidator, 
-       this.passwordFormFieldKeyboardType, 
-       this.passwordFormFieldHelperText, 
-       
-       })
-      : super(key: key);
+
+  const PasswordFormField({
+    Key? key,
+    required this.passwordFormFieldText,
+    this.passwordFormFieldController,
+    this.passwordFormFieldValidator,
+    this.passwordFormFieldKeyboardType,
+    this.passwordFormFieldHelperText,
+  }) : super(key: key);
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();
@@ -35,9 +33,6 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
       formFieldKeyboardType: widget.passwordFormFieldKeyboardType,
       formFieldValidator: widget.passwordFormFieldValidator,
       formFieldHelperText: widget.passwordFormFieldHelperText,
-     
-
-      
       formFieldSuffixIcon: InkWell(
         borderRadius: BorderRadius.circular(20.0),
         onTap: () {

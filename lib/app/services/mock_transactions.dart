@@ -1,6 +1,6 @@
 import 'package:porkinio/app/models/transaction_model.dart';
 
-final List<TransactionModel> transactionsMock = [
+final List<TransactionModel> mockTransactions = [
   TransactionModel(
     id: '1',
     title: 'Lanchonete',

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/common/widgets/custom_logo.dart';
-
 
 class HeaderLogo extends StatelessWidget {
   const HeaderLogo({super.key});
@@ -25,8 +24,7 @@ class HeaderLogo extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize
-              .min, 
+          mainAxisSize: MainAxisSize.min,
           children: [
             const CustomLogo(),
             SizedBox(
