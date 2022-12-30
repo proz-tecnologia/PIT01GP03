@@ -65,8 +65,7 @@ class _HomePageState extends State<HomePage> {
                   if (snapshot.hasError) {
                     return Text('Encontramos um erro: "${snapshot.error}"');
                   } else if (snapshot.hasData) {
-                    return ListView(
-                  
+                    return ListView(                  
                           children:
                               snapshot.data!.map(buildTransactionList).toList(),
                         );

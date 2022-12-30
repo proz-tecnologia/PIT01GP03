@@ -5,11 +5,11 @@ import 'package:porkinio/app/services/mock_transaction.dart';
 
 class TransactionListController extends ChangeNotifier {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  
+
   List transactionList = [];
   // final List<TransactionModel> transactionList = [...transactionsMock];
 
-
+  //TODO MUDAR DE STREAM PARA FUTURE
   Stream<List<TransactionModel>> readTransactions() => firestore
       .collection('transactionDB')
       .snapshots()
@@ -25,35 +25,15 @@ class TransactionListController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void addTransaction(TransactionModel transaction) {
-  //   final newTransaction =
-  //       transaction.copyWith(id: transaction.hashCode.toString());
-  //   transactionList.add(newTransaction);
-  //   notifyListeners();
-  // }
+  Future updateTransaction(TransactionModel transaction) async {
 
-  void updateTransaction(TransactionModel transaction) {
-    for (int i = 0; i < transactionList.length; i++) {
-      if (transactionList[i].id == transaction.id) {
-        transactionList[i] = transaction;
-      }
-    }
+    firestore
+        .collection('transactionDB')
+        .doc(transaction.id)
+        .set(transaction.toMap());
+
     notifyListeners();
   }
-
-  // void updateTransaction(TransactionModel transaction) {
-  //   for (int i = 0; i < transactionList.length; i++) {
-  //     if (transactionList[i].id == transaction.id) {
-  //       transactionList[i] = transaction;
-  //     }
-  //   }
-  //   notifyListeners();
-  // }
-
-  //void removeTransaction(TransactionModel transaction) {
-  //  transactionList.remove(transaction);
-  //  notifyListeners();
-  // }
 
   Future removeTransaction(TransactionModel transaction) async {
     final id = transaction.id;
@@ -63,6 +43,3 @@ class TransactionListController extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-
-// TODO: CHARLESTON: Incrementar FOR EACH e WHERE
