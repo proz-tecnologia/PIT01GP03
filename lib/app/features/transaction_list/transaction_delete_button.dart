@@ -8,11 +8,10 @@ import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionDeleteButton extends StatefulWidget {
   final TransactionModel transactionModel;
-  final TransactionListController transactionListController;
+
   const TransactionDeleteButton({
     Key? key,
     required this.transactionModel,
-    required this.transactionListController,
   }) : super(key: key);
 
   @override
@@ -21,6 +20,10 @@ class TransactionDeleteButton extends StatefulWidget {
 }
 
 class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
+
+
+ final transactionListController = TransactionListController();
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -42,7 +45,7 @@ class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
               ElevatedButton(
                 child: const Text('Sim'),
                 onPressed: () {
-                  widget.transactionListController
+                  transactionListController
                       .removeTransaction(widget.transactionModel);
                   Navigator.of(context).pop();
                 },

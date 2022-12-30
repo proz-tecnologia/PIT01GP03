@@ -8,13 +8,10 @@ import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionEditButton extends StatefulWidget {
   final TransactionModel transactionModel;
-  final TransactionListController transactionListController;
   const TransactionEditButton({
     Key? key,
     required this.transactionModel,
-    required this.transactionListController,
   }) : super(key: key);
-  
 
   @override
   State<TransactionEditButton> createState() => _TransactionEditButtonState();
@@ -22,9 +19,11 @@ class TransactionEditButton extends StatefulWidget {
 
 class _TransactionEditButtonState extends State<TransactionEditButton> {
 
+   final transactionListController = TransactionListController();
 
   @override
   Widget build(BuildContext context) {
+   
     return IconButton(
       icon: const Icon(Icons.edit),
       color: AppColors.primary,
@@ -33,7 +32,7 @@ class _TransactionEditButtonState extends State<TransactionEditButton> {
           context: context,
           builder: (context) => Center(
             child: TransactionForm(
-              transactionListController: widget.transactionListController,
+              transactionListController: transactionListController,
               transactionModel: widget.transactionModel,
             ),
           ),
