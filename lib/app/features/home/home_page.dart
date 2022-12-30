@@ -8,6 +8,7 @@ import 'package:porkinio/app/common/constants/app_images.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
+import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
 class HomePage extends StatefulWidget {
@@ -59,8 +60,8 @@ class _HomePageState extends State<HomePage> {
                 );
               }),
           Expanded(
-            child: AnimatedBuilder(
-              animation: transactionListController,
+            child: StreamBuilder<List<TransactionModel>>(
+              stream: transactionListController.readTransactions(),
               builder: (context, child) {
                 return transactionListController.transactionList.isEmpty
                     ? Image.asset(AppImages.porkin)
