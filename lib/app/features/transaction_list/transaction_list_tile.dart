@@ -15,6 +15,8 @@ class TransactionListTile extends StatelessWidget {
     required this.transactionListController,
   }) : super(key: key);
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,7 +44,8 @@ class TransactionListTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   transactionModel.category
-                      ? Text('+ R\$ ${transactionModel.ammount.toStringAsFixed(2)}')
+                      ? Text(
+                          '+ R\$ ${transactionModel.ammount.toStringAsFixed(2)}')
                       : Text(
                           '− R\$ ${transactionModel.ammount.toStringAsFixed(2)}'),
                   Text(DateFormat('dd/MM/yyy').format(transactionModel.date)),
@@ -60,7 +63,8 @@ class TransactionListTile extends StatelessWidget {
                           context: context,
                           builder: (context) => Center(
                             child: TransactionForm(
-                              transactionListController: transactionListController,
+                              transactionListController:
+                                  transactionListController,
                               transactionModel: transactionModel,
                             ),
                           ),
@@ -74,7 +78,8 @@ class TransactionListTile extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            title: const Text('Você deseja excluir essa transação'),
+                            title: const Text(
+                                'Você deseja excluir essa transação'),
                             content: const Text('Tem certeza?'),
                             actions: <Widget>[
                               ElevatedButton(

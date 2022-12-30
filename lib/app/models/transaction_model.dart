@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class TransactionModel {
   String? id;
@@ -38,7 +40,7 @@ class TransactionModel {
     return <String, dynamic>{
       'title': title,
       'ammount': ammount,
-      'date': date.millisecondsSinceEpoch,
+      'date': date,
       'category': category,
     };
   }
@@ -47,7 +49,7 @@ class TransactionModel {
     return TransactionModel(
       title: map['title'] as String,
       ammount: map['ammount'] as double,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+      date: map['date'] as DateTime,
       category: map['category'] as bool,
     );
   }
@@ -55,8 +57,8 @@ class TransactionModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'title': title,
-        'ammount': ammount,
-        'date': date.millisecondsSinceEpoch,
+        'ammount': ammount.toDouble(),
+        'date': date,
         'category': category,
       };
 
@@ -64,7 +66,7 @@ class TransactionModel {
       TransactionModel(
         id: json['id'],
         title: json['title'],
-        ammount: json['ammount'],
+        ammount: (json['ammount']),
         date: (json['date'] as Timestamp).toDate(),
         category: json['category'],
       );
