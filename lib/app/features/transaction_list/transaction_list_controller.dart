@@ -5,8 +5,10 @@ import 'package:porkinio/app/services/mock_transaction.dart';
 
 class TransactionListController extends ChangeNotifier {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final List<TransactionModel> transactionList = [];
+  
+  List transactionList = [];
   // final List<TransactionModel> transactionList = [...transactionsMock];
+
 
   Stream<List<TransactionModel>> readTransactions() => firestore
       .collection('transactionDB')
@@ -48,8 +50,16 @@ class TransactionListController extends ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void removeTransaction(TransactionModel transaction) {
-    transactionList.remove(transaction);
+  //void removeTransaction(TransactionModel transaction) {
+  //  transactionList.remove(transaction);
+  //  notifyListeners();
+  // }
+
+  Future removeTransaction(TransactionModel transaction) async {
+    final id = transaction.id;
+    final date = firestore.doc("transactionDB/$id");
+
+    date.delete();
     notifyListeners();
   }
 }

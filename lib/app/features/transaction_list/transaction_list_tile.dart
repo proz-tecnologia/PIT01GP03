@@ -5,6 +5,8 @@ import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
 import 'package:porkinio/app/common/constants/app_colors.dart';
 
+//TODO DELETAR
+
 class TransactionListTile extends StatelessWidget {
   final TransactionModel transactionModel;
   final TransactionListController transactionListController;
