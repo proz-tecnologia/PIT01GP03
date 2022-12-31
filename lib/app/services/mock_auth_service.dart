@@ -1,24 +1,19 @@
 import 'package:porkinio/app/models/user_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
-
 //TODO: QUANDO NÃO PRECISAMOS MAIS EXCLUIR MOCK
 
 class MockAuthService implements AuthService {
   @override
   Future<UserModel> signIn({
-     required String email,
-     required String password,
+    required String email,
+    required String password,
   }) async {
-   await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     try {
-      
       if (password.startsWith('123')) {
         throw Exception();
       }
-      return UserModel(
-        id: email.hashCode.toString(), 
-        email: email
-        );
+      return UserModel(id: email.hashCode.toString(), email: email);
     } catch (e) {
       if (password.startsWith('123')) {
         throw 'Senha insegura. Digite uma senha forte.';
@@ -29,21 +24,13 @@ class MockAuthService implements AuthService {
 
   @override
   Future<UserModel> signUp(
-      {String? name, 
-      required String email, 
-      required String password
-      }) async {
-        await Future.delayed(const Duration(seconds: 2));
+      {String? name, required String email, required String password}) async {
+    await Future.delayed(const Duration(seconds: 2));
     try {
-      
       if (password.startsWith('123')) {
         throw Exception();
       }
-      return UserModel(
-        id: email.hashCode.toString(), 
-        name: name, 
-        email: email
-        );
+      return UserModel(id: email.hashCode.toString(), name: name, email: email);
     } catch (e) {
       if (password.startsWith('123')) {
         throw 'Senha insegura. Digite uma senha forte.';
@@ -51,18 +38,9 @@ class MockAuthService implements AuthService {
       throw 'Não foi possível criar sua conta nesse momento.';
     }
   }
-  
-  @override
-  Future<void> getTransactions() {
-    // TODO: implement getTransactions
-    throw UnimplementedError();
-  }
-  
+
   @override
   Future<void> signOut() {
-    // TODO: implement signOut
     throw UnimplementedError();
   }
-  
-  
 }

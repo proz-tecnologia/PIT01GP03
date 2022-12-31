@@ -1,19 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/features/home/home_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionForm extends StatefulWidget {
-  final TransactionController transactionController;
+  final TransactionListController transactionListController;
   final TransactionModel? transactionModel;
 
   const TransactionForm({
     Key? key,
-    required this.transactionController,
+    required this.transactionListController,
     this.transactionModel,
   }) : super(key: key);
 
@@ -41,7 +39,8 @@ class _TransactionFormState extends State<TransactionForm> {
     _titleController.text = widget.transactionModel?.title ?? '';
     _ammountController.text = widget.transactionModel?.ammount.toString() ?? '';
     _dateController.text = widget.transactionModel?.date.toString() ?? '';
-    dropdownValue = newTransactionModel?.category == false ? list.last : list.first;
+    dropdownValue =
+        newTransactionModel?.category == false ? list.last : list.first;
   }
 
   @override
@@ -141,9 +140,11 @@ class _TransactionFormState extends State<TransactionForm> {
             );
 
             if (widget.transactionModel != null) {
-              widget.transactionController.update(newTransactionModel!);
+              widget.transactionListController
+                  .updateTransaction(newTransactionModel!);
             } else {
-              widget.transactionController.add(newTransactionModel!);
+              widget.transactionListController
+                  .createTransaction(newTransactionModel!);
             }
 
             Navigator.pop(context);

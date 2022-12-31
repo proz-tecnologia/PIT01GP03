@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
-import 'package:porkinio/app/common/widgets/customAuthDialog.dart';
+import 'package:porkinio/app/common/widgets/custom_auth_dialog.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
@@ -9,13 +9,13 @@ import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/locator.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
-  static const routeSignUpPage = '/sign-up-page';
+  static const route = '/sign-up-page';
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -42,18 +42,14 @@ class _SignUpPageState extends State<SignUpPage> {
           );
         }
         if (_controller.state is SignUpSucessState) {
-           customAuthDialog(context, 'Usuário cadastrado com sucesso! Clique abaixo para logar',
-              SignInPage.routeSignInPage);
-       
+          customAuthDialog(
+              context,
+              'Usuário cadastrado com sucesso! Clique abaixo para logar',
+              SignInPage.route);
         }
         if (_controller.state is SignUpErrorState) {
           final error = (_controller.state as SignUpErrorState).message;
-         
-
-          //TODO ESCOLHER QUAL USAR errorDialog OU customShowModalBottomSheet
-
-          customAuthDialog(context, error, SignUpPage.routeSignUpPage);
-
+          customAuthDialog(context, error, SignUpPage.route);
           // Navigator.of(context);
           // customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }
@@ -127,7 +123,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         passwordFormFieldValidator:
                             CustomFormFieldValidator.validatePassword,
                         passwordFormFieldController: _passwordController,
-                        passwordValidator: (String? value) {},
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
@@ -137,7 +132,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         passwordFormFieldValidator: (value) =>
                             CustomFormFieldValidator.confirmValidatePassword(
                                 _passwordController.text, value),
-                        passwordValidator: (String? value) {},
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,

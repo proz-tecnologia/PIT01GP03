@@ -7,7 +7,7 @@ class CustomFormFieldValidator {
       return "Campo obrigatório";
     }
     if (value != null && !nameValidate.hasMatch(value)) {
-      return "Dados inválidos";
+      return "Dados inválidos.";
     }
     return null;
   }

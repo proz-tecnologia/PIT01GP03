@@ -86,5 +86,3 @@ class TransactionController extends ChangeNotifier {
 
 
 
-
-//TODO: CHARLESTON INCREMENTAR FOR EACH E .WHERE  

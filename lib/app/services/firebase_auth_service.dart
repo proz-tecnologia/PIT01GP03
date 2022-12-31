@@ -25,19 +25,19 @@ class FirebaseAuthService implements AuthService {
     } on FirebaseAuthException catch (e) {
       switch (e.message) {
         case 'The email address is already in use by another account.':
-          throw 'Este E-mail já foi cadastrado';
+          throw 'Esse e-mail já está associado a uma conta do Porkin.io. Verifique seus dados ou solicite a recuperação de conta.';
 
         case 'The password is invalid or the user does not have a password.':
-          throw 'Sua senha está errada. Tente novamente';
+          throw 'A combinação de senha e/ou e-mail inserida não é valida. Verifique os dados e tente novamente.';
 
         case 'There is no user record corresponding to this identifier. The user may have been deleted.':
-          throw 'Usuário sem cadastro. Insira um login com informações previamente cadastradas';
+          throw 'Conta de usuário não identificada. Verifique os dados e tente novamente.';
 
         case 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.':
-          throw 'Seu acesso está temporariamente indisponível devido às diversas tentativas de login. Resete a senha ou tente novamente mais tarde';
+          throw 'O acesso a essa conta está temporariamente suspenso devido às diversas tentativas de entrada com dados inválidos. Solicite a recuperação de conta ou tente novamente mais tarde';
 
         default:
-          throw 'Ops, um erro ocorreu. Verifique sua conexão com a internet e/ou tente novamente';
+          throw 'Falha na tentativa de login. Encontramos um erro inesperado. Verifique seus dados ou tente novamente mais tarde.';
       }
     } catch (e) {
       rethrow;

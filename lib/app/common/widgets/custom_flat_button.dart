@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
 
 class CustomFlatButton extends StatefulWidget {
   final String customButtonText;
@@ -19,10 +19,10 @@ class CustomFlatButton extends StatefulWidget {
     required this.customColor,
     required this.customWidth,
     required this.customHeight,
-    required this.customFontSize,   
-    required this.customColorText, 
-    this.customImage,    
-    this.customColorImage, 
+    required this.customFontSize,
+    required this.customColorText,
+    this.customImage,
+    this.customColorImage,
   }) : super(key: key);
 
   @override
@@ -45,38 +45,37 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
             borderRadius: BorderRadius.circular(16),
           ),
           child: widget.customImage != null
-            ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-                 Image.asset(
-                    widget.customImage!,
-                    height: 24,
-                    color: widget.customColorImage,
-                    alignment: Alignment.center,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                  ),
-              Text(
-                widget.customButtonText,
-                style: TextStyle(
-                    fontSize: widget.customFontSize, color: AppColors.linear),      
-              ),
-            ],
-          )
-          :
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [              
-              Text(
-                widget.customButtonText,
-                style: TextStyle(
-                    fontSize: widget.customFontSize, 
-                    color: widget.customColorText),      
-              ),
-            ],
-          )
-
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      widget.customImage!,
+                      height: 24,
+                      color: widget.customColorImage,
+                      alignment: Alignment.center,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                    ),
+                    Text(
+                      widget.customButtonText,
+                      style: TextStyle(
+                          fontSize: widget.customFontSize,
+                          color: AppColors.linear),
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.customButtonText,
+                      style: TextStyle(
+                          fontSize: widget.customFontSize,
+                          color: widget.customColorText),
+                    ),
+                  ],
+                ),
         ),
       ),
     );

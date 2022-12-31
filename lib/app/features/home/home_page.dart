@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/widgets/transaction_form.dart';
-import 'package:porkinio/app/features/home/home_controller.dart';
-import 'package:porkinio/app/common/widgets/account_balance_card.dart';
+import 'package:porkinio/app/features/transaction_list/build_transaction_list.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
-import 'package:porkinio/app/common/widgets/transaction_list_tile.dart';
-import 'package:porkinio/app/common/constants/app_colors.dart';
-import 'package:porkinio/app/common/constants/app_images.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
+import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 import 'package:porkinio/locator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  static const routeHomePage = '/';
+  static const route = '/';
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final _transactioncontroller = locator.get<TransactionController>();
+  final transactionListController = TransactionListController();
+  final accountBalanceCardController = AccountBalanceCardController();
   final _secureStorage = const SecureStorage();
 
   @override
@@ -36,18 +38,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
         backgroundColor: AppColors.primaryDark,
+        elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
               Icons.exit_to_app,
               color: Colors.white,
             ),
-
-            //TODO DEFINIR ONDE ESSA FUNCAO DE MATAR SECAO DEVE FICAR NA TELA HOME
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT_USER").then((_) =>
-                  Navigator.popAndPushNamed(
-                      context, SplashPage.routSplashPage));
+              _secureStorage.deleteOne(key: "CURRENT_USER").then(
+                  (_) => Navigator.popAndPushNamed(context, SplashPage.route));
             },
           )
         ],
@@ -56,45 +56,60 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            height: (MediaQuery.of(context).size.height * 0.02),
-          ),
           AnimatedBuilder(
-              animation: _transactioncontroller,
+              animation: transactionListController,
               builder: (context, child) {
                 return AccountBalanceCard(
-                  transactionController: _transactioncontroller,
+                  accountBalanceCardController: accountBalanceCardController,
                 );
               }),
           Expanded(
-            child: AnimatedBuilder(
-                animation: _transactioncontroller,
-                builder: (context, child) {
-                  return _transactioncontroller.items.isEmpty
-                      ? Image.asset(AppImages.porkin)
-                      : ListView.builder(
-                          itemCount: _transactioncontroller.items.length,
-                          itemBuilder: (ctx, i) => TransactionListTile(
-                            transactionController: _transactioncontroller,
-                            transactionModel: _transactioncontroller.items[i],
-                          ),
-                        );
-                }),
-          )
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(20),
+                color: AppColors.primary,
+                child: StreamBuilder<List<TransactionModel>>(
+                  stream: transactionListController.readAllTransactions(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Encontramos um erro: "${snapshot.error}"');
+                    } else if (snapshot.hasData) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: ListView(
+                          children:
+                              snapshot.data!.map(buildTransactionList).toList(),
+                        ),
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 108),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           showDialog(
             context: context,
             builder: (context) => Center(
               child: TransactionForm(
-                transactionController: _transactioncontroller,
+                transactionListController: transactionListController,
               ),
             ),
           );
         },
-        child: const Icon(Icons.add),
+        icon: const Icon(Icons.receipt_long),
+        label: const Text("Cadastrar Transação"),
+        elevation: 5,
+        backgroundColor: AppColors.primary,
       ),
     );
   }
