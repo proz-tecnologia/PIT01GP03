@@ -136,7 +136,7 @@ class _TransactionFormState extends State<TransactionForm> {
               title: _titleController.text,
               ammount: double.parse(_ammountController.text),
               date: DateTime.parse(_dateController.text),
-              category: dropdownValue == 'Entrada' ? true : false, userID: '',
+              category: dropdownValue == 'Entrada' ? true : false,
             );
 
             if (widget.transactionModel != null) {

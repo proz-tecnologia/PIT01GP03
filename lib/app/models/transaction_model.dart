@@ -12,7 +12,6 @@ class TransactionModel {
     required this.ammount,
     required this.date,
     required this.category,
-    required this.userID,
   });
 
   TransactionModel copyWith({
@@ -21,9 +20,7 @@ class TransactionModel {
     double? ammount,
     DateTime? date,
     bool? category,
-    String? userID,
   }) {
-    
     return TransactionModel(
       id: id ?? this.id,
       title: title ?? this.title,

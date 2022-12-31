@@ -9,7 +9,6 @@ import 'package:porkinio/app/features/transaction_list/transaction_list_controll
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
-import 'package:porkinio/locator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,13 +25,6 @@ class _HomePageState extends State<HomePage> {
   final _secureStorage = const SecureStorage();
 
   @override
-  void initState() {
-    super.initState();
-    _transactioncontroller.addListener(() {});
-    _transactioncontroller.getTransactions();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +38,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT_USER").then(
+              _secureStorage.deleteOne(key: "CURRENT USER").then(
                   (_) => Navigator.popAndPushNamed(context, SplashPage.route));
             },
           )
