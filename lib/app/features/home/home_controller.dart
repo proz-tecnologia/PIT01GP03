@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/home/HomeRepository_firebase..dart';
 import 'package:porkinio/app/models/transaction_model.dart';
-import 'package:porkinio/app/services/firebase_auth_service.dart';
 
 //TODO PAULO TROCAR NO NOME CLASSE
 
