@@ -32,7 +32,7 @@ class SignUpController extends ChangeNotifier {
         password: password,
       );
       if (user.id != null) {
-        await secureStorage.write(key: "CURRENT USER", value: user.toJson());
+        await secureStorage.write(key: "CURRENT_USER", value: user.toJson());
         _updateState(SignUpSucessState());
       } else {
         throw Exception();
