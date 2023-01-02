@@ -43,4 +43,10 @@ class MockAuthService implements AuthService {
   Future<void> signOut() {
     throw UnimplementedError();
   }
+  
+  @override
+  Future<void> forgotPassword(String email) {
+    // TODO: implement forgotPassword
+    throw UnimplementedError();
+  }
 }

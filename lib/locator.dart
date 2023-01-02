@@ -23,6 +23,6 @@ void setupDependencies() {
   locator.registerFactory<SignUpController>(
       () => SignUpController(locator.get<AuthService>()));
 
-  locator.registerFactory<TransactionController>(
-      () => TransactionController(locator.get<HomeFirebaseRepository>()));
+  locator.registerFactory<HomeController>(
+      () => HomeController(locator.get<HomeFirebaseRepository>()));
 }
