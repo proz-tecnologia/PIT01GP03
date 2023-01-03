@@ -45,11 +45,12 @@ class _SignUpPageState extends State<SignUpPage> {
           customAuthDialog(
               context,
               'Usuário cadastrado com sucesso! Clique abaixo para logar',
+              'Login',
               SignInPage.route);
         }
         if (_controller.state is SignUpErrorState) {
           final error = (_controller.state as SignUpErrorState).message;
-          customAuthDialog(context, error, SignUpPage.route);
+          customAuthDialog(context, error,'Login', SignUpPage.route);
           // Navigator.of(context);
           // customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }

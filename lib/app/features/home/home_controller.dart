@@ -1,17 +1,35 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/home/HomeRepository_firebase..dart';
-import 'package:porkinio/app/models/transaction_model.dart';
-import 'package:porkinio/app/services/firebase_auth_service.dart';
+import 'package:porkinio/app/features/home/home_firebase_repository.dart';
 
 //TODO PAULO TROCAR NO NOME CLASSE
 
-class TransactionController extends ChangeNotifier {
-  final List<TransactionModel> items = [];
+class HomeController extends ChangeNotifier {
+  
 
   final HomeRepository _homeRepository;
 
-  TransactionController(this._homeRepository);
+  HomeController(this._homeRepository);
+
+
+
+  final _auth = FirebaseAuth.instance;
+  User? get currentUser => _auth.currentUser;
+
+  Future<void> getTransactions() async {
+    try {
+      final userID = _auth.currentUser?.uid;
+      final result = await _homeRepository.getTransactionModel(userID ?? '');
+    } catch (e) {
+      rethrow;
+    }
+  }
+}
+
+/*
+
+final List<TransactionModel> items = [];
+
 
   double total() {
     double totalSum = 0;
@@ -70,19 +88,7 @@ class TransactionController extends ChangeNotifier {
     items.remove(transaction);
     notifyListeners();
   }
-
-  final _auth = FirebaseAuth.instance;
-  User? get currentUser => _auth.currentUser;
-
-  Future<void> getTransactions() async {
-    try {
-      final userID = _auth.currentUser?.uid;
-      final result = await _homeRepository.getTransactionModel(userID ?? '');
-    } catch (e) {
-      rethrow;
-    }
-  }
-}
+*/
 
 
 

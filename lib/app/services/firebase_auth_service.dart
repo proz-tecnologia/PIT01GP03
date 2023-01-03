@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:porkinio/app/models/user_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
-
-import '../features/home/homeRepository_firebase..dart';
 
 class FirebaseAuthService implements AuthService {
   final _auth = FirebaseAuth.instance;
@@ -72,6 +71,21 @@ class FirebaseAuthService implements AuthService {
       await _auth.signOut();
     } catch (e) {
       rethrow;
+    }
+  }
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    try {
+      var loginMethods = await _auth.fetchSignInMethodsForEmail(email);
+
+      if (loginMethods.contains('password')) {
+        await _auth.sendPasswordResetEmail(email: email);
+      } else {
+        throw Exception();
+      }
+    } on PlatformException catch (e) {
+        throw e.message ?? "null";
     }
   }
 }
