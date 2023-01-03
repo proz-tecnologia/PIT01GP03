@@ -79,16 +79,13 @@ class FirebaseAuthService implements AuthService {
     try {
       var loginMethods = await _auth.fetchSignInMethodsForEmail(email);
 
-      _auth.sendPasswordResetEmail(email: email);
-
       if (loginMethods.contains('password')) {
         await _auth.sendPasswordResetEmail(email: email);
+      } else {
+        throw Exception();
       }
-      //TODO: CHARLESTON CHECAR TRATAMENTO DE EXCEÇÃO QUANDO FOR LOGIN COM O GOOGLE
-
     } on PlatformException catch (e) {
-      //throw AuthException();
-      //TODO: CHARLESTON CHECAR TRATAMENTO DE EXCEÇÃO AuthException()
+        throw e.message ?? "null";
     }
   }
 }

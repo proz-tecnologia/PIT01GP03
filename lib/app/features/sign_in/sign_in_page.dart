@@ -54,7 +54,7 @@ class _SignInPageState extends State<SignInPage> {
         }
         if (signInController.state is SignInErrorState) {
           final error = (signInController.state as SignInErrorState).message;
-          customAuthDialog(context, error, SignInPage.route);
+          customAuthDialog(context, error,'Logan', SignInPage.route);
           //Navigator.of(context);
           //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }

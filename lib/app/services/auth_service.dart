@@ -10,7 +10,6 @@ abstract class AuthService {
   });
 
   Future<void> signOut();
-  // Future<void> getTransactions();
 
   Future<void> forgotPassword(String email);
 }

@@ -80,12 +80,14 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
                 if (_formKey.currentState != null &&
                     _formKey.currentState!.validate()) {
                   accountController.forgotPassword(_emailController.text);
-                } else {
-                  customAuthDialog(
+
+                    customAuthDialog(
                       context,
-                      'Digite um e-mail para recuperar a senha',
-                      AccountRecoveryPage.route);
-                }
+                      accountController.infoMessage,
+                      'Logan',
+                       AccountRecoveryPage.route);
+             
+                } 
               },
             ),
           ],
@@ -96,6 +98,3 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
 }
 
  // COLOCAR VALORES RELATIVOS
- // TODO: PAULO: IMPLENTAR COMPORTAMENTO, POR EXEMPLO, UM SHOW DIALOG COM UMA
- // MENSAGEM DE "FOI ENVIADO E-MAIL DE RECUPERAÇÃO DE SENHA, 
- // VERIFIQUE SUA CAIXA DE ENTRADA"
