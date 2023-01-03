@@ -30,9 +30,11 @@ Sprint Objetivos Sprint I:
 - O projeto deve conter componentes reutilizáveis; 
 - O projeto deve seguir as convenções da linguagem e boas praticas;
 - O projeto deve apresnetar os componentes e funcinalidades definidas pelas regras de negócio.
+
 Recursos utilizados:
 - Editor gráfico Figma;
 - Editor grádico Adobe XD;
+
 Autores do projeto:
 - Beatriz Pereira de Sousa Lima
 - Charleston Ribeiro
