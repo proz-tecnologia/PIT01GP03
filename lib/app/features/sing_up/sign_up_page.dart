@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
         }
         if (_controller.state is SignUpErrorState) {
           final error = (_controller.state as SignUpErrorState).message;
-          customAuthDialog(context, error,'Login', SignUpPage.route);
+          customAuthDialog(context, error, 'Login', SignUpPage.route);
           // Navigator.of(context);
           // customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }
@@ -178,9 +178,18 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(SignInPage.route);
+              },
+              child: const Center(
+                  child: Text(
+                'Voltar para tela de login',
+                style: TextStyle(fontSize: 16),
+              )),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
           ],
         ),
       ),

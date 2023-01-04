@@ -112,17 +112,7 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(
                       height: (MediaQuery.of(context).size.height * 0.02),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(AccountRecoveryPage.route);
-                      },
-                      child: const Center(
-                          child: Text(
-                        'Esqueci minha senha',
-                        style: TextStyle(fontSize: 15),
-                      )),
-                    ),
+                   
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
                       customButtonText: 'ENTRAR COM GOOGLE',
@@ -137,15 +127,17 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
-                      customButtonText: 'ENTRAR COM MICROSOFT',
-                      customButtonOnPressed: () {},
+                      customButtonText: 'ESQUECI MINHA SENHA',
+                      customButtonOnPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(AccountRecoveryPage.route);},
                       customColor: AppColors.textMediumGray,
                       customWidth: 0.9,
                       customHeight: 0.06,
                       customFontSize: 20,
                       customColorText: AppColors.white,
                       customColorImage: AppColors.orange,
-                      customImage: AppImages.microsoft,
+                     // customImage: AppImages.microsoft,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
