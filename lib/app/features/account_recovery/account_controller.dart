@@ -10,8 +10,7 @@ class AccountController extends ChangeNotifier {
 
   Future<void> forgotPassword(String email) async {
     try {
-      await _firebaseAuthService.forgotPassword(email);
-      
+      await _firebaseAuthService.forgotPassword(email);      
       infoMessage = 'Reset de senha enviado para o seu e-mail';
     } catch (e) {
       infoMessage = 'Error, tente novamente';
