@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
       () {
         if (_splashController.state is SplashSucessState) {
           Future.delayed(const Duration(seconds: 2)).then(
-            (value) async {
+            (value) async { 
               return await Navigator.of(context)
                   .pushReplacementNamed(HomePage.route);
             },

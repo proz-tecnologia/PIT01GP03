@@ -32,6 +32,7 @@ class TransactionModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'title': title,
       'ammount': ammount,
       'date': date,
@@ -41,6 +42,7 @@ class TransactionModel {
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
+      id: map['id'] as String,
       title: map['title'] as String,
       ammount: map['ammount'] as double,
       date: map['date'] as DateTime,

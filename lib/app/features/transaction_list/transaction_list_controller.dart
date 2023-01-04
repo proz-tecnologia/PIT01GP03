@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionListController extends ChangeNotifier {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   List transactionList = [];
   // final List<TransactionModel> transactionList = [...transactionsMock];
 
   Future createTransaction(TransactionModel transaction) async {
-    final newTransaction = firestore.collection('transactionDB').doc();
+    final newTransaction = _firestore.collection('transactionDB').doc();
     transaction.id = newTransaction.id;
     await newTransaction.set(transaction.toJson());
     notifyListeners();
   }
 
-  Stream<List<TransactionModel>> readAllTransactions() => firestore
+  Stream<List<TransactionModel>> readAllTransactions() => _firestore
       .collection('transactionDB')
       .snapshots()
       .map((snapshot) => snapshot.docs
@@ -23,7 +24,7 @@ class TransactionListController extends ChangeNotifier {
           .toList());
 
   Future updateTransaction(TransactionModel transaction) async {
-    firestore
+    _firestore
         .collection('transactionDB')
         .doc(transaction.id)
         .set(transaction.toMap());
@@ -32,7 +33,7 @@ class TransactionListController extends ChangeNotifier {
 
   Future deleteTransaction(TransactionModel transaction) async {
     final id = transaction.id;
-    final date = firestore.doc("transactionDB/$id");
+    final date = _firestore.doc("transactionDB/$id");
     date.delete();
     notifyListeners();
   }
