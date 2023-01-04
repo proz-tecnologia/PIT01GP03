@@ -6,6 +6,8 @@ import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/account_recovery/account_controller.dart';
+import 'package:porkinio/app/features/account_recovery/account_recovery_state.dart';
+import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 
 class AccountRecoveryPage extends StatefulWidget {
   const AccountRecoveryPage({super.key});
@@ -17,10 +19,32 @@ class AccountRecoveryPage extends StatefulWidget {
 }
 
 class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
-
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _emailController = TextEditingController();
-  final accountController = AccountController();
+  final accountController = AccountRecoveryController();
+
+  @override
+  void initState() {
+    super.initState();
+    accountController.addListener(
+      (){
+   
+       
+        if (accountController.state is AccountRecoverySuccessState) {
+           customAuthDialog(context, accountController.infoMessage,
+                      'Login', SignInPage.route);
+        }
+        if (accountController.state is AccountRecoveryErrorState) {
+          final error = (accountController.state as AccountRecoveryErrorState).message;
+          customAuthDialog(context, error,'Recuperar senha', SignInPage.route);
+          
+        }
+      },
+    );
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +67,7 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
                 child: ListView(
                     padding: const EdgeInsets.all(16),
                     shrinkWrap: true,
-                    children:[
+                    children: [
                       const SizedBox(
                         height: 25,
                       ),
@@ -58,7 +82,6 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
                       const SizedBox(
                         height: 25,
                       ),
-                      
                       CustomFormField(
                         formFieldValidator:
                             CustomFormFieldValidator.validateEmail,
@@ -81,17 +104,10 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
                     _formKey.currentState!.validate()) {
                   accountController.forgotPassword(_emailController.text);
 
-                    customAuthDialog(
-                      context,
-                      accountController.infoMessage,
-                      'Logan',
-                       AccountRecoveryPage.route);
-             
                 } 
-              },
-            ),
-          ],
-        ),
+  
+  }),
+       ] ),
       ),
     );
   }
