@@ -27,72 +27,65 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
   void initState() {
     super.initState();
     accountController.addListener(
-      (){
-   
-       
+      () {
         if (accountController.state is AccountRecoverySuccessState) {
-           customAuthDialog(context, accountController.infoMessage,
-                      'Login', SignInPage.route);
+          customAuthDialog(context, accountController.infoMessage, 'Login',
+              SignInPage.route);
         }
         if (accountController.state is AccountRecoveryErrorState) {
-          final error = (accountController.state as AccountRecoveryErrorState).message;
-          customAuthDialog(context, error,'Tentar', AccountRecoveryPage.route);
-          
+          final error =
+              (accountController.state as AccountRecoveryErrorState).message;
+          customAuthDialog(context, error, 'Tentar', AccountRecoveryPage.route);
         }
       },
     );
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade800,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const HeaderLogo(),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            Card(
-              color: AppColors.lightgreen,
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Form(
-                key: _formKey,
-                child: ListView(
-                    padding: const EdgeInsets.all(16),
-                    shrinkWrap: true,
-                    children: [
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const Center(
-                          child: Text(
-                        'Recuperar sua senha',
-                        style: TextStyle(
-                          fontSize: 28,
-                          color: AppColors.white,
-                        ),
-                      )),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      CustomFormField(
-                        formFieldValidator:
-                            CustomFormFieldValidator.validateEmail,
-                        formFieldText: 'E-mail',
-                        formFieldController: _emailController,
-                      ),
-                    ]),
-              ),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          const HeaderLogo(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+          Card(
+            color: AppColors.lightgreen,
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            CustomFlatButton(
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                  padding: const EdgeInsets.all(16),
+                  shrinkWrap: true,
+                  children: [
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    const Center(
+                        child: Text(
+                      'Recuperar sua senha',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: AppColors.white,
+                      ),
+                    )),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    CustomFormField(
+                      formFieldValidator:
+                          CustomFormFieldValidator.validateEmail,
+                      formFieldText: 'E-mail',
+                      formFieldController: _emailController,
+                    ),
+                  ]),
+            ),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+          CustomFlatButton(
               customButtonText: 'RECUPERAR',
               customColor: AppColors.green,
               customWidth: 0.8,
@@ -103,11 +96,21 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
                 if (_formKey.currentState != null &&
                     _formKey.currentState!.validate()) {
                   accountController.forgotPassword(_emailController.text);
-
-                } 
-  
-  }),
-       ] ),
+                }
+              }),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(SignInPage.route);
+            },
+            child: const Center(
+                child: Text(
+              'Voltar para tela de login',
+              style: TextStyle(fontSize: 16),
+            )),
+          ),
+         SizedBox(height: MediaQuery.of(context).size.height * 0.04), 
+        ]),
       ),
     );
   }
