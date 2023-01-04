@@ -36,7 +36,7 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
         }
         if (accountController.state is AccountRecoveryErrorState) {
           final error = (accountController.state as AccountRecoveryErrorState).message;
-          customAuthDialog(context, error,'Recuperar senha', SignInPage.route);
+          customAuthDialog(context, error,'Tentar', AccountRecoveryPage.route);
           
         }
       },
