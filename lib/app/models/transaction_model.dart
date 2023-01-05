@@ -32,18 +32,20 @@ class TransactionModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'title': title,
-      'ammount': ammount,
-      'date': date,
+      'ammount': ammount, 
+      'date': date.millisecondsSinceEpoch,
       'category': category,
     };
   }
 
-  factory TransactionModel.fromMap(Map<String, dynamic> map) {
+  factory TransactionModel.fromMap(String id, Map<String, dynamic> map) {
     return TransactionModel(
+      id: map['id'] as String,
       title: map['title'] as String,
       ammount: map['ammount'] as double,
-      date: map['date'] as DateTime,
+      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
       category: map['category'] as bool,
     );
   }

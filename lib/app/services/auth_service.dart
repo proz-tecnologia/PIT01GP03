@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:porkinio/app/models/user_model.dart';
 
 abstract class AuthService {
@@ -12,4 +13,6 @@ abstract class AuthService {
   Future<void> signOut();
 
   Future<void> forgotPassword(String email);
+
+  User? get currentUser;
 }

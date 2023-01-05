@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:porkinio/app/models/user_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 //TODO: QUANDO NÃO PRECISAMOS MAIS EXCLUIR MOCK
@@ -46,7 +47,9 @@ class MockAuthService implements AuthService {
   
   @override
   Future<void> forgotPassword(String email) {
-    // TODO: implement forgotPassword
     throw UnimplementedError();
   }
+
+  @override
+  User? get currentUser => throw UnimplementedError();
 }

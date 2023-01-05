@@ -1,3 +1,4 @@
+import 'package:porkinio/app/features/home/home_controller.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/splash/splash_controller.dart';
@@ -9,6 +10,7 @@ import 'app/services/firebase_auth_service.dart';
 final locator = GetIt.instance;
 
 void setupDependencies() {
+
   locator.registerLazySingleton<AuthService>(() => FirebaseAuthService());
  
 
@@ -20,5 +22,6 @@ void setupDependencies() {
 
   locator.registerFactory<SignUpController>(
       () => SignUpController(locator.get<AuthService>()));
+
 
 }
