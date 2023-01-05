@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         Locale('pt', 'BR'),
       ],
       debugShowCheckedModeBanner: false,
-      initialRoute: HomePage.route,
+      initialRoute: SplashPage.route,
       routes: {
         HomePage.route: (_) => const HomePage(),
         SplashPage.route: (_) => const SplashPage(),

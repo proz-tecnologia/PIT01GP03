@@ -30,14 +30,16 @@ class _SplashPageState extends State<SplashPage> {
           Future.delayed(const Duration(seconds: 2)).then(
             (value) async { 
               return await Navigator.of(context)
-                  .pushReplacementNamed(HomePage.route);
+                  .pushReplacementNamed(SignInPage.route);
             },
           );
+        
         } else {
           Future.delayed(const Duration(seconds: 2)).then(
             (value) async {
               return await Navigator.of(context)
-                  .pushReplacementNamed(SignInPage.route);
+                  .pushReplacementNamed(HomePage.route); 
+                  //TODO A logica não está funcionado, sempre vai para a home_page
             },
           );
         }

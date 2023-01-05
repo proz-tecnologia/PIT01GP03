@@ -85,7 +85,10 @@ class FirebaseAuthService implements AuthService {
         throw Exception();
       }
     } on PlatformException catch (e) {
-        throw e.message ?? "null";
+      throw e.message ?? "null";
     }
   }
+
+  @override
+  User? get currentUser => _auth.currentUser;
 }
