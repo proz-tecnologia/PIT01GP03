@@ -35,7 +35,7 @@ class TransactionModel {
       'id': id,
       'title': title,
       'ammount': ammount, 
-      'date': date.millisecondsSinceEpoch,
+      'date': date,
       'category': category,
     };
   }
@@ -45,7 +45,7 @@ class TransactionModel {
       id: map['id'] as String,
       title: map['title'] as String,
       ammount: map['ammount'] as double,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+      date: map['date'],
       category: map['category'] as bool,
     );
   }

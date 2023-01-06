@@ -20,7 +20,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   final _splashController = locator.get<SplashController>();
   @override
-  // TODO: Implementar início da navegação do app na Splash-screen
   void initState() {
     super.initState();
     _splashController.isUserLogged();
@@ -30,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
           Future.delayed(const Duration(seconds: 2)).then(
             (value) async { 
               return await Navigator.of(context)
-                  .pushReplacementNamed(SignInPage.route);
+                  .pushReplacementNamed(HomePage.route);
             },
           );
         
@@ -38,8 +37,7 @@ class _SplashPageState extends State<SplashPage> {
           Future.delayed(const Duration(seconds: 2)).then(
             (value) async {
               return await Navigator.of(context)
-                  .pushReplacementNamed(HomePage.route); 
-                  //TODO A logica não está funcionado, sempre vai para a home_page
+                  .pushReplacementNamed(SignInPage.route); 
             },
           );
         }
