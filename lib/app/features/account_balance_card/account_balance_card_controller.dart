@@ -7,9 +7,10 @@ import 'package:porkinio/locator.dart';
 class AccountBalanceCardController extends ChangeNotifier {
   // TODO: Restaurar lógica de atribuição de valores no AccountBalanceCard
 
-  final double totalBalance = 0;
-  final double totalIncome = 0;
-  final double totalExpense = 0;
+  late Stream<List<TransactionModel>> totalBalance;
+
+  //final List totalIncome = 0;
+  //final double totalExpense = 0;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -21,27 +22,46 @@ class AccountBalanceCardController extends ChangeNotifier {
           .map((doc) => TransactionModel.fromJson(doc.data()))
           .toList());
 
+  // Future accountBalance() async {
+/*
   Future accountBalance() async {
-    final incomeBalance = _firestore
+    totalBalance = _firestore
         .collection('transactionsTest')
         .where('id', isEqualTo: locator.get<AuthService>().currentUser!.uid)
-        .where("category", isEqualTo: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) => TransactionModel.fromJson(doc.data()))
             .toList());
-
-    print(incomeBalance);
-
-    final expenseBalance = _firestore
-        .collection('transactionsTest')
-        .where('id', isEqualTo: locator.get<AuthService>().currentUser!.uid)
-        .where("category", isEqualTo: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => TransactionModel.fromJson(doc.data()))
-            .toList());
+    notifyListeners();
   }
+
+  double totalIncome() {
+    double totalSum = 0;
+    double totalSubtraction = 0;
+    double totalBalance = 0;
+    for (TransactionModel value in totalBalance. ) {
+      if (value.category == true) {
+        totalSum += value.ammount;
+      } else if (value.category == false) {
+        totalSubtraction += value.ammount;
+      }
+    }
+    totalBalance = totalSum - totalSubtraction;
+    return totalBalance;
+  }
+*/
+
+
+//
+//  final expenseBalance = _firestore
+//      .collection('transactionsTest')
+//      .where('id', isEqualTo: locator.get<AuthService>().currentUser!.uid)
+//      .where("category", isEqualTo: true)
+//      .snapshots()
+//      .map((snapshot) => snapshot.docs
+//          .map((doc) => TransactionModel.fromJson(doc.data()))
+//          .toList());
+  // }
 
   bool visibilityOn = true;
 }

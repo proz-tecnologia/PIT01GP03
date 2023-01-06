@@ -18,7 +18,7 @@ class AccountBalanceCard extends StatefulWidget {
 class _AccountBalanceCardState extends State<AccountBalanceCard> {
   @override
   Widget build(BuildContext context) {
-    print(widget.accountBalanceCardController.accountBalance());
+   // print(widget.accountBalanceCardController.accountBalance());
 
     return Stack(
       children: [
