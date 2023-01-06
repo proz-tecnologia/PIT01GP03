@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT USER").then(
+              _secureStorage.deleteOne(key: "CURRENT_USER").then(
                   (_) => Navigator.popAndPushNamed(context, SplashPage.route));
             },
           )
