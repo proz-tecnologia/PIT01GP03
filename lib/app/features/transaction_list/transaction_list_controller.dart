@@ -1,23 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
+import 'package:porkinio/app/services/auth_service.dart';
+import 'package:porkinio/locator.dart';
 
 class TransactionListController extends ChangeNotifier {
+
+
+  
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   List transactionList = [];
-  // final List<TransactionModel> transactionList = [...transactionsMock];
 
   Future createTransaction(TransactionModel transaction) async {
-    final newTransaction = _firestore.collection('transactionDB').doc();
-    transaction.id = newTransaction.id;
+    final newTransaction = _firestore.collection('transactionTest').doc(locator.get<AuthService>().currentUser!.uid);
+    transaction.id = locator.get<AuthService>().currentUser!.uid;
     await newTransaction.set(transaction.toJson());
     notifyListeners();
   }
 
-  Stream<List<TransactionModel>> readAllTransactions() => _firestore
-      .collection('transactionDB')
+
+  Stream<List<TransactionModel>> readAllTransactions(String id) => _firestore
+      .collection('transactionTest').where('id', isEqualTo: id)
       .snapshots()
       .map((snapshot) => snapshot.docs
           .map((doc) => TransactionModel.fromJson(doc.data()))
@@ -25,7 +30,7 @@ class TransactionListController extends ChangeNotifier {
 
   Future updateTransaction(TransactionModel transaction) async {
     _firestore
-        .collection('transactionDB')
+        .collection('transactionTest')
         .doc(transaction.id)
         .set(transaction.toMap());
     notifyListeners();
@@ -33,7 +38,7 @@ class TransactionListController extends ChangeNotifier {
 
   Future deleteTransaction(TransactionModel transaction) async {
     final id = transaction.id;
-    final date = _firestore.doc("transactionDB/$id");
+    final date = _firestore.doc("transactionTest/$id");
     date.delete();
     notifyListeners();
   }

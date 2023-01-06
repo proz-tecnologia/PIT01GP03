@@ -1,6 +1,5 @@
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
-
 class AccountBalanceCardController {
   final transactionsListController = TransactionListController();
   // TODO: Restaurar lógica de atribuição de valores no AccountBalanceCard
