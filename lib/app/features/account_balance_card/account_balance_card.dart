@@ -18,6 +18,8 @@ class AccountBalanceCard extends StatefulWidget {
 class _AccountBalanceCardState extends State<AccountBalanceCard> {
   @override
   Widget build(BuildContext context) {
+   // print(widget.accountBalanceCardController.accountBalance());
+
     return Stack(
       children: [
         SizedBox(
@@ -48,7 +50,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                           child:
                               widget.accountBalanceCardController.visibilityOn
                                   ? Text(
-                                      'R\$ ${widget.accountBalanceCardController.totalBalance().toStringAsFixed(2)}',
+                                      'R\$ ',
                                       style: AppTextStylesLight.headline3,
                                     )
                                   : Text(
@@ -94,7 +96,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                                 .accountBalanceCardController
                                                 .visibilityOn
                                             ? Text(
-                                                'Entradas: R\$ ${widget.accountBalanceCardController.sumBalance().toStringAsFixed(2)}',
+                                                'Entradas: R\$}',
                                                 style: AppTextStylesLight.body1,
                                               )
                                             : Text(
@@ -123,7 +125,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                                 .accountBalanceCardController
                                                 .visibilityOn
                                             ? Text(
-                                                'Saídas: R\$ ${widget.accountBalanceCardController.subtractBalance().toStringAsFixed(2)}',
+                                                'Saídas: R\$ ',
                                                 style: AppTextStylesLight.body1,
                                               )
                                             : Text(

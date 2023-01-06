@@ -5,30 +5,28 @@ import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
 class TransactionListController extends ChangeNotifier {
-
-
-  
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   List transactionList = [];
 
   Future createTransaction(TransactionModel transaction) async {
-    final newTransaction = _firestore.collection('transactionTest').doc(locator.get<AuthService>().currentUser!.uid);
-    transaction.id = locator.get<AuthService>().currentUser!.uid;
+    final newTransaction = _firestore.collection('transactionTest').doc();
+    transaction.id = newTransaction.id;
+    transaction.userId = locator.get<AuthService>().currentUser!.uid;
     await newTransaction.set(transaction.toJson());
     notifyListeners();
   }
 
-
-  Stream<List<TransactionModel>> readAllTransactions(String id) => _firestore
-      .collection('transactionTest').where('id', isEqualTo: id)
+  Stream<List<TransactionModel>> readAllTransactions(String userId) => _firestore
+      .collection('transactionTest')
+      .where('userId', isEqualTo: userId)
       .snapshots()
       .map((snapshot) => snapshot.docs
           .map((doc) => TransactionModel.fromJson(doc.data()))
           .toList());
 
   Future updateTransaction(TransactionModel transaction) async {
+    transaction.userId = locator.get<AuthService>().currentUser!.uid;
     _firestore
         .collection('transactionTest')
         .doc(transaction.id)
