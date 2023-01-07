@@ -51,7 +51,7 @@ class TransactionModel {
       userId: map['userId'] as String,
       title: map['title'] as String,
       ammount: map['ammount'] as double,
-      date: map['date'],
+      date: map['date'] as DateTime, 
       category: map['category'] as bool,
     );
   }

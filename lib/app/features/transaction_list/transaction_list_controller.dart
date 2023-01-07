@@ -17,9 +17,9 @@ class TransactionListController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Stream<List<TransactionModel>> readAllTransactions(String userId) => _firestore
+  Stream<List<TransactionModel>> readAllTransactions() => _firestore
       .collection('transactionTest')
-      .where('userId', isEqualTo: userId)
+      .where('userId', isEqualTo: locator.get<AuthService>().currentUser!.uid)
       .snapshots()
       .map((snapshot) => snapshot.docs
           .map((doc) => TransactionModel.fromJson(doc.data()))

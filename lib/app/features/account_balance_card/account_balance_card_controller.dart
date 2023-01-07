@@ -5,102 +5,70 @@ import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
 class AccountBalanceCardController extends ChangeNotifier {
-  // TODO: Restaurar lógica de atribuição de valores no AccountBalanceCard
-
-  late Stream<List<TransactionModel>> totalBalance;
-
-  //final List totalIncome = 0;
-  //final double totalExpense = 0;
+  bool visibilityOn = true;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<List<TransactionModel>> readAllTransactions(String id) => _firestore
-      .collection('transactionTest')
-      .where('id', isEqualTo: id)
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .map((doc) => TransactionModel.fromJson(doc.data()))
-          .toList());
+  Future<List<TransactionModel>> getListTransaction() async {
+    final result = await _firestore
+        .collection("transactionTest")
+        .where("userId", isEqualTo: locator.get<AuthService>().currentUser!.uid)
+        .get();
 
-  // Future accountBalance() async {
-/*
-  Future accountBalance() async {
-    totalBalance = _firestore
-        .collection('transactionsTest')
-        .where('id', isEqualTo: locator.get<AuthService>().currentUser!.uid)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => TransactionModel.fromJson(doc.data()))
-            .toList());
+    final resultList = List<TransactionModel>.from(
+            result.docs.map((doc) => TransactionModel.fromJson(doc.data())))
+        .toList();
+
+    return resultList;
+  }
+
+  Future<double> getTotalBalance() async {
+    double total = 0.0;
+    double totalSum = 0.0;
+    double totalSub = 0.0;
+
+    final transactionList = await getListTransaction();
+
+    for (var data in transactionList) {
+      if (data.category == true) {
+        totalSum += data.ammount;
+      }else if (data.category == false){
+         totalSub += data.ammount;
+      }
+      total = totalSum - totalSub;
+    }
+
     notifyListeners();
+    return total;
   }
 
-  double totalIncome() {
-    double totalSum = 0;
-    double totalSubtraction = 0;
-    double totalBalance = 0;
-    for (TransactionModel value in totalBalance. ) {
-      if (value.category == true) {
-        totalSum += value.ammount;
-      } else if (value.category == false) {
-        totalSubtraction += value.ammount;
+  Future<double> getTotalIncome() async {
+    double total = 0.0;
+
+    final transactionList = await getListTransaction();
+
+    for (var data in transactionList) {
+      if (data.category == true) {
+        total += data.ammount;
       }
     }
-    totalBalance = totalSum - totalSubtraction;
-    return totalBalance;
+
+    notifyListeners();
+    return total;
   }
-*/
 
+  Future<double> getTotalExpense() async {
+    double total = 0.0;
 
-//
-//  final expenseBalance = _firestore
-//      .collection('transactionsTest')
-//      .where('id', isEqualTo: locator.get<AuthService>().currentUser!.uid)
-//      .where("category", isEqualTo: true)
-//      .snapshots()
-//      .map((snapshot) => snapshot.docs
-//          .map((doc) => TransactionModel.fromJson(doc.data()))
-//          .toList());
-  // }
+    final transactionList = await getListTransaction();
 
-  bool visibilityOn = true;
+    for (var data in transactionList) {
+      if (data.category == false) {
+        total += data.ammount;
+      }
+    }
+
+    notifyListeners();
+    return total;
+  }
 }
-
-/*
-  double totalBalance() {
-    double totalSum = 0;
-    double totalSubtraction = 0;
-    double totalBalance = 0;
-    for (TransactionModel value in ) {
-      if (value.category == true) {
-        totalSum += value.ammount;
-      } else if (value.category == false) {
-        totalSubtraction += value.ammount;
-      }
-    }
-    totalBalance = totalSum - totalSubtraction;
-    return totalBalance;
-  }
-
-  double sumBalance() {
-    double total = 0;
-    for (TransactionModel value in ) {
-      if (value.category == true) {
-        total += value.ammount;
-      }
-    }
-    return total;
-  }
-
-  double subtractBalance() {
-    double total = 0;
-    for (TransactionModel value in ) {
-      if (value.category == false) {
-        total -= value.ammount;
-      }
-    }
-    return total;
-  }
-*/
- // bool visibilityOn = true;
-//}

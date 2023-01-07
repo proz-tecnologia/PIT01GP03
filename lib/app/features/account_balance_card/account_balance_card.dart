@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/common/themes/app_text_styles_light.dart';
+import 'package:porkinio/app/services/auth_service.dart';
+import 'package:porkinio/locator.dart';
 
 class AccountBalanceCard extends StatefulWidget {
   final AccountBalanceCardController accountBalanceCardController;
@@ -18,7 +20,8 @@ class AccountBalanceCard extends StatefulWidget {
 class _AccountBalanceCardState extends State<AccountBalanceCard> {
   @override
   Widget build(BuildContext context) {
-   // print(widget.accountBalanceCardController.accountBalance());
+
+   
 
     return Stack(
       children: [
@@ -50,7 +53,13 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                           child:
                               widget.accountBalanceCardController.visibilityOn
                                   ? Text(
-                                      'R\$ ',
+                                      'R\$ ${
+                                        
+                                       widget.accountBalanceCardController.getTotalBalance()
+                                        
+                                        
+                                        
+                                        }',
                                       style: AppTextStylesLight.headline3,
                                     )
                                   : Text(
@@ -96,7 +105,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                                 .accountBalanceCardController
                                                 .visibilityOn
                                             ? Text(
-                                                'Entradas: R\$}',
+                                                'Entradas: R\$ ${widget.accountBalanceCardController.getTotalExpense()}',
                                                 style: AppTextStylesLight.body1,
                                               )
                                             : Text(
@@ -125,7 +134,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                                 .accountBalanceCardController
                                                 .visibilityOn
                                             ? Text(
-                                                'Saídas: R\$ ',
+                                                'Saídas: R\$ ${widget.accountBalanceCardController.getTotalIncome()}',
                                                 style: AppTextStylesLight.body1,
                                               )
                                             : Text(
