@@ -30,9 +30,8 @@ Widget buildTransactionList(TransactionModel transactionModel) => Padding(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               transactionModel.category
-                  ? Text('+ R\$ ${transactionModel.ammount.toStringAsFixed(2)}')
-                  : Text(
-                      '− R\$ ${transactionModel.ammount.toStringAsFixed(2)}'),
+                  ? Text('+ R\$ ${transactionModel.amount.toStringAsFixed(2)}')
+                  : Text('− R\$ ${transactionModel.amount.toStringAsFixed(2)}'),
               Text(DateFormat('dd/MM/yyy').format(transactionModel.date)),
             ],
           ),
