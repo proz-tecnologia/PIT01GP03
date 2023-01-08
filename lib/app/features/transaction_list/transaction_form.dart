@@ -26,7 +26,7 @@ const List<String> list = <String>['Entrada', 'Saída'];
 class _TransactionFormState extends State<TransactionForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _titleController = TextEditingController();
-  final _ammountController = TextEditingController();
+  final _amountController = TextEditingController();
   final _dateController = TextEditingController();
 
   String? dropdownValue;
@@ -37,7 +37,7 @@ class _TransactionFormState extends State<TransactionForm> {
     super.initState();
     newTransactionModel = widget.transactionModel;
     _titleController.text = widget.transactionModel?.title ?? '';
-    _ammountController.text = widget.transactionModel?.ammount.toString() ?? '';
+    _amountController.text = widget.transactionModel?.amount.toString() ?? '';
     _dateController.text = widget.transactionModel?.date.toString() ?? '';
     dropdownValue =
         newTransactionModel?.category == false ? list.last : list.first;
@@ -65,7 +65,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   formFieldLabelText: 'Valor',
                   formFieldValidator: CustomFormFieldValidator.validateNull,
                   formFieldBorder: false,
-                  formFieldController: _ammountController,
+                  formFieldController: _amountController,
                   formFieldKeyboardType: TextInputType.number,
                 ),
                 SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
@@ -134,7 +134,7 @@ class _TransactionFormState extends State<TransactionForm> {
             newTransactionModel = TransactionModel(
               id: widget.transactionModel?.id,
               title: _titleController.text,
-              ammount: double.parse(_ammountController.text),
+              amount: double.parse(_amountController.text),
               date: DateTime.parse(_dateController.text),
               category: dropdownValue == 'Entrada' ? true : false,
             );

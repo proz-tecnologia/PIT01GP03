@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 class TransactionModel {
   String? id;
   String? userId;
   final String title;
-  final double ammount;
+  final double amount;
   final DateTime date;
   final bool category;
 
@@ -11,7 +12,7 @@ class TransactionModel {
     this.id = '',
     this.userId = '',
     required this.title,
-    required this.ammount,
+    required this.amount,
     required this.date,
     required this.category,
   });
@@ -20,7 +21,7 @@ class TransactionModel {
     String? id,
     String? userId,
     String? title,
-    double? ammount,
+    double? amount,
     DateTime? date,
     bool? category,
   }) {
@@ -28,7 +29,7 @@ class TransactionModel {
       id: id ?? this.id,
       userId: userId ?? this.userId,
       title: title ?? this.title,
-      ammount: ammount ?? this.ammount,
+      amount: amount ?? this.amount,
       date: date ?? this.date,
       category: category ?? this.category,
     );
@@ -37,9 +38,9 @@ class TransactionModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'userId':userId,
+      'userId': userId,
       'title': title,
-      'ammount': ammount, 
+      'amount': amount.toDouble(),
       'date': date,
       'category': category,
     };
@@ -50,8 +51,8 @@ class TransactionModel {
       id: map['id'] as String,
       userId: map['userId'] as String,
       title: map['title'] as String,
-      ammount: map['ammount'] as double,
-      date: map['date'],
+      amount: map['amount'] as double,
+      date: map['date'] as DateTime,
       category: map['category'] as bool,
     );
   }
@@ -60,7 +61,7 @@ class TransactionModel {
         'id': id,
         'userId': userId,
         'title': title,
-        'ammount': ammount.toDouble(),
+        'amount': amount.toDouble(),
         'date': date,
         'category': category,
       };
@@ -69,9 +70,9 @@ class TransactionModel {
       TransactionModel(
         id: json['id'],
         userId: json['userId'],
-        title: json['title'],
-        ammount: (json['ammount']),
+        title: json['title'] as String,
+        amount: json['amount'] as double,
         date: (json['date'] as Timestamp).toDate(),
-        category: json['category'],
+        category: json['category'] as bool,
       );
 }

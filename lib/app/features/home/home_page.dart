@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(20),
                 color: AppColors.primary,
                 child: StreamBuilder<List<TransactionModel>>(
-                  stream: transactionListController.readAllTransactions(locator.get<AuthService>().currentUser!.uid),
+                  stream: transactionListController.readAllTransactions(),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Text('Encontramos um erro: "${snapshot.error}"');

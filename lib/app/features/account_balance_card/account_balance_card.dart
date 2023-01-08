@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/common/themes/app_text_styles_light.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card_state.dart';
 
 class AccountBalanceCard extends StatefulWidget {
+  const AccountBalanceCard(
+      {super.key, required this.accountBalanceCardController});
   final AccountBalanceCardController accountBalanceCardController;
-
-  const AccountBalanceCard({
-    Key? key,
-    required this.accountBalanceCardController,
-  }) : super(key: key);
 
   @override
   State<AccountBalanceCard> createState() => _AccountBalanceCardState();
 }
 
+bool visibilityOn = true;
 class _AccountBalanceCardState extends State<AccountBalanceCard> {
   @override
   Widget build(BuildContext context) {
-   // print(widget.accountBalanceCardController.accountBalance());
-
     return Stack(
       children: [
         SizedBox(
@@ -48,11 +45,16 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                       children: [
                         Container(
                           child:
-                              widget.accountBalanceCardController.visibilityOn
-                                  ? Text(
-                                      'R\$ ',
-                                      style: AppTextStylesLight.headline3,
-                                    )
+                              visibilityOn
+                                  ? FutureBuilder(
+                                    future: widget.accountBalanceCardController.getTotalBalance(),
+                                    builder: (context, snapshot) {
+                                      return Text(
+                                          'R\$ ${widget.accountBalanceCardController.totalBalance.toStringAsFixed(2)}',
+                                          style: AppTextStylesLight.headline3,
+                                        );
+                                    }
+                                  )
                                   : Text(
                                       'R\$ • • • •',
                                       style: AppTextStylesLight.headline3,
@@ -62,15 +64,13 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                           onTap: () {
                             setState(
                               () {
-                                widget.accountBalanceCardController
-                                        .visibilityOn =
-                                    !widget.accountBalanceCardController
-                                        .visibilityOn;
+                                visibilityOn =
+                                    !visibilityOn;
                               },
                             );
                           },
                           child: Icon(
-                            widget.accountBalanceCardController.visibilityOn
+                            visibilityOn
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                             color: AppColors.textLight,
@@ -92,13 +92,16 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Container(
-                                        child: widget
-                                                .accountBalanceCardController
-                                                .visibilityOn
-                                            ? Text(
-                                                'Entradas: R\$}',
-                                                style: AppTextStylesLight.body1,
-                                              )
+                                        child: visibilityOn
+                                            ? FutureBuilder(
+                                              future: widget.accountBalanceCardController.getIncomeBalance(),
+                                              builder: (context, snapshot) {
+                                                return Text(
+                                                    'Entradas: R\$ ${widget.accountBalanceCardController.totalIncome.toStringAsFixed(2)}',
+                                                    style: AppTextStylesLight.body1,
+                                                  );
+                                              }
+                                            )
                                             : Text(
                                                 'Entradas: R\$ • • • •',
                                                 style: AppTextStylesLight.body1,
@@ -121,13 +124,16 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                                   .height *
                                               0.015),
                                       Container(
-                                        child: widget
-                                                .accountBalanceCardController
-                                                .visibilityOn
-                                            ? Text(
-                                                'Saídas: R\$ ',
-                                                style: AppTextStylesLight.body1,
-                                              )
+                                        child: visibilityOn
+                                            ? FutureBuilder(
+                                              future: widget.accountBalanceCardController.getExpensesBalance(),
+                                              builder: (context, snapshot) {
+                                                return Text(
+                                                    'Saídas: R\$ ${widget.accountBalanceCardController.totalExpenses.toStringAsFixed(2)}',
+                                                    style: AppTextStylesLight.body1,
+                                                  );
+                                              }
+                                            )
                                             : Text(
                                                 'Saídas: R\$ • • • •',
                                                 style: AppTextStylesLight.body1,
