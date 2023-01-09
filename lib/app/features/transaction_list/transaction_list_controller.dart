@@ -7,8 +7,8 @@ import 'package:porkinio/locator.dart';
 
 class TransactionListController extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final AccountBalanceCardController accountBalanceCardController =
-      AccountBalanceCardController();
+  // final AccountBalanceCardController accountBalanceCardController =
+  //     AccountBalanceCardController();
 
   Future createTransaction(TransactionModel transaction) async {
     final newTransaction = _firestore.collection('transactionDB').doc();
@@ -18,13 +18,16 @@ class TransactionListController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Stream<List<TransactionModel>> readAllTransactions() => _firestore
-      .collection('transactionDB')
-      .where('userId', isEqualTo: locator.get<AuthService>().currentUser!.uid)
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .map((doc) => TransactionModel.fromJson(doc.data()))
-          .toList());
+  Stream<List<TransactionModel>> readAllTransactions() {
+    return _firestore
+        .collection('transactionDB')
+        .where('userId', isEqualTo: locator.get<AuthService>().currentUser!.uid)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => TransactionModel.fromJson(doc.data()))
+            .toList());
+    notifyListeners();
+  }
 
   Future updateTransaction(TransactionModel transaction) async {
     transaction.userId = locator.get<AuthService>().currentUser!.uid;

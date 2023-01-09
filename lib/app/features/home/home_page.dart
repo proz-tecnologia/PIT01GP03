@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/transaction_list/build_transaction_list.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
+import 'package:porkinio/app/features/home/background_header.dart';
+import 'package:porkinio/app/features/home/custom_floating_action_button.dart';
+import 'package:porkinio/app/features/home/transaction_list_card.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
-import 'package:porkinio/app/models/transaction_model.dart';
-import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
-import 'package:porkinio/locator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +23,6 @@ class _HomePageState extends State<HomePage> {
   final transactionListController = TransactionListController();
   final accountBalanceCardController = AccountBalanceCardController();
   final _secureStorage = const SecureStorage();
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,74 +48,23 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AnimatedBuilder(
-              animation: transactionListController,
-              builder: (context, child) {
-                return AccountBalanceCard(
-                  accountBalanceCardController: accountBalanceCardController,
-                );
-              }),
-
-
-
-           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(20),
-                color: AppColors.primary,
-                child: StreamBuilder<List<TransactionModel>>(
-                  stream: transactionListController.readAllTransactions(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Encontramos um erro: "${snapshot.error}"');
-                    } else if (snapshot.hasData) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        child: ListView(
-                          children:
-                              snapshot.data!.map(buildTransactionList).toList(),
-                        ),
-                      );
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  },
-                ),
+          Stack(
+            children: [
+              const BackgroundHeader(),
+              AccountBalanceCard(
+                accountBalanceCardController: accountBalanceCardController, transactionListController: transactionListController,
               ),
-            ),
+            ],
+          ),
+          TransactionListCard(
+            transactionListController: transactionListController,
           ),
           const SizedBox(height: 108),
         ],
       ),
-
-
-
-
-
-      
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => Center(
-              child: TransactionForm(
-                transactionListController: transactionListController,
-              ),
-            ),
-          );
-        },
-        icon: const Icon(Icons.receipt_long),
-        label: const Text("Cadastrar Transação"),
-        elevation: 5,
-        backgroundColor: AppColors.primary,
-      ),
+      floatingActionButton: CustomFloatingActionButton(
+          transactionListController: transactionListController),
     );
   }
 }
-
-
-
- 

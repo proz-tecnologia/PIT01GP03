@@ -7,10 +7,13 @@ import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
 class AccountBalanceCardController extends ChangeNotifier {
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  late double totalBalance = 0.0;
-  late double totalIncome = 0.0;
-  late double totalExpenses = 0.0;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // final TransactionListController transactionListController =
+  //     TransactionListController();
+
+  double totalBalance = 0.0;
+  double totalIncome = 0.0;
+  double totalExpenses = 0.0;
 
   Future<List<TransactionModel>> readTransactionList() async {
     final snapshot = await _firestore
