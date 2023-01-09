@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card_state.dart';
 import 'package:porkinio/app/features/transaction_list/build_transaction_list.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
@@ -22,10 +23,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final transactionListController = TransactionListController();
+  final transactionListController = locator.get<TransactionListController>();
   final accountBalanceCardController = AccountBalanceCardController();
   final _secureStorage = const SecureStorage();
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +58,7 @@ class _HomePageState extends State<HomePage> {
                   accountBalanceCardController: accountBalanceCardController,
                 );
               }),
-
-
-
-           Expanded(
+          Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Material(
@@ -92,12 +89,6 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 108),
         ],
       ),
-
-
-
-
-
-      
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -118,7 +109,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
- 
