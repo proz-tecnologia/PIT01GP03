@@ -1,19 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_state.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
 class AccountBalanceCardController extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // final TransactionListController transactionListController =
-  //     TransactionListController();
+  AccountBalanceCardState _accountBalanceCardState =
+      AccountBalanceCardInitialState();
+  AccountBalanceCardState get state => _accountBalanceCardState;
 
   double totalBalance = 0.0;
   double totalIncome = 0.0;
   double totalExpenses = 0.0;
+
+  void _updateState(AccountBalanceCardState newState) {
+    _accountBalanceCardState = newState;
+    notifyListeners();
+  }
 
   Future<List<TransactionModel>> readTransactionList() async {
     final snapshot = await _firestore
@@ -38,7 +43,7 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
 
-    notifyListeners();
+    // notifyListeners();
     return totalIncome;
   }
 
@@ -52,7 +57,7 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
 
-    notifyListeners();
+    // notifyListeners();
     return totalExpenses;
   }
 
@@ -71,7 +76,8 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
     totalBalance = income - expenses;
-    notifyListeners();
+    // notifyListeners();
+    _updateState(AccountBalanceCardSuccessState());
     return totalBalance;
   }
 }

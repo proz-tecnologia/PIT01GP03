@@ -47,9 +47,11 @@ class _CustomFormFieldState extends State<CustomFormField> {
     return TextFormField(
       onChanged: (value) {
         if (value.length == 1) {
-          setState(() {
-            _customHelperText = null;
-          });
+          setState(
+            () {
+              _customHelperText = null;
+            },
+          );
         } else if (value.isEmpty) {
           setState(
             () {

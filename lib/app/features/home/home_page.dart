@@ -9,6 +9,7 @@ import 'package:porkinio/app/features/account_balance_card/account_balance_card_
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
+import 'package:porkinio/locator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,8 +21,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final transactionListController = TransactionListController();
-  final accountBalanceCardController = AccountBalanceCardController();
+  final transactionListController = locator.get<TransactionListController>();
+  final accountBalanceCardController =
+      locator.get<AccountBalanceCardController>();
   final _secureStorage = const SecureStorage();
 
   @override
@@ -49,11 +51,9 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Stack(
-            children: [
-              const BackgroundHeader(),
-              AccountBalanceCard(
-                accountBalanceCardController: accountBalanceCardController, transactionListController: transactionListController,
-              ),
+            children: const [
+              BackgroundHeader(),
+              AccountBalanceCard(),
             ],
           ),
           TransactionListCard(

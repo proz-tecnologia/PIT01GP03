@@ -18,7 +18,7 @@ class TransactionListCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Material(
-          elevation: 5,
+          elevation: 10,
           borderRadius: BorderRadius.circular(20),
           color: AppColors.primary,
           child: StreamBuilder<List<TransactionModel>>(

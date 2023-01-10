@@ -1,21 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_state.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
 class TransactionListController extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // final AccountBalanceCardController accountBalanceCardController =
-  //     AccountBalanceCardController();
+  TransactionListState _transactionListState = TransactionListInitialState();
+  TransactionListState get state => _transactionListState;
+
+  void _updateState(TransactionListState newState) {
+    _transactionListState = newState;
+    notifyListeners();
+  }
 
   Future createTransaction(TransactionModel transaction) async {
     final newTransaction = _firestore.collection('transactionDB').doc();
     transaction.id = newTransaction.id;
     transaction.userId = locator.get<AuthService>().currentUser!.uid;
     await newTransaction.set(transaction.toJson());
-    notifyListeners();
+    _updateState(TransactionListSucessState());
   }
 
   Stream<List<TransactionModel>> readAllTransactions() {
@@ -26,7 +31,6 @@ class TransactionListController extends ChangeNotifier {
         .map((snapshot) => snapshot.docs
             .map((doc) => TransactionModel.fromJson(doc.data()))
             .toList());
-    notifyListeners();
   }
 
   Future updateTransaction(TransactionModel transaction) async {
@@ -39,9 +43,14 @@ class TransactionListController extends ChangeNotifier {
   }
 
   Future deleteTransaction(TransactionModel transaction) async {
-    final id = transaction.id;
-    final date = _firestore.doc("transactionDB/$id");
-    await date.delete();
-    notifyListeners();
+    try {
+      _updateState(TransactionListLoadingState());
+      final id = transaction.id;
+      final documentId = _firestore.doc("transactionDB/$id");
+      await documentId.delete();
+      _updateState(TransactionListSucessState());
+    } catch (e) {
+      _updateState(TransactionListErrorState());
+    }
   }
 }
