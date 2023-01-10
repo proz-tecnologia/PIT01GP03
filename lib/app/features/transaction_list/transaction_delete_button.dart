@@ -44,10 +44,9 @@ class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
               ElevatedButton(
                 child: const Text('Sim'),
                 onPressed: () async {
+                  Navigator.of(context).pushReplacementNamed(HomePage.route);
                   await transactionListController
                       .deleteTransaction(widget.transactionModel);
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil('/home-page', (route) => false);
                 },
               ),
             ],
