@@ -1,15 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/account_balance_card/account_balance_card_state.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
 class AccountBalanceCardController extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // final TransactionListController transactionListController =
-  //     TransactionListController();
+
 
   double totalBalance = 0.0;
   double totalIncome = 0.0;
@@ -17,7 +14,7 @@ class AccountBalanceCardController extends ChangeNotifier {
 
   Future<List<TransactionModel>> readTransactionList() async {
     final snapshot = await _firestore
-        .collection("transactionDB")
+        .collection("transactionTest")
         .where("userId", isEqualTo: locator.get<AuthService>().currentUser!.uid)
         .get();
 
