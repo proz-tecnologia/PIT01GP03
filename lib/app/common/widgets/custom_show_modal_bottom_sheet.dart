@@ -11,7 +11,7 @@ Future<void> customShowModalBottomSheet(
     builder: (BuildContext context) {
       return Container(
         decoration: const BoxDecoration(
-          color: AppColors.green,
+          // color: AppColors.green,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(38.0), topRight: Radius.circular(38.0)),
         ),
@@ -25,7 +25,9 @@ Future<void> customShowModalBottomSheet(
                 textAlign: TextAlign.center,
                 customErrorMessage,
                 style: const TextStyle(
-                    fontSize: 16, color: AppColors.backgroundDark),
+                  fontSize: 16,
+                  // color: AppColors.backgroundDark,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(

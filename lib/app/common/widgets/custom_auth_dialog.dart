@@ -20,7 +20,7 @@ Future<void> customAuthDialog(
               textAlign: TextAlign.center,
               style: const TextStyle( //TODO: PEGAR THEME COMPENETIZADO 
                 fontSize: 18,
-                color: AppColors.orange,
+                // color: AppColors.orange,
                 fontWeight: FontWeight.bold,
               ),
             ),

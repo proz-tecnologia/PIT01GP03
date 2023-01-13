@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Olá, Usuário!'),
-        backgroundColor: AppColors.primaryDark,
+        // backgroundColor: AppColors.primaryDark,
         elevation: 0,
         actions: <Widget>[
           IconButton(

@@ -17,7 +17,7 @@ class CustomNavigationDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: const BoxDecoration(
-              color: AppColors.green,
+              // color: AppColors.green,
             ),
             child: Text(
               'Navegação para telas desenvolvidas',

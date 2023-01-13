@@ -25,7 +25,7 @@ final transactionListController = locator.get<TransactionListController>();
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.edit),
-      color: AppColors.primary,
+      // color: AppColors.primary,
       onPressed: () {
         showDialog(
           context: context,

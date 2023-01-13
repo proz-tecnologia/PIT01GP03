@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
               height: MediaQuery.of(context).size.height * 0.04,
             ),
             Card(
-              color: AppColors.lightgreen,
+              // color: AppColors.lightgreen,
               margin: const EdgeInsets.symmetric(horizontal: 16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
@@ -94,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           'Criar uma nova conta',
                           style: TextStyle(
                             fontSize: 28,
-                            color: AppColors.white,
+                            // color: AppColors.white,
                           ),
                         ),
                       ),
@@ -140,8 +140,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       const Center(
                         child: Text(
                           'Ao criar uma conta você confirma que concorda com \nos nossos Termos de Serviço e Política de Privacidade.',
-                          style:
-                              TextStyle(fontSize: 13, color: AppColors.linear),
+                          style: TextStyle(
+                            fontSize: 13,
+                            // color: AppColors.linear,
+                          ),
                         ),
                       ),
                     ],

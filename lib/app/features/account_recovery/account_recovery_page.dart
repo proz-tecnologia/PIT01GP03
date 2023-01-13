@@ -50,7 +50,7 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
           const HeaderLogo(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.04),
           Card(
-            color: AppColors.lightgreen,
+            // color: AppColors.lightgreen,
             margin: const EdgeInsets.symmetric(horizontal: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
@@ -58,30 +58,31 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
             child: Form(
               key: _formKey,
               child: ListView(
-                  padding: const EdgeInsets.all(16),
-                  shrinkWrap: true,
-                  children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    const Center(
-                        child: Text(
+                padding: const EdgeInsets.all(16),
+                shrinkWrap: true,
+                children: [
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  const Center(
+                    child: Text(
                       'Recuperar sua senha',
                       style: TextStyle(
                         fontSize: 28,
-                        color: AppColors.white,
+                        // color: AppColors.white,
                       ),
-                    )),
-                    const SizedBox(
-                      height: 25,
                     ),
-                    CustomFormField(
-                      formFieldValidator:
-                          CustomFormFieldValidator.validateEmail,
-                      formFieldText: 'E-mail',
-                      formFieldController: _emailController,
-                    ),
-                  ]),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  CustomFormField(
+                    formFieldValidator: CustomFormFieldValidator.validateEmail,
+                    formFieldText: 'E-mail',
+                    formFieldController: _emailController,
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -109,7 +110,7 @@ class _AccountRecoveryPageState extends State<AccountRecoveryPage> {
               style: TextStyle(fontSize: 16),
             )),
           ),
-         SizedBox(height: MediaQuery.of(context).size.height * 0.04), 
+          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
         ]),
       ),
     );

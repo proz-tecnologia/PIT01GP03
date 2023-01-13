@@ -13,7 +13,7 @@ class HeaderLogo extends StatelessWidget {
         bottom: 16,
       ),
       decoration: const BoxDecoration(
-        color: AppColors.green,
+        // color: AppColors.green,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),

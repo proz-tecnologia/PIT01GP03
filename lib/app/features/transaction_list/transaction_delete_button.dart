@@ -27,7 +27,7 @@ class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.delete),
-      color: AppColors.errorColor,
+      // color: AppColors.errorColor,
       onPressed: () {
         showDialog(
           context: context,

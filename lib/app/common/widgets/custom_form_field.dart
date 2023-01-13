@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 
+// TODO REVER COMPONENTIZAÇÃO
+
 class CustomFormField extends StatefulWidget {
   final String? formFieldText;
   final String? formFieldLabelText;
@@ -31,8 +33,9 @@ class CustomFormField extends StatefulWidget {
 
 class _CustomFormFieldState extends State<CustomFormField> {
   final customDefaultBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
-      borderSide: const BorderSide(color: AppColors.white));
+    borderRadius: BorderRadius.circular(20),
+    borderSide: const BorderSide(color: AppColors.white),
+  );
 
   String? _customHelperText;
 

@@ -20,7 +20,7 @@ class TransactionListCard extends StatelessWidget {
         child: Material(
           elevation: 10,
           borderRadius: BorderRadius.circular(20),
-          color: AppColors.primary,
+          // color: AppColors.primary,
           child: StreamBuilder<List<TransactionModel>>(
             stream: transactionListController.readAllTransactions(),
             builder: (context, snapshot) {

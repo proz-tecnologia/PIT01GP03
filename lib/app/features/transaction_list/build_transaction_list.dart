@@ -11,19 +11,19 @@ Widget buildTransactionList(TransactionModel transactionModel) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       child: Material(
         borderRadius: BorderRadius.circular(16),
-        color: AppColors.backgroundLight,
+        // color: AppColors.backgroundLight,
         child: ListTile(
           style: ListTileStyle.drawer,
           leading: transactionModel.category
               ? const Icon(
                   Icons.savings,
                   size: 32,
-                  color: AppColors.primaryLight,
+                  // color: AppColors.primaryLight,
                 )
               : const Icon(
                   Icons.paid,
                   size: 32,
-                  color: AppColors.secondaryLight,
+                  // color: AppColors.secondaryLight,
                 ),
           title: Text(transactionModel.title),
           subtitle: Row(

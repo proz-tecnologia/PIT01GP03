@@ -48,7 +48,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.green,
+      // backgroundColor: AppColors.green,
       body: Center(
         child: SingleChildScrollView(
           child: Column(

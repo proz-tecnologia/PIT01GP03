@@ -27,7 +27,7 @@ class CustomFloatingActionButton extends StatelessWidget {
       icon: const Icon(Icons.receipt_long),
       label: const Text("Cadastrar Transação"),
       elevation: 10,
-      backgroundColor: AppColors.primary,
+      // backgroundColor: AppColors.primary,
     );
   }
 }

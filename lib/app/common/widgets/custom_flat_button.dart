@@ -12,6 +12,8 @@ class CustomFlatButton extends StatefulWidget {
   final double customFontSize;
   final String? customImage;
 
+// TODO REVER COMPONENTIZAÇÃO
+
   const CustomFlatButton({
     Key? key,
     required this.customButtonText,
@@ -62,6 +64,7 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
                       style: TextStyle(
                           fontSize: widget.customFontSize,
                           color: AppColors.linear),
+                          // TODO PAULO REFAZER COMPONENTIZACAO
                     ),
                   ],
                 )
