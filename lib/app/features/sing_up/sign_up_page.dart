@@ -7,7 +7,6 @@ import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/locator.dart';
