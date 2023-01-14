@@ -23,9 +23,22 @@ class TransactionListCard extends StatelessWidget {
             } else if (snapshot.hasData) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: ListView(
-                  children: snapshot.data!.map(buildTransactionList).toList(),
-                ),
+                child: snapshot.data!.map(buildTransactionList).toList().isEmpty
+                    ? SizedBox(
+                         width: MediaQuery.of(context).size.width,
+                        child: const Center(
+                          child: Text(
+                            'Sem transações cadastradas',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      )
+                    : ListView(
+                        children:
+                            snapshot.data!.map(buildTransactionList).toList(),
+                      ),
               );
             } else {
               return const Center(

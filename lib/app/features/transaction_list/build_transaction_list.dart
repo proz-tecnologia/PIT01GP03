@@ -22,7 +22,7 @@ Widget buildTransactionList(TransactionModel transactionModel) => Padding(
                 ),
           title: Text(
             transactionModel.title,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -33,13 +33,13 @@ Widget buildTransactionList(TransactionModel transactionModel) => Padding(
               transactionModel.category
                   ? Text(
                       '+ R\$ ${transactionModel.amount.toStringAsFixed(2)}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.teal,
                       ),
                     )
                   : Text(
                       '− R\$ ${transactionModel.amount.toStringAsFixed(2)}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.redAccent,
                       ),
                     ),

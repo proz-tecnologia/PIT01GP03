@@ -16,7 +16,7 @@ class TransactionListController extends ChangeNotifier {
   }
 
   Future createTransaction(TransactionModel transaction) async {
-    final newTransaction = _firestore.collection('transactionDB').doc();
+    final newTransaction = _firestore.collection('transactionTest').doc();
     transaction.id = newTransaction.id;
     transaction.userId = locator.get<AuthService>().currentUser!.uid;
     await newTransaction.set(
