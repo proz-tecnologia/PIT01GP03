@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:porkinio/app/models/user_model.dart';
-
 import '../mock/mock_classes.dart';
 
 void main() {
@@ -25,14 +24,14 @@ void main() {
           () => mockFirebaseAuthService.signUp(
             name: 'User',
             email: 'user@email.com',
-            password: 'user@123',
+            password: '123456Ab',
           ),
         ).thenAnswer((_) async => user);
 
         final result = await mockFirebaseAuthService.signUp(
           name: 'User',
           email: 'user@email.com',
-          password: 'user@123',
+          password: '123456Ab',
         );
 
         expect(result, user);
@@ -43,7 +42,7 @@ void main() {
           () => mockFirebaseAuthService.signUp(
             name: 'User',
             email: 'user@email.com',
-            password: 'user@123',
+            password: '123456Ab',
           ),
         ).thenThrow(Exception());
 
@@ -51,7 +50,7 @@ void main() {
             () => mockFirebaseAuthService.signUp(
                   name: 'User',
                   email: 'user@email.com',
-                  password: 'user@123',
+                  password: '123456Ab',
                 ),
             throwsException);
       });
