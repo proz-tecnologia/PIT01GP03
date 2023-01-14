@@ -1,6 +1,3 @@
-// TODO: Implementar Login com Google
-// TODO: Implementar Login com Microsoft
-
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_auth_dialog.dart';
@@ -14,7 +11,6 @@ import 'package:porkinio/app/features/account_recovery/account_recovery_page.dar
 import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
-import 'package:porkinio/app/common/themes/app_images.dart';
 import 'package:porkinio/locator.dart';
 
 class SignInPage extends StatefulWidget {
@@ -36,9 +32,6 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void initState() {
     super.initState();
-    //TODO: Rever lógica do dispose()
-    //   _emailController.dispose();
-    //  _passwordController.dispose();
     signInController.addListener(
       () {
         if (signInController.state is SignInLoadingState) {
@@ -54,9 +47,7 @@ class _SignInPageState extends State<SignInPage> {
         }
         if (signInController.state is SignInErrorState) {
           final error = (signInController.state as SignInErrorState).message;
-          customAuthDialog(context, error,'Logan', SignInPage.route);
-          //Navigator.of(context);
-          //customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
+          customAuthDialog(context, error, 'Logan', SignInPage.route);
         }
       },
     );
@@ -78,27 +69,25 @@ class _SignInPageState extends State<SignInPage> {
                 child: Column(
                   children: <Widget>[
                     CustomFormField(
-                        formFieldText: "E-MAIL",
-                        formFieldController: _emailController,
-                        formFieldValidator:
-                            CustomFormFieldValidator.validateEmail),
+                        labelText: "E-MAIL",
+                        controller: _emailController,
+                        validator: CustomFormFieldValidator.validateEmail),
                     SizedBox(
                         height: (MediaQuery.of(context).size.height) * 0.04),
                     PasswordFormField(
-                      passwordFormFieldText: 'SENHA',
-                      passwordFormFieldController: _passwordController,
-                      passwordFormFieldValidator:
-                          CustomFormFieldValidator.validatePassword,
+                      labelText: 'SENHA',
+                      controller: _passwordController,
+                      validator: CustomFormFieldValidator.validatePassword,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     CustomFlatButton(
-                      customButtonText: 'ENTRAR',
-                      customColor: AppColors.primaryDark,
-                      customWidth: 0.8,
-                      customHeight: 0.06,
-                      customFontSize: 25,
-                      customColorText: AppColors.white,
-                      customButtonOnPressed: () {
+                      text: 'ENTRAR',
+                      color: AppColors.primaryDark,
+                      width: 0.9,
+                      height: 0.06,
+                      fontSize: 20,
+                      textColor: AppColors.white,
+                      onPressed: () {
                         final valid = _formKey.currentState != null &&
                             _formKey.currentState!.validate();
                         if (valid) {
@@ -109,45 +98,28 @@ class _SignInPageState extends State<SignInPage> {
                         }
                       },
                     ),
-                    SizedBox(
-                      height: (MediaQuery.of(context).size.height * 0.02),
-                    ),
-                   
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
-                      customButtonText: 'ENTRAR COM GOOGLE',
-                      customButtonOnPressed: () {},
-                      customColor: AppColors.textMediumGray,
-                      customWidth: 0.9,
-                      customHeight: 0.06,
-                      customFontSize: 20,
-                      customImage: AppImages.google,
-                      customColorText: AppColors.white,
-                      customColorImage: AppColors.orange,
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    CustomFlatButton(
-                      customButtonText: 'ESQUECI MINHA SENHA',
-                      customButtonOnPressed: () {
+                      text: 'ESQUECI MINHA SENHA',
+                      onPressed: () {
                         Navigator.of(context)
-                            .pushNamed(AccountRecoveryPage.route);},
-                      customColor: AppColors.textMediumGray,
-                      customWidth: 0.9,
-                      customHeight: 0.06,
-                      customFontSize: 20,
-                      customColorText: AppColors.white,
-                      customColorImage: AppColors.orange,
-                     // customImage: AppImages.microsoft,
+                            .pushNamed(AccountRecoveryPage.route);
+                      },
+                      color: AppColors.textMediumGray,
+                      width: 0.9,
+                      height: 0.06,
+                      fontSize: 20,
+                      textColor: AppColors.white,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
-                      customButtonText: 'CADASTRAR NOVA CONTA',
-                      customColor: AppColors.textMediumGray,
-                      customWidth: 0.9,
-                      customHeight: 0.06,
-                      customFontSize: 20,
-                      customColorText: AppColors.white,
-                      customButtonOnPressed: () {
+                      text: 'CADASTRAR NOVA CONTA',
+                      color: AppColors.textMediumGray,
+                      width: 0.9,
+                      height: 0.06,
+                      fontSize: 20,
+                      textColor: AppColors.white,
+                      onPressed: () {
                         Navigator.of(context).pushNamed(SignUpPage.route);
                       },
                     ),

@@ -11,9 +11,9 @@ class AccountBalanceCardController extends ChangeNotifier {
       AccountBalanceCardInitialState();
   AccountBalanceCardState get state => _accountBalanceCardState;
 
-  late double totalBalance = 0.0;
-  late double totalIncome = 0.0;
-  late double totalExpenses = 0.0;
+  double totalBalance = 0.0;
+  double totalIncome = 0.0;
+  double totalExpenses = 0.0;
 
   void _updateState(AccountBalanceCardState newState) {
     _accountBalanceCardState = newState;
@@ -23,12 +23,16 @@ class AccountBalanceCardController extends ChangeNotifier {
   Future<List<TransactionModel>> readTransactionList() async {
     final snapshot = await _firestore
         .collection("transactionDB")
-        .where("userId", isEqualTo: locator.get<AuthService>().currentUser!.uid)
+        .where("userId", isEqualTo: locator.get<AuthService>().currentUser?.uid)
         .get();
 
     final transactionList = List<TransactionModel>.from(
-            snapshot.docs.map((doc) => TransactionModel.fromJson(doc.data())))
-        .toList();
+      snapshot.docs.map(
+        (doc) => TransactionModel.fromJson(
+          doc.data(),
+        ),
+      ),
+    ).toList();
 
     return transactionList;
   }
@@ -43,7 +47,6 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
 
-  //  notifyListeners();
     return totalIncome;
   }
 
@@ -57,7 +60,6 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
 
- //   notifyListeners();
     return totalExpenses;
   }
 
@@ -76,7 +78,11 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
     totalBalance = income - expenses;
-    _updateState(AccountBalanceCardSuccessState());
+
+    _updateState(
+      AccountBalanceCardSuccessState(),
+    );
+
     return totalBalance;
   }
 }

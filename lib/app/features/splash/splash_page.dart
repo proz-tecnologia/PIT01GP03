@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
-import 'package:porkinio/app/common/themes/app_text_styles_dark.dart';
 import 'package:porkinio/app/common/widgets/custom_logo.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
@@ -26,18 +24,25 @@ class _SplashPageState extends State<SplashPage> {
     _splashController.addListener(
       () {
         if (_splashController.state is SplashSucessState) {
-          Future.delayed(const Duration(seconds: 2)).then(
-            (value) async { 
+          Future.delayed(
+            const Duration(
+              seconds: 2,
+            ),
+          ).then(
+            (value) async {
               return await Navigator.of(context)
                   .pushReplacementNamed(HomePage.route);
             },
           );
-        
         } else {
-          Future.delayed(const Duration(seconds: 2)).then(
+          Future.delayed(
+            const Duration(
+              seconds: 2,
+            ),
+          ).then(
             (value) async {
               return await Navigator.of(context)
-                  .pushReplacementNamed(SignInPage.route); 
+                  .pushReplacementNamed(SignInPage.route);
             },
           );
         }
@@ -48,7 +53,6 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.green,
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -60,8 +64,8 @@ class _SplashPageState extends State<SplashPage> {
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
               Text(
-                "Bem-vindo",
-                style: AppTextStylesDark.subtitle1,
+                "Finanças Pessoais",
+                style: Theme.of(context).textTheme.subtitle1,
               ),
             ],
           ),
