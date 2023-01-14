@@ -16,9 +16,13 @@ class SplashController extends ChangeNotifier {
   void isUserLogged() async {
     final result = await _service.readOne(key: "CURRENT_USER");
     if (result != null) {
-      _updateState(SplashSucessState());
+      _updateState(
+        SplashSucessState(),
+      );
     } else {
-      _updateState(SplashErrorState());
+      _updateState(
+        SplashErrorState(),
+      );
     }
   }
 }

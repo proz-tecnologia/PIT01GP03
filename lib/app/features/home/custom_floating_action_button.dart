@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 
@@ -27,7 +26,6 @@ class CustomFloatingActionButton extends StatelessWidget {
       icon: const Icon(Icons.receipt_long),
       label: const Text("Cadastrar Transação"),
       elevation: 10,
-      // backgroundColor: AppColors.primary,
     );
   }
 }

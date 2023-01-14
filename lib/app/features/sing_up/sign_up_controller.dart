@@ -23,7 +23,9 @@ class SignUpController extends ChangeNotifier {
       required String email,
       required String password}) async {
     const secureStorage = SecureStorage();
-    _updateState(SignUpLoadingState());
+    _updateState(
+      SignUpLoadingState(),
+    );
 
     try {
       final user = await _service.signUp(
@@ -32,16 +34,27 @@ class SignUpController extends ChangeNotifier {
         password: password,
       );
       if (user.id != null) {
-        await secureStorage.write(key: "CURRENT_USER", value: user.toJson());
-        _updateState(SignUpSucessState());
+        await secureStorage.write(
+          key: "CURRENT_USER",
+          value: user.toJson(),
+        );
+        _updateState(
+          SignUpSucessState(),
+        );
       } else {
         throw Exception();
       }
 
       log('usuario criado com sucesso');
-      _updateState(SignUpSucessState());
+      _updateState(
+        SignUpSucessState(),
+      );
     } catch (e) {
-      _updateState(SignUpErrorState(e.toString()));
+      _updateState(
+        SignUpErrorState(
+          e.toString(),
+        ),
+      );
     }
   }
 }

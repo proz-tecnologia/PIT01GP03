@@ -23,12 +23,16 @@ class AccountBalanceCardController extends ChangeNotifier {
   Future<List<TransactionModel>> readTransactionList() async {
     final snapshot = await _firestore
         .collection("transactionDB")
-        .where("userId", isEqualTo: locator.get<AuthService>().currentUser!.uid)
+        .where("userId", isEqualTo: locator.get<AuthService>().currentUser?.uid)
         .get();
 
     final transactionList = List<TransactionModel>.from(
-            snapshot.docs.map((doc) => TransactionModel.fromJson(doc.data())))
-        .toList();
+      snapshot.docs.map(
+        (doc) => TransactionModel.fromJson(
+          doc.data(),
+        ),
+      ),
+    ).toList();
 
     return transactionList;
   }
@@ -43,7 +47,6 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
 
-    // notifyListeners();
     return totalIncome;
   }
 
@@ -57,7 +60,6 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
 
-    // notifyListeners();
     return totalExpenses;
   }
 
@@ -76,8 +78,11 @@ class AccountBalanceCardController extends ChangeNotifier {
       }
     }
     totalBalance = income - expenses;
-    // notifyListeners();
-    _updateState(AccountBalanceCardSuccessState());
+
+    _updateState(
+      AccountBalanceCardSuccessState(),
+    );
+
     return totalBalance;
   }
 }

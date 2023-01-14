@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/home/background_header.dart';
 import 'package:porkinio/app/features/home/custom_floating_action_button.dart';
-import 'package:porkinio/app/features/home/transaction_list_card.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_card.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
+import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 import 'package:porkinio/locator.dart';
 
@@ -30,8 +30,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Olá, Usuário!'),
-        // backgroundColor: AppColors.primaryDark,
+        title: Text('Olá, ${locator.get<AuthService>().currentUser?.displayName}!'),
         elevation: 0,
         actions: <Widget>[
           IconButton(
@@ -41,7 +40,11 @@ class _HomePageState extends State<HomePage> {
             ),
             onPressed: () {
               _secureStorage.deleteOne(key: "CURRENT_USER").then(
-                  (_) => Navigator.popAndPushNamed(context, SplashPage.route));
+                    (_) => Navigator.popAndPushNamed(
+                      context,
+                      SplashPage.route,
+                    ),
+                  );
             },
           )
         ],
@@ -59,7 +62,7 @@ class _HomePageState extends State<HomePage> {
           TransactionListCard(
             transactionListController: transactionListController,
           ),
-          const SizedBox(height: 108),
+          const SizedBox(height: 72),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

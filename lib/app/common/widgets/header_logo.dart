@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/common/widgets/custom_logo.dart';
 
 class HeaderLogo extends StatelessWidget {
@@ -13,7 +12,6 @@ class HeaderLogo extends StatelessWidget {
         bottom: 16,
       ),
       decoration: const BoxDecoration(
-        // color: AppColors.green,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),

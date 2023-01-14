@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
@@ -27,7 +26,6 @@ class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.delete),
-      // color: AppColors.errorColor,
       onPressed: () {
         showDialog(
           context: context,
@@ -45,7 +43,8 @@ class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
                 child: const Text('Sim'),
                 onPressed: () async {
                   Navigator.of(context).pushReplacementNamed(HomePage.route);
-                  await transactionListController.deleteTransaction(widget.transactionModel);
+                  await transactionListController
+                      .deleteTransaction(widget.transactionModel);
                 },
               ),
             ],

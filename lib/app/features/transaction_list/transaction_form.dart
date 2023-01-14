@@ -57,20 +57,20 @@ class _TransactionFormState extends State<TransactionForm> {
                   height: (MediaQuery.of(context).size.height * 0.03),
                 ),
                 CustomFormField(
-                  formFieldLabelText: 'Titulo',
-                  formFieldBorder: false,
-                  formFieldValidator: CustomFormFieldValidator.validateNull,
-                  formFieldController: _titleController,
+                  labelText: 'Titulo',
+                  border: false,
+                  validator: CustomFormFieldValidator.validateNull,
+                  controller: _titleController,
                 ),
                 SizedBox(
                   height: (MediaQuery.of(context).size.height * 0.03),
                 ),
                 CustomFormField(
-                  formFieldLabelText: 'Valor',
-                  formFieldValidator: CustomFormFieldValidator.validateNull,
-                  formFieldBorder: false,
-                  formFieldController: _amountController,
-                  formFieldKeyboardType: TextInputType.number,
+                  labelText: 'Valor',
+                  validator: CustomFormFieldValidator.validateNull,
+                  border: false,
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(
                   height: (MediaQuery.of(context).size.height * 0.03),
@@ -101,7 +101,9 @@ class _TransactionFormState extends State<TransactionForm> {
                     }
                   },
                 ),
-                SizedBox(height: (MediaQuery.of(context).size.height * 0.05)),
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 0.05),
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: DropdownButton<String>(

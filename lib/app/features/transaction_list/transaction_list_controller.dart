@@ -19,38 +19,53 @@ class TransactionListController extends ChangeNotifier {
     final newTransaction = _firestore.collection('transactionDB').doc();
     transaction.id = newTransaction.id;
     transaction.userId = locator.get<AuthService>().currentUser!.uid;
-    await newTransaction.set(transaction.toJson());
-    _updateState(TransactionListSucessState());
+    await newTransaction.set(
+      transaction.toJson(),
+    );
+    _updateState(
+      TransactionListSucessState(),
+    );
   }
 
   Stream<List<TransactionModel>> readAllTransactions() {
     return _firestore
         .collection('transactionDB')
-        .where('userId', isEqualTo: locator.get<AuthService>().currentUser!.uid)
+        .where('userId', isEqualTo: locator.get<AuthService>().currentUser?.uid)
         .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => TransactionModel.fromJson(doc.data()))
-            .toList());
+        .map(
+          (snapshot) => snapshot.docs
+              .map(
+                (doc) => TransactionModel.fromJson(
+                  doc.data(),
+                ),
+              )
+              .toList(),
+        );
   }
 
   Future updateTransaction(TransactionModel transaction) async {
     transaction.userId = locator.get<AuthService>().currentUser!.uid;
-    await _firestore
-        .collection('transactionDB')
-        .doc(transaction.id)
-        .set(transaction.toMap());
+    await _firestore.collection('transactionDB').doc(transaction.id).set(
+          transaction.toMap(),
+        );
     notifyListeners();
   }
 
   Future deleteTransaction(TransactionModel transaction) async {
     try {
-      _updateState(TransactionListLoadingState());
+      _updateState(
+        TransactionListLoadingState(),
+      );
       final id = transaction.id;
       final documentId = _firestore.doc("transactionDB/$id");
       await documentId.delete();
-      _updateState(TransactionListSucessState());
+      _updateState(
+        TransactionListSucessState(),
+      );
     } catch (e) {
-      _updateState(TransactionListErrorState());
+      _updateState(
+        TransactionListErrorState(),
+      );
     }
   }
 }

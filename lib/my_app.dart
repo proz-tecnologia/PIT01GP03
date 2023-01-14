@@ -71,8 +71,13 @@ class MyApp extends StatelessWidget {
             'Fredoka One',
           ),
         ),
+        drawerTheme: const DrawerThemeData(
+          scrimColor: Color(0x66000000),
+        ),
         cardTheme: const CardTheme(
           color: Color(0xFF00695C),
+          margin: EdgeInsets.all(16),
+          elevation: 8,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(20),
@@ -91,26 +96,7 @@ class MyApp extends StatelessWidget {
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           foregroundColor: Color(0xFFFFFFFF),
         ),
-        
       ),
-      // theme: ThemeData(
-      //   visualDensity: VisualDensity.comfortable,
-      //   primaryColor: Color(0xFF00695C),
-      //   primaryColorLight: Color(0xFF48A999),
-      //   primaryColorDark: Color(0xFF004C40),
-      //   shadowColor: Color(0xFF004C40),
-      //   bottomAppBarColor: Color(0xFF004C40),
-      //   cardColor: Color(0xFFFF9100),
-      //   splashColor: Color(0xFFFF9100),
-      //   textTheme: GoogleFonts.getTextTheme(
-      //     "Roboto",
-      //     const TextTheme(
-      //       headline1: TextStyle(
-      //         fontSize: 88,
-      //       ),
-      //     ),
-      //   ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal).copyWith(secondary: Colors.orangeAccent),
-      // ),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

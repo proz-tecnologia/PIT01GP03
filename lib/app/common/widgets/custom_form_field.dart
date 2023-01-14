@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 
-// TODO REVER COMPONENTIZAÇÃO
-
 class CustomFormField extends StatefulWidget {
-  final String? formFieldText;
-  final String? formFieldLabelText;
-  final Widget? formFieldSuffixIcon;
-  final bool? formFieldObscureText;
-  final TextEditingController? formFieldController;
-  final String? Function(String?)? formFieldValidator;
-  final TextInputType? formFieldKeyboardType;
-  final String? formFieldHelperText;
-  final bool? formFieldBorder;
+  final String? text;
+  final String? labelText;
+  final Widget? suffixIcon;
+  final bool? obscureText;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final String? helperText;
+  final bool? border;
 
   const CustomFormField({
     super.key,
-    this.formFieldText,
-    this.formFieldLabelText,
-    this.formFieldSuffixIcon,
-    this.formFieldObscureText,
-    this.formFieldController,
-    this.formFieldValidator,
-    this.formFieldKeyboardType,
-    this.formFieldHelperText,
-    this.formFieldBorder,
+    this.text,
+    this.labelText,
+    this.suffixIcon,
+    this.obscureText,
+    this.controller,
+    this.validator,
+    this.keyboardType,
+    this.helperText,
+    this.border,
   });
 
   @override
@@ -42,7 +40,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
   @override
   void initState() {
     super.initState();
-    _customHelperText = widget.formFieldHelperText;
+    _customHelperText = widget.helperText;
   }
 
   @override
@@ -58,23 +56,23 @@ class _CustomFormFieldState extends State<CustomFormField> {
         } else if (value.isEmpty) {
           setState(
             () {
-              _customHelperText = widget.formFieldHelperText;
+              _customHelperText = widget.helperText;
             },
           );
         }
       },
-      controller: widget.formFieldController,
-      validator: widget.formFieldValidator,
-      keyboardType: widget.formFieldKeyboardType,
+      controller: widget.controller,
+      validator: widget.validator,
+      keyboardType: widget.keyboardType,
       maxLines: 1,
-      obscureText: widget.formFieldObscureText ?? false,
-      decoration: widget.formFieldBorder == null
+      obscureText: widget.obscureText ?? false,
+      decoration: widget.border == null
           ? InputDecoration(
-              labelText: widget.formFieldLabelText,
+              labelText: widget.labelText,
               helperText: _customHelperText,
               helperMaxLines: 3,
-              hintText: widget.formFieldText,
-              suffixIcon: widget.formFieldSuffixIcon,
+              hintText: widget.text,
+              suffixIcon: widget.suffixIcon,
               hintStyle: const TextStyle(color: AppColors.linear),
               focusedBorder: customDefaultBorder.copyWith(
                 borderSide: const BorderSide(color: AppColors.orange, width: 2),
@@ -89,11 +87,11 @@ class _CustomFormFieldState extends State<CustomFormField> {
               ),
             )
           : InputDecoration(
-              labelText: widget.formFieldLabelText,
+              labelText: widget.labelText,
               helperText: _customHelperText,
               helperMaxLines: 3,
-              hintText: widget.formFieldText,
-              suffixIcon: widget.formFieldSuffixIcon,
+              hintText: widget.text,
+              suffixIcon: widget.suffixIcon,
               hintStyle: const TextStyle(color: AppColors.linear),
             ),
     );

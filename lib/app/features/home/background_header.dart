@@ -12,7 +12,7 @@ class BackgroundHeader extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.10,
       width: MediaQuery.of(context).size.width,
       child: Container(
-        // color: AppColors.primaryDark,
+        color: AppColors.primaryDark,
       ),
     );
   }

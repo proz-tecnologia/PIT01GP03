@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
-import 'package:porkinio/app/common/themes/app_text_styles_light.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/locator.dart';
 
@@ -25,9 +23,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
       animation: transactionListController,
       builder: (context, snapshot) {
         return Card(
-          elevation: 10,
-          margin: EdgeInsets.all(16),
-          // color: AppColors.secondary,
+          color: Theme.of(context).colorScheme.secondary,
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.2,
             width: MediaQuery.of(context).size.width,
@@ -47,13 +43,23 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                 builder: (context, snapshot) {
                                   return Text(
                                     'R\$ ${accountBalanceCardController.totalBalance.toStringAsFixed(2)}',
-                                    style: AppTextStylesLight.headline3,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                        ),
                                   );
                                 },
                               )
                             : Text(
                                 'R\$ • • • •',
-                                style: AppTextStylesLight.headline3,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3
+                                    ?.copyWith(
+                                      color: Colors.white,
+                                    ),
                               ),
                       ),
                       GestureDetector(
@@ -68,7 +74,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                           visibilityOn
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          // color: AppColors.textLight,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -94,14 +100,23 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                               builder: (context, snapshot) {
                                                 return Text(
                                                   'Entradas: R\$ ${accountBalanceCardController.totalIncome.toStringAsFixed(2)}',
-                                                  style:
-                                                      AppTextStylesLight.body1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1
+                                                      ?.copyWith(
+                                                        color: Colors.white,
+                                                      ),
                                                 );
                                               },
                                             )
                                           : Text(
                                               'Entradas: R\$ • • • •',
-                                              style: AppTextStylesLight.body1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1
+                                                  ?.copyWith(
+                                                    color: Colors.white,
+                                                  ),
                                             ),
                                     ),
                                   ],
@@ -127,14 +142,23 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                               builder: (context, snapshot) {
                                                 return Text(
                                                   'Saídas: R\$ ${accountBalanceCardController.totalExpenses.toStringAsFixed(2)}',
-                                                  style:
-                                                      AppTextStylesLight.body1,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1
+                                                      ?.copyWith(
+                                                        color: Colors.white,
+                                                      ),
                                                 );
                                               },
                                             )
                                           : Text(
                                               'Saídas: R\$ • • • •',
-                                              style: AppTextStylesLight.body1,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1
+                                                  ?.copyWith(
+                                                    color: Colors.white,
+                                                  ),
                                             ),
                                     ),
                                   ],

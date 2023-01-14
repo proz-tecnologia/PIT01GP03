@@ -9,5 +9,4 @@ class AccountBalanceCardSuccessState extends AccountBalanceCardState {}
 class AccountBalanceCardErrorState extends AccountBalanceCardState {
   final String message;
   AccountBalanceCardErrorState(this.message);
- 
 }
