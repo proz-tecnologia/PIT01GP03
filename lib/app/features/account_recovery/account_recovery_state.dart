@@ -9,5 +9,4 @@ class AccountRecoverySuccessState extends AccountRecoveryState {}
 class AccountRecoveryErrorState extends AccountRecoveryState {
   final String message;
   AccountRecoveryErrorState(this.message);
- 
 }

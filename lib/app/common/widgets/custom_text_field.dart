@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-  final String textFieldName;
-  final String? Function(String?)? textFieldValidator;
-  final TextEditingController? textFieldController;
+  final String text;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   const CustomTextField({
     super.key,
-    required this.textFieldName,
-    this.textFieldValidator,
-    this.textFieldController,
+    required this.text,
+    this.validator,
+    this.controller,
   });
 
   @override
@@ -20,8 +20,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: widget.textFieldController,
-      decoration: InputDecoration(labelText: widget.textFieldName),
+      controller: widget.controller,
+      decoration: InputDecoration(labelText: widget.text),
     );
   }
 }

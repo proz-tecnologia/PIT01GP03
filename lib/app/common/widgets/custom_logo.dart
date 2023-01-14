@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_images.dart';
-import 'package:porkinio/app/common/themes/app_text_styles_dark.dart';
 
 class CustomLogo extends StatelessWidget {
   const CustomLogo({super.key});
@@ -10,10 +9,12 @@ class CustomLogo extends StatelessWidget {
     return Column(
       children: [
         Image.asset(AppImages.porkin,
-            height: MediaQuery.of(context).size.height * 0.40),
+            height: MediaQuery.of(context).size.height * 0.25),
         Text(
           "Porkin.io",
-          style: AppTextStylesDark.headline3,
+          style: Theme.of(context).textTheme.headline3?.copyWith(
+                color: Theme.of(context).primaryColorDark,
+              ),
         ),
       ],
     );

@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 
 class CustomFlatButton extends StatefulWidget {
-  final String customButtonText;
-  final Function() customButtonOnPressed;
-  final Color customColor;
-  final Color? customColorImage;
-  final Color customColorText;
-  final double customWidth;
-  final double customHeight;
-  final double customFontSize;
-  final String? customImage;
+  final String text;
+  final Function() onPressed;
+  final Color color;
+  final Color? imageColor;
+  final Color textColor;
+  final double width;
+  final double height;
+  final double fontSize;
+  final String? image;
 
   const CustomFlatButton({
     Key? key,
-    required this.customButtonText,
-    required this.customButtonOnPressed,
-    required this.customColor,
-    required this.customWidth,
-    required this.customHeight,
-    required this.customFontSize,
-    required this.customColorText,
-    this.customImage,
-    this.customColorImage,
+    required this.text,
+    required this.onPressed,
+    required this.color,
+    required this.width,
+    required this.height,
+    required this.fontSize,
+    required this.textColor,
+    this.image,
+    this.imageColor,
   }) : super(key: key);
 
   @override
@@ -33,35 +33,34 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: widget.customColor,
+      color: widget.color,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: widget.customButtonOnPressed,
+        onTap: widget.onPressed,
         child: Container(
-          width: MediaQuery.of(context).size.width * widget.customWidth,
-          height: MediaQuery.of(context).size.height * widget.customHeight,
+          width: MediaQuery.of(context).size.width * widget.width,
+          height: MediaQuery.of(context).size.height * widget.height,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
           ),
-          child: widget.customImage != null
+          child: widget.image != null
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      widget.customImage!,
+                      widget.image!,
                       height: 24,
-                      color: widget.customColorImage,
+                      color: widget.imageColor,
                       alignment: Alignment.center,
                     ),
                     const Padding(
                       padding: EdgeInsets.only(left: 20, right: 20),
                     ),
                     Text(
-                      widget.customButtonText,
+                      widget.text,
                       style: TextStyle(
-                          fontSize: widget.customFontSize,
-                          color: AppColors.linear),
+                          fontSize: widget.fontSize, color: AppColors.linear),
                     ),
                   ],
                 )
@@ -69,10 +68,9 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.customButtonText,
+                      widget.text,
                       style: TextStyle(
-                          fontSize: widget.customFontSize,
-                          color: widget.customColorText),
+                          fontSize: widget.fontSize, color: widget.textColor),
                     ),
                   ],
                 ),

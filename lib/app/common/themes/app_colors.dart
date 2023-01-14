@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class AppColors {
   static const linear = Color(0xFFE4E4E4);
   static const white = Color(0xFFFEFEFE);

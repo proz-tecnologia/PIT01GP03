@@ -17,7 +17,9 @@ class SingInController extends ChangeNotifier {
   Future<void> doLogin(
       {required String email, required String password}) async {
     const secureStorage = SecureStorage();
-    _updateState(SignInLoadingState());
+    _updateState(
+      SignInLoadingState(),
+    );
 
     try {
       final user = await _authservice.signIn(
@@ -25,13 +27,22 @@ class SingInController extends ChangeNotifier {
         password: password,
       );
       if (user.id != null) {
-        secureStorage.write(key: 'CURRENT_USER', value: user.toJson());
-        _updateState(SignInSuccessState());
+        secureStorage.write(
+          key: 'CURRENT_USER',
+          value: user.toJson(),
+        );
+        _updateState(
+          SignInSuccessState(),
+        );
       } else {
         throw Exception("Usuário não cadastrado");
       }
     } catch (e) {
-      _updateState(SignInErrorState(e.toString()));
+      _updateState(
+        SignInErrorState(
+          e.toString(),
+        ),
+      );
     }
   }
 }

@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 
 class PasswordFormField extends StatefulWidget {
-  final String passwordFormFieldText;
-  final TextEditingController? passwordFormFieldController;
-  final String? Function(String?)? passwordFormFieldValidator;
-  final TextInputType? passwordFormFieldKeyboardType;
-  final String? passwordFormFieldHelperText;
+  final String? text;
+  final String? labelText;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final String? helperText;
 
   const PasswordFormField({
     Key? key,
-    required this.passwordFormFieldText,
-    this.passwordFormFieldController,
-    this.passwordFormFieldValidator,
-    this.passwordFormFieldKeyboardType,
-    this.passwordFormFieldHelperText,
+    this.text,
+    this.labelText,
+    this.controller,
+    this.validator,
+    this.keyboardType,
+    this.helperText,
   }) : super(key: key);
 
   @override
@@ -27,13 +29,14 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   @override
   Widget build(BuildContext context) {
     return CustomFormField(
-      formFieldText: widget.passwordFormFieldText,
-      formFieldObscureText: _isHidden,
-      formFieldController: widget.passwordFormFieldController,
-      formFieldKeyboardType: widget.passwordFormFieldKeyboardType,
-      formFieldValidator: widget.passwordFormFieldValidator,
-      formFieldHelperText: widget.passwordFormFieldHelperText,
-      formFieldSuffixIcon: InkWell(
+      text: widget.text,
+      labelText: widget.labelText,
+      obscureText: _isHidden,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      validator: widget.validator,
+      helperText: widget.helperText,
+      suffixIcon: InkWell(
         borderRadius: BorderRadius.circular(20.0),
         onTap: () {
           setState(

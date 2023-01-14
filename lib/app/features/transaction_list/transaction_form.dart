@@ -53,22 +53,28 @@ class _TransactionFormState extends State<TransactionForm> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
-                CustomFormField(
-                  formFieldLabelText: 'Titulo',
-                  formFieldBorder: false,
-                  formFieldValidator: CustomFormFieldValidator.validateNull,
-                  formFieldController: _titleController,
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 0.03),
                 ),
-                SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
                 CustomFormField(
-                  formFieldLabelText: 'Valor',
-                  formFieldValidator: CustomFormFieldValidator.validateNull,
-                  formFieldBorder: false,
-                  formFieldController: _amountController,
-                  formFieldKeyboardType: TextInputType.number,
+                  labelText: 'Titulo',
+                  border: false,
+                  validator: CustomFormFieldValidator.validateNull,
+                  controller: _titleController,
                 ),
-                SizedBox(height: (MediaQuery.of(context).size.height * 0.03)),
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 0.03),
+                ),
+                CustomFormField(
+                  labelText: 'Valor',
+                  validator: CustomFormFieldValidator.validateNull,
+                  border: false,
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 0.03),
+                ),
                 TextFormField(
                   controller: _dateController,
                   validator: CustomFormFieldValidator.validateNull,
@@ -79,47 +85,55 @@ class _TransactionFormState extends State<TransactionForm> {
                   readOnly: true,
                   onTap: () async {
                     DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2100));
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2100),
+                    );
                     if (pickedDate != null) {
                       String formattedDate =
                           DateFormat('yyyy-MM-dd').format(pickedDate);
-                      setState(() {
-                        _dateController.text = formattedDate;
-                      });
+                      setState(
+                        () {
+                          _dateController.text = formattedDate;
+                        },
+                      );
                     }
                   },
                 ),
-                SizedBox(height: (MediaQuery.of(context).size.height * 0.05)),
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 0.05),
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: DropdownButton<String>(
                     value: dropdownValue,
                     icon: const Icon(Icons.arrow_downward),
-                    //elevation: 16,
                     style: const TextStyle(color: Colors.black54),
                     underline: Container(
                       height: 2,
                       color: Colors.black54,
                     ),
                     onChanged: (String? value) {
-                      setState(() {
-                        dropdownValue = value!;
-                      });
-                    },
-                    items: list.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: [Text(value)],
-                          ),
-                        ),
+                      setState(
+                        () {
+                          dropdownValue = value!;
+                        },
                       );
-                    }).toList(),
+                    },
+                    items: list.map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Row(
+                              children: [Text(value)],
+                            ),
+                          ),
+                        );
+                      },
+                    ).toList(),
                   ),
                 ),
               ],
@@ -138,7 +152,6 @@ class _TransactionFormState extends State<TransactionForm> {
               date: DateTime.parse(_dateController.text),
               category: dropdownValue == 'Entrada' ? true : false,
             );
-
             if (widget.transactionModel != null) {
               widget.transactionListController
                   .updateTransaction(newTransactionModel!);
@@ -146,7 +159,6 @@ class _TransactionFormState extends State<TransactionForm> {
               widget.transactionListController
                   .createTransaction(newTransactionModel!);
             }
-
             Navigator.pop(context);
           }
         },
