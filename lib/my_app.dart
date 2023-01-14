@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:porkinio/app/common/themes/custom_theme_data.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Porkin.io',
+      theme: customThemeData(),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -35,3 +37,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+  

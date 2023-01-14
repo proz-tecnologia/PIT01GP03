@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 
 Future<void> customShowModalBottomSheet(
     BuildContext context, String customErrorMessage, String route) {
   return showModalBottomSheet<void>(
     context: context,
     shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(38.0), topRight: Radius.circular(38.0))),
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(38.0),
+        topRight: Radius.circular(38.0),
+      ),
+    ),
     builder: (BuildContext context) {
       return Container(
         decoration: const BoxDecoration(
-          color: AppColors.green,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(38.0), topRight: Radius.circular(38.0)),
+            topLeft: Radius.circular(38.0),
+            topRight: Radius.circular(38.0),
+          ),
         ),
         height: 200,
         child: Center(
@@ -25,7 +28,8 @@ Future<void> customShowModalBottomSheet(
                 textAlign: TextAlign.center,
                 customErrorMessage,
                 style: const TextStyle(
-                    fontSize: 16, color: AppColors.backgroundDark),
+                  fontSize: 16,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(

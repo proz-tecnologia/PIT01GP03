@@ -1,106 +1,88 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:porkinio/app/features/account_balance_card/account_balance_card_state.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
 class AccountBalanceCardController extends ChangeNotifier {
-  // TODO: Restaurar lógica de atribuição de valores no AccountBalanceCard
-
-  late Stream<List<TransactionModel>> totalBalance;
-
-  //final List totalIncome = 0;
-  //final double totalExpense = 0;
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  AccountBalanceCardState _accountBalanceCardState =
+      AccountBalanceCardInitialState();
+  AccountBalanceCardState get state => _accountBalanceCardState;
 
-  Stream<List<TransactionModel>> readAllTransactions(String id) => _firestore
-      .collection('transactionTest')
-      .where('id', isEqualTo: id)
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .map((doc) => TransactionModel.fromJson(doc.data()))
-          .toList());
+  double totalBalance = 0.0;
+  double totalIncome = 0.0;
+  double totalExpenses = 0.0;
 
-  // Future accountBalance() async {
-/*
-  Future accountBalance() async {
-    totalBalance = _firestore
-        .collection('transactionsTest')
-        .where('id', isEqualTo: locator.get<AuthService>().currentUser!.uid)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => TransactionModel.fromJson(doc.data()))
-            .toList());
+  void _updateState(AccountBalanceCardState newState) {
+    _accountBalanceCardState = newState;
     notifyListeners();
   }
 
-  double totalIncome() {
-    double totalSum = 0;
-    double totalSubtraction = 0;
-    double totalBalance = 0;
-    for (TransactionModel value in totalBalance. ) {
-      if (value.category == true) {
-        totalSum += value.ammount;
-      } else if (value.category == false) {
-        totalSubtraction += value.ammount;
+  Future<List<TransactionModel>> readTransactionList() async {
+    final snapshot = await _firestore
+        .collection("transactionDB")
+        .where("userId", isEqualTo: locator.get<AuthService>().currentUser?.uid)
+        .get();
+
+    final transactionList = List<TransactionModel>.from(
+      snapshot.docs.map(
+        (doc) => TransactionModel.fromJson(
+          doc.data(),
+        ),
+      ),
+    ).toList();
+
+    return transactionList;
+  }
+
+  Future<double> getIncomeBalance() async {
+    totalIncome = 0.0;
+    final transactionList = await readTransactionList();
+
+    for (var transaction in transactionList) {
+      if (transaction.category == true) {
+        totalIncome += transaction.amount;
       }
     }
-    totalBalance = totalSum - totalSubtraction;
+
+    return totalIncome;
+  }
+
+  Future<double> getExpensesBalance() async {
+    totalExpenses = 0.0;
+    final transactionList = await readTransactionList();
+
+    for (var transaction in transactionList) {
+      if (transaction.category == false) {
+        totalExpenses += transaction.amount;
+      }
+    }
+
+    return totalExpenses;
+  }
+
+  Future<double> getTotalBalance() async {
+    totalBalance = 0.0;
+    double income = 0.0;
+    double expenses = 0.0;
+    final transactionList = await readTransactionList();
+
+    for (var transaction in transactionList) {
+      if (transaction.category == true) {
+        income += transaction.amount;
+      }
+      if (transaction.category == false) {
+        expenses += transaction.amount;
+      }
+    }
+    totalBalance = income - expenses;
+
+    _updateState(
+      AccountBalanceCardSuccessState(),
+    );
+
     return totalBalance;
   }
-*/
-
-
-//
-//  final expenseBalance = _firestore
-//      .collection('transactionsTest')
-//      .where('id', isEqualTo: locator.get<AuthService>().currentUser!.uid)
-//      .where("category", isEqualTo: true)
-//      .snapshots()
-//      .map((snapshot) => snapshot.docs
-//          .map((doc) => TransactionModel.fromJson(doc.data()))
-//          .toList());
-  // }
-
-  bool visibilityOn = true;
 }
-
-/*
-  double totalBalance() {
-    double totalSum = 0;
-    double totalSubtraction = 0;
-    double totalBalance = 0;
-    for (TransactionModel value in ) {
-      if (value.category == true) {
-        totalSum += value.ammount;
-      } else if (value.category == false) {
-        totalSubtraction += value.ammount;
-      }
-    }
-    totalBalance = totalSum - totalSubtraction;
-    return totalBalance;
-  }
-
-  double sumBalance() {
-    double total = 0;
-    for (TransactionModel value in ) {
-      if (value.category == true) {
-        total += value.ammount;
-      }
-    }
-    return total;
-  }
-
-  double subtractBalance() {
-    double total = 0;
-    for (TransactionModel value in ) {
-      if (value.category == false) {
-        total -= value.ammount;
-      }
-    }
-    return total;
-  }
-*/
- // bool visibilityOn = true;
-//}

@@ -7,7 +7,6 @@ import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/locator.dart';
@@ -51,8 +50,6 @@ class _SignUpPageState extends State<SignUpPage> {
         if (_controller.state is SignUpErrorState) {
           final error = (_controller.state as SignUpErrorState).message;
           customAuthDialog(context, error, 'Login', SignUpPage.route);
-          // Navigator.of(context);
-          // customShowModalBottomSheet(context, error.message, SignUpPage.routeSignUpPage);
         }
       },
     );
@@ -67,102 +64,86 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const HeaderLogo(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            ),
-            Card(
-              color: AppColors.lightgreen,
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Form(
-                key: _formKey,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const Center(
-                        child: Text(
-                          'Criar uma nova conta',
-                          style: TextStyle(
-                            fontSize: 28,
-                            color: AppColors.white,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Card(
+                color: Colors.white,
+                child: Form(
+                  key: _formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: <Widget>[
+                        Center(
+                          child: Text(
+                            'Criar uma nova conta',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                ?.copyWith(
+                                    color: Theme.of(context).primaryColorDark),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      CustomFormField(
-                        formFieldValidator:
-                            CustomFormFieldValidator.validateName,
-                        formFieldText: 'Nome completo',
-                        formFieldController: _nameController,
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      CustomFormField(
-                        formFieldValidator:
-                            CustomFormFieldValidator.validateEmail,
-                        formFieldText: 'E-mail',
-                        formFieldController: _emailController,
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      PasswordFormField(
-                        passwordFormFieldText: 'Senha',
-                        passwordFormFieldValidator:
-                            CustomFormFieldValidator.validatePassword,
-                        passwordFormFieldController: _passwordController,
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      PasswordFormField(
-                        passwordFormFieldText: 'Confirme sua senha',
-                        passwordFormFieldValidator: (value) =>
-                            CustomFormFieldValidator.confirmValidatePassword(
-                                _passwordController.text, value),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      const Center(
-                        child: Text(
-                          'Ao criar uma conta você confirma que concorda com \nos nossos Termos de Serviço e Política de Privacidade.',
-                          style:
-                              TextStyle(fontSize: 13, color: AppColors.linear),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
                         ),
-                      ),
-                    ],
+                        CustomFormField(
+                          validator: CustomFormFieldValidator.validateName,
+                          labelText: 'Nome completo',
+                          controller: _nameController,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        CustomFormField(
+                          validator: CustomFormFieldValidator.validateEmail,
+                          labelText: 'E-mail',
+                          controller: _emailController,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        PasswordFormField(
+                          labelText: 'Senha',
+                          validator: CustomFormFieldValidator.validatePassword,
+                          controller: _passwordController,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        PasswordFormField(
+                          labelText: 'Confirme sua senha',
+                          validator: (value) =>
+                              CustomFormFieldValidator.confirmValidatePassword(
+                                  _passwordController.text, value),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        Center(
+                          child: Text(
+                            'Ao criar uma conta você confirma que concorda com \nos nossos Termos de Serviço e Política de Privacidade.',
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: CustomFlatButton(
-                customButtonText: 'ENTRAR',
-                customColor: AppColors.primaryDark,
-                customWidth: 0.8,
-                customHeight: 0.06,
-                customFontSize: 25,
-                customColorText: AppColors.white,
-                customButtonOnPressed: () {
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ),
+              CustomFlatButton(
+                text: 'ENTRAR',
+                color: AppColors.primaryDark,
+                width: 0.9,
+                height: 0.06,
+                fontSize: 20,
+                textColor: AppColors.white,
+                onPressed: () {
                   final valid = _formKey.currentState != null &&
                       _formKey.currentState!.validate();
 
@@ -177,20 +158,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   }
                 },
               ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed(SignInPage.route);
-              },
-              child: const Center(
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(SignInPage.route);
+                },
+                child: const Center(
                   child: Text(
-                'Voltar para tela de login',
-                style: TextStyle(fontSize: 16),
-              )),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-          ],
+                    'Voltar para tela de login',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
