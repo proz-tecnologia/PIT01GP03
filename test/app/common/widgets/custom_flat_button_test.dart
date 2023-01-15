@@ -5,7 +5,7 @@ import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 
 void main() {
 
-  testWidgets('test in CustomFlatButton ...', (tester) async {
+  testWidgets('test in CustomFlatButton', (tester) async {
 
     const tname = 'ESQUECI MINHA SENHA';
     const tcolor = AppColors.textMediumGray;
