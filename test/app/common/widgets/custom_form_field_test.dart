@@ -3,22 +3,26 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 
 void main() {
-  group('test in CustomFormField', (() {
+  
+  testWidgets('test in CustomFormField', (tester) async {
+    const tname = 'name';
+    const thelperName = 'qual seu name';
+    const tlabelName = 'nome completo';
 
+    await tester.pumpWidget(const MaterialApp(
+        home: Material(
+            child: CustomFormField(
+      text: tname,
+      helperText: thelperName,
+      labelText: tlabelName,
+    ))));
 
-    testWidgets('CustomFormField test text ', (tester) async {
-      const tname = 'name';
-      await tester.pumpWidget(const MaterialApp(
-          home: Material(
-              child: CustomFormField(
-        text: tname,
-      ))));
+    final textFinder = find.text(tname);
+    final helperTextFinder = find.text(thelperName);
+    final labelTextFinder = find.text(tlabelName);
 
-      final textFinder = find.text(tname);
-      expect(textFinder, findsOneWidget);
-    });
-
-
-
-  }));
+    expect(textFinder, findsOneWidget);
+    expect(helperTextFinder, findsOneWidget);
+    expect(labelTextFinder, findsOneWidget);
+  });
 }
