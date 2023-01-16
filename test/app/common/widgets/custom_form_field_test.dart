@@ -5,21 +5,21 @@ import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 void main() {
   
   testWidgets('test in CustomFormField', (tester) async {
-    const tname = 'name';
-    const thelperName = 'qual seu name';
-    const tlabelName = 'nome completo';
+    const text = 'name';
+    const text1 = 'qual seu name';
+    const text2 = 'nome completo';
 
     await tester.pumpWidget(const MaterialApp(
         home: Material(
             child: CustomFormField(
-      text: tname,
-      helperText: thelperName,
-      labelText: tlabelName,
+      text: text,
+      helperText: text1,
+      labelText: text2,
     ))));
 
-    final textFinder = find.text(tname);
-    final helperTextFinder = find.text(thelperName);
-    final labelTextFinder = find.text(tlabelName);
+    final textFinder = find.text(text);
+    final helperTextFinder = find.text(text1);
+    final labelTextFinder = find.text(text2);
 
     expect(textFinder, findsOneWidget);
     expect(helperTextFinder, findsOneWidget);

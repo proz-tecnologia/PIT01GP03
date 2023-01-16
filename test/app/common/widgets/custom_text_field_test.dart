@@ -4,14 +4,14 @@ import 'package:porkinio/app/common/widgets/custom_text_field.dart';
 
 void main() {
   testWidgets('test in CustomTextField', (tester) async {
-          const tname = 'name';
+          const text = 'name';
       await tester.pumpWidget(const MaterialApp(
           home: Material(
               child: CustomTextField(
-        text: tname,
+        text: text,
       ))));
 
-      final textFinder = find.text(tname);
+      final textFinder = find.text(text);
       expect(textFinder, findsOneWidget);
   });
 }

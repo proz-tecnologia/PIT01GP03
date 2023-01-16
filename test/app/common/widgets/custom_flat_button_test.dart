@@ -7,25 +7,25 @@ void main() {
 
   testWidgets('test in CustomFlatButton', (tester) async {
 
-    const tname = 'ESQUECI MINHA SENHA';
-    const tcolor = AppColors.textMediumGray;
-    const twidth = 0.9;
-    const theight = 0.06;
-    const tfontSize = 20.0;
-    const ttextColor= AppColors.white;
+    const text = 'ESQUECI MINHA SENHA';
+    const color = AppColors.textMediumGray;
+    const width = 0.9;
+    const height = 0.06;
+    const fontSize = 20.0;
+    const textColor= AppColors.white;
 
     await tester.pumpWidget(const MaterialApp(
         home: Material(
             child: CustomFlatButton(
-      text: tname,
-      color: tcolor,
-      width: twidth,
-      height: theight,
-      fontSize: tfontSize,
-      textColor: ttextColor,
+      text: text,
+      color: color,
+      width: width,
+      height: height,
+      fontSize: fontSize,
+      textColor: textColor,
     ))));
 
-    final textFinder = find.text(tname);
+    final textFinder = find.text(text);
 
     expect(textFinder, findsOneWidget);
   });
