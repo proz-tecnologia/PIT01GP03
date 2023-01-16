@@ -5,10 +5,9 @@ import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
 class SignUpController extends ChangeNotifier {
-  final AuthService _service; 
-  final  SecureStorage _secureStorage;
+  final AuthService _service;
 
-  SignUpController(this._service, this._secureStorage);
+  SignUpController(this._service);
 
   late SignUpState _state = SignUpInitialState();
 
@@ -23,7 +22,7 @@ class SignUpController extends ChangeNotifier {
       {required String name,
       required String email,
       required String password}) async {
-   
+    const secureStorage = SecureStorage();
     _updateState(
       SignUpLoadingState(),
     );
@@ -35,7 +34,7 @@ class SignUpController extends ChangeNotifier {
         password: password,
       );
       if (user.id != null) {
-        await _secureStorage.write(
+        await secureStorage.write(
           key: "CURRENT_USER",
           value: user.toJson(),
         );
