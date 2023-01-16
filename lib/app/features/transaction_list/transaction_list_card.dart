@@ -15,6 +15,7 @@ class TransactionListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Card(
+        color: Theme.of(context).colorScheme.primary,
         child: StreamBuilder<List<TransactionModel>>(
           stream: transactionListController.readAllTransactions(),
           builder: (context, snapshot) {
@@ -24,15 +25,11 @@ class TransactionListCard extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: snapshot.data!.map(buildTransactionList).toList().isEmpty
-                    ? SizedBox(
-                         width: MediaQuery.of(context).size.width,
-                        child: const Center(
-                          child: Text(
-                            'Sem transações cadastradas',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
+                    ? const Center(
+                        child: Text(
+                          'Sem transações cadastradas',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                       )
                     : ListView(

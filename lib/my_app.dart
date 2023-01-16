@@ -75,7 +75,8 @@ class MyApp extends StatelessWidget {
           scrimColor: Color(0x66000000),
         ),
         cardTheme: const CardTheme(
-          color: Color(0xFF00695C),
+          clipBehavior: Clip.antiAlias,
+          color: Color(0xFFFF9100),
           margin: EdgeInsets.all(16),
           elevation: 8,
           shape: RoundedRectangleBorder(

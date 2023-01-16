@@ -23,7 +23,6 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
       animation: transactionListController,
       builder: (context, snapshot) {
         return Card(
-          color: Theme.of(context).colorScheme.secondary,
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.2,
             width: MediaQuery.of(context).size.width,
