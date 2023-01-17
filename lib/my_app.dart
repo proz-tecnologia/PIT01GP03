@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
@@ -18,17 +19,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         brightness: Brightness.light,
         colorScheme: const ColorScheme(
-          onPrimary: Color(0xFFFFFFFF),
-          secondary: Color(0xFFFF9100),
-          background: Color(0xFF00695C),
+          primary: AppColors.primaryDark,
+          onPrimary: Colors.white,
+          secondary: AppColors.secondary,
+          onSecondary: Colors.white,
+          background: Colors.white,
+          onBackground: AppColors.primaryDark,
+          surface: Colors.white,
+          onSurface: AppColors.primaryDark,
+          error: AppColors.error,
+          onError: Colors.white,
           brightness: Brightness.light,
-          error: Color(0xFF00695C),
-          onBackground: Color(0xFF00695C),
-          onError: Color(0xFF00695C),
-          onSecondary: Color(0xFF00695C),
-          onSurface: Color(0xFF00695C),
-          primary: Color(0xFF00695C),
-          surface: Color(0xFF00695C),
         ),
         textTheme: TextTheme(
           button: GoogleFonts.getFont(
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           ),
           bodyText1: GoogleFonts.getFont(
             'Roboto',
+            fontWeight: FontWeight.bold,
           ),
           bodyText2: GoogleFonts.getFont(
             'Roboto',
@@ -77,7 +79,10 @@ class MyApp extends StatelessWidget {
         cardTheme: const CardTheme(
           clipBehavior: Clip.antiAlias,
           color: Color(0xFFFF9100),
-          margin: EdgeInsets.all(16),
+          margin: EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
           elevation: 8,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
@@ -95,7 +100,13 @@ class MyApp extends StatelessWidget {
           color: Color(0xFF004d40),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFF00695C),
           foregroundColor: Color(0xFFFFFFFF),
+        ),
+        listTileTheme: const ListTileThemeData(
+          contentPadding: EdgeInsets.symmetric(horizontal: 4, vertical: 0),
+          visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+          dense: true,
         ),
       ),
       localizationsDelegates: const [

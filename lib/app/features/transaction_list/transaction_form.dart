@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
+import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionForm extends StatefulWidget {
-  final TransactionListController transactionListController;
+  final TransactionListController
+      transactionListController; // TODO: REVER SE USA O LOCATOR
   final TransactionModel? transactionModel;
 
   const TransactionForm({
@@ -46,36 +49,42 @@ class _TransactionFormState extends State<TransactionForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+        ),
+        title: const Text('Formulário de Transação'),
+        // TODO: MUDAR CASO SEJA PARA CADASTRAR UMA NOVA TRANSAÇÃO OU EDITAR UMA EXISTENTE
+        elevation: 0,
+      ),
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  height: (MediaQuery.of(context).size.height * 0.03),
-                ),
                 CustomFormField(
                   labelText: 'Titulo',
-                  border: false,
                   validator: CustomFormFieldValidator.validateNull,
                   controller: _titleController,
-                ),
-                SizedBox(
-                  height: (MediaQuery.of(context).size.height * 0.03),
                 ),
                 CustomFormField(
                   labelText: 'Valor',
                   validator: CustomFormFieldValidator.validateNull,
-                  border: false,
                   controller: _amountController,
                   keyboardType: TextInputType.number,
                 ),
-                SizedBox(
-                  height: (MediaQuery.of(context).size.height * 0.03),
-                ),
                 TextFormField(
+                  // TODO: AJUSTAR LAYOUT OU COMPONENTIZAR
                   controller: _dateController,
                   validator: CustomFormFieldValidator.validateNull,
                   decoration: const InputDecoration(
@@ -88,7 +97,7 @@ class _TransactionFormState extends State<TransactionForm> {
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate: DateTime(2000),
-                      lastDate: DateTime(2100),
+                      lastDate: DateTime.now(),
                     );
                     if (pickedDate != null) {
                       String formattedDate =
@@ -102,9 +111,8 @@ class _TransactionFormState extends State<TransactionForm> {
                   },
                 ),
                 SizedBox(
-                  height: (MediaQuery.of(context).size.height * 0.05),
-                ),
-                SizedBox(
+                  // TODO: AJUSTAR LAYOUT OU COMPONENTIZAR
+
                   width: MediaQuery.of(context).size.width,
                   child: DropdownButton<String>(
                     value: dropdownValue,
@@ -136,33 +144,54 @@ class _TransactionFormState extends State<TransactionForm> {
                     ).toList(),
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomFlatButton(
+                      text: 'VOLTAR',
+                      color: Colors.grey,
+                      width: 0.3,
+                      height: 0.06,
+                      fontSize: 20,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    CustomFlatButton(
+                      text: 'CONFIRMAR',
+                      color: AppColors.primaryDark,
+                      width: 0.6,
+                      height: 0.06,
+                      fontSize: 20,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        if (_formKey.currentState != null &&
+                            _formKey.currentState!.validate()) {
+                          newTransactionModel = TransactionModel(
+                            id: widget.transactionModel?.id,
+                            title: _titleController.text,
+                            amount: double.parse(_amountController.text),
+                            date: DateTime.parse(_dateController.text),
+                            category: dropdownValue == 'Entrada' ? true : false,
+                          );
+                          if (widget.transactionModel != null) {
+                            widget.transactionListController
+                                .updateTransaction(newTransactionModel!);
+                          } else {
+                            widget.transactionListController
+                                .createTransaction(newTransactionModel!);
+                          }
+                          Navigator.pop(context);
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          if (_formKey.currentState != null &&
-              _formKey.currentState!.validate()) {
-            newTransactionModel = TransactionModel(
-              id: widget.transactionModel?.id,
-              title: _titleController.text,
-              amount: double.parse(_amountController.text),
-              date: DateTime.parse(_dateController.text),
-              category: dropdownValue == 'Entrada' ? true : false,
-            );
-            if (widget.transactionModel != null) {
-              widget.transactionListController
-                  .updateTransaction(newTransactionModel!);
-            } else {
-              widget.transactionListController
-                  .createTransaction(newTransactionModel!);
-            }
-            Navigator.pop(context);
-          }
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }

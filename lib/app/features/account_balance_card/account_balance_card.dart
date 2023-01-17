@@ -24,148 +24,156 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
       builder: (context, snapshot) {
         return Card(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height * 0.21,
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: visibilityOn
-                            ? FutureBuilder(
-                                future: accountBalanceCardController
-                                    .getTotalBalance(),
-                                builder: (context, snapshot) {
-                                  return Text(
-                                    'R\$ ${accountBalanceCardController.totalBalance.toStringAsFixed(2)}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline3
-                                        ?.copyWith(
-                                          color: Colors.white,
-                                        ),
-                                  );
-                                },
-                              )
-                            : Text(
-                                'R\$ • • • •',
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Carteira Virtual:',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline3
-                                    ?.copyWith(
-                                      color: Colors.white,
-                                    ),
+                                    .overline
+                                    ?.copyWith(color: Colors.white),
                               ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(
-                            () {
-                              visibilityOn = !visibilityOn;
-                            },
-                          );
-                        },
-                        child: Icon(
-                          visibilityOn
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.white,
-                        ),
+                              SizedBox(
+                                width: 208,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(
+                                    () {
+                                      visibilityOn = !visibilityOn;
+                                    },
+                                  );
+                                },
+                                child: Icon(
+                                  visibilityOn
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  visibilityOn
+                      ? FutureBuilder(
+                          future:
+                              accountBalanceCardController.getTotalBalance(),
+                          builder: (context, snapshot) {
+                            return Text(
+                              'R\$ ${accountBalanceCardController.totalBalance.toStringAsFixed(2)}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                  ),
+                            );
+                          },
+                        )
+                      : Text(
+                          'R\$ • • • •',
+                          style:
+                              Theme.of(context).textTheme.headline3?.copyWith(
+                                    color: Colors.white,
+                                  ),
+                        ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Flexible(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      child: visibilityOn
-                                          ? FutureBuilder(
-                                              future:
-                                                  accountBalanceCardController
-                                                      .getIncomeBalance(),
-                                              builder: (context, snapshot) {
-                                                return Text(
-                                                  'Entradas: R\$ ${accountBalanceCardController.totalIncome.toStringAsFixed(2)}',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1
-                                                      ?.copyWith(
-                                                        color: Colors.white,
-                                                      ),
-                                                );
-                                              },
-                                            )
-                                          : Text(
-                                              'Entradas: R\$ • • • •',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1
-                                                  ?.copyWith(
-                                                    color: Colors.white,
-                                                  ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Recebimentos:',
+                            style: Theme.of(context)
+                                .textTheme
+                                .overline
+                                ?.copyWith(color: Colors.white),
+                          ),
+                          Container(
+                            child: visibilityOn
+                                ? FutureBuilder(
+                                    future: accountBalanceCardController
+                                        .getIncomeBalance(),
+                                    builder: (context, snapshot) {
+                                      return Text(
+                                        'R\$ ${accountBalanceCardController.totalIncome.toStringAsFixed(2)}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1
+                                            ?.copyWith(
+                                              color: Colors.white,
                                             ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                const SizedBox(width: 8),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.015),
-                                    Container(
-                                      child: visibilityOn
-                                          ? FutureBuilder(
-                                              future:
-                                                  accountBalanceCardController
-                                                      .getExpensesBalance(),
-                                              builder: (context, snapshot) {
-                                                return Text(
-                                                  'Saídas: R\$ ${accountBalanceCardController.totalExpenses.toStringAsFixed(2)}',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1
-                                                      ?.copyWith(
-                                                        color: Colors.white,
-                                                      ),
-                                                );
-                                              },
-                                            )
-                                          : Text(
-                                              'Saídas: R\$ • • • •',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1
-                                                  ?.copyWith(
-                                                    color: Colors.white,
-                                                  ),
+                                      );
+                                    },
+                                  )
+                                : Text(
+                                    'R\$ • • • •',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                        ),
+                                  ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Pagamentos:',
+                            style: Theme.of(context)
+                                .textTheme
+                                .overline
+                                ?.copyWith(color: Colors.white),
+                          ),
+                          Container(
+                            child: visibilityOn
+                                ? FutureBuilder(
+                                    future: accountBalanceCardController
+                                        .getExpensesBalance(),
+                                    builder: (context, snapshot) {
+                                      return Text(
+                                        'R\$ ${accountBalanceCardController.totalExpenses.toStringAsFixed(2)}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1
+                                            ?.copyWith(
+                                              color: Colors.white,
                                             ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                                      );
+                                    },
+                                  )
+                                : Text(
+                                    'R\$ • • • •',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                        ),
+                                  ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

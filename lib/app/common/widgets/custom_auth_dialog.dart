@@ -9,7 +9,7 @@ Future<void> customAuthDialog(BuildContext context, String customErrorMessage,
       title: Text(
         textAlign: TextAlign.center,
         customErrorMessage,
-        style: const TextStyle(fontSize: 16, color: AppColors.backgroundDark),
+        style: const TextStyle(fontSize: 16,),
       ),
       actions: <Widget>[
         Center(

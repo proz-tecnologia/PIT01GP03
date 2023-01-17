@@ -10,7 +10,6 @@ Widget buildTransactionList(TransactionModel transactionModel) => Padding(
         borderRadius: BorderRadius.circular(16),
         child: ListTile(
           style: ListTileStyle.drawer,
-          visualDensity: VisualDensity.comfortable,
           leading: transactionModel.category
               ? const Icon(
                   Icons.savings,

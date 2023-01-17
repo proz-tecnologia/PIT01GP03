@@ -86,7 +86,7 @@ class _SignInPageState extends State<SignInPage> {
                       width: 0.9,
                       height: 0.06,
                       fontSize: 20,
-                      textColor: AppColors.white,
+                      textColor: Colors.white,
                       onPressed: () {
                         final valid = _formKey.currentState != null &&
                             _formKey.currentState!.validate();
@@ -105,20 +105,20 @@ class _SignInPageState extends State<SignInPage> {
                         Navigator.of(context)
                             .pushNamed(AccountRecoveryPage.route);
                       },
-                      color: AppColors.textMediumGray,
+                      color: Colors.grey,
                       width: 0.9,
                       height: 0.06,
                       fontSize: 20,
-                      textColor: AppColors.white,
+                      textColor: Colors.white,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
                       text: 'CADASTRAR NOVA CONTA',
-                      color: AppColors.textMediumGray,
+                      color: Colors.grey,
                       width: 0.9,
                       height: 0.06,
                       fontSize: 20,
-                      textColor: AppColors.white,
+                      textColor: Colors.white,
                       onPressed: () {
                         Navigator.of(context).pushNamed(SignUpPage.route);
                       },

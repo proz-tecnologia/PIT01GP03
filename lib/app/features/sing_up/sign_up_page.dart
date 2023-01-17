@@ -142,7 +142,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 width: 0.9,
                 height: 0.06,
                 fontSize: 20,
-                textColor: AppColors.white,
+                textColor: Colors.white,
                 onPressed: () {
                   final valid = _formKey.currentState != null &&
                       _formKey.currentState!.validate();

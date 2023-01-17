@@ -32,7 +32,7 @@ class CustomFormField extends StatefulWidget {
 class _CustomFormFieldState extends State<CustomFormField> {
   final customDefaultBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(20),
-    borderSide: const BorderSide(color: AppColors.white),
+    borderSide: const BorderSide(color: Colors.white),
   );
 
   String? _customHelperText;
@@ -73,17 +73,16 @@ class _CustomFormFieldState extends State<CustomFormField> {
               helperMaxLines: 3,
               hintText: widget.text,
               suffixIcon: widget.suffixIcon,
-              hintStyle: const TextStyle(color: AppColors.linear),
               focusedBorder: customDefaultBorder.copyWith(
-                borderSide: const BorderSide(color: AppColors.orange, width: 2),
+                borderSide:
+                    const BorderSide(color: AppColors.secondary, width: 2),
               ),
               errorBorder: customDefaultBorder.copyWith(
-                borderSide:
-                    const BorderSide(color: AppColors.errorColor, width: 2),
+                borderSide: const BorderSide(color: AppColors.error, width: 2),
               ),
               enabledBorder: customDefaultBorder.copyWith(
                 borderSide:
-                    const BorderSide(color: AppColors.backgroundDark, width: 2),
+                    const BorderSide(color: AppColors.primaryDark, width: 2),
               ),
             )
           : InputDecoration(
@@ -92,7 +91,6 @@ class _CustomFormFieldState extends State<CustomFormField> {
               helperMaxLines: 3,
               hintText: widget.text,
               suffixIcon: widget.suffixIcon,
-              hintStyle: const TextStyle(color: AppColors.linear),
             ),
     );
   }

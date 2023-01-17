@@ -60,7 +60,7 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
                     Text(
                       widget.text,
                       style: TextStyle(
-                          fontSize: widget.fontSize, color: AppColors.linear),
+                          fontSize: widget.fontSize),
                     ),
                   ],
                 )
