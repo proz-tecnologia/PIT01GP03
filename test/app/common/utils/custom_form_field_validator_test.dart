@@ -12,10 +12,17 @@ void main() {
 
 
     expect(validateName('User user'), null);
+    expect(validateName(''), 'Campo obrigatório');
     expect(validateEmail('user@gmail.com'), null);
+    expect(validateEmail(''), 'Campo obrigatório');
     expect(validateNull('123456'), null);
+    expect(validateNull(''), 'Campo obrigatório');
     expect(validateTitle('User Title'), null);
+    expect(validateTitle(''), 'Campo obrigatório');
     expect(validatePassword('123456Ab'), null);
+    expect(validatePassword(''), 'Campo obrigatório');
     expect(confirmValidatePassword('123456Ab','123456Ab'), null);
+    expect(confirmValidatePassword('123456Ab','654321Ab'), 'Dados inválidos');
+    expect(confirmValidatePassword('',''),  'Campo obrigatório');
   });
 }
