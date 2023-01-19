@@ -1,4 +1,5 @@
 import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
+import 'package:porkinio/app/features/goals_card/goals_card_controller.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/splash/splash_controller.dart';
@@ -39,5 +40,9 @@ void setupDependencies() {
 
   locator.registerLazySingleton<AccountBalanceCardController>(
     () => AccountBalanceCardController(),
+  );
+  
+  locator.registerLazySingleton<GoalsCardController>(
+    () => GoalsCardController(),
   );
 }

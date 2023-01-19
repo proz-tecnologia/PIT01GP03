@@ -4,7 +4,17 @@ import 'package:porkinio/app/features/transaction_list/transaction_delete_button
 import 'package:porkinio/app/features/transaction_list/transaction_edit_button.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
-Widget buildTransactionList(TransactionModel transactionModel) => Padding(
+class TransactionItem extends StatelessWidget {
+  const TransactionItem({
+    Key? key,
+    required this.transactionModel,
+  }) : super(key: key);
+
+  final TransactionModel transactionModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       child: Material(
         borderRadius: BorderRadius.circular(16),
@@ -60,3 +70,5 @@ Widget buildTransactionList(TransactionModel transactionModel) => Padding(
         ),
       ),
     );
+  }
+}

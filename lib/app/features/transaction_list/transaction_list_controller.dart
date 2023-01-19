@@ -23,7 +23,7 @@ class TransactionListController extends ChangeNotifier {
       transaction.toJson(),
     );
     _updateState(
-      TransactionListSucessState(),
+      TransactionListSuccessState(),
     );
   }
 
@@ -52,15 +52,15 @@ class TransactionListController extends ChangeNotifier {
   }
 
   Future deleteTransaction(TransactionModel transaction) async {
+    _updateState(
+      TransactionListLoadingState(),
+    );
     try {
-      _updateState(
-        TransactionListLoadingState(),
-      );
       final id = transaction.id;
       final documentId = _firestore.doc("transactionDB/$id");
       await documentId.delete();
       _updateState(
-        TransactionListSucessState(),
+        TransactionListSuccessState(),
       );
     } catch (e) {
       _updateState(

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
-import 'package:porkinio/app/common/themes/app_images.dart';
-import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
@@ -18,7 +16,7 @@ class CustomNavigationDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: AppColors.primaryDark),
+            decoration: const BoxDecoration(color: AppColors.primaryDark),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +24,7 @@ class CustomNavigationDrawer extends StatelessWidget {
                 ListTile(
                   visualDensity: VisualDensity.standard,
                   dense: true,
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     child: Icon(
                       Icons.person,
                     ),
@@ -54,7 +52,7 @@ class CustomNavigationDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: ListTile(
-              leading: Icon(Icons.logo_dev),
+              leading: const Icon(Icons.logo_dev),
               title: Text(
                 'Splash Screen',
                 style: Theme.of(context).textTheme.bodyText1,
@@ -67,7 +65,7 @@ class CustomNavigationDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: ListTile(
-              leading: Icon(Icons.login),
+              leading: const Icon(Icons.login),
               title: Text(
                 'Página de Login',
                 style: Theme.of(context).textTheme.bodyText1,
@@ -80,7 +78,7 @@ class CustomNavigationDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: ListTile(
-              leading: Icon(Icons.description_outlined),
+              leading: const Icon(Icons.description_outlined),
               title: Text(
                 'Página de Cadastro',
                 style: Theme.of(context).textTheme.bodyText1,
@@ -93,7 +91,7 @@ class CustomNavigationDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: ListTile(
-              leading: Icon(Icons.settings_backup_restore_rounded),
+              leading: const Icon(Icons.settings_backup_restore_rounded),
               title: Text(
                 'Página de Recuperação de Senha',
                 style: Theme.of(context).textTheme.bodyText1,

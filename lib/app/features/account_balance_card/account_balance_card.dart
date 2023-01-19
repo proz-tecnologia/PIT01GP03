@@ -47,7 +47,7 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                                     .overline
                                     ?.copyWith(color: Colors.white),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 208,
                               ),
                               GestureDetector(

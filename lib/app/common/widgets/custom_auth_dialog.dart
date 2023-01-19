@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 
 Future<void> customAuthDialog(BuildContext context, String customErrorMessage,
     String customMessageButton, String route) async {

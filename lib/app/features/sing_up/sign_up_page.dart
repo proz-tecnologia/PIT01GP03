@@ -40,10 +40,10 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           );
         }
-        if (_controller.state is SignUpSucessState) {
+        if (_controller.state is SignUpSuccessState) {
           customAuthDialog(
               context,
-              'Usuário cadastrado com sucesso! Clique abaixo para logar',
+              'Usuário cadastrado com Successo! Clique abaixo para logar',
               'Login',
               SignInPage.route);
         }

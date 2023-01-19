@@ -39,15 +39,15 @@ class SignUpController extends ChangeNotifier {
           value: user.toJson(),
         );
         _updateState(
-          SignUpSucessState(),
+          SignUpSuccessState(),
         );
       } else {
         throw Exception();
       }
 
-      log('usuario criado com sucesso');
+      log('usuario criado com Successo');
       _updateState(
-        SignUpSucessState(),
+        SignUpSuccessState(),
       );
     } catch (e) {
       _updateState(
