@@ -24,6 +24,7 @@ void setupDependencies() {
   locator.registerFactory<SingInController>(
     () => SingInController(
       locator.get<AuthService>(),
+      const SecureStorage()
     ),
   );
 
