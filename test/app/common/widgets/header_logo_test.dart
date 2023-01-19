@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:porkinio/app/common/widgets/custom_logo.dart';
 import 'package:porkinio/app/common/widgets/header_logo.dart';
 
 void main() {
