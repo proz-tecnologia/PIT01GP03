@@ -4,7 +4,7 @@ import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/models/user_model.dart';
 
-import '../../services/mock/mock_classes.dart';
+import '../../services/mock_classes.dart';
 
 void main() {
   late SingInController singInController;
