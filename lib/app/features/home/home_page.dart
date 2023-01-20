@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
-import 'package:porkinio/app/features/goals_card/goals_card.dart';
-import 'package:porkinio/app/features/goals_card/goals_card_controller.dart';
+import 'package:porkinio/app/features/piggy_bank/piggy_bank_card_list.dart';
+import 'package:porkinio/app/features/piggy_bank/piggy_bank_controller.dart';
 import 'package:porkinio/app/features/home/background_header.dart';
 import 'package:porkinio/app/features/home/custom_floating_action_button.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_card.dart';
-import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
-import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
@@ -24,10 +24,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final transactionListController = locator.get<TransactionListController>();
-  final goalsCardController = locator.get<GoalsCardController>();
-  final accountBalanceCardController =
-      locator.get<AccountBalanceCardController>();
+  final transactionController = locator.get<TransactionController>();
+  final piggyBankController = locator.get<PiggyBankController>();
+  final virtualWalletCardController = locator.get<VirtualWalletController>();
   final _secureStorage = const SecureStorage();
 
   @override
@@ -63,17 +62,17 @@ class _HomePageState extends State<HomePage> {
             const BackgroundHeader(),
             ListView(
               children: [
-                const AccountBalanceCard(),
+                const VirtualWalletCard(),
                 TransactionListCard(
-                  transactionListController: transactionListController,
+                  controller: transactionController,
                 ),
                 Stack(
                   children: [
                     SingleChildScrollView(
                       clipBehavior: Clip.antiAlias,
                       scrollDirection: Axis.horizontal,
-                      child: GoalsCard(
-                        goalsCardController: goalsCardController,
+                      child: PiggyBankCardList(
+                        controller: piggyBankController,
                       ),
                     ),
                     Positioned(
@@ -138,8 +137,8 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: CustomFloatingActionButton(
-        transactionListController: transactionListController,
-        goalsCardController: goalsCardController,
+        transactionController: transactionController,
+        piggyBankController: piggyBankController,
       ),
     );
   }

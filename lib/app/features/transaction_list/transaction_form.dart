@@ -4,18 +4,17 @@ import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionForm extends StatefulWidget {
-  final TransactionListController
-      transactionListController; // TODO: REVER SE USA O LOCATOR
-  final TransactionModel? transactionModel;
+  final TransactionController controller;
+  final TransactionModel? model;
 
   const TransactionForm({
     Key? key,
-    required this.transactionListController,
-    this.transactionModel,
+    required this.controller,
+    this.model,
   }) : super(key: key);
 
   static const routeTransactionForm = '/transaction-form';
@@ -33,17 +32,17 @@ class _TransactionFormState extends State<TransactionForm> {
   final _dateController = TextEditingController();
 
   String? dropdownValue;
-  TransactionModel? newTransactionModel;
+  TransactionModel? newTransaction;
 
   @override
   void initState() {
     super.initState();
-    newTransactionModel = widget.transactionModel;
-    _titleController.text = widget.transactionModel?.title ?? '';
-    _amountController.text = widget.transactionModel?.amount.toString() ?? '';
-    _dateController.text = widget.transactionModel?.date.toString() ?? '';
+    newTransaction = widget.model;
+    _titleController.text = widget.model?.title ?? '';
+    _amountController.text = widget.model?.amount.toString() ?? '';
+    _dateController.text = widget.model?.date.toString() ?? '';
     dropdownValue =
-        newTransactionModel?.category == false ? list.last : list.first;
+        newTransaction?.category == false ? list.last : list.first;
   }
 
   @override
@@ -168,19 +167,19 @@ class _TransactionFormState extends State<TransactionForm> {
                       onPressed: () {
                         if (_formKey.currentState != null &&
                             _formKey.currentState!.validate()) {
-                          newTransactionModel = TransactionModel(
-                            id: widget.transactionModel?.id,
+                          newTransaction = TransactionModel(
+                            id: widget.model?.id,
                             title: _titleController.text,
                             amount: double.parse(_amountController.text),
                             date: DateTime.parse(_dateController.text),
                             category: dropdownValue == 'Entrada' ? true : false,
                           );
-                          if (widget.transactionModel != null) {
-                            widget.transactionListController
-                                .updateTransaction(newTransactionModel!);
+                          if (widget.model != null) {
+                            widget.controller
+                                .updateTransaction(newTransaction!);
                           } else {
-                            widget.transactionListController
-                                .createTransaction(newTransactionModel!);
+                            widget.controller
+                                .createTransaction(newTransaction!);
                           }
                           Navigator.pop(context);
                         }

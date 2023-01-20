@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/locator.dart';
 
@@ -18,7 +18,7 @@ class TransactionEditButton extends StatefulWidget {
 }
 
 class _TransactionEditButtonState extends State<TransactionEditButton> {
-  final transactionListController = locator.get<TransactionListController>();
+  final transactionController = locator.get<TransactionController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +29,8 @@ class _TransactionEditButtonState extends State<TransactionEditButton> {
           context: context,
           builder: (context) => Center(
             child: TransactionForm(
-              transactionListController: transactionListController,
-              transactionModel: widget.transactionModel,
+              controller: transactionController,
+              model: widget.transactionModel,
             ),
           ),
         );

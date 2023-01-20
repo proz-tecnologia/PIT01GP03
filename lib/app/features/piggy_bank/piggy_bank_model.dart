@@ -1,11 +1,11 @@
-class GoalsCardModel {
+class PiggyBankModel {
   String? id;
   String? userId;
   double amount;
   String title;
   String networkImage;
 
-  GoalsCardModel({
+  PiggyBankModel({
     this.id = '',
     this.userId = '',
     required this.amount,
@@ -13,20 +13,19 @@ class GoalsCardModel {
     required this.networkImage,
   });
 
-  GoalsCardModel copyWith({
+  PiggyBankModel copyWith({
     String? id,
     String? userId,
     double? amount,
     String? title,
     String? networkImage,
   }) {
-    return GoalsCardModel(
+    return PiggyBankModel(
       id: id ?? this.id,
       userId: userId ?? this.userId,
       amount: amount ?? this.amount,
       title: title ?? this.title,
       networkImage: networkImage ?? this.networkImage,
-
     );
   }
 
@@ -40,8 +39,8 @@ class GoalsCardModel {
     };
   }
 
-  factory GoalsCardModel.fromMap(String id, Map<String, dynamic> map) {
-    return GoalsCardModel(
+  factory PiggyBankModel.fromMap(String id, Map<String, dynamic> map) {
+    return PiggyBankModel(
       id: map['id'] as String,
       userId: map['userId'] as String,
       amount: map['amount'] as double,
@@ -58,8 +57,7 @@ class GoalsCardModel {
         'networkImage': networkImage,
       };
 
-  static GoalsCardModel fromJson(Map<String, dynamic> json) =>
-      GoalsCardModel(
+  static PiggyBankModel fromJson(Map<String, dynamic> json) => PiggyBankModel(
         id: json['id'],
         userId: json['userId'],
         amount: json['amount'] as double,

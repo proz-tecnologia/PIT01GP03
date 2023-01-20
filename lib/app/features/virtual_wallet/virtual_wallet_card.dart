@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/locator.dart';
 
-class AccountBalanceCard extends StatefulWidget {
-  const AccountBalanceCard({super.key});
+class VirtualWalletCard extends StatefulWidget {
+  const VirtualWalletCard({super.key});
 
   @override
-  State<AccountBalanceCard> createState() => _AccountBalanceCardState();
+  State<VirtualWalletCard> createState() => _VirtualWalletCardState();
 }
 
 bool visibilityOn = true;
 
-class _AccountBalanceCardState extends State<AccountBalanceCard> {
-  final transactionListController = locator.get<TransactionListController>();
-  final accountBalanceCardController =
-      locator.get<AccountBalanceCardController>();
+class _VirtualWalletCardState extends State<VirtualWalletCard> {
+  final transactionController = locator.get<TransactionController>();
+  final virtualWalletCardController = locator.get<VirtualWalletController>();
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: transactionListController,
+      animation: transactionController,
       builder: (context, snapshot) {
         return Card(
           child: SizedBox(
@@ -73,11 +72,10 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                   ),
                   visibilityOn
                       ? FutureBuilder(
-                          future:
-                              accountBalanceCardController.getTotalBalance(),
+                          future: virtualWalletCardController.getTotalBalance(),
                           builder: (context, snapshot) {
                             return Text(
-                              'R\$ ${accountBalanceCardController.totalBalance.toStringAsFixed(2)}',
+                              'R\$ ${virtualWalletCardController.totalBalance.toStringAsFixed(2)}',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3
@@ -110,11 +108,11 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                           Container(
                             child: visibilityOn
                                 ? FutureBuilder(
-                                    future: accountBalanceCardController
+                                    future: virtualWalletCardController
                                         .getIncomeBalance(),
                                     builder: (context, snapshot) {
                                       return Text(
-                                        'R\$ ${accountBalanceCardController.totalIncome.toStringAsFixed(2)}',
+                                        'R\$ ${virtualWalletCardController.totalIncome.toStringAsFixed(2)}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1
@@ -149,11 +147,11 @@ class _AccountBalanceCardState extends State<AccountBalanceCard> {
                           Container(
                             child: visibilityOn
                                 ? FutureBuilder(
-                                    future: accountBalanceCardController
+                                    future: virtualWalletCardController
                                         .getExpensesBalance(),
                                     builder: (context, snapshot) {
                                       return Text(
-                                        'R\$ ${accountBalanceCardController.totalExpenses.toStringAsFixed(2)}',
+                                        'R\$ ${virtualWalletCardController.totalExpenses.toStringAsFixed(2)}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1

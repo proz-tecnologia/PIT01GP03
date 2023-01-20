@@ -4,8 +4,8 @@ import 'package:porkinio/app/features/transaction_list/transaction_delete_button
 import 'package:porkinio/app/features/transaction_list/transaction_edit_button.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
-class TransactionItem extends StatelessWidget {
-  const TransactionItem({
+class TransactionListTile extends StatelessWidget {
+  const TransactionListTile({
     Key? key,
     required this.transactionModel,
   }) : super(key: key);

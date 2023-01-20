@@ -5,7 +5,7 @@ import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
-class TransactionListController extends ChangeNotifier {
+class TransactionController extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   TransactionListState _transactionListState = TransactionListInitialState();
   TransactionListState get state => _transactionListState;
@@ -16,20 +16,29 @@ class TransactionListController extends ChangeNotifier {
   }
 
   Future createTransaction(TransactionModel transaction) async {
-    final newTransaction = _firestore.collection('transactionDB').doc();
-    transaction.id = newTransaction.id;
-    transaction.userId = locator.get<AuthService>().currentUser!.uid;
-    await newTransaction.set(
-      transaction.toJson(),
-    );
     _updateState(
-      TransactionListSuccessState(),
+      TransactionListLoadingState(),
     );
+    try {
+      final newTransaction = _firestore.collection('transactions').doc();
+      transaction.id = newTransaction.id;
+      transaction.userId = locator.get<AuthService>().currentUser!.uid;
+      await newTransaction.set(
+        transaction.toJson(),
+      );
+      _updateState(
+        TransactionListSuccessState(),
+      );
+    } catch (e) {
+      _updateState(
+        TransactionListErrorState(),
+      );
+    }
   }
 
   Stream<List<TransactionModel>> readAllTransactions() {
     return _firestore
-        .collection('transactionDB')
+        .collection('transactions')
         .where('userId', isEqualTo: locator.get<AuthService>().currentUser?.uid)
         .snapshots()
         .map(
@@ -44,11 +53,22 @@ class TransactionListController extends ChangeNotifier {
   }
 
   Future updateTransaction(TransactionModel transaction) async {
-    transaction.userId = locator.get<AuthService>().currentUser!.uid;
-    await _firestore.collection('transactionDB').doc(transaction.id).set(
-          transaction.toMap(),
-        );
-    notifyListeners();
+    _updateState(
+      TransactionListLoadingState(),
+    );
+    try {
+      transaction.userId = locator.get<AuthService>().currentUser!.uid;
+      await _firestore.collection('transactions').doc(transaction.id).set(
+            transaction.toMap(),
+          );
+      _updateState(
+        TransactionListSuccessState(),
+      );
+    } catch (e) {
+      _updateState(
+        TransactionListErrorState(),
+      );
+    }
   }
 
   Future deleteTransaction(TransactionModel transaction) async {
@@ -57,7 +77,7 @@ class TransactionListController extends ChangeNotifier {
     );
     try {
       final id = transaction.id;
-      final documentId = _firestore.doc("transactionDB/$id");
+      final documentId = _firestore.doc("transactions/$id");
       await documentId.delete();
       _updateState(
         TransactionListSuccessState(),

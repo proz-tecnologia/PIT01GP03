@@ -3,44 +3,40 @@ import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
-import 'package:porkinio/app/features/goals_card/goals_card_controller.dart';
-import 'package:porkinio/app/features/goals_card/goals_card_model.dart';
+import 'package:porkinio/app/features/piggy_bank/piggy_bank_controller.dart';
+import 'package:porkinio/app/features/piggy_bank/piggy_bank_model.dart';
 
-class GoalForm extends StatefulWidget {
-  final GoalsCardController goalsCardController; // TODO: REVER SE USA O LOCATOR
-  final GoalsCardModel? goalsCardModel;
+class PiggyBankForm extends StatefulWidget {
+  final PiggyBankController controller;
+  final PiggyBankModel? model;
 
-  const GoalForm({
+  const PiggyBankForm({
     Key? key,
-    required this.goalsCardController,
-    this.goalsCardModel,
+    required this.controller,
+    this.model,
   }) : super(key: key);
 
-  static const routeGoalForm = '/goal-form';
+  static const routePiggyBankForm = '/piggy-bank-form';
 
   @override
-  State<GoalForm> createState() => _GoalFormState();
+  State<PiggyBankForm> createState() => _PiggyBankFormState();
 }
 
-const List<String> list = <String>['Entrada', 'Saída'];
-
-class _GoalFormState extends State<GoalForm> {
+class _PiggyBankFormState extends State<PiggyBankForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _amountController = TextEditingController();
   final _titleController = TextEditingController();
   final _networkImageController = TextEditingController();
 
-  String? dropdownValue;
-  GoalsCardModel? newGoalsCardModel;
+  PiggyBankModel? newPiggyBank;
 
   @override
   void initState() {
     super.initState();
-    newGoalsCardModel = widget.goalsCardModel;
-    _titleController.text = widget.goalsCardModel?.title ?? '';
-    _amountController.text = widget.goalsCardModel?.amount.toString() ?? '';
-    _networkImageController.text =
-        widget.goalsCardModel?.networkImage.toString() ?? '';
+    newPiggyBank = widget.model;
+    _titleController.text = widget.model?.title ?? '';
+    _amountController.text = widget.model?.amount.toString() ?? '';
+    _networkImageController.text = widget.model?.networkImage.toString() ?? 'https://i.imgur.com/Ac6Vbgj.png';
   }
 
   @override
@@ -55,7 +51,7 @@ class _GoalFormState extends State<GoalForm> {
             Icons.arrow_back,
           ),
         ),
-        title: const Text('Formulário de Transação'),
+        title: const Text('Formulário do Porkinio'),
         // TODO: MUDAR CASO SEJA PARA CADASTRAR UMA NOVA TRANSAÇÃO OU EDITAR UMA EXISTENTE
         elevation: 0,
       ),
@@ -109,18 +105,16 @@ class _GoalFormState extends State<GoalForm> {
                       onPressed: () {
                         if (_formKey.currentState != null &&
                             _formKey.currentState!.validate()) {
-                          newGoalsCardModel = GoalsCardModel(
-                            id: widget.goalsCardModel?.id,
+                          newPiggyBank = PiggyBankModel(
+                            id: widget.model?.id,
                             title: _titleController.text,
                             amount: double.parse(_amountController.text),
                             networkImage: _networkImageController.text,
                           );
-                          if (widget.goalsCardModel != null) {
-                            widget.goalsCardController
-                                .updateGoal(newGoalsCardModel!);
+                          if (widget.model != null) {
+                            widget.controller.updatePiggyBank(newPiggyBank!);
                           } else {
-                            widget.goalsCardController
-                                .createGoal(newGoalsCardModel!);
+                            widget.controller.createPiggyBank(newPiggyBank!);
                           }
                           Navigator.pop(context);
                         }

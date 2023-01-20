@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/transaction_list/build_transaction_list.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_tile.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionListCard extends StatelessWidget {
   const TransactionListCard({
     Key? key,
-    required this.transactionListController,
+    required this.controller,
   }) : super(key: key);
 
-  final TransactionListController
-      transactionListController; // TODO: REVER SE USA O LOCATOR
+  final TransactionController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class TransactionListCard extends StatelessWidget {
       child: Card(
         color: Theme.of(context).colorScheme.primary,
         child: StreamBuilder<List<TransactionModel>>(
-          stream: transactionListController.readAllTransactions(),
+          stream: controller.readAllTransactions(),
           builder: (context, snapshot) {
             if (snapshot.data != null && snapshot.data!.isEmpty) {
               return const Center(
@@ -35,7 +34,9 @@ class TransactionListCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: ListView(
                   children: snapshot.data!
-                      .map((model) => TransactionItem(transactionModel: model))
+                      .map(
+                        (model) => TransactionListTile(transactionModel: model),
+                      )
                       .toList(),
                 ),
               );
