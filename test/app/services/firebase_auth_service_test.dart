@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:porkinio/app/models/user_model.dart';
-import 'mock/mock_classes.dart';
+import 'mock_classes.dart';
 
 void main() {
   late MockFirebaseAuthService mockFirebaseAuthService;

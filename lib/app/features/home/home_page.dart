@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/home/background_header.dart';
-import 'package:porkinio/app/features/home/custom_floating_action_button.dart';
+import 'package:porkinio/app/common/widgets/background_header.dart';
+import 'package:porkinio/app/common/widgets/custom_floating_action_button.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_card.dart';
 import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
