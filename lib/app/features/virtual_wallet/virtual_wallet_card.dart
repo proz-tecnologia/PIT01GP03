@@ -15,6 +15,7 @@ bool visibilityOn = true;
 class _VirtualWalletCardState extends State<VirtualWalletCard> {
   final transactionController = locator.get<TransactionController>();
   final virtualWalletCardController = locator.get<VirtualWalletController>();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +73,10 @@ class _VirtualWalletCardState extends State<VirtualWalletCard> {
                   ),
                   visibilityOn
                       ? FutureBuilder(
-                          future: virtualWalletCardController.getTotalBalance(),
+                          future: virtualWalletCardController.getBalance(),
                           builder: (context, snapshot) {
                             return Text(
-                              'R\$ ${virtualWalletCardController.totalBalance.toStringAsFixed(2)}',
+                              'R\$ ${virtualWalletCardController.walletBalance.toStringAsFixed(2)}',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3
@@ -109,10 +110,10 @@ class _VirtualWalletCardState extends State<VirtualWalletCard> {
                             child: visibilityOn
                                 ? FutureBuilder(
                                     future: virtualWalletCardController
-                                        .getIncomeBalance(),
+                                        .getIncome(),
                                     builder: (context, snapshot) {
                                       return Text(
-                                        'R\$ ${virtualWalletCardController.totalIncome.toStringAsFixed(2)}',
+                                        'R\$ ${virtualWalletCardController.walletIncome.toStringAsFixed(2)}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1
@@ -148,10 +149,10 @@ class _VirtualWalletCardState extends State<VirtualWalletCard> {
                             child: visibilityOn
                                 ? FutureBuilder(
                                     future: virtualWalletCardController
-                                        .getExpensesBalance(),
+                                        .getExpenses(),
                                     builder: (context, snapshot) {
                                       return Text(
-                                        'R\$ ${virtualWalletCardController.totalExpenses.toStringAsFixed(2)}',
+                                        'R\$ ${virtualWalletCardController.walletExpenses.toStringAsFixed(2)}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1

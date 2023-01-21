@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_model.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_card_state.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
 
-class PiggyBankController extends ChangeNotifier {
+class PiggyBankController extends VirtualWalletController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   PiggyBankCardState _piggyBankCardState = PiggyBankCardInitialState();
-  PiggyBankCardState get state => _piggyBankCardState;
+  PiggyBankCardState get piggyBankCardState => _piggyBankCardState;
+
 
   void _updateState(PiggyBankCardState newState) {
     _piggyBankCardState = newState;

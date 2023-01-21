@@ -11,9 +11,9 @@ class VirtualWalletController extends ChangeNotifier {
       VirtualWalletCardInitialState();
   VirtualWalletCardState get state => _virtualWalletCardState;
 
-  double totalBalance = 0.0;
-  double totalIncome = 0.0;
-  double totalExpenses = 0.0;
+  double walletBalance = 0.0;
+  double walletIncome = 0.0;
+  double walletExpenses = 0.0;
 
   void _updateState(VirtualWalletCardState newState) {
     _virtualWalletCardState = newState;
@@ -37,34 +37,33 @@ class VirtualWalletController extends ChangeNotifier {
     return transactionList;
   }
 
-  Future<double> getIncomeBalance() async {
-    totalIncome = 0.0;
+  Future<double> getIncome() async {
+    walletIncome = 0.0;
     final transactionList = await readTransactionList();
-
     for (var transaction in transactionList) {
       if (transaction.category == true) {
-        totalIncome += transaction.amount;
+        walletIncome += transaction.amount;
       }
     }
 
-    return totalIncome;
+    return walletIncome;
   }
 
-  Future<double> getExpensesBalance() async {
-    totalExpenses = 0.0;
+  Future<double> getExpenses() async {
+    walletExpenses = 0.0;
     final transactionList = await readTransactionList();
 
     for (var transaction in transactionList) {
       if (transaction.category == false) {
-        totalExpenses += transaction.amount;
+        walletExpenses += transaction.amount;
       }
     }
 
-    return totalExpenses;
+    return walletExpenses;
   }
 
-  Future<double> getTotalBalance() async {
-    totalBalance = 0.0;
+  Future<double> getBalance() async {
+    walletBalance = 0.0;
     double income = 0.0;
     double expenses = 0.0;
     final transactionList = await readTransactionList();
@@ -77,12 +76,12 @@ class VirtualWalletController extends ChangeNotifier {
         expenses += transaction.amount;
       }
     }
-    totalBalance = income - expenses;
+    walletBalance = income - expenses;
 
     _updateState(
       VirtualWalletCardSuccessState(),
     );
 
-    return totalBalance;
+    return walletBalance;
   }
 }

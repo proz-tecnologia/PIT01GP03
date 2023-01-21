@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> {
                       scrollDirection: Axis.horizontal,
                       child: PiggyBankCardList(
                         controller: piggyBankController,
+                        walletController: virtualWalletCardController,
                       ),
                     ),
                     Positioned(

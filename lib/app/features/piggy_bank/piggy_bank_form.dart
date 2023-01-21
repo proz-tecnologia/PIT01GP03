@@ -36,7 +36,8 @@ class _PiggyBankFormState extends State<PiggyBankForm> {
     newPiggyBank = widget.model;
     _titleController.text = widget.model?.title ?? '';
     _amountController.text = widget.model?.amount.toString() ?? '';
-    _networkImageController.text = widget.model?.networkImage.toString() ?? 'https://i.imgur.com/Ac6Vbgj.png';
+    _networkImageController.text = widget.model?.networkImage.toString() ??
+        'https://i.imgur.com/Ac6Vbgj.png';
   }
 
   @override
@@ -52,77 +53,78 @@ class _PiggyBankFormState extends State<PiggyBankForm> {
           ),
         ),
         title: const Text('Formulário do Porkinio'),
-        // TODO: MUDAR CASO SEJA PARA CADASTRAR UMA NOVA TRANSAÇÃO OU EDITAR UMA EXISTENTE
         elevation: 0,
       ),
       body: Form(
         key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.5,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomFormField(
-                  labelText: 'Titulo',
-                  validator: CustomFormFieldValidator.validateNull,
-                  controller: _titleController,
-                ),
-                CustomFormField(
-                  labelText: 'Valor',
-                  validator: CustomFormFieldValidator.validateNull,
-                  controller: _amountController,
-                  keyboardType: TextInputType.number,
-                ),
-                CustomFormField(
-                  labelText: 'URL da Imagem',
-                  validator: CustomFormFieldValidator.validateNull,
-                  controller: _networkImageController,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomFlatButton(
-                      text: 'VOLTAR',
-                      color: Colors.grey,
-                      width: 0.3,
-                      height: 0.06,
-                      fontSize: 20,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    CustomFlatButton(
-                      text: 'CONFIRMAR',
-                      color: AppColors.primaryDark,
-                      width: 0.6,
-                      height: 0.06,
-                      fontSize: 20,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        if (_formKey.currentState != null &&
-                            _formKey.currentState!.validate()) {
-                          newPiggyBank = PiggyBankModel(
-                            id: widget.model?.id,
-                            title: _titleController.text,
-                            amount: double.parse(_amountController.text),
-                            networkImage: _networkImageController.text,
-                          );
-                          if (widget.model != null) {
-                            widget.controller.updatePiggyBank(newPiggyBank!);
-                          } else {
-                            widget.controller.createPiggyBank(newPiggyBank!);
-                          }
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomFormField(
+                    labelText: 'Titulo',
+                    validator: CustomFormFieldValidator.validateNull,
+                    controller: _titleController,
+                  ),
+                  CustomFormField(
+                    labelText: 'Valor',
+                    validator: CustomFormFieldValidator.validateNull,
+                    controller: _amountController,
+                    keyboardType: TextInputType.number,
+                  ),
+                  CustomFormField(
+                    labelText: 'URL da Imagem',
+                    validator: CustomFormFieldValidator.validateNull,
+                    controller: _networkImageController,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomFlatButton(
+                        text: 'VOLTAR',
+                        color: Colors.grey,
+                        width: 0.3,
+                        height: 0.06,
+                        fontSize: 20,
+                        textColor: Colors.white,
+                        onPressed: () {
                           Navigator.pop(context);
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                        },
+                      ),
+                      CustomFlatButton(
+                        text: 'CONFIRMAR',
+                        color: AppColors.primaryDark,
+                        width: 0.6,
+                        height: 0.06,
+                        fontSize: 20,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          if (_formKey.currentState != null &&
+                              _formKey.currentState!.validate()) {
+                            newPiggyBank = PiggyBankModel(
+                              id: widget.model?.id,
+                              title: _titleController.text,
+                              amount: double.parse(_amountController.text),
+                              networkImage: _networkImageController.text,
+                            );
+                            if (widget.model != null) {
+                              widget.controller.updatePiggyBank(newPiggyBank!);
+                            } else {
+                              widget.controller.createPiggyBank(newPiggyBank!);
+                            }
+                            Navigator.pop(context);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

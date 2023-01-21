@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
-import 'package:porkinio/app/features/piggy_bank/piggy_bank_card_delete_button.dart';
-import 'package:porkinio/app/features/piggy_bank/piggy_bank_card_edit_button.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_card_options_button.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_controller.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_model.dart';
@@ -9,7 +7,8 @@ import 'package:porkinio/app/features/piggy_bank/piggy_bank_model.dart';
 class PiggyBankCard extends StatelessWidget {
   const PiggyBankCard({
     Key? key,
-    required this.piggyBankModel, required this.piggyBankController,
+    required this.piggyBankModel,
+    required this.piggyBankController,
   }) : super(key: key);
 
   final PiggyBankModel piggyBankModel;
@@ -70,10 +69,7 @@ class PiggyBankCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width *
-                          0.4 *
-                          ((piggyBankModel.amount) /
-                              400), // TODO: PEGAR VALOR DA CARTEIRA VIRTUAL
+                      width: MediaQuery.of(context).size.width * 0.4,
                       height: MediaQuery.of(context).size.height * 0.018,
                       color: AppColors.primary,
                     ),
@@ -111,7 +107,10 @@ class PiggyBankCard extends StatelessWidget {
           // ICONE DE OPÇÕES
           top: -8,
           right: 8,
-          child: PiggyBankPopupMenu(model: piggyBankModel, controller: piggyBankController,),
+          child: PiggyBankPopupMenu(
+            model: piggyBankModel,
+            controller: piggyBankController,
+          ),
         ),
       ],
     );

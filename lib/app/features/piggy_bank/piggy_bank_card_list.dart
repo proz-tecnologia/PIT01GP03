@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_card.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_controller.dart';
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_model.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
 
 class PiggyBankCardList extends StatelessWidget {
   const PiggyBankCardList({
     Key? key,
     required this.controller,
+    required this.walletController,
   }) : super(key: key);
 
   final PiggyBankController controller;
+  final VirtualWalletController walletController;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,8 @@ class PiggyBankCardList extends StatelessWidget {
                 children: snapshot.data!
                     .map(
                       (model) => PiggyBankCard(
-                        piggyBankModel: model, piggyBankController: controller,
+                        piggyBankModel: model,
+                        piggyBankController: controller,
                       ),
                     )
                     .toList(),
