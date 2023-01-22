@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
-import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
+import 'package:porkinio/app/features/sign_up/sign_up_page.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';

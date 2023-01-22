@@ -1,6 +1,6 @@
 import 'package:porkinio/app/features/piggy_bank/piggy_bank_controller.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
-import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
+import 'package:porkinio/app/features/sign_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/splash/splash_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
@@ -22,11 +22,8 @@ void setupDependencies() {
     ),
   );
 
-  locator.registerFactory<SingInController>(
-    () => SingInController(
-      locator.get<AuthService>(),
-      const SecureStorage()
-    ),
+  locator.registerFactory<SignInController>(
+    () => SignInController(locator.get<AuthService>(), const SecureStorage()),
   );
 
   locator.registerFactory<SignUpController>(
