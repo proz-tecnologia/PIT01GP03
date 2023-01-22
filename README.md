@@ -19,7 +19,7 @@ As estatisticas geradas a partir do formulário corroboraram as pretensões inic
 Autores do projeto:
 - Beatriz Pereira de Sousa Lima
 - Charleston Ribeiro
-- Paulo Amorim
+- Paulo Vinicius Amorim
 
 Etapas concluídas:
 - [x] Sprint I
