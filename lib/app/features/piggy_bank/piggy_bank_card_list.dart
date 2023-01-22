@@ -22,8 +22,15 @@ class PiggyBankCardList extends StatelessWidget {
       child: StreamBuilder<List<PiggyBankModel>>(
         stream: controller.streamPiggyBankList(),
         builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text('Encontramos um erro: "${snapshot.error}"');
+          if (snapshot.data != null && snapshot.data!.isEmpty) {
+            return Center(
+              child: Text(
+                'Sem Porkinios cadastrados.',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.teal[800]),
+                textAlign: TextAlign.center,
+              ),
+            );
           } else if (snapshot.hasData) {
             return Padding(
               padding: const EdgeInsets.symmetric(

@@ -9,7 +9,7 @@ import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
-import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
+import 'package:porkinio/app/features/sign_up/sign_up_page.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/locator.dart';
 
@@ -27,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final signInController = locator.get<SingInController>();
+  final signInController = locator.get<SignInController>();
 
   @override
   void initState() {

@@ -3,10 +3,10 @@ import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
-class SingInController extends ChangeNotifier {
+class SignInController extends ChangeNotifier {
   final AuthService _authservice;
-  final  SecureStorage _secureStorage;
-  SingInController(this._authservice,this._secureStorage);
+  final SecureStorage _secureStorage;
+  SignInController(this._authservice, this._secureStorage);
   SignInState _signInState = SignInInitialState();
   SignInState get state => _signInState;
 
@@ -17,7 +17,6 @@ class SingInController extends ChangeNotifier {
 
   Future<void> doLogin(
       {required String email, required String password}) async {
-    
     _updateState(
       SignInLoadingState(),
     );
