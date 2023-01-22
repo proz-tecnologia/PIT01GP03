@@ -43,14 +43,6 @@ Recursos utilizados:
 - Editor gráfico Figma;
 - Editor grádico Adobe XD;
 
-
-### Protótipo elaborado conforme Sprint I
-![screens_prototipos](https://user-images.githubusercontent.com/108772866/198699526-6d94e51f-df4f-4d22-be44-b540795b3ddf.jpeg)
-### Telas elaboradas em Flutter conforme Sprint I
-Como tela adicional ao protótipo elaborado, inclui-se a tela Recovery password.
-
-![screens_flutter](https://user-images.githubusercontent.com/108772866/198755644-fc47a5e5-ae01-42bf-965a-d39e418b9acf.png)
-
 - Funcionalidades presentes:
   - Navegação da tela Splash -> Login -> Home
 
