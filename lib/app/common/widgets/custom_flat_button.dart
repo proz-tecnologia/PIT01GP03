@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomFlatButton extends StatefulWidget {
   final String text;
-  final Function() onPressed;
+  final Function()? onPressed;
   final Color color;
   final Color? imageColor;
   final Color textColor;
@@ -14,7 +14,7 @@ class CustomFlatButton extends StatefulWidget {
   const CustomFlatButton({
     Key? key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     required this.color,
     required this.width,
     required this.height,

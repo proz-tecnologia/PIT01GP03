@@ -5,9 +5,11 @@ import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
 
 class SignUpController extends ChangeNotifier {
-  final AuthService _service;
+  final AuthService _service; 
+  // ignore: unused_field
+  final  SecureStorage _secureStorage;
 
-  SignUpController(this._service);
+  SignUpController(this._service, this._secureStorage);
 
   late SignUpState _state = SignUpInitialState();
 

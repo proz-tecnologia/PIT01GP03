@@ -5,7 +5,9 @@ import 'package:porkinio/app/services/secure_storage.dart';
 
 class SingInController extends ChangeNotifier {
   final AuthService _authservice;
-  SingInController(this._authservice);
+  // ignore: unused_field
+  final SecureStorage _secureStorage;
+  SingInController(this._authservice,this._secureStorage);
   SignInState _signInState = SignInInitialState();
   SignInState get state => _signInState;
 
