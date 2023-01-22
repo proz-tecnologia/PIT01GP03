@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 
 class CustomFlatButton extends StatefulWidget {
   final String text;
-  final Function() onPressed;
+  final Function()? onPressed;
   final Color color;
   final Color? imageColor;
   final Color textColor;
@@ -15,7 +14,7 @@ class CustomFlatButton extends StatefulWidget {
   const CustomFlatButton({
     Key? key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     required this.color,
     required this.width,
     required this.height,
@@ -60,7 +59,7 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
                     Text(
                       widget.text,
                       style: TextStyle(
-                          fontSize: widget.fontSize, color: AppColors.linear),
+                          fontSize: widget.fontSize),
                     ),
                   ],
                 )

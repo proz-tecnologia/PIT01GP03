@@ -1,49 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/features/transaction_list/build_transaction_list.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_tile.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionListCard extends StatelessWidget {
   const TransactionListCard({
     Key? key,
-    required this.transactionListController,
+    required this.controller,
   }) : super(key: key);
 
-  final TransactionListController transactionListController;
+  final TransactionController controller;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      width: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height * 0.4,
       child: Card(
+        color: Theme.of(context).colorScheme.primary,
         child: StreamBuilder<List<TransactionModel>>(
-          stream: transactionListController.readAllTransactions(),
+          stream: controller.readAllTransactions(),
           builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Text('Encontramos um erro: "${snapshot.error}"');
+            if (snapshot.data != null && snapshot.data!.isEmpty) {
+              return const Center(
+                child: Text(
+                  'Sem transações cadastradas',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              );
             } else if (snapshot.hasData) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: snapshot.data!.map(buildTransactionList).toList().isEmpty
-                    ? SizedBox(
-                         width: MediaQuery.of(context).size.width,
-                        child: const Center(
-                          child: Text(
-                            'Sem transações cadastradas',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
+                child: ListView(
+                  children: snapshot.data!
+                      .map(
+                        (model) => TransactionListTile(transactionModel: model),
                       )
-                    : ListView(
-                        children:
-                            snapshot.data!.map(buildTransactionList).toList(),
-                      ),
+                      .toList(),
+                ),
               );
             } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return Text('Encontramos um erro: "${snapshot.error}"');
             }
           },
         ),

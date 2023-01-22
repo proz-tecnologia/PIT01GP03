@@ -4,8 +4,8 @@ import 'package:porkinio/app/common/utils/custom_form_field_validator.dart';
 import 'package:porkinio/app/common/widgets/custom_auth_dialog.dart';
 import 'package:porkinio/app/common/widgets/custom_flat_button.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
-import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
-import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
+import 'package:porkinio/app/features/sign_up/sign_up_controller.dart';
+import 'package:porkinio/app/features/sign_up/sign_up_state.dart';
 import 'package:porkinio/app/common/widgets/custom_form_field.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
@@ -137,12 +137,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
               CustomFlatButton(
-                text: 'ENTRAR',
+                text: 'CADASTRAR',
                 color: AppColors.primaryDark,
                 width: 0.9,
                 height: 0.06,
                 fontSize: 20,
-                textColor: AppColors.white,
+                textColor: Colors.white,
                 onPressed: () {
                   final valid = _formKey.currentState != null &&
                       _formKey.currentState!.validate();
