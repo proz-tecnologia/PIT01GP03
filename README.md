@@ -102,7 +102,8 @@ Funcionalidades adicionais obtidas na Sprint IV:
 
 ![autenticacao](https://user-images.githubusercontent.com/108772866/213932318-9d4fb739-edb7-4fc8-afaf-6236fdf4533f.jpeg)
 
-<p align="center">![home](https://user-images.githubusercontent.com/108772866/213932387-b0f39821-ae53-4ebf-8cec-dad83e67c2f8.jpeg)width="200" height="400"</p>
+
+![home](https://user-images.githubusercontent.com/108772866/213932982-1a85414a-f52c-4734-aef1-e249e6bb4d29.jpeg)
 
 
 
