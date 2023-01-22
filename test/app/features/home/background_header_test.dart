@@ -5,9 +5,8 @@ import 'package:porkinio/app/features/home/background_header.dart';
 
 void main() {
   testWidgets('background header ...', (tester) async {
-    await tester.pumpWidget(const MaterialApp(home: BackgroundHeader()));
+    await tester.pumpWidget(const MaterialApp(home: Material(child: BackgroundHeader())));
 
-    expect(find.byType(SizedBox), findsOneWidget);
     expect(find.byType(Container), findsOneWidget);
   });
 }

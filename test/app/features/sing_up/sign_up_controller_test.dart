@@ -1,9 +1,9 @@
-// ignore_for_file: unused_import
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/sing_up/sign_up_state.dart';
 import 'package:porkinio/app/models/user_model.dart';
+
 import '../../services/mock_classes.dart';
 
 void main() {
@@ -29,7 +29,7 @@ void main() {
   });
 
   group('Test Sing Up Controller', () {
-    test('Tests Sign Up Controller Success State', () async {
+    test('Tests Sign Up Controller Sucess State', () async {
       expect(signUpController.state, isInstanceOf<SignUpInitialState>());
 
       when(() => mockSecureStorage.write(
@@ -50,7 +50,7 @@ void main() {
         email: 'user@email.com',
         password: '123456Ab',
       );
-      expect(signUpController.state, isInstanceOf<SignUpSuccessState>());
+      expect(signUpController.state, isInstanceOf<SignUpSucessState>());
     });
 
     test('Tests Sign Up Controller Error State', () async {

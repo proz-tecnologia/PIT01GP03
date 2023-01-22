@@ -1,9 +1,9 @@
-// ignore_for_file: unused_import
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/models/user_model.dart';
+
 import '../../services/mock_classes.dart';
 
 void main() {
@@ -29,7 +29,8 @@ void main() {
   });
 
   group('Test Sing In Controller', () {
-    test('Tests Sign In Controller Success State', () async {
+
+     test('Tests Sign In Controller Sucess State', () async {
       expect(singInController.state, isInstanceOf<SignInInitialState>());
 
       when(() => mockSecureStorage.write(
@@ -49,13 +50,17 @@ void main() {
         password: '123456Ab',
       );
       expect(singInController.state, isInstanceOf<SignInSuccessState>());
+      
     });
+    
+
+ 
 
     test('Tests Sign In Controller Error State', () async {
       expect(singInController.state, isInstanceOf<SignInInitialState>());
 
       when(() => mockSecureStorage.write(
-            key: "CURRENT_USER",
+           key: "CURRENT_USER",
             value: user.toJson(),
           )).thenAnswer((_) async {});
 
