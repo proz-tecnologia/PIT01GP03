@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 
 Future<void> customAuthDialog(BuildContext context, String customErrorMessage,
     String customMessageButton, String route) async {
@@ -9,7 +8,7 @@ Future<void> customAuthDialog(BuildContext context, String customErrorMessage,
       title: Text(
         textAlign: TextAlign.center,
         customErrorMessage,
-        style: const TextStyle(fontSize: 16, color: AppColors.backgroundDark),
+        style: const TextStyle(fontSize: 16,),
       ),
       actions: <Widget>[
         Center(

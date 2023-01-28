@@ -9,7 +9,7 @@ import 'package:porkinio/app/common/widgets/header_logo.dart';
 import 'package:porkinio/app/common/widgets/password_form_field.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
-import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
+import 'package:porkinio/app/features/sign_up/sign_up_page.dart';
 import 'package:porkinio/app/common/themes/app_colors.dart';
 import 'package:porkinio/locator.dart';
 
@@ -27,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final signInController = locator.get<SingInController>();
+  final signInController = locator.get<SignInController>();
 
   @override
   void initState() {
@@ -86,7 +86,7 @@ class _SignInPageState extends State<SignInPage> {
                       width: 0.9,
                       height: 0.06,
                       fontSize: 20,
-                      textColor: AppColors.white,
+                      textColor: Colors.white,
                       onPressed: () {
                         final valid = _formKey.currentState != null &&
                             _formKey.currentState!.validate();
@@ -105,20 +105,20 @@ class _SignInPageState extends State<SignInPage> {
                         Navigator.of(context)
                             .pushNamed(AccountRecoveryPage.route);
                       },
-                      color: AppColors.textMediumGray,
+                      color: Colors.grey,
                       width: 0.9,
                       height: 0.06,
                       fontSize: 20,
-                      textColor: AppColors.white,
+                      textColor: Colors.white,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     CustomFlatButton(
                       text: 'CADASTRAR NOVA CONTA',
-                      color: AppColors.textMediumGray,
+                      color: Colors.grey,
                       width: 0.9,
                       height: 0.06,
                       fontSize: 20,
-                      textColor: AppColors.white,
+                      textColor: Colors.white,
                       onPressed: () {
                         Navigator.of(context).pushNamed(SignUpPage.route);
                       },

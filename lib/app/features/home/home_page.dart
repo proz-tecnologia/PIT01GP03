@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/widgets/background_header.dart';
-import 'package:porkinio/app/common/widgets/custom_floating_action_button.dart';
+import 'package:porkinio/app/common/themes/app_colors.dart';
+import 'package:porkinio/app/features/piggy_bank/piggy_bank_card_list.dart';
+import 'package:porkinio/app/features/piggy_bank/piggy_bank_controller.dart';
+import 'package:porkinio/app/features/home/background_header.dart';
+import 'package:porkinio/app/features/home/custom_floating_action_button.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_list_card.dart';
-import 'package:porkinio/app/features/account_balance_card/account_balance_card.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_card.dart';
 import 'package:porkinio/app/common/widgets/custom_navigation_drawer.dart';
-import 'package:porkinio/app/features/account_balance_card/account_balance_card_controller.dart';
-import 'package:porkinio/app/features/transaction_list/transaction_list_controller.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
@@ -21,16 +24,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final transactionListController = locator.get<TransactionListController>();
-  final accountBalanceCardController =
-      locator.get<AccountBalanceCardController>();
+  final transactionController = locator.get<TransactionController>();
+  final piggyBankController = locator.get<PiggyBankController>();
+  final virtualWalletCardController = locator.get<VirtualWalletController>();
   final _secureStorage = const SecureStorage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Olá, ${locator.get<AuthService>().currentUser?.displayName}!'),
+        title: Text(
+          'Olá, ${locator.get<AuthService>().currentUser?.displayName}!',
+        ),
         elevation: 0,
         actions: <Widget>[
           IconButton(
@@ -50,24 +55,92 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: const CustomNavigationDrawer(),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Stack(
-            children: const [
-              BackgroundHeader(),
-              AccountBalanceCard(),
-            ],
-          ),
-          TransactionListCard(
-            transactionListController: transactionListController,
-          ),
-          const SizedBox(height: 72),
-        ],
+      body: SafeArea(
+        child: Stack(
+          clipBehavior: Clip.antiAlias,
+          children: [
+            const BackgroundHeader(),
+            ListView(
+              children: [
+                const VirtualWalletCard(),
+                TransactionListCard(
+                  controller: transactionController,
+                ),
+                Stack(
+                  children: [
+                    SingleChildScrollView(
+                      clipBehavior: Clip.antiAlias,
+                      scrollDirection: Axis.horizontal,
+                      child: PiggyBankCardList(
+                        controller: piggyBankController,
+                        walletController: virtualWalletCardController,
+                      ),
+                    ),
+                    Positioned(
+                      // FADE ESQUERDO
+                      left: 0,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft,
+                            colors: [
+                              Colors.white.withOpacity(0.0),
+                              Colors.white,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      // FADE DIREITO
+                      right: 0,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Colors.white.withOpacity(0.0),
+                              Colors.white,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Positioned(
+              // FADE SUPERIOR
+              top: 0,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.01,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColors.primaryDark,
+                      AppColors.primaryDark.withOpacity(0.0),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomFloatingActionButton(
-          transactionListController: transactionListController),
+        transactionController: transactionController,
+        piggyBankController: piggyBankController,
+      ),
     );
   }
 }

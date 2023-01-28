@@ -6,6 +6,6 @@ class TransactionListInitialState extends TransactionListState {}
 
 class TransactionListLoadingState extends TransactionListState {}
 
-class TransactionListSucessState extends TransactionListState {}
+class TransactionListSuccessState extends TransactionListState {}
 
 class TransactionListErrorState extends TransactionListState {}
