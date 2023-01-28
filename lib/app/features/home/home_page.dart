@@ -44,12 +44,52 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT_USER").then(
-                    (_) => Navigator.popAndPushNamed(
-                      context,
-                      SplashPage.route,
+              showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: const Text('Deseja sair desta conta?'),
+                  content: Text(
+                    'Os seus dados continuarão salvos na núvem e você será direcionado novamente à página de Login.',
+                    style: Theme.of(context).textTheme.overline?.copyWith(
+                          color: Colors.teal[800],
+                        ),
+                  ),
+                  actions: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                Colors.grey,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Cancelar'),
+                          ),
+                          ElevatedButton(
+                            child: const Text('Confirmar'),
+                            onPressed: () async {
+                              _secureStorage
+                                  .deleteOne(key: "CURRENT_USER")
+                                  .then(
+                                    (_) => Navigator.popAndPushNamed(
+                                      context,
+                                      SplashPage.route,
+                                    ),
+                                  );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  );
+                  ],
+                ),
+              );
             },
           )
         ],

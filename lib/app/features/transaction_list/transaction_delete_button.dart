@@ -38,24 +38,33 @@ class _TransactionDeleteButtonState extends State<TransactionDeleteButton> {
                   ),
             ),
             actions: <Widget>[
-              ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll<Color>(
-                    Colors.grey,
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                          Colors.grey,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Cancelar'),
+                    ),
+                    ElevatedButton(
+                      child: const Text('Confirmar'),
+                      onPressed: () async {
+                        Navigator.of(context)
+                            .pushReplacementNamed(HomePage.route);
+                        await transactionController
+                            .deleteTransaction(widget.transactionModel);
+                      },
+                    ),
+                  ],
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancelar'),
-              ),
-              ElevatedButton(
-                child: const Text('Confirmar'),
-                onPressed: () async {
-                  Navigator.of(context).pushReplacementNamed(HomePage.route);
-                  await transactionController
-                      .deleteTransaction(widget.transactionModel);
-                },
               ),
             ],
           ),

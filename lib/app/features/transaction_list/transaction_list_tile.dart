@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_delete_button.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_edit_button.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_list_tile_options_button.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 
 class TransactionListTile extends StatelessWidget {
   const TransactionListTile({
     Key? key,
     required this.transactionModel,
+    required this.transactionController,
   }) : super(key: key);
 
   final TransactionModel transactionModel;
+  final TransactionController transactionController;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +66,10 @@ class TransactionListTile extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                TransactionEditButton(transactionModel: transactionModel),
-                TransactionDeleteButton(transactionModel: transactionModel),
+                TransactionListTileOptionsButton(
+                  model: transactionModel,
+                  controller: transactionController,
+                ),
               ],
             ),
           ),

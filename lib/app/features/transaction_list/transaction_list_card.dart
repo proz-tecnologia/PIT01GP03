@@ -35,7 +35,10 @@ class TransactionListCard extends StatelessWidget {
                 child: ListView(
                   children: snapshot.data!
                       .map(
-                        (model) => TransactionListTile(transactionModel: model),
+                        (model) => TransactionListTile(
+                          transactionModel: model,
+                          transactionController: controller,
+                        ),
                       )
                       .toList(),
                 ),

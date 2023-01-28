@@ -107,7 +107,7 @@ class PiggyBankCard extends StatelessWidget {
           // ICONE DE OPÇÕES
           top: -8,
           right: 8,
-          child: PiggyBankPopupMenu(
+          child: PiggyBankCardOptionsButton(
             model: piggyBankModel,
             controller: piggyBankController,
           ),
