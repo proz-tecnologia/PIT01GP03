@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:porkinio/app/common/themes/app_colors.dart';
 
 class CustomFlatButton extends StatefulWidget {
   final String text;
@@ -60,7 +59,7 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
                     Text(
                       widget.text,
                       style: TextStyle(
-                          fontSize: widget.fontSize, color: AppColors.linear),
+                          fontSize: widget.fontSize),
                     ),
                   ],
                 )

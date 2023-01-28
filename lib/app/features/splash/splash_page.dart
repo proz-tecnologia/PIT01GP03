@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
     _splashController.isUserLogged();
     _splashController.addListener(
       () {
-        if (_splashController.state is SplashSucessState) {
+        if (_splashController.state is SplashSuccessState) {
           Future.delayed(
             const Duration(
               seconds: 2,

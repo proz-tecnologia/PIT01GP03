@@ -4,7 +4,7 @@ import 'package:porkinio/app/common/themes/custom_theme_data.dart';
 import 'package:porkinio/app/features/account_recovery/account_recovery_page.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_page.dart';
-import 'package:porkinio/app/features/sing_up/sign_up_page.dart';
+import 'package:porkinio/app/features/sign_up/sign_up_page.dart';
 import 'package:porkinio/app/features/splash/splash_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -37,5 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-  

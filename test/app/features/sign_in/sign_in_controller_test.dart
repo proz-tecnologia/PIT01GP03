@@ -3,11 +3,10 @@ import 'package:mocktail/mocktail.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_controller.dart';
 import 'package:porkinio/app/features/sign_in/sign_in_state.dart';
 import 'package:porkinio/app/models/user_model.dart';
-
 import '../../services/mock_classes.dart';
 
 void main() {
-  late SingInController singInController;
+  late SignInController signInController;
   late MockSecureStorage mockSecureStorage;
   late MockFirebaseAuthService mockFirebaseAuthService;
   late UserModel user;
@@ -16,7 +15,7 @@ void main() {
     mockSecureStorage = MockSecureStorage();
     mockFirebaseAuthService = MockFirebaseAuthService();
 
-    singInController = SingInController(
+    signInController = SignInController(
       mockFirebaseAuthService,
       mockSecureStorage,
     );
@@ -28,10 +27,9 @@ void main() {
     );
   });
 
-  group('Test Sing In Controller', () {
-
-     test('Tests Sign In Controller Sucess State', () async {
-      expect(singInController.state, isInstanceOf<SignInInitialState>());
+  group('Test Sign In Controller', () {
+    test('Tests Sign In Controller Sucess State', () async {
+      expect(signInController.state, isInstanceOf<SignInInitialState>());
 
       when(() => mockSecureStorage.write(
             key: "CURRENT_USER",
@@ -45,22 +43,18 @@ void main() {
         ),
       ).thenAnswer((_) async => user);
 
-      await singInController.doLogin(
+      await signInController.doLogin(
         email: 'user@email.com',
         password: '123456Ab',
       );
-      expect(singInController.state, isInstanceOf<SignInSuccessState>());
-      
+      expect(signInController.state, isInstanceOf<SignInSuccessState>());
     });
-    
-
- 
 
     test('Tests Sign In Controller Error State', () async {
-      expect(singInController.state, isInstanceOf<SignInInitialState>());
+      expect(signInController.state, isInstanceOf<SignInInitialState>());
 
       when(() => mockSecureStorage.write(
-           key: "CURRENT_USER",
+            key: "CURRENT_USER",
             value: user.toJson(),
           )).thenAnswer((_) async {});
 
@@ -73,11 +67,11 @@ void main() {
         Exception(),
       );
 
-      await singInController.doLogin(
+      await signInController.doLogin(
         email: 'user@email.com',
         password: '123456Ab',
       );
-      expect(singInController.state, isInstanceOf<SignInErrorState>());
+      expect(signInController.state, isInstanceOf<SignInErrorState>());
     });
   });
 }
