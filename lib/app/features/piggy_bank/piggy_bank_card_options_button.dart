@@ -15,15 +15,22 @@ class PiggyBankCardOptionsButton extends StatefulWidget {
   static const route = '/home-page';
 
   @override
-  State<PiggyBankCardOptionsButton> createState() => _PiggyBankCardOptionsButtonState();
+  State<PiggyBankCardOptionsButton> createState() =>
+      _PiggyBankCardOptionsButtonState();
 }
 
-class _PiggyBankCardOptionsButtonState extends State<PiggyBankCardOptionsButton> {
+class _PiggyBankCardOptionsButtonState
+    extends State<PiggyBankCardOptionsButton> {
   ItemOptions? selectedMenu;
 
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<ItemOptions>(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(16),
+        ),
+      ),
       constraints: BoxConstraints(
         minWidth: MediaQuery.of(context).size.width * 0.4,
       ),
