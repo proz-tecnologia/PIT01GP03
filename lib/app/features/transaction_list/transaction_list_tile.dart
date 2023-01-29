@@ -88,7 +88,7 @@ class TransactionListTile extends StatelessWidget {
                   : SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        padding: const EdgeInsets.symmetric(vertical: 6.0),
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -120,7 +120,7 @@ class TransactionListTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    width: 1,
+                    width: 0.5,
                     height: MediaQuery.of(context).size.width * 0.07,
                     color: Colors.grey,
                   ),
