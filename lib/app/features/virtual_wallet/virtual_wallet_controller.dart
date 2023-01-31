@@ -39,6 +39,7 @@ class VirtualWalletController extends ChangeNotifier {
   }
 
   Future getIncome(VirtualWalletModel wallet) async {
+    await getBalance(wallet);
     final queryIncome = _firestore
         .collection('wallet')
         .doc('${locator.get<AuthService>().currentUser!.uid}/income');
@@ -50,6 +51,7 @@ class VirtualWalletController extends ChangeNotifier {
   }
 
   Future getExpenses(VirtualWalletModel wallet) async {
+    await getBalance(wallet);
     final queryExpenses = _firestore
         .collection('wallet')
         .doc('${locator.get<AuthService>().currentUser!.uid}/expenses');

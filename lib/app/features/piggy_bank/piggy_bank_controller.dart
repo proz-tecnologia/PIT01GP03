@@ -11,7 +11,6 @@ class PiggyBankController extends VirtualWalletController {
   PiggyBankCardState _piggyBankCardState = PiggyBankCardInitialState();
   PiggyBankCardState get piggyBankCardState => _piggyBankCardState;
 
-
   void _updateState(PiggyBankCardState newState) {
     _piggyBankCardState = newState;
     notifyListeners();
@@ -88,7 +87,8 @@ class PiggyBankController extends VirtualWalletController {
     }
   }
 
-    Future readBalance(VirtualWalletModel wallet) async {
+  Future readBalance(VirtualWalletModel wallet) async {
+    await getBalance(wallet);
     final queryBalance = _firestore
         .collection('wallet')
         .doc('${locator.get<AuthService>().currentUser!.uid}/balance');
