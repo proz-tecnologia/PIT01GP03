@@ -1,16 +1,16 @@
 class VirtualWalletModel {
   String? id;
   String? userId;
-  double balance;
-  double income;
-  double expenses;
+  double? balance;
+  double? income;
+  double? expenses;
 
   VirtualWalletModel({
     this.id = '',
     this.userId = '',
-    required this.balance,
-    required this.income,
-    required this.expenses,
+     this.balance,
+     this.income,
+     this.expenses,
   });
 
   VirtualWalletModel copyWith({
@@ -33,9 +33,9 @@ class VirtualWalletModel {
     return <String, dynamic>{
       'id': id,
       'userId': userId,
-      'balance': balance.toDouble(),
-      'income': income.toDouble(),
-      'expenses': expenses.toDouble(),
+      'balance': balance?.toDouble() ?? 1.0,
+      'income': income?.toDouble() ?? 2.0,
+      'expenses': expenses?.toDouble() ?? 3.0,
     };
   }
 
@@ -52,9 +52,9 @@ class VirtualWalletModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'userId': userId,
-        'balance': balance.toDouble(),
-        'income': income.toDouble(),
-        'expenses': expenses.toDouble(),
+        'balance': balance?.toDouble() ?? 1.0,
+        'income': income?.toDouble() ?? 2.0,
+        'expenses': expenses?.toDouble() ?? 3.0,
       };
 
   static VirtualWalletModel fromJson(Map<String, dynamic> json) => VirtualWalletModel(

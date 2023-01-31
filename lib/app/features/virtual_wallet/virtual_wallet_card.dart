@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_model.dart';
 import 'package:porkinio/locator.dart';
 
 class VirtualWalletCard extends StatefulWidget {
@@ -14,8 +15,8 @@ bool visibilityOn = true;
 
 class _VirtualWalletCardState extends State<VirtualWalletCard> {
   final transactionController = locator.get<TransactionController>();
-  final virtualWalletCardController = locator.get<VirtualWalletController>();
-  
+  final virtualWalletController = locator.get<VirtualWalletController>();
+  final model = locator.get<VirtualWalletModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +74,10 @@ class _VirtualWalletCardState extends State<VirtualWalletCard> {
                   ),
                   visibilityOn
                       ? FutureBuilder(
-                          future: virtualWalletCardController.getBalance(),
+                          future: virtualWalletController.getBalance(model),
                           builder: (context, snapshot) {
                             return Text(
-                              'R\$ ${virtualWalletCardController.walletBalance.toStringAsFixed(2)}',
+                              'R\$ ${model.balance?.toStringAsFixed(2)}',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3
@@ -109,11 +110,11 @@ class _VirtualWalletCardState extends State<VirtualWalletCard> {
                           Container(
                             child: visibilityOn
                                 ? FutureBuilder(
-                                    future: virtualWalletCardController
-                                        .getIncome(),
+                                    future: virtualWalletController
+                                        .getIncome(model),
                                     builder: (context, snapshot) {
                                       return Text(
-                                        'R\$ ${virtualWalletCardController.walletIncome.toStringAsFixed(2)}',
+                                        'R\$ ${model.income?.toStringAsFixed(2)}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1
@@ -148,11 +149,11 @@ class _VirtualWalletCardState extends State<VirtualWalletCard> {
                           Container(
                             child: visibilityOn
                                 ? FutureBuilder(
-                                    future: virtualWalletCardController
-                                        .getExpenses(),
+                                    future: virtualWalletController
+                                        .getExpenses(model),
                                     builder: (context, snapshot) {
                                       return Text(
-                                        'R\$ ${virtualWalletCardController.walletExpenses.toStringAsFixed(2)}',
+                                        'R\$ ${model.expenses?.toStringAsFixed(2)}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1
@@ -176,6 +177,11 @@ class _VirtualWalletCardState extends State<VirtualWalletCard> {
                       ),
                     ],
                   ),
+                  // FutureBuilder(
+                  //     future: virtualWalletController.updateWallet(model),
+                  //     builder: (context, snapshot) {
+                  //       return SizedBox();
+                  //     }),
                 ],
               ),
             ),

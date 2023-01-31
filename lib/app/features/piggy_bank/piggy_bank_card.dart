@@ -7,12 +7,12 @@ import 'package:porkinio/app/features/piggy_bank/piggy_bank_model.dart';
 class PiggyBankCard extends StatelessWidget {
   const PiggyBankCard({
     Key? key,
-    required this.piggyBankModel,
-    required this.piggyBankController,
+    required this.model,
+    required this.controller,
   }) : super(key: key);
 
-  final PiggyBankModel piggyBankModel;
-  final PiggyBankController piggyBankController;
+  final PiggyBankModel model;
+  final PiggyBankController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class PiggyBankCard extends StatelessWidget {
                       FittedBox(
                         // VALOR
                         child: Text(
-                          'R\$ ${piggyBankModel.amount.toStringAsFixed(2)}',
+                          'R\$ ${model.amount.toStringAsFixed(2)}',
                           style:
                               Theme.of(context).textTheme.headline6?.copyWith(
                                     color: Colors.white,
@@ -47,7 +47,7 @@ class PiggyBankCard extends StatelessWidget {
                       FittedBox(
                         // DESCRIÇÃO
                         child: Text(
-                          piggyBankModel.title,
+                          model.title,
                           style: Theme.of(context).textTheme.caption?.copyWith(
                                 color: Colors.white,
                               ),
@@ -64,14 +64,19 @@ class PiggyBankCard extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.325,
                       height: MediaQuery.of(context).size.height * 0.02,
                       color: Colors.white,
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.height * 0.018,
-                      color: AppColors.primary,
+                    FutureBuilder(
+                      future: null,
+                      builder: (context, snapshot) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          height: MediaQuery.of(context).size.height * 0.018,
+                          color: AppColors.primary,
+                        );
+                      }
                     ),
                   ],
                 ),
@@ -98,7 +103,7 @@ class PiggyBankCard extends StatelessWidget {
                 fit: BoxFit.cover,
                 height: MediaQuery.of(context).size.width * 0.18,
                 width: MediaQuery.of(context).size.width * 0.18,
-                image: NetworkImage(piggyBankModel.networkImage),
+                image: NetworkImage(model.networkImage),
               ),
             ),
           ],
@@ -108,8 +113,8 @@ class PiggyBankCard extends StatelessWidget {
           top: -8,
           right: 8,
           child: PiggyBankCardOptionsButton(
-            model: piggyBankModel,
-            controller: piggyBankController,
+            model: model,
+            controller: controller,
           ),
         ),
       ],

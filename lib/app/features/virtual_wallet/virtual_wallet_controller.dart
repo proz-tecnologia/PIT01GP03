@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_card_state.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_model.dart';
 import 'package:porkinio/app/models/transaction_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:porkinio/locator.dart';
@@ -12,8 +15,6 @@ class VirtualWalletController extends ChangeNotifier {
   VirtualWalletCardState get state => _virtualWalletCardState;
 
   double walletBalance = 0.0;
-  double walletIncome = 0.0;
-  double walletExpenses = 0.0;
 
   void _updateState(VirtualWalletCardState newState) {
     _virtualWalletCardState = newState;
@@ -37,32 +38,29 @@ class VirtualWalletController extends ChangeNotifier {
     return transactionList;
   }
 
-  Future<double> getIncome() async {
-    walletIncome = 0.0;
-    final transactionList = await readTransactionList();
-    for (var transaction in transactionList) {
-      if (transaction.category == true) {
-        walletIncome += transaction.amount;
-      }
-    }
+  Future getIncome(VirtualWalletModel wallet) async {
+    final queryIncome = _firestore
+        .collection('wallet')
+        .doc('${locator.get<AuthService>().currentUser!.uid}/income');
+    final snapshotIncome = await queryIncome.get();
 
-    return walletIncome;
+    if (snapshotIncome.exists) {
+      wallet.income = snapshotIncome.data()?.entries.first.value;
+    }
   }
 
-  Future<double> getExpenses() async {
-    walletExpenses = 0.0;
-    final transactionList = await readTransactionList();
+  Future getExpenses(VirtualWalletModel wallet) async {
+    final queryExpenses = _firestore
+        .collection('wallet')
+        .doc('${locator.get<AuthService>().currentUser!.uid}/expenses');
+    final snapshotExpenses = await queryExpenses.get();
 
-    for (var transaction in transactionList) {
-      if (transaction.category == false) {
-        walletExpenses += transaction.amount;
-      }
+    if (snapshotExpenses.exists) {
+      wallet.income = snapshotExpenses.data()?.entries.first.value;
     }
-
-    return walletExpenses;
   }
 
-  Future<double> getBalance() async {
+  Future<double> getBalance(VirtualWalletModel wallet) async {
     walletBalance = 0.0;
     double income = 0.0;
     double expenses = 0.0;
@@ -78,10 +76,38 @@ class VirtualWalletController extends ChangeNotifier {
     }
     walletBalance = income - expenses;
 
+    final newWallet = _firestore
+        .collection('wallet')
+        .doc(locator.get<AuthService>().currentUser!.uid);
+    wallet.id = newWallet.id;
+    wallet.balance = walletBalance;
+    wallet.income = income;
+    wallet.expenses = expenses;
+    wallet.userId = locator.get<AuthService>().currentUser!.uid;
+    await newWallet.set(wallet.toJson());
+
     _updateState(
       VirtualWalletCardSuccessState(),
     );
 
     return walletBalance;
   }
+
+  // Future updateWallet(VirtualWalletModel wallet) async {
+  //   final newBalance = await getBalance();
+  //   final newIncome = await getIncome();
+  //   final newExpenses = await getExpenses();
+  //   final newWallet = _firestore
+  //       .collection('wallet')
+  //       .doc(locator.get<AuthService>().currentUser!.uid);
+  //   wallet.id = newWallet.id;
+  //   wallet.balance = newBalance;
+  //   wallet.income = newIncome;
+  //   wallet.expenses = newExpenses;
+  //   wallet.userId = locator.get<AuthService>().currentUser!.uid;
+  //   await newWallet.set(wallet.toJson());
+  //   _updateState(
+  //     VirtualWalletCardSuccessState(),
+  //   );
+  // }
 }
