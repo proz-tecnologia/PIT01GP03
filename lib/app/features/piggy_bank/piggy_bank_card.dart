@@ -74,6 +74,7 @@ class _PiggyBankCardState extends State<PiggyBankCard> {
                 height: MediaQuery.of(context).size.height * 0.05,
                 child: Card(
                   // BARRA DE PROGRESSO
+                  color: Colors.white,
                   elevation: 4,
                   child: Stack(
                     alignment: Alignment.centerLeft,
@@ -84,18 +85,18 @@ class _PiggyBankCardState extends State<PiggyBankCard> {
                         color: Colors.white,
                       ),
                       FutureBuilder(
-                          future: widget.controller.readBalance(walletModel),
-                          builder: (context, snapshot) {
-                            return Container(
-                              width: MediaQuery.of(context).size.width *
-                                  0.32 *
-                                  (walletModel.balance ?? 0.1) /
-                                  widget.model.amount,
-                              height:
-                                  MediaQuery.of(context).size.height * 0.018,
-                              color: AppColors.primary,
-                            );
-                          }),
+                        future: widget.controller.readBalance(walletModel),
+                        builder: (context, snapshot) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width *
+                                0.32 *
+                                (walletModel.balance ?? 0.1) /
+                                widget.model.amount,
+                            height: MediaQuery.of(context).size.height * 0.022,
+                            color: AppColors.primary,
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
