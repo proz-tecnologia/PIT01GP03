@@ -17,15 +17,28 @@ class PiggyBankController extends VirtualWalletController {
   }
 
   Future createPiggyBank(PiggyBankModel piggyBank) async {
-    final newPiggyBank = _firestore.collection('piggy_bank').doc();
-    piggyBank.id = newPiggyBank.id;
-    piggyBank.userId = locator.get<AuthService>().currentUser!.uid;
-    await newPiggyBank.set(
-      piggyBank.toJson(),
-    );
-    _updateState(
-      PiggyBankCardSuccessState(),
-    );
+    try {
+      _updateState(
+        PiggyBankCardLoadingState(),
+      );
+      final newPiggyBank = _firestore.collection('piggy_bank').doc();
+      piggyBank.id = newPiggyBank.id;
+      piggyBank.userId = locator.get<AuthService>().currentUser!.uid;
+      await newPiggyBank.set(
+        piggyBank.toJson(),
+      );
+      _updateState(
+        PiggyBankCardSuccessState(),
+      );
+      notifyListeners();
+      _updateState(
+        PiggyBankCardSuccessState(),
+      );
+    } catch (e) {
+      _updateState(
+        PiggyBankCardErrorState(),
+      );
+    }
   }
 
   Future<List<PiggyBankModel>> readPiggyBankList() async {
@@ -62,11 +75,23 @@ class PiggyBankController extends VirtualWalletController {
   }
 
   Future updatePiggyBank(PiggyBankModel piggyBank) async {
-    piggyBank.userId = locator.get<AuthService>().currentUser!.uid;
-    await _firestore.collection('piggy_bank').doc(piggyBank.id).set(
-          piggyBank.toMap(),
-        );
-    notifyListeners();
+    try {
+      _updateState(
+        PiggyBankCardLoadingState(),
+      );
+      piggyBank.userId = locator.get<AuthService>().currentUser!.uid;
+      await _firestore.collection('piggy_bank').doc(piggyBank.id).set(
+            piggyBank.toMap(),
+          );
+      notifyListeners();
+      _updateState(
+        PiggyBankCardSuccessState(),
+      );
+    } catch (e) {
+      _updateState(
+        PiggyBankCardErrorState(),
+      );
+    }
   }
 
   Future deletePiggyBank(PiggyBankModel piggyBank) async {
@@ -88,14 +113,26 @@ class PiggyBankController extends VirtualWalletController {
   }
 
   Future readBalance(VirtualWalletModel wallet) async {
-    await getBalance(wallet);
-    final queryBalance = _firestore
-        .collection('wallet')
-        .doc('${locator.get<AuthService>().currentUser!.uid}/balance');
-    final snapshotBalance = await queryBalance.get();
+    try {
+      _updateState(
+        PiggyBankCardLoadingState(),
+      );
+      await getBalance(wallet);
+      final queryBalance = _firestore
+          .collection('wallet')
+          .doc('${locator.get<AuthService>().currentUser!.uid}/balance');
+      final snapshotBalance = await queryBalance.get();
 
-    if (snapshotBalance.exists) {
-      wallet.income = snapshotBalance.data()?.entries.first.value;
+      if (snapshotBalance.exists) {
+        wallet.income = snapshotBalance.data()?.entries.first.value;
+      }
+      _updateState(
+        PiggyBankCardSuccessState(),
+      );
+    } catch (e) {
+      _updateState(
+        PiggyBankCardErrorState(),
+      );
     }
   }
 }

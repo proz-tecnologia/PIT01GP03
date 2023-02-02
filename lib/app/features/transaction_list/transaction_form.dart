@@ -66,7 +66,7 @@ class _TransactionFormState extends State<TransactionForm> {
             padding: const EdgeInsets.all(16.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.6,
+              height: MediaQuery.of(context).size.height * 0.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
