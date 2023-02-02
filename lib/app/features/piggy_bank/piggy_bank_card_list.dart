@@ -41,8 +41,8 @@ class PiggyBankCardList extends StatelessWidget {
                 children: snapshot.data!
                     .map(
                       (model) => PiggyBankCard(
-                        piggyBankModel: model,
-                        piggyBankController: controller,
+                        model: model,
+                        controller: controller,
                       ),
                     )
                     .toList(),

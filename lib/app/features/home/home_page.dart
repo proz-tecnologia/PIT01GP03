@@ -44,12 +44,52 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             onPressed: () {
-              _secureStorage.deleteOne(key: "CURRENT_USER").then(
-                    (_) => Navigator.popAndPushNamed(
-                      context,
-                      SplashPage.route,
+              showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: const Text('Deseja sair desta conta?'),
+                  content: Text(
+                    'Os seus dados continuarão salvos na núvem e você será direcionado novamente à página de Login.',
+                    style: Theme.of(context).textTheme.overline?.copyWith(
+                          color: Colors.teal[800],
+                        ),
+                  ),
+                  actions: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                Colors.grey,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Cancelar'),
+                          ),
+                          ElevatedButton(
+                            child: const Text('Confirmar'),
+                            onPressed: () async {
+                              _secureStorage
+                                  .deleteOne(key: "CURRENT_USER")
+                                  .then(
+                                    (_) => Navigator.popAndPushNamed(
+                                      context,
+                                      SplashPage.route,
+                                    ),
+                                  );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  );
+                  ],
+                ),
+              );
             },
           )
         ],
@@ -59,12 +99,68 @@ class _HomePageState extends State<HomePage> {
         child: Stack(
           clipBehavior: Clip.antiAlias,
           children: [
-            const BackgroundHeader(),
             ListView(
               children: [
-                const VirtualWalletCard(),
+                Stack(
+                  children: const [
+                    BackgroundHeader(),
+                    VirtualWalletCard(),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05,
+                  ),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    child: Row(
+                      children: <Widget>[
+                        const Expanded(
+                          child: Divider(),
+                        ),
+                        Text(
+                          "  Minhas Transações  ",
+                          style: Theme.of(context).textTheme.overline?.copyWith(
+                                color: Colors.grey,
+                                fontSize: 8,
+                              ),
+                        ),
+                        const Expanded(
+                          child: Divider(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 TransactionListCard(
                   controller: transactionController,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05,
+                  ),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    child: Row(
+                      children: <Widget>[
+                        const Expanded(
+                          child: Divider(),
+                        ),
+                        Text(
+                          "  Meus Porkinios  ",
+                          style: Theme.of(context).textTheme.overline?.copyWith(
+                                color: Colors.grey,
+                                fontSize: 8,
+                              ),
+                        ),
+                        const Expanded(
+                          child: Divider(),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Stack(
                   children: [
@@ -88,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                             end: Alignment.centerLeft,
                             colors: [
                               Colors.white.withOpacity(0.0),
-                              Colors.white,
+                              Colors.white.withOpacity(0.5),
                             ],
                           ),
                         ),
@@ -106,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                             end: Alignment.centerRight,
                             colors: [
                               Colors.white.withOpacity(0.0),
-                              Colors.white,
+                              Colors.white.withOpacity(0.5),
                             ],
                           ),
                         ),
@@ -114,6 +210,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                )
               ],
             ),
             Positioned(
@@ -127,8 +226,26 @@ class _HomePageState extends State<HomePage> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      AppColors.primaryDark,
+                      AppColors.primaryDark.withOpacity(0.5),
                       AppColors.primaryDark.withOpacity(0.0),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              // FADE INFERIOR
+              bottom: 0,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.05,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Colors.white.withOpacity(0.5),
+                      Colors.white.withOpacity(0.0),
                     ],
                   ),
                 ),

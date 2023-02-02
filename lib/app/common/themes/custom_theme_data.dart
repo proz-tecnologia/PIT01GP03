@@ -66,7 +66,7 @@ ThemeData customThemeData() {
     ),
     cardTheme: const CardTheme(
       clipBehavior: Clip.antiAlias,
-      color: Color(0xFFFF9100),
+      color: AppColors.secondary,
       margin: EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 8,
@@ -78,17 +78,18 @@ ThemeData customThemeData() {
         ),
         side: BorderSide(
           width: 2.0,
-          color: Color(0xFFFFFFFF),
+          color: Colors.white,
           style: BorderStyle.solid,
         ),
       ),
     ),
     appBarTheme: const AppBarTheme(
       elevation: 0.0,
-      color: Color(0xFF004d40),
+      color: AppColors.primaryDark,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: Color(0xFF00695C),
+      elevation: 10,
+      backgroundColor: AppColors.primaryDark,
       foregroundColor: Color(0xFFFFFFFF),
     ),
     listTileTheme: const ListTileThemeData(

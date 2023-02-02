@@ -4,6 +4,7 @@ import 'package:porkinio/app/features/sign_up/sign_up_controller.dart';
 import 'package:porkinio/app/features/splash/splash_controller.dart';
 import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
 import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_controller.dart';
+import 'package:porkinio/app/features/virtual_wallet/virtual_wallet_model.dart';
 import 'package:porkinio/app/services/auth_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:porkinio/app/services/secure_storage.dart';
@@ -43,5 +44,9 @@ void setupDependencies() {
 
   locator.registerLazySingleton<PiggyBankController>(
     () => PiggyBankController(),
+  );
+
+  locator.registerLazySingleton<VirtualWalletModel>(
+    () => VirtualWalletModel(),
   );
 }

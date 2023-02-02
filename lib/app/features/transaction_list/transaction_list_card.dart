@@ -15,7 +15,7 @@ class TransactionListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.height,
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.42,
       child: Card(
         color: Theme.of(context).colorScheme.primary,
         child: StreamBuilder<List<TransactionModel>>(
@@ -32,12 +32,17 @@ class TransactionListCard extends StatelessWidget {
             } else if (snapshot.hasData) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
-                child: ListView(
-                  children: snapshot.data!
-                      .map(
-                        (model) => TransactionListTile(transactionModel: model),
-                      )
-                      .toList(),
+                child: Scrollbar(
+                  child: ListView(
+                    children: snapshot.data!
+                        .map(
+                          (model) => TransactionListTile(
+                            model: model,
+                            controller: controller,
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
               );
             } else {

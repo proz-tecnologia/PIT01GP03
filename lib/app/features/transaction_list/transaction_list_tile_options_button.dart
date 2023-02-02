@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:porkinio/app/features/home/home_page.dart';
-import 'package:porkinio/app/features/piggy_bank/piggy_bank_controller.dart';
-import 'package:porkinio/app/features/piggy_bank/piggy_bank_form.dart';
-import 'package:porkinio/app/features/piggy_bank/piggy_bank_model.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_controller.dart';
+import 'package:porkinio/app/features/transaction_list/transaction_form.dart';
+import 'package:porkinio/app/models/transaction_model.dart';
 
 enum ItemOptions { edit, delete }
 
-class PiggyBankCardOptionsButton extends StatefulWidget {
-  const PiggyBankCardOptionsButton(
-      {super.key, required this.model, required this.controller});
-  final PiggyBankModel model;
-  final PiggyBankController controller;
+class TransactionListTileOptionsButton extends StatefulWidget {
+  const TransactionListTileOptionsButton({
+    super.key,
+    required this.model,
+    required this.controller,
+  });
+  final TransactionModel model;
+  final TransactionController controller;
 
   static const route = '/home-page';
 
   @override
-  State<PiggyBankCardOptionsButton> createState() =>
-      _PiggyBankCardOptionsButtonState();
+  State<TransactionListTileOptionsButton> createState() =>
+      _TransactionListTileOptionsButtonState();
 }
 
-class _PiggyBankCardOptionsButtonState
-    extends State<PiggyBankCardOptionsButton> {
+class _TransactionListTileOptionsButtonState
+    extends State<TransactionListTileOptionsButton> {
   ItemOptions? selectedMenu;
 
   @override
@@ -40,9 +43,11 @@ class _PiggyBankCardOptionsButtonState
       ),
       initialValue: selectedMenu,
       onSelected: (ItemOptions item) {
-        setState(() {
-          selectedMenu = item;
-        });
+        setState(
+          () {
+            selectedMenu = item;
+          },
+        );
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<ItemOptions>>[
         PopupMenuItem<ItemOptions>(
@@ -60,7 +65,7 @@ class _PiggyBankCardOptionsButtonState
               () => showDialog(
                 context: context,
                 builder: (context) => Center(
-                  child: PiggyBankForm(
+                  child: TransactionForm(
                     controller: widget.controller,
                     model: widget.model,
                   ),
@@ -81,7 +86,7 @@ class _PiggyBankCardOptionsButtonState
               showDialog(
                 context: context,
                 builder: (ctx) => AlertDialog(
-                  title: const Text('Deseja excluir esse Porkinio?'),
+                  title: const Text('Deseja excluir essa transação?'),
                   content: Text(
                     'Essa ação não poderá ser desfeita.',
                     style: Theme.of(context).textTheme.overline?.copyWith(
@@ -111,7 +116,7 @@ class _PiggyBankCardOptionsButtonState
                               Navigator.of(context)
                                   .pushReplacementNamed(HomePage.route);
                               await widget.controller
-                                  .deletePiggyBank(widget.model);
+                                  .deleteTransaction(widget.model);
                             },
                           ),
                         ],

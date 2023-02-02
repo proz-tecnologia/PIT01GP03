@@ -23,7 +23,7 @@ class TransactionForm extends StatefulWidget {
   State<TransactionForm> createState() => _TransactionFormState();
 }
 
-const List<String> list = <String>['Entrada', 'Saída'];
+const List<String> list = <String>['Recebimento', 'Pagamento'];
 
 class _TransactionFormState extends State<TransactionForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
@@ -66,7 +66,7 @@ class _TransactionFormState extends State<TransactionForm> {
             padding: const EdgeInsets.all(16.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.6,
+              height: MediaQuery.of(context).size.height * 0.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -81,68 +81,94 @@ class _TransactionFormState extends State<TransactionForm> {
                     controller: _amountController,
                     keyboardType: TextInputType.number,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: _dateController,
-                      validator: CustomFormFieldValidator.validateNull,
-                      decoration: const InputDecoration(
-                        labelText: "Data",
-                        suffixIcon: Icon(Icons.calendar_today),
+                  TextFormField(
+                    controller: _dateController,
+                    validator: CustomFormFieldValidator.validateNull,
+                    decoration: const InputDecoration(
+                      labelText: "Data",
+                      suffixIcon: Icon(Icons.calendar_today),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: const BorderSide(
+                            color: AppColors.secondary, width: 2),
                       ),
-                      readOnly: true,
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime.now(),
-                        );
-                        if (pickedDate != null) {
-                          String formattedDate =
-                              DateFormat('yyyy-MM-dd').format(pickedDate);
-                          setState(
-                            () {
-                              _dateController.text = formattedDate;
-                            },
-                          );
-                        }
-                      },
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide:
+                            const BorderSide(color: AppColors.error, width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: const BorderSide(
+                            color: AppColors.primaryDark, width: 2),
+                      ),
                     ),
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime.now(),
+                      );
+                      if (pickedDate != null) {
+                        String formattedDate =
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
+                        setState(
+                          () {
+                            _dateController.text = formattedDate;
+                          },
+                        );
+                      }
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: DropdownButton<String>(
-                        value: dropdownValue,
-                        icon: const Icon(Icons.arrow_downward),
-                        style: const TextStyle(color: Colors.black54),
-                        underline: Container(
-                          height: 2,
-                          color: Colors.black54,
-                        ),
-                        onChanged: (String? value) {
-                          setState(
-                            () {
-                              dropdownValue = value!;
-                            },
+                  InputDecorator(
+                    decoration: const InputDecoration(
+                      labelText: "Categoria",
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: const BorderSide(
+                            color: AppColors.secondary, width: 2),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide:
+                            const BorderSide(color: AppColors.error, width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: const BorderSide(
+                            color: AppColors.primaryDark, width: 2),
+                      ),
+                    ),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: const Icon(Icons.arrow_downward),
+                      style: const TextStyle(color: Colors.black54),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.black54,
+                      ),
+                      onChanged: (String? value) {
+                        setState(
+                          () {
+                            dropdownValue = value!;
+                          },
+                        );
+                      },
+                      items: list.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Row(
+                                children: [Text(value)],
+                              ),
+                            ),
                           );
                         },
-                        items: list.map<DropdownMenuItem<String>>(
-                          (String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Row(
-                                  children: [Text(value)],
-                                ),
-                              ),
-                            );
-                          },
-                        ).toList(),
-                      ),
+                      ).toList(),
                     ),
                   ),
                   Row(
@@ -175,7 +201,7 @@ class _TransactionFormState extends State<TransactionForm> {
                               amount: double.parse(_amountController.text),
                               date: DateTime.parse(_dateController.text),
                               category:
-                                  dropdownValue == 'Entrada' ? true : false,
+                                  dropdownValue == 'Recebimento' ? true : false,
                             );
                             if (widget.model != null) {
                               widget.controller

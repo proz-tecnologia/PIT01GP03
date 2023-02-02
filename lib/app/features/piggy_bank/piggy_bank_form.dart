@@ -62,9 +62,9 @@ class _PiggyBankFormState extends State<PiggyBankForm> {
             padding: const EdgeInsets.all(16.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.8,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomFormField(
                     labelText: 'Titulo',
